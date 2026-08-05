@@ -523,7 +523,7 @@ badge.html / alert.html / card.html.
    бориши керак, лекин JE'da draft таҳрир формаси/route умуман йўқ -
    ҳозирча DRAFT ҳам view'га боради
    (`ledger/journalEntries.jte:71-74` изоҳида қайд этилган). Backend
-   (PostingService draft update) кутилмоқда - Ғайрат ҳудуди.
+   (PostingService draft update) кутилмоқда -  ҳудуди.
 5. **Сарлавҳа h1 ораликлари бир хил эмас**: кўпчилик экранда `mb-4`,
    report'ларда `mb-1.5` (остида изоҳ қатори бор) - қоида сифатида
    шуни танладик: изоҳ қатори бўлса `mb-1.5`, бўлмаса `mb-4`.

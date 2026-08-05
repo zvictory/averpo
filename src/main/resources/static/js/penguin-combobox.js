@@ -1,4 +1,4 @@
-// Penguin Combobox - Alpine.data компоненти (Arbitr-123).
+// Penguin Combobox - Alpine.data компоненти (DEC-123).
 // Маркап: src/main/jte/shared/combobox.jte (реф: docs/penguin-refs/
 // combobox.html «with search»); мантиқ Penguin сайтининг ўз minimal
 // услубида БИР ЖОЙДА рўйхатдан ўтади - 70+ нусхада x-data дубли йўқ.
@@ -324,7 +324,7 @@ document.addEventListener('alpine:init', function () {
                     li.style.display = '';
                     Object.keys(li.dataset).forEach(function (k) { delete li.dataset[k]; });
                     li.dataset.value = created.id;
-                    // Жавобдаги currency data'га кўчади (Arbitr-087 занжири
+                    // Жавобдаги currency data'га кўчади (DEC-087 занжири
                     // янги контактда ҳам ишлайди)
                     if (created.currency) li.dataset.currency = created.currency;
                     var labelEl = li.querySelector('[data-label]') || li;

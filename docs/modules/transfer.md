@@ -74,7 +74,7 @@ from/to сумма+курс майдонлари аллақачон бор - DEC
   (қоида №4), debit == credit assert (қоида №7).
 
 ## Бизнес қоидалар (BR-TXF-* - каталог-аввал, қоида №13)
-Код ёзишдан ОЛДИН docs/business-rules.md га киритилади (Ғайрат Tax'нинг
+Код ёзишдан ОЛДИН docs/business-rules.md га киритилади ( Tax'нинг
 BR-TAX'лари commit бўлгач - business-rules.md тўқнашмасин):
 
 - **BR-TXF-001** (ЯГОНА янги код): манба ва манзил счёти Balance Sheet

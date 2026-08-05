@@ -290,7 +290,7 @@ CreditCardPayment), UF/bank Deposit боғланган оқими (DEC-018).
    DEC-027 (rollback аудити - шу пасда триггери отилади).
   SEC-001 (DB парол fail-fast) .
 4. **Attachments (DEC-013, docs/modules/attachments.md)**
-  (Жасур, changeset 042;
+  (changeset 042;
    қамров кенгайиши - қолган кўришлар + map - DEC-048 фикс
    тўлқинида).
 4а. **Payroll Lite + аванс** (фойдаланувчи буюрди -
@@ -301,8 +301,8 @@ CreditCardPayment), UF/bank Deposit боғланган оқими (DEC-018).
    PayrollRun (23б, PAYR- рақам), PayrollPayment + ведомость (23в) -
    учала туртки ТАСДИҚ. Ведомость GL асосига кўчиши - DEC-047
    фикс тўлқинида.
-4б. **SalesReceipt** (Исломбек, changeset 046, SR-).
-4в. **Statement** (Жасур, print қатлами билан -
+4б. **SalesReceipt** (changeset 046, SR-).
+4в. **Statement** (print қатлами билан -
    DEC-040 негизи).
 4г. **«+ Янги» мега-меню** (DEC-038): QBO Create
    панели услубидаги кенг кўп устунли панел - қурилган, deploy 1 да

@@ -1,5 +1,5 @@
-// Курс блоки (Arbitr-097): валюта танлови + курс prefill (Arbitr-029) +
-// кўриниш/home жами (Arbitr-088) + КУЧЛИ-ВАЛЮТА ОРИЕНТАЦИЯ (Fmt.orient
+// Курс блоки (DEC-097): валюта танлови + курс prefill (DEC-029) +
+// кўриниш/home жами (DEC-088) + КУЧЛИ-ВАЛЮТА ОРИЕНТАЦИЯ (Fmt.orient
 // қоидасининг JS кўзгуси) - ҲАММАСИ БИР ЖОЙДА. Форма id'ларига боғланмайди:
 // data-атрибутлар билан form ичида scoped (rateBlock.jte маркапи).
 //
@@ -7,7 +7,7 @@
 // hidden name="exchangeRate" (data-rate-canonical). Server/servis/тестлар
 // ТЕГИЛМАЙДИ. Кўринадиган input (data-rate-input, name'сиз) - кучли-валюта
 // базисидаги ориентацияли қиймат; флипда visible = 1/canonical; кўриниши
-// курс кўрсатиш қоидасида (averpoRateFmt - money-input.js, Arbitr-135).
+// курс кўрсатиш қоидасида (averpoRateFmt - money-input.js, DEC-135).
 (function () {
     'use strict';
 
@@ -81,7 +81,7 @@
             block.dataset.rateFlipped = flipped ? '1' : '0';
             if (baseTag) baseTag.textContent = flipped ? HOME : doc;
             if (quoteTag) quoteTag.textContent = flipped ? doc : HOME;
-            // Arbitr-135: visible курс КЎРСАТИШ форматида (averpoRateFmt -
+            // DEC-135: visible курс КЎРСАТИШ форматида (averpoRateFmt -
             // Fmt.rate/orientInput кўзгуси; server биринчи бўяш билан айнан
             // тенг бўлмаса қиймат «сакраб» кўринади). Флипсизда каноник
             // STRING узатилади - float думи артефактисиз стринг яхлитлаш;
@@ -101,13 +101,13 @@
             hidden.value = flipped ? plain(1 / visible) : plain(visible);
         }
 
-        // --- Кўриниш (Arbitr-088): rate wrap кўрсат/яшир + home жами ---
+        // --- Кўриниш (DEC-088): rate wrap кўрсат/яшир + home жами ---
         // home жами = doc жами × КАНОНИК (hidden'дан - флип математикасидан холи)
         function refresh() {
             var foreign = isForeign();
             block.style.display = foreign ? '' : 'none';
             if (homeRow) homeRow.style.display = foreign ? 'flex' : 'none';
-            // Arbitr-107: форма ичидаги ташқи жами скриптлари (мас. JE'нинг
+            // DEC-107: форма ичидаги ташқи жами скриптлари (мас. JE'нинг
             // икки томонлама Дт/Кт home жамиси) каноник курс ўзгаришидан
             // хабардор бўлсин - refresh ҳар нуқтада (init/select/visible input/
             // prefill/сана) чақирилади. 8 ҳужжат формаси бу событиени
@@ -118,10 +118,10 @@
             homeEl.textContent = fmt(num(totalEl.textContent) * canonical);
         }
 
-        // --- Prefill (Arbitr-029): /exchange-rates/lookup КАНОНИК қайтаради ---
+        // --- Prefill (DEC-029): /exchange-rates/lookup КАНОНИК қайтаради ---
         function canAutofill() {
             var v = visibleInput.value.trim();
-            // «1» нейтрал қиймат Arbitr-135 дан бери форматланган («1.00»)
+            // «1» нейтрал қиймат DEC-135 дан бери форматланган («1.00»)
             // кўринишда ҳам келади - шунга num() орқали таққосланади
             return v === '' || num(v) === 1 || visibleInput.dataset.autofill === '1';
         }
@@ -151,7 +151,7 @@
                         visibleInput.dataset.autofill = '1';
                         refresh();
                     } else {
-                        // Arbitr-154: lookup бўш/хато қайтарса каноник ТОЗАЛАНАДИ -
+                        // DEC-154: lookup бўш/хато қайтарса каноник ТОЗАЛАНАДИ -
                         // «1» fallback билан сақланиб қолмасин (foreign ҳужжат 1:1
                         // курс → home қиймати бузиларди, прод BILL-2026-00002 айби).
                         // Бўш каноник server ҳимоясига (BR-BILL-009 оиласи -
@@ -205,7 +205,7 @@
 
         // Бошланғич: server аллақачон ориентациялаган, лекин флип белгиси ва
         // ёрлиқларни JS ҳам бир хил ҳисоблаб мослигини кафолатлайди.
-        // Arbitr-154 (HOTFIX): олдиндан foreign валюта қўйилган форма (PO→Bill
+        // DEC-154 (HOTFIX): олдиндан foreign валюта қўйилган форма (PO→Bill
         // конверти, prefill) курс бўш/«1» билан юкланса init'да ҳужжат
         // САНАСИГА курс АВТО-тортилади (QBO: ҳужжат ўз санасида ўз курсини
         // олади) - акс ҳолда курс жимгина «1» бўлиб foreign ҳужжат 1:1 POSTED

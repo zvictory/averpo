@@ -43,7 +43,7 @@ role, active - `security/domain/AppUser.java`). Янги майдонлар:
 | locked_until | timestamptz nullable | Шу пайтгача login тақиқ (BR-USR-009); NULL - қулф йўқ. UTC (темир қоида №12) |
 
 Changeset: `db/changelog/` даги навбатдаги бўш рақам (spec ёзилган
-пайтда 026; Ғайрат параллел ишлагани учун код пайтида қайта текширилади) -
+пайтда 026;  параллел ишлагани учун код пайтида қайта текширилади) -
 `ALTER TABLE app_user ADD COLUMN ...` иккала майдон.
 
 Эслатмалар:

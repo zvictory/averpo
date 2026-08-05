@@ -1,7 +1,7 @@
 # Location tracking (Жойлашув кесими) - SPEC
 
 Ҳолат: **ТАСДИҚ КУТМОҚДА** (фойдаланувчи талаби: QBO'дан
-Class олинган, Location ҳам қўшилсин; спец Отабек (QBO) + Наргиза
+Class олинган, Location ҳам қўшилсин; спец QBO солиштируви +
 кўригидан кейин карта).
 
 Манба: QBO parity бўшлиғи - entities.md JE жадвалидаги DepartmentRef

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Техник логгинг конфигурацияси (docs/modules/logging.md, Arbitr-099).
+  Техник логгинг конфигурацияси (docs/modules/logging.md, DEC-099).
   Console доим ёқиқ (dev одатлари + серверда journald stdout орқали
   ушлайди). Файл appender'лари ФАҚАТ test'дан ташқари профилларда -
   тестлар logs/ папкасини ифлос қилмасин (logback-test.xml ҳам қоплайди).

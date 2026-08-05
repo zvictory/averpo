@@ -1,0 +1,38 @@
+<!-- Penguin UI: Profile Menu (Sidebar with menu компонентининг паст зонаси,
+     modern/semantic вариант). Манба: penguinui.com/components/sidebar.
+     Focus плагини керак (x-trap, $focus). -->
+<div x-data="{ userDropdownIsOpen: false }" class="relative" x-on:keydown.esc.window="userDropdownIsOpen = false">
+    <button type="button"
+            class="flex w-full items-center gap-2 rounded-radius p-2 text-left text-on-surface hover:bg-primary/5 hover:text-on-surface-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:focus-visible:outline-primary-dark"
+            x-bind:class="userDropdownIsOpen ? 'bg-primary/10 dark:bg-primary-dark/10' : ''"
+            aria-haspopup="true" x-on:click="userDropdownIsOpen = ! userDropdownIsOpen"
+            x-bind:aria-expanded="userDropdownIsOpen">
+        <img src="avatar.webp" class="size-8 rounded-radius object-cover" alt="avatar" aria-hidden="true"/>
+        <div class="hidden flex-col md:flex">
+            <span class="text-sm font-bold text-on-surface-strong dark:text-on-surface-dark-strong">Alex Martinez</span>
+            <span class="text-xs" aria-hidden="true">@alexmartinez</span>
+            <span class="sr-only">profile settings</span>
+        </div>
+    </button>
+
+    <!-- menu -->
+    <div x-cloak x-show="userDropdownIsOpen"
+         class="absolute right-0 top-14 z-20 h-fit w-48 divide-y divide-outline rounded-radius border border-outline bg-surface dark:divide-outline-dark dark:border-outline-dark dark:bg-surface-dark"
+         role="menu" x-on:click.outside="userDropdownIsOpen = false"
+         x-on:keydown.down.prevent="$focus.wrap().next()"
+         x-on:keydown.up.prevent="$focus.wrap().previous()"
+         x-transition x-trap="userDropdownIsOpen">
+        <div class="flex flex-col py-1.5">
+            <a href="#" role="menuitem"
+               class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">
+                <!-- svg icon size-5 shrink-0 -->
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="flex flex-col py-1.5">
+            <a href="#" role="menuitem" class="(юқоридаги menuitem класслари)">
+                <span>Settings</span>
+            </a>
+        </div>
+    </div>
+</div>

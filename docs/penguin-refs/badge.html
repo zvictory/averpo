@@ -1,0 +1,26 @@
+<!-- Penguin UI: Badge (modern/semantic вариант).
+     Манба: penguinui.com/components/badge. Сайтдаги каноник шакл:
+     w-fit + border + rounded-radius + text-xs font-medium px-2 py-1,
+     фақат ранг токени алмашади. Ҳолат ранглари (success/warning/
+     danger/info) @theme'да dark эгизсиз - dark:* ёзилмайди (сайтда
+     dark:bg-success = bg-success). Нейтрал вариант surface-alt/outline
+     билан - dark жуфтлари БОР. Сайтдаги text-onSuccess ёзуви бизнинг
+     токенимизда text-on-success. -->
+<span class="w-fit rounded-radius border border-success bg-success px-2 py-1 text-xs font-medium text-on-success">
+    Success
+</span>
+<span class="w-fit rounded-radius border border-warning bg-warning px-2 py-1 text-xs font-medium text-on-warning">
+    Warning
+</span>
+<span class="w-fit rounded-radius border border-danger bg-danger px-2 py-1 text-xs font-medium text-on-danger">
+    Danger
+</span>
+<!-- Нейтрал (сайтда «default»): REVERSED/CLOSED каби статуслар учун -->
+<span class="w-fit rounded-radius border border-outline bg-surface-alt px-2 py-1 text-xs font-medium text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
+    Badge
+</span>
+
+<!-- Averpo мослашуви (Arbitr-119): статус чиплари жадвал катагида
+     синмаслиги учун whitespace-nowrap қўшилади (сайт тўпламида йўқ,
+     каноник шаклга параметр - янги CSS класс ЙЎҚ). Ишлатилиши
+     shared/badge.jte фрагментида БИР нуқтада. -->

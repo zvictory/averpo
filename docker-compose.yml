@@ -1,0 +1,15 @@
+# Ихтиёрий: локал PostgreSQL 18 бўлмаган муҳитлар учун.
+# Асосий dev муҳити - локал PostgreSQL (README'га қаранг).
+services:
+  postgres:
+    image: postgres:18.4
+    environment:
+      POSTGRES_DB: averpo
+      POSTGRES_USER: averpo
+      POSTGRES_PASSWORD: averpo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

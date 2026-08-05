@@ -1,0 +1,51 @@
+<!-- Penguin UI: Buttons (modern/semantic вариант).
+     Манба: penguinui.com/components/buttons. configVals['p']/['text'] -
+     сайт конфигуратори ўлчамлари; биз px-4 py-2 text-sm ишлатамиз
+     (кичик ўлчам: px-2.5 py-1 text-xs). Сайтдаги тўплам: primary,
+     secondary, alternate, inverse, info, success, warning, danger -
+     ҳаммаси БИР каноник шакл, фақат ранг токени алмашади. -->
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-primary bg-primary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-primary-dark dark:bg-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">
+    Primary
+</button>
+
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-secondary bg-secondary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-secondary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-secondary-dark dark:bg-secondary-dark dark:text-on-secondary-dark dark:focus-visible:outline-secondary-dark">
+    Secondary
+</button>
+
+<!-- Ҳолат ранглари: сайтда dark: жуфтлари ҳам айнан шу токенлар
+     (bg-success = dark:bg-success) - бизнинг @theme'да shared ранглар
+     dark эгизсиз, шунга dark:* ёзилмайди. Сайтдаги text-onSuccess -
+     уларнинг ёзувидаги ғализлик, токенимиз text-on-success. -->
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-success bg-success px-4 py-2 text-center text-sm font-medium tracking-wide text-on-success transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75">
+    Success
+</button>
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-danger bg-danger px-4 py-2 text-center text-sm font-medium tracking-wide text-on-danger transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-danger active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75">
+    Danger
+</button>
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-warning bg-warning px-4 py-2 text-center text-sm font-medium tracking-wide text-on-warning transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warning active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75">
+    Warning
+</button>
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-info bg-info px-4 py-2 text-center text-sm font-medium tracking-wide text-on-info transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-info active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75">
+    Info
+</button>
+
+<!-- Averpo мослашувлари (Arbitr-118) - Penguin тўпламида йўқ иккита
+     ҳолат, каноник шакл arctic токенлари билан параметрланган
+     (янги CSS класс ЙЎҚ):
+     1) ghost - қора барлардаги (formfooter/drawer-foot, иккала mode'да
+        #0f172a) шаффоф «Бекор»: alternate/inverse у фонда кўринмасди; -->
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-outline-dark bg-transparent px-4 py-2 text-center text-sm font-medium tracking-wide text-on-surface-dark transition hover:border-outline-dark-strong hover:text-on-surface-dark-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark active:outline-offset-0">
+    Ghost (қора барда)
+</button>
+<!-- 2) outline - оқ фонли иккиламчи кириш нуқтаси (Даврни ёпиш): -->
+<button type="button"
+        class="whitespace-nowrap rounded-radius border border-primary bg-surface px-4 py-2 text-center text-sm font-medium tracking-wide text-primary transition hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:outline-offset-0 dark:border-primary-dark dark:bg-surface-dark dark:text-primary-dark dark:focus-visible:outline-primary-dark">
+    Outline
+</button>

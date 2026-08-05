@@ -1,0 +1,194 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'gg.jte.gradle' version '3.2.4'
+}
+
+group = 'com.averpo'
+version = '0.1.0'
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+// Кирилл изоҳлар Windows'да system codepage'га боғлиқ бўлиб қолмасин -
+// компиляция encoding'и аниқ UTF-8 қилиб белгиланади
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+repositories { mavenCentral() }
+
+jte {
+    generate()
+    binaryStaticContent = true
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Auth + CSRF - молия тизимида mutating endpoint'лар ҳимоясиз қолмайди
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // JTE - Boot 4 учун starter-4, версияси gradle plugin билан бир хил;
+    // gg.jte:jte jar'ини starter транзитив беради - алоҳида ёзилмайди
+    implementation 'gg.jte:jte-spring-boot-starter-4:3.2.4'
+
+    // Boot 4'да liquibase-core'нинг ўзи етмайди - autoconfiguration starter'да
+    implementation 'org.springframework.boot:spring-boot-starter-liquibase'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Telegram Bot API расмий Java клиенти (docs/modules/user-profile.md
+    // 3-бўлим): плагин фақат учта чақирувни ишлатади (getMe/getUpdates/
+    // sendMessage), лекин Bot API қолипи (URL, JSON, retry семантикаси)
+    // кутубхона зиммасида - ўзимиз юритмаймиз. Транзитив: OkHttp + Gson +
+    // kotlin-stdlib. CDN тақиғи UI ресурсларга тегишли - Maven боғлиқлик
+    // жоиз (фойдаланувчи талаби 2026-07-17).
+    implementation 'com.github.pengrad:java-telegram-bot-api:10.1.0'
+
+    // Apache POI - Excel'дан бошланғич import (docs/modules/import-excel.md).
+    // Версияни Boot BOM бошқармайди - сўнгги барқарор қўлда белгиланади.
+    // Фақат .xlsx ўқиш: XSSF/WorkbookFactory (SXSSF стриминг керак эмас -
+    // 2000 сатр чегараси, BR-IMP-004).
+    implementation 'org.apache.poi:poi-ooxml:5.4.1'
+
+    // Lombok - версияни Boot BOM бошқаради
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // Тестлар локал PostgreSQL'даги erp_test базасида (Docker'сиз)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // MockMvc smoke тестларида @WithMockUser + springSecurity() конфигуратори
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') { useJUnitPlatform() }
+
+// ===== Arbitr-116: Tailwind 4 build пайплайни (docs/modules/ui-framework.md) =====
+// Standalone CLI (Node шарт эмас) биринчи ишга туширишда юклаб кэшланади:
+// версия PIN + расмий SHA256 текшируви. Binary репога КИРМАЙДИ - кэш
+// .gradle/ остида (.gitignore'да). Чиқиш build/generated/tailwind остига
+// ёзилади ва resources сифатида jar'га киради (/css/app.css бўлиб хизмат
+// қилади) - src/ га generated файл ёзилмайди.
+
+def tailwindVersion = '4.3.2'
+
+// Расмий релиз sha256sums.txt қийматлари (github tailwindlabs/tailwindcss
+// v4.3.2 release asset) - юкланган binary шунга мос келмаса build йиқилади.
+def tailwindSha256 = [
+    'tailwindcss-windows-x64.exe': '224a62a8351d3b8da9d950a4eb1d7176dc901dc4735b47f816f3dfcbc67d8654',
+    'tailwindcss-linux-x64'      : '5036c4fb4328e0bcdbb6065c70d8ac9452e0d4c947113a788a8f94fd390425c1',
+]
+
+// OS аниқлаш: Windows (dev) ва Linux x64 (эҳтимолий CI). Бошқа OS'да null -
+// хато конфигурация пайтида эмас, фақат tailwind task ижросида берилади
+// (акс ҳолда ҳар қандай gradle чақириғи ҳам йиқилиб қоларди).
+def tailwindExeName = System.getProperty('os.name').toLowerCase().contains('windows')
+        ? 'tailwindcss-windows-x64.exe'
+        : (System.getProperty('os.name').toLowerCase().contains('linux') ? 'tailwindcss-linux-x64' : null)
+def tailwindBin = tailwindExeName == null ? null
+        : file(".gradle/tailwind/v${tailwindVersion}/${tailwindExeName}")
+def tailwindOutDir = layout.buildDirectory.dir('generated/tailwind')
+
+tasks.register('tailwindDownload') {
+    description = 'Tailwind standalone CLI binary\'сини юклаб кэшлайди (PIN + SHA256)'
+    // Кэшда бор бўлса қайта юкланмайди - тармоқ фақат биринчи прогонда керак
+    onlyIf { tailwindBin == null || !tailwindBin.exists() }
+    doLast {
+        if (tailwindBin == null) {
+            throw new GradleException("Tailwind CLI: қўллаб-қувватланмаган OS '${System.getProperty('os.name')}' - Windows x64 (dev) ёки Linux x64 (CI) кутилади")
+        }
+        tailwindBin.parentFile.mkdirs()
+        def url = "https://github.com/tailwindlabs/tailwindcss/releases/download/v${tailwindVersion}/${tailwindExeName}"
+        logger.lifecycle("Tailwind CLI юкланмоқда: ${url}")
+        def tmp = new File(tailwindBin.parentFile, "${tailwindExeName}.part")
+        tmp.withOutputStream { out ->
+            java.net.URI.create(url).toURL().openStream().withCloseable { it.transferTo(out) }
+        }
+        // SHA256 текшируви - тармоқдан келган файл PIN'га мос бўлмаса ўчириб йиқиламиз
+        def digest = java.security.MessageDigest.getInstance('SHA-256')
+        tmp.withInputStream { ins ->
+            byte[] buf = new byte[65536]
+            int n
+            while ((n = ins.read(buf)) > 0) { digest.update(buf, 0, n) }
+        }
+        def actual = digest.digest().encodeHex().toString()
+        def expected = tailwindSha256[tailwindExeName]
+        if (actual != expected) {
+            tmp.delete()
+            throw new GradleException("Tailwind CLI SHA256 мос эмас: кутилган ${expected}, келган ${actual} - юклаб олиш бузилган ёки манба ўзгарган")
+        }
+        java.nio.file.Files.move(tmp.toPath(), tailwindBin.toPath(),
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        // Linux'да exec бит керак (Windows'да зарарсиз no-op)
+        tailwindBin.setExecutable(true, false)
+    }
+}
+
+tasks.register('tailwindBuild', Exec) {
+    dependsOn 'tailwindDownload'
+    description = 'src/main/css/app.css дан минифи static/css/app.css йиғади'
+    // Кириш: кирувчи CSS + класс манбаси бўлган JTE шаблонлар; версия
+    // кўтарилса ҳам қайта йиғилсин деб PIN ҳам inputs'га киради
+    inputs.property('tailwindVersion', tailwindVersion)
+    inputs.file('src/main/css/app.css')
+    inputs.dir('src/main/jte')
+    outputs.dir(tailwindOutDir)
+    def outCss = tailwindOutDir.get().file('static/css/app.css').asFile
+    doFirst {
+        if (tailwindBin == null) {
+            throw new GradleException("Tailwind CLI: қўллаб-қувватланмаган OS '${System.getProperty('os.name')}' - Windows x64 (dev) ёки Linux x64 (CI) кутилади")
+        }
+        outCss.parentFile.mkdirs()
+    }
+    executable = tailwindBin?.absolutePath ?: 'tailwindcss'
+    args '-i', file('src/main/css/app.css').absolutePath, '-o', outCss.absolutePath, '--minify'
+}
+
+// Generated CSS оддий resource бўлиб jar'га киради (static/css/app.css);
+// processResources ундан олдин tailwindBuild'ни юргизади
+sourceSets.main.resources.srcDir(tailwindOutDir)
+tasks.named('processResources') { dependsOn 'tailwindBuild' }
+
+// bootRun фақат локал dev'да ишлатилади - dev профили шу ерда фаоллашади.
+// Production jar'ни профилсиз ишга туширса AdminUserInitializer default
+// admin паролига йўл қўймай boot'ни тўхтатади (fail-safe).
+tasks.named('bootRun') {
+    args = ['--spring.profiles.active=dev']
+}
+
+// Arbitr-104: build-info.properties (версия + build вақти) - settings
+// саҳифаси тагидаги диагностика қатори учун (жонлида қайси код турганини
+// бир қарашда билиш). Қўшимча property: git қисқа hash. Вақт ҳар build'да
+// ўзгаргани учун bootBuildInfo up-to-date бўлмайди - кичик қайта яратиш
+// нархи атайлаб қабул қилинади (айнан вақт кераклиги учун). build-info
+// bootJar ва bootRun classpath'ига киради; тест контекстда йўқ (controller
+// null-чидамли - SettingsController.buildProperties ObjectProvider).
+springBoot {
+    buildInfo {
+        properties {
+            additional = [
+                commit: gitCommitHash()
+            ]
+        }
+    }
+}
+
+/**
+ * Git қисқа commit hash'и - build диагностика қатори учун (Arbitr-104).
+ * Ишчи дарахт ифлос бўлса «-dirty» қўшимчаси. Git йўқ ёки амал хато берса
+ * «unknown» қайтади - build ҲЕЧ ҚАЧОН йиқилмайди (эҳтиёт).
+ */
+def gitCommitHash() {
+    try {
+        def hash = 'git rev-parse --short HEAD'.execute(null, projectDir).text.trim()
+        if (hash.isEmpty()) {
+            return 'unknown'
+        }
+        def porcelain = 'git status --porcelain'.execute(null, projectDir).text.trim()
+        return porcelain.isEmpty() ? hash : hash + '-dirty'
+    } catch (Exception ignored) {
+        return 'unknown'
+    }
+}

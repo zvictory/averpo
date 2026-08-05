@@ -1,0 +1,37 @@
+<!-- Penguin UI: Alert (modern/semantic вариант).
+     Манба: penguinui.com/components/alert. Каноник шакл: ташқи ўрам
+     border-<V> + bg-surface + text-on-surface (dark жуфтлари билан),
+     ичида bg-<V>/10 қатлам, иконка bg-<V>/15 доирада, сарлавҳа
+     text-<V>. Ҳолат ранглари dark эгизсиз - уларга dark:* ёзилмайди. -->
+<div class="relative w-full overflow-hidden rounded-radius border border-success bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark" role="alert">
+    <div class="flex items-center gap-2 bg-success/10 p-4">
+        <div class="rounded-full bg-success/15 p-1 text-success" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd"/>
+            </svg>
+        </div>
+        <div class="ml-2">
+            <h3 class="text-sm font-semibold text-success">Successfully Subscribed</h3>
+            <p class="text-xs font-medium sm:text-sm">Body text</p>
+        </div>
+    </div>
+</div>
+
+<div class="relative w-full overflow-hidden rounded-radius border border-danger bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark" role="alert">
+    <div class="flex items-center gap-2 bg-danger/10 p-4">
+        <div class="rounded-full bg-danger/15 p-1 text-danger" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6" aria-hidden="true">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/>
+            </svg>
+        </div>
+        <div class="ml-2">
+            <h3 class="text-sm font-semibold text-danger">Error</h3>
+            <p class="text-xs font-medium sm:text-sm">Body text</p>
+        </div>
+    </div>
+</div>
+
+<!-- Averpo мослашуви (Arbitr-119): флеш хабар бир қаторли (сарлавҳасиз,
+     иконка ва h3'сиз ихчам шакл) - ички қатлам p-3, матн text-sm,
+     сарлавҳа ранги ўрнида матннинг ўзи text-<V>. Ишлатилиши
+     shared/alert.jte фрагментида БИР нуқтада. -->

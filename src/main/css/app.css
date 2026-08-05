@@ -1,0 +1,221 @@
+/* AVERPO - Tailwind 4 кирувчи CSS (Arbitr-116, спец:
+   docs/modules/ui-framework.md). Чиқиш: build/generated/tailwind/
+   static/css/app.css (минифи, jar ичида /css/app.css бўлиб хизмат
+   қилади). ДИҚҚАТ: бу файл ҳали бирорта саҳифага уланмаган -
+   preflight глобал reset бергани учун улаш 117 скелет картасида. */
+
+/* source(none) - автоматик манба қидирув ўчирилади: класслар ФАҚАТ
+   қуйидаги @source йўлларидан йиғилади (build детерминизми учун). */
+@import "tailwindcss" source(none);
+
+/* Класс манбаси: барча JTE шаблонлар (src/main/jte). Йўл шу CSS
+   файлга нисбатан. Керак бўлса кейинги босқичларда .java манбаси
+   ҳам қўшилади. */
+@source "../jte";
+
+/* Режимлар (Arbitr-117в): dark variant class-based.
+   - <html class="dark"> - тўлиқ тун режими (ҳамма dark: жуфтлари);
+   - <html class="sb-dark"> - АРАЛАШ режим: dark: жуфтлари ФАҚАТ sidebar
+     оиласида ишлайди - #sbnav дарахти ва .sb-zone маркерли қисмлар
+     (мобил минимал бар). Sidebar'даги мавжуд dark: класслар ўзгаришсиз
+     ишлаб кетади; контент (палитра ҳам) оч қолади.
+   - .sb-light - тескари истисно маркери: sidebar дарахти ИЧИДА туриб
+     контент оиласига эргашадиган subtree (ҳозирча «+ Янги» панели -
+     фойдаланувчи 2026-07-17: Аралашда панел ОЧ чиқсин). Фақат sb-dark
+     тармоғидан чиқаради - тўлиқ тун режимида .dark * барибир қамрайди.
+   Танлов профиль попапида, Alpine Persist 'uiMode' калити (миграция
+   эски 'darkMode'дан - main.jte FOUC скрипти). :where() - спецификлик
+   ноль (ичидаги #sbnav ҳам нолланади). */
+@custom-variant dark (&:where(.dark, .dark *, .sb-dark :is(#sbnav, .sb-zone):not(.sb-light, .sb-light *), .sb-dark :is(#sbnav, .sb-zone) *:not(.sb-light, .sb-light *)));
+
+/* Penguin UI arctic темаси - фойдаланувчи танлаган палитра АЙНАН
+   (спецдаги @theme блок). Semantic токенлар: surface/on-surface/
+   primary/secondary/outline + shared ҳолат ранглари.
+   `static`: Tailwind ишлатилмаган токенларни tree-shake қилади -
+   дизайн токенлари эса ҳар доим :root'да туриши керак (Penguin
+   қолиплари, arbitrary қийматлар ва JS улар variable'ига таянади). */
+@theme static {
+    /* Шрифт: Inter (локал woff2, пастдаги @font-face блоклари) */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+
+    /* Light Theme */
+    --color-surface: var(--color-white);
+    --color-surface-alt: var(--color-slate-100);
+    --color-on-surface: var(--color-slate-700);
+    --color-on-surface-strong: var(--color-black);
+    --color-primary: var(--color-blue-700);
+    --color-on-primary: var(--color-slate-100);
+    --color-secondary: var(--color-indigo-700);
+    --color-on-secondary: var(--color-slate-100);
+    --color-outline: var(--color-slate-300);
+    --color-outline-strong: var(--color-slate-800);
+
+    /* Dark Theme */
+    --color-surface-dark: var(--color-slate-900);
+    --color-surface-dark-alt: var(--color-slate-800);
+    --color-on-surface-dark: var(--color-slate-300);
+    --color-on-surface-dark-strong: var(--color-white);
+    --color-primary-dark: var(--color-blue-600);
+    --color-on-primary-dark: var(--color-slate-100);
+    --color-secondary-dark: var(--color-indigo-600);
+    --color-on-secondary-dark: var(--color-slate-100);
+    --color-outline-dark: var(--color-slate-700);
+    --color-outline-dark-strong: var(--color-slate-300);
+
+    /* Shared Colors */
+    --color-info: var(--color-sky-600);
+    --color-on-info: var(--color-white);
+    --color-success: var(--color-green-600);
+    --color-on-success: var(--color-white);
+    --color-warning: var(--color-amber-500);
+    --color-on-warning: var(--color-white);
+    --color-danger: var(--color-red-600);
+    --color-on-danger: var(--color-white);
+
+    /* Border Radius */
+    --radius-radius: var(--radius-md);
+}
+
+/* Inter шрифти - локал woff2 (static/fonts/), манба @fontsource/inter
+   5.2.8 (OFL-1.1). Subset'лар: latin + latin-ext + cyrillic +
+   cyrillic-ext (UI кирилл ўзбекчада - cyrillic ШАРТ), оғирликлар
+   400/500/600/700. unicode-range қийматлари fontsource CSS'дан айнан;
+   тартиб ҳам ўша: ext блоклар олдин, latin охирида. */
+
+/* 400 */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/inter-cyrillic-ext-400-normal.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/inter-cyrillic-400-normal.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/inter-latin-ext-400-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/inter-latin-400-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 500 */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/inter-cyrillic-ext-500-normal.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/inter-cyrillic-500-normal.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/inter-latin-ext-500-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 600 */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('/fonts/inter-cyrillic-ext-600-normal.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('/fonts/inter-cyrillic-600-normal.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('/fonts/inter-latin-ext-600-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('/fonts/inter-latin-600-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 700 */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/inter-cyrillic-ext-700-normal.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/inter-cyrillic-700-normal.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/inter-latin-ext-700-normal.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/inter-latin-700-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

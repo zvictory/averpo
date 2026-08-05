@@ -1,0 +1,237 @@
+<!-- Penguin UI: Combobox (Simple + With search, modern/semantic вариант) -
+     penguinui.com/components/combobox
+     Реф-нусха (vendoring, ui-framework.md «Билим манбалари»).
+     Класслар сайтнинг ЖОНЛИ демосидан айнан; сайт темасидаги camelCase
+     токенлар (bg-surfaceAlt, dark:bg-surfaceDarkAlt/50...) бизнинг
+     @theme kebab номларига мослаб ёзилди (bg-surface-alt,
+     dark:bg-surface-dark-alt/50...) - аввалги реф файллар қоидаси;
+     'rounded' + $store.border.radius конфигуратор ифодаси =
+     rounded-radius. Averpo мослашуви пастдаги изоҳда. -->
+
+<!-- ============================================================
+     1) SIMPLE COMBOBOX (Alpine Focus плагини талаб қилинади)
+     Танланган қиймат hidden input'га ёзилади (x-ref hiddenTextField).
+     ============================================================ -->
+<div x-data="{
+        options: [
+            { value: 'Agriculture', label: 'Agriculture' },
+            { value: 'Construction', label: 'Construction' },
+            { value: 'Education', label: 'Education' },
+        ],
+        isOpen: false,
+        openedWithKeyboard: false,
+        selectedOption: null,
+        setSelectedOption(option) {
+            this.selectedOption = option
+            this.isOpen = false
+            this.openedWithKeyboard = false
+            this.$refs.hiddenTextField.value = option.value
+        },
+        highlightFirstMatchingOption(pressedKey) {
+            const option = this.options.find((item) =>
+                item.label.toLowerCase().startsWith(pressedKey.toLowerCase()),
+            )
+            if (option) {
+                const index = this.options.indexOf(option)
+                const allOptions = document.querySelectorAll('.combobox-option')
+                if (allOptions[index]) {
+                    allOptions[index].focus()
+                }
+            }
+        },
+    }"
+    class="flex w-full max-w-xs flex-col gap-1"
+    x-on:keydown="highlightFirstMatchingOption($event.key)"
+    x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false">
+    <label for="industry" class="w-fit pl-0.5 text-sm text-on-surface dark:text-on-surface-dark">Industry</label>
+    <div class="relative">
+        <!-- Toggle Button -->
+        <button type="button" role="combobox"
+                class="inline-flex w-full items-center justify-between gap-2 whitespace-nowrap rounded-radius border border-outline bg-surface-alt px-4 py-2 text-sm font-medium capitalize tracking-wide text-on-surface transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark"
+                aria-haspopup="listbox" aria-controls="industriesList"
+                x-on:click="isOpen = ! isOpen"
+                x-on:keydown.down.prevent="openedWithKeyboard = true"
+                x-on:keydown.enter.prevent="openedWithKeyboard = true"
+                x-on:keydown.space.prevent="openedWithKeyboard = true"
+                x-bind:aria-label="selectedOption ? selectedOption.value : 'Please Select'"
+                x-bind:aria-expanded="isOpen || openedWithKeyboard">
+            <span class="text-sm font-normal" x-text="selectedOption ? selectedOption.value : 'Please Select'"></span>
+            <!-- Chevron -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+            </svg>
+        </button>
+        <!-- hidden input to grab the selected value -->
+        <input id="industry" name="industry" type="text" x-ref="hiddenTextField" hidden/>
+        <ul x-cloak x-show="isOpen || openedWithKeyboard" id="industriesList"
+            class="scroll-on absolute left-0 top-11 z-10 flex max-h-44 w-full flex-col overflow-hidden overflow-y-auto rounded-radius border border-outline bg-surface-alt py-1.5 dark:border-outline-dark dark:bg-surface-dark-alt"
+            role="listbox" aria-label="industries list"
+            x-on:click.outside="isOpen = false, openedWithKeyboard = false"
+            x-on:keydown.down.prevent="$focus.wrap().next()"
+            x-on:keydown.up.prevent="$focus.wrap().previous()"
+            x-transition x-trap="openedWithKeyboard">
+            <template x-for="(item, index) in options" x-bind:key="item.value">
+                <li class="combobox-option inline-flex justify-between gap-6 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/5 focus-visible:text-on-surface-strong focus-visible:outline-hidden dark:bg-surface-dark-alt dark:text-on-surface-dark dark:hover:bg-surface-alt/5 dark:hover:text-on-surface-dark-strong dark:focus-visible:bg-surface-alt/10 dark:focus-visible:text-on-surface-dark-strong"
+                    role="option"
+                    x-on:click="setSelectedOption(item)"
+                    x-on:keydown.enter="setSelectedOption(item)"
+                    x-bind:id="'option-' + index" tabindex="0">
+                    <!-- Label -->
+                    <span x-bind:class="selectedOption == item ? 'font-bold' : null" x-text="item.label"></span>
+                    <!-- Screen reader 'selected' indicator -->
+                    <span class="sr-only" x-text="selectedOption == item ? 'selected' : null"></span>
+                    <!-- Checkmark -->
+                    <svg x-cloak x-show="selectedOption == item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" class="size-4" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                    </svg>
+                </li>
+            </template>
+        </ul>
+    </div>
+</div>
+
+<!-- ============================================================
+     2) COMBOBOX WITH SEARCH (Alpine Focus плагини талаб қилинади)
+     Триггер - тугма; ҚИДИРУВ ИНПУТИ ПАНЕЛ ИЧИДА (border-b билан),
+     ёзилганда allOptions клиент томонда filter қилинади; ҳарф/рақам
+     босилса фокус қидирув майдонига қайтади (handleKeydownOnOptions).
+     ============================================================ -->
+<div x-data="{
+        allOptions: [
+            { label: 'Acura', value: 'Acura' },
+            { label: 'BMW', value: 'BMW' },
+            { label: 'Toyota', value: 'Toyota' },
+        ],
+        options: [],
+        isOpen: false,
+        openedWithKeyboard: false,
+        selectedOption: null,
+        setSelectedOption(option) {
+            this.selectedOption = option
+            this.isOpen = false
+            this.openedWithKeyboard = false
+            this.$refs.hiddenTextField.value = option.value
+        },
+        getfilteredOptions(query) {
+            this.options = this.allOptions.filter((option) =>
+                option.label.toLowerCase().includes(query.toLowerCase()),
+            )
+            if (this.options.length === 0) {
+                this.$refs.noResultsMessage.classList.remove('hidden')
+            } else {
+                this.$refs.noResultsMessage.classList.add('hidden')
+            }
+        },
+        handleKeydownOnOptions(event) {
+            // if the user presses backspace or the alpha-numeric keys, focus on the search field
+            if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 8) {
+                this.$refs.searchField.focus()
+            }
+        },
+    }"
+    class="flex w-full max-w-xs flex-col gap-1"
+    x-on:keydown="handleKeydownOnOptions($event)"
+    x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false"
+    x-init="options = allOptions">
+    <label for="make" class="w-fit pl-0.5 text-sm text-on-surface dark:text-on-surface-dark">Make</label>
+    <div class="relative">
+        <!-- Toggle Button -->
+        <button type="button" role="combobox"
+                class="inline-flex w-full items-center justify-between gap-2 rounded-radius border border-outline bg-surface-alt px-4 py-2 text-sm font-medium tracking-wide text-on-surface transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark"
+                aria-controls="makesList" aria-haspopup="listbox"
+                x-on:click="isOpen = ! isOpen"
+                x-on:keydown.down.prevent="openedWithKeyboard = true"
+                x-on:keydown.enter.prevent="openedWithKeyboard = true"
+                x-on:keydown.space.prevent="openedWithKeyboard = true"
+                x-bind:aria-expanded="isOpen || openedWithKeyboard"
+                x-bind:aria-label="selectedOption ? selectedOption.value : 'Please Select'">
+            <span class="text-sm font-normal" x-text="selectedOption ? selectedOption.value : 'Please Select'"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+        <input id="make" name="make" x-ref="hiddenTextField" hidden/>
+        <!-- Dropdown Menu -->
+        <div x-cloak x-show="isOpen || openedWithKeyboard" id="makesList"
+             class="absolute left-0 top-11 z-10 w-full overflow-hidden rounded-radius border border-outline bg-surface-alt dark:border-outline-dark dark:bg-surface-dark-alt"
+             role="listbox" aria-label="makes list"
+             x-on:click.outside="isOpen = false, openedWithKeyboard = false"
+             x-on:keydown.down.prevent="$focus.wrap().next()"
+             x-on:keydown.up.prevent="$focus.wrap().previous()"
+             x-transition x-trap="openedWithKeyboard">
+            <!-- Search -->
+            <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" class="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-on-surface/50 dark:text-on-surface-dark/50" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+                </svg>
+                <input type="text"
+                       class="w-full rounded-none border-b border-b-outline bg-surface-alt py-2.5 pl-11 pr-4 text-sm text-on-surface focus:outline-hidden focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:border-b-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark dark:focus-visible:border-primary-dark"
+                       name="searchField" aria-label="Search" x-ref="searchField"
+                       x-on:input="getfilteredOptions($el.value)" placeholder="Search"/>
+            </div>
+            <!-- Options -->
+            <ul class="scroll-on flex max-h-44 flex-col overflow-y-auto">
+                <li class="hidden px-4 py-2 text-sm text-on-surface dark:text-on-surface-dark" x-ref="noResultsMessage">
+                    <span>No matches found</span>
+                </li>
+                <template x-for="(item, index) in options" x-bind:key="item.value">
+                    <li class="combobox-option inline-flex justify-between gap-6 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/5 focus-visible:text-on-surface-strong focus-visible:outline-hidden dark:bg-surface-dark-alt dark:text-on-surface-dark dark:hover:bg-surface-alt/5 dark:hover:text-on-surface-dark-strong dark:focus-visible:bg-surface-alt/10 dark:focus-visible:text-on-surface-dark-strong"
+                        role="option"
+                        x-on:click="setSelectedOption(item)"
+                        x-on:keydown.enter="setSelectedOption(item)"
+                        x-bind:id="'option-' + index" tabindex="0">
+                        <span x-bind:class="selectedOption == item ? 'font-bold' : null" x-text="item.label"></span>
+                        <span class="sr-only" x-text="selectedOption == item ? 'selected' : null"></span>
+                        <svg x-cloak x-show="selectedOption == item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" class="size-4" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                        </svg>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Сайтнинг minimal варианти эслатмаси: худди шу компонент мантиғи
+     Alpine.data('combobox', ...) сифатида alpine:init'да рўйхатдан
+     ўтказилади - маркапда x-data="combobox({options: [...]})" қолади.
+     Бизнинг мослашув шу услубни олади (пастда). -->
+
+<!-- ===== Averpo мослашуви (Arbitr-123, канон: docs/ui-style-guide.md
+     «Combobox (Penguin)»; амалда: src/main/jte/shared/combobox.jte +
+     static/js/penguin-combobox.js) =====
+     - «With search» варианти АСОС: триггер-тугма + панел ичида қидирув
+       инпути + ul>li - маркап/класслар/клавиатура айнан. Simple
+       вариантдаги highlightFirstMatchingOption ўрнини қидирув инпути
+       босади (ҳарф босилса фокус қидирувга - handleKeydownOnOptions
+       сақланган).
+     - x-for + options массиви ўрнига li'лар JTE @for билан server'да
+       render қилинади (карта 1-қолип: «вариантлар JTE @for билан»);
+       филтр DOM li'лар устидан (style.display), ташқи скрипт филтрлари
+       li.hidden ишлатади - иккиси мустақил. Белгиланган li aria-selected
+       + группа варианти (group-aria-selected:visible) галочка - минг
+       li'да Alpine binding шарт эмас.
+     - Мантиқ бир жойда: Alpine.data('pgCombo') - penguin-combobox.js
+       (сайтнинг ўз minimal услуби); 75 нусхада x-data дубли йўқ.
+     - Панел absolute left-0 top-11 ўрнига FIXED + position() ҳисоби:
+       .table-wrap (overflow-x-auto) ва drawer клипидан қочиш (066
+       сабоғи), пастга сиғмаса тепага очилади, scroll/resize'да қайта
+       жойланади. z-[100] (drawer z-[90] дан юқори).
+     - Қиймат input hidden АТРИБУТИсиз - 1px кўринар (absolute size-px
+       opacity-[.01], tabindex=-1): required validation bubble чиқиши
+       учун (display:none required бўш бўлса submit жим синарди);
+       invalid'да браузер фокуслаганда дропдаун очилади.
+     - Esc: .esc.window эмас, компонент root'ида stopPropagation билан -
+       drawer/модалнинг Esc'и combobox очиқлигида ёнмасин.
+     - px-4 ўрнига px-2 (тугма/li) - зич ERP формалари, select.html
+       мослашуви билан бир хил; тугма минимал баландлиги назорат канони
+       py-2 (зич қаторда py-1.5).
+     - Quick-add: рўйхат пастида доимий «+ Янги ...» банди (филтрга
+       бўйсунмайди) - Penguin modal (реф modal.html) қобиғида мавжуд
+       quickForm оқими: GET <addUrl>-form → form[data-combo-quick] →
+       AJAX POST Accept:json → {id,label[,currency]} → li қўшилиб
+       танланади; 422 {message} → [data-combo-error]. Механика
+       combobox.md (Arbitr-066) билан айнан.
+     - Танланган li'нинг data-* атрибутлари hidden input'га кўчади ва
+       change (bubbles) отилади - мавжуд Alpine/HTMX/делегация занжирлари
+       (dataset ўқишлар, hx-trigger="change") ишлайверади. -->

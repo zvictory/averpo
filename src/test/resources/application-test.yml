@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/averpo_test
+    username: averpo
+    password: averpo
+  liquibase:
+    # Ҳар тест прогонида schema нолдан қурилади - erp_test фақат тестники
+    drop-first: true
+  jpa:
+    properties:
+      hibernate:
+        # Query-count тестлари (Sanjar-005) SQL матнларини шу инспектор
+        # орқали ушлайди; start() чақирилмагунча ҳеч нарса йиғмайди
+        session_factory.statement_inspector: com.averpo.erp.testsupport.SqlCaptureInspector
+
+# Тест иловалари build/ остида - лойиҳа папкаси ифлосланмайди
+# (attachments.md 9-тест); build/ .gitignore'да, gradle clean тозалайди
+app:
+  attachments:
+    dir: build/test-attachments
+
+# Тестларда JTE ПРЕКОМПИЛЯЦИЯ қилинган шаблонлардан ишлайди (Arbitr-092
+# прогонида топилган флейк): development-mode лойиҳа илдизидаги умумий
+# jte-classes/ каталогига ёзади - бир прогонда бир нечта Spring контекст
+# бўлса кейингиси аввалгисининг ondemand классларини алмаштириб, ҳали
+# юкланмаган ички класс ($1$2) NoClassDefFoundError билан йиқиларди
+# (бўш рўйхат тестлари ўтади, сатрлилари йиқилади - детерминик сохта
+# қизил). Gradle ҳар прогондан олдин generateJte билан янги шаблонларни
+# classpath'га қўяди - hot reload тестга керак эмас.
+gg:
+  jte:
+    development-mode: false
+    use-precompiled-templates: true

@@ -1,0 +1,19 @@
+build/
+.gradle/
+jte-classes/
+*.class
+.idea/
+*.iml
+.vscode/
+.env
+# Ҳужжат иловалари (attachments.md) - локал dev диск папкаси
+/attachments/
+
+# Учинчи тараф агент скиллари (npx skills) - локал тул, репога кирмайди
+# (.claude/launch.json кузатувда қолади, фақат skills папкаси чиқарилади)
+.agents/
+.claude/
+.claude/skills/
+
+# PDF генерациясининг вақтинчалик HTML файллари
+docs-pdf/_work/

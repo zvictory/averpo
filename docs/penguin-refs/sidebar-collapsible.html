@@ -1,0 +1,77 @@
+<!-- Penguin UI: Sidebar with collapsible menus (modern/semantic вариант).
+     Манба: penguinui.com/components/sidebar. Alpine Collapse плагини керак.
+     Қисқартирилган реф: битта оддий пункт + битта collapsible гуруҳ. -->
+<div x-data="{ showSidebar: false }" class="relative flex w-full flex-col md:flex-row">
+    <a class="sr-only" href="#main-content">skip to the main content</a>
+
+    <!-- кичик экранда очиқ sidebar учун qora overlay -->
+    <div x-cloak x-show="showSidebar" class="fixed inset-0 z-10 bg-surface-dark/10 backdrop-blur-xs md:hidden"
+         aria-hidden="true" x-on:click="showSidebar = false" x-transition.opacity></div>
+
+    <nav x-cloak
+         class="fixed left-0 z-20 flex h-svh w-60 shrink-0 flex-col border-r border-outline bg-surface-alt p-4 transition-transform duration-300 md:relative md:w-64 md:translate-x-0 dark:border-outline-dark dark:bg-surface-dark-alt"
+         x-bind:class="showSidebar ? 'translate-x-0' : '-translate-x-60'"
+         aria-label="sidebar navigation">
+        <!-- logo -->
+        <a href="#" class="ml-2 w-fit text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">
+            <span class="sr-only">homepage</span>
+            <!-- svg logo -->
+        </a>
+
+        <!-- search -->
+        <div class="relative my-4 flex w-full max-w-xs flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+            <!-- лупа: absolute left-2 top-1/2 size-5 -translate-y-1/2 text-on-surface/50 dark:text-on-surface-dark/50 -->
+            <input type="search" name="search" aria-label="Search" placeholder="Search"
+                   class="w-full rounded-radius border border-outline bg-surface px-2 py-1.5 pl-9 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark/50 dark:focus-visible:outline-primary-dark"/>
+        </div>
+
+        <!-- menu items -->
+        <div class="flex flex-col gap-2 overflow-y-auto pb-6">
+            <!-- оддий пункт -->
+            <a href="#"
+               class="flex items-center gap-2 rounded-radius px-2 py-1.5 text-sm font-medium text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">
+                <!-- svg icon size-5 -->
+                <span>Dashboard</span>
+            </a>
+
+            <!-- ФАОЛ пункт (сайт live-preview'идан, semantic'га ағдарилган:
+                 text-onSurfaceStrong -> text-on-surface-strong). Диққат:
+                 матн ранги on-surface-STRONG (primary ЭМАС), hover ЙЎҚ -->
+            <a href="#"
+               class="flex items-center gap-2 rounded-radius bg-primary/10 px-2 py-1.5 text-sm font-medium text-on-surface-strong underline-offset-2 focus:outline-hidden focus-visible:underline dark:bg-primary-dark/10 dark:text-on-surface-dark-strong">
+                <!-- svg icon size-5 -->
+                <span>Analytics (active)</span>
+            </a>
+
+            <!-- collapsible гуруҳ -->
+            <div x-data="{ isExpanded: false }" class="flex flex-col">
+                <button type="button" x-on:click="isExpanded = ! isExpanded" id="orders-btn"
+                        aria-controls="orders" x-bind:aria-expanded="isExpanded ? 'true' : 'false'"
+                        class="flex items-center justify-between gap-2 rounded-radius px-2 py-1.5 text-sm font-medium underline-offset-2 focus:outline-hidden focus-visible:underline"
+                        x-bind:class="isExpanded
+                            ? 'text-on-surface-strong bg-primary/10 dark:text-on-surface-dark-strong dark:bg-primary-dark/10'
+                            : 'text-on-surface hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong'">
+                    <!-- svg icon size-5 -->
+                    <span class="mr-auto text-left">Orders</span>
+                    <!-- chevron: size-5 transition-transform, x-bind:class="isExpanded ? 'rotate-180' : 'rotate-0'" -->
+                </button>
+                <ul x-cloak x-collapse x-show="isExpanded" aria-labelledby="orders-btn" id="orders">
+                    <li class="px-1 py-0.5 first:mt-2">
+                        <a href="#"
+                           class="flex items-center gap-2 rounded-radius px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">
+                            <span>Pending</span>
+                            <span class="ml-auto font-bold">3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- toggle тугмаси (кичик экран) -->
+    <button class="absolute right-4 top-4 z-20 rounded-full bg-primary p-4 text-on-primary md:hidden dark:bg-primary-dark dark:text-on-primary-dark"
+            x-on:click="showSidebar = ! showSidebar">
+        <!-- svg: x-show="showSidebar" ✕ / x-show="! showSidebar" ☰ -->
+        <span class="sr-only">Sidenav toggle</span>
+    </button>
+</div>

@@ -1,0 +1,54 @@
+<!-- Penguin UI: Table (modern/semantic variant) - penguinui.com/components/table
+     Реф-нусха (vendoring, ui-framework.md «Билим манбалари»).
+     Класслар сайтдан айнан. Averpo мослашуви пастда изоҳда. -->
+
+<!-- ===== Default table (Penguin, айнан) ===== -->
+<div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
+    <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
+        <thead class="border-b border-outline bg-surface-alt text-sm text-on-surface-strong dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark-strong">
+            <tr>
+                <th scope="col" class="p-4">CustomerID</th>
+                <th scope="col" class="p-4">Name</th>
+                <th scope="col" class="p-4">Email</th>
+                <th scope="col" class="p-4">Membership</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-outline dark:divide-outline-dark">
+                <tr>
+                    <td class="p-4">2335</td>
+                    <td class="p-4">Alice Brown</td>
+                    <td class="p-4">alice.brown@gmail.com</td>
+                    <td class="p-4">Silver</td>
+                </tr>
+                <tr>
+                    <td class="p-4">2338</td>
+                    <td class="p-4">Bob Johnson</td>
+                    <td class="p-4">johnson.bob@outlook.com</td>
+                    <td class="p-4">Gold</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===== Striped table (Penguin, айнан) - zebra қатор класси ===== -->
+<!-- Фарқи фақат tbody tr'ларда: -->
+<!-- <tr class="even:bg-primary/5 dark:even:bg-primary-dark/10"> -->
+
+<!-- ===== Averpo мослашуви (Arbitr-120, канон: docs/ui-style-guide.md
+     «1. Жадвал (Penguin)») =====
+     - ERP жадваллари зич: p-4 ўрнига px-3 py-2.
+     - th/td класслари ҳар катакка ёзилмайди - канон йиғим table
+       тегидаги [&_th]/[&_td] arbitrary variant'ларида БИР нуқтада;
+       узун йиғим shared/table.jte JTE фрагментида (янги CSS класс
+       тақиқ қоидасига мос).
+     - zebra ҳар tr'га эмас - table тегида
+       [&_tbody_tr:where(:nth-child(even))]:bg-primary/5 (:where -
+       hover ундан устун бўлиши учун); QBO row-hover ва data-href
+       cursor ҳам шу нуқтада (Penguin'да йўқ - QBO одати сақланади).
+     - table'га bg-surface (эски background:#fff ўрнини босади) -
+       контент зонаси фони оч кулранг, жадвал оқ қолсин.
+     - Матн аниқлиги (фойдаланувчи талаби 2026-07-17): сарлавҳа
+       thead'да on-surface-strong (Penguin ref'дагидек); пул/сон/қиймат
+       катаги text-on-surface-strong; оддий катак table'дан
+       text-on-surface мерос олади; хира тон фақат чинакам иккиламчи
+       изоҳга. -->

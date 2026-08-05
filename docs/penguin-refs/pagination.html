@@ -1,0 +1,52 @@
+<!-- Penguin UI: Pagination (modern/semantic variant) -
+     penguinui.com/components/paginations
+     Реф-нусха (vendoring, ui-framework.md «Билим манбалари»).
+     Класслар сайтдан айнан («Pagination with next & preview» + default
+     вариантнинг саҳифа рақами линклари). Averpo мослашуви пастда. -->
+
+<!-- ===== Pagination with next & preview (Penguin, айнан) ===== -->
+<nav aria-label="pagination">
+	<ul class="flex shrink-0 items-center gap-2 text-sm font-medium">
+		<li>
+			<a href="#" class="flex items-center rounded-radius p-1 text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark" aria-label="previous page">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-6">
+					<path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+				</svg>
+				Previous
+			</a>
+		</li>
+		<li>
+			<a href="#" class="flex items-center rounded-radius p-1 text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark" aria-label="next page">
+				Next
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-6">
+					<path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+				</svg>
+			</a>
+		</li>
+	</ul>
+</nav>
+
+<!-- Default вариантда қўшимча: саҳифа рақами линки (айнан) -->
+<!-- <a href="#" class="flex size-6 items-center justify-center rounded-radius p-1 text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark" aria-label="page 1">1</a> -->
+<!-- жорий саҳифа: -->
+<!-- <a href="#" class="flex size-6 items-center justify-center rounded-radius bg-primary p-1 font-bold text-on-primary dark:bg-primary-dark dark:text-on-primary-dark" aria-current="page" aria-label="page 2">2</a> -->
+
+<!-- ===== Averpo мослашуви (Arbitr-120, shared/pagination.jte) =====
+     - Механика ЎЗГАРМАЙДИ: ҳажм танлагичи (25/50/100/200, cookie),
+       Биринчи «/Олдинги/Кейинги/Охирги » тугмалари, filterQuery,
+       «жами X та, Y-Z» ҳисоб сатри.
+     - Тугмалар Penguin ghost линк услубида (юқоридаги prev/next
+       йиғими) - аввалги солид primary тугмалар ўрнига; <a>'га
+       no-underline қўшилади (preflight компенсацияси underline
+       беради). Белгилар мавжуд «/←/→/» матнлари, SVG киритилмайди.
+     - Саҳифа рақамлари чиқарилмайди (рўйхатлар узун - QBO услубидаги
+       олд/кейин навигация етарли), шу боис bg-primary жорий ҳолат
+       йиғими ишлатилмайди.
+     - Ҳажм танлагичи Penguin select кўринишида (text-input реф
+       асосида select'га мослаб): rounded-radius border border-outline
+       bg-surface px-2 py-1.5 text-sm + dark жуфтлари.
+     - Ҳисоб сатри text-on-surface (эски #64748b хира эмас) -
+       фойдаланувчи талаби: ёзувлар аниқ.
+     - dark: жуфтлари ЙЎҚ (117в палитра прецеденти): пагинация контент
+       оқимида, боди ҳали оч - жуфтлар контент зонаси билан бирга
+       киради (121/122). Жадвалнинг ўзи ўз сиртига эга - унда dark бор. -->

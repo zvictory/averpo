@@ -1,0 +1,21 @@
+<!-- Penguin UI: Card (modern/semantic вариант).
+     Манба: penguinui.com/components/card. Сайтдаги каноник ўрам:
+     overflow-hidden + border border-outline + rounded-radius, фон
+     bg-surface (панел қисмларида bg-surface-alt), dark жуфтлари билан. -->
+<div class="overflow-hidden rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark">
+    <div class="flex items-center justify-between border-b border-outline bg-surface-alt/60 p-4 dark:border-outline-dark dark:bg-surface-dark/20">
+        Header
+    </div>
+    <div class="p-4">Body</div>
+</div>
+
+<!-- Averpo мослашуви (Arbitr-119, карта қарори): контент зонасидаги
+     инфо-карточка фони bg-surface-alt (контент body ҳали оч #f8fafc -
+     оқ card кўринмас эди; сайдбар surface-alt кўринишига мос) + dark
+     жуфти, матн токенлари ўрамда (ички legacy контент class'сиз -
+     ранг меросдан олади), padding p-4:
+       rounded-radius border border-outline bg-surface-alt p-4
+       text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt
+       dark:text-on-surface-dark
+     Кўриш инфо-панели (эски .card-grid) шунга grid қўшади:
+       grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] -->

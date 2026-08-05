@@ -1,0 +1,52 @@
+name;detailType;parentName;postable;currency;code
+Пул маблағлари;CASH_ON_HAND;;false;;1000
+Банк ҳисобварағи;CHECKING;Пул маблағлари;true;;1010
+Валюта ҳисобварағи (USD);CHECKING;Пул маблағлари;true;USD;1020
+Касса;CASH_ON_HAND;Пул маблағлари;true;;1030
+Тушумлар транзити;UNDEPOSITED_FUNDS;Пул маблағлари;true;;1040
+Дебиторлик (AR);ACCOUNTS_RECEIVABLE;;true;;1100
+Заҳиралар;OTHER_CURRENT_ASSETS;;false;;1200
+Товар-моддий заҳиралар;INVENTORY;Заҳиралар;true;;1210
+Landed cost клиринг;INVENTORY_CLEARING;Заҳиралар;true;;1220
+Олдиндан тўланган харажатлар;PREPAID_EXPENSES;;true;;1300
+Асосий воситалар;OTHER_FIXED_ASSETS;;false;;1500
+Машина ва ускуналар;MACHINERY_AND_EQUIPMENT;Асосий воситалар;true;;1510
+Жамғарилган амортизация;ACCUMULATED_DEPRECIATION;Асосий воситалар;true;;1520
+Кредиторлик (AP);ACCOUNTS_PAYABLE;;true;;2000
+Солиқ мажбуриятлари;OTHER_CURRENT_LIABILITIES;;false;;2100
+ҚҚС тўланадиган;SALES_TAX_PAYABLE;Солиқ мажбуриятлари;true;;2110
+Даромад солиғи тўланадиган;INCOME_TAX_PAYABLE;Солиқ мажбуриятлари;true;;2120
+Иш ҳақи мажбуриятлари;OTHER_CURRENT_LIABILITIES;;false;;2200
+Иш ҳақи бўйича мажбурият;PAYROLL_CLEARING;Иш ҳақи мажбуриятлари;true;;2210
+Иш ҳақи солиқлари мажбурияти;PAYROLL_TAX_PAYABLE;Иш ҳақи мажбуриятлари;true;;2220
+Олинган аванслар;OTHER_CURRENT_LIABILITIES;;true;;2400
+Устав капитали;COMMON_STOCK;;true;;3000
+Тақсимланмаган фойда;RETAINED_EARNINGS;;true;;3100
+Бошланғич баланс капитали;OPENING_BALANCE_EQUITY;;true;;3900
+Товар сотув даромади;SALES_OF_PRODUCT_INCOME;;true;;4000
+Хизмат даромади;SERVICE_FEE_INCOME;;true;;4100
+Чегирма ва қайтаришлар;DISCOUNTS_REFUNDS_GIVEN;;true;;4900
+Товар таннархи (COGS);SUPPLIES_MATERIALS_COGS;;true;;5000
+Ташиш ва етказиб бериш (таннарх);SHIPPING_FREIGHT_DELIVERY_COS;;true;;5100
+Inventory камомад/ортиқча;OTHER_COSTS_OF_SERVICE_COS;;true;;5200
+Иш ҳақи харажатлари;PAYROLL_EXPENSES;;false;;6100
+Иш ҳақи харажати;PAYROLL_EXPENSES;Иш ҳақи харажатлари;true;;6110
+Иш ҳақи солиқ харажати;PAYROLL_EXPENSES;Иш ҳақи харажатлари;true;;6120
+Бино ва хўжалик;RENT_OR_LEASE_OF_BUILDINGS;;false;;6200
+Ижара;RENT_OR_LEASE_OF_BUILDINGS;Бино ва хўжалик;true;;6210
+Коммунал хизматлар;UTILITIES;Бино ва хўжалик;true;;6220
+Таъмирлаш;REPAIR_MAINTENANCE;Бино ва хўжалик;true;;6230
+Офис ва материаллар;OFFICE_GENERAL_ADMINISTRATIVE_EXPENSES;;false;;6300
+Офис харажатлари;OFFICE_GENERAL_ADMINISTRATIVE_EXPENSES;Офис ва материаллар;true;;6310
+Сарф материаллари;SUPPLIES_MATERIALS;Офис ва материаллар;true;;6320
+Ташқи хизматлар;LEGAL_PROFESSIONAL_FEES;;false;;6400
+Профессионал хизматлар;LEGAL_PROFESSIONAL_FEES;Ташқи хизматлар;true;;6410
+Банк хизматлари;BANK_CHARGES;Ташқи хизматлар;true;;6420
+Реклама ва маркетинг;ADVERTISING_PROMOTIONAL;;true;;6500
+Хизмат сафари;TRAVEL;;true;;6600
+Солиқлар;TAXES_PAID;;true;;6700
+Амортизация;DEPRECIATION;;true;;6800
+Бошқа операцион харажатлар;OTHER_MISCELLANEOUS_SERVICE_COST;;true;;6900
+Фоиз даромади;INTEREST_EARNED;;true;;7000
+Валюта курси фарқи;EXCHANGE_GAIN_OR_LOSS;;true;;7100
+Фоиз харажати;INTEREST_PAID;;true;;7500

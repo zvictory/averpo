@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Техник логгинг конфигурацияси (docs/modules/logging.md, Arbitr-099).
+  Console доим ёқиқ (dev одатлари + серверда journald stdout орқали
+  ушлайди). Файл appender'лари ФАҚАТ test'дан ташқари профилларда -
+  тестлар logs/ папкасини ифлос қилмасин (logback-test.xml ҳам қоплайди).
+-->
+<configuration>
+
+    <!-- Log папкаси: default ./logs (иш папкасига нисбатан); серверда
+         LOG_DIR env (APP_DIR/logs). Windows dev'да ҳам нисбий йўл ишлайди. -->
+    <property name="LOG_DIR" value="${LOG_DIR:-logs}"/>
+
+    <!-- MDC (rid + user) ҳар қаторда - бир сессия қаторлари бир қарашда
+         боғланади (RequestLogFilter тўлдиради). rid бўш бўлса [] , user
+         бўш бўлса '-' (startup/scheduler оқимлари). -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%X{rid:-}] %-12X{user:--} %logger{36} - %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Файл appender'лари фақат жонли/dev профилларда (test'дан ташқари) -->
+    <springProfile name="!test">
+        <!-- Асосий файл: кунлик + 20MB бўлак, 30 кун тарих, 500MB умумий cap
+             (эски бўлаклар ўз-ўзидан ўчади - logrotate КЕРАК ЭМАС). -->
+        <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/app.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>20MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>500MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <!-- Хато файли: WARN+ триаж (муаммо борми - аввал шу файл очилади) -->
+        <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/error.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>WARN</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>20MB</maxFileSize>
+                <maxHistory>90</maxHistory>
+                <totalSizeCap>200MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="APP_FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- Тест профили: ФАҚАТ console (logs/ папка ифлосланмайди - 4-тузоқ) -->
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+</configuration>

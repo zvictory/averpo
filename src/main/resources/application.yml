@@ -1,0 +1,80 @@
+spring:
+  application:
+    name: averpo-erp
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/averpo}
+    username: ${DB_USERNAME:averpo}
+    # Default ФАҚАТ локал dev учун (профилсиз старт). prod профилида
+    # ProdDatasourceGuard текширади: DB_PASSWORD env берилмаса ёки шу
+    # default'га тенг бўлса boot тўхтайди - env бериш МАЖБУРИЙ.
+    password: ${DB_PASSWORD:averpo}
+  # Форма/query параметрлардаги саналар ISO форматда (2026-07-05) боғланади
+  mvc:
+    format:
+      date: iso
+  # UI тиллари: messages.properties (уз кирилл, default), _ru, _en
+  messages:
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+  # Илова файллари (attachments.md): 20MB чеклов - BR-ATT-001 нинг
+  # multipart қатлами (сервис ҳам ўзи текширади). max-request-size файл +
+  # multipart конверти учун бир оз кенгроқ.
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+    # Сессия муддати (Arbitr-096): QBO idle эталони ~1 соат. Tomcat default
+    # 30 дақиқа эди - жонлида бир оз турса logout қилиб, эски CSRF токенли
+    # формадан POST'да 403 берарди (энди accessDeniedHandler /login?expired).
+    session:
+      timeout: 1h
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        # ТЕМИР ҚОИДА №12: базада ҳамма вақт UTC. Компания timezone'и
+        # фақат экранга чиқаришда (Fmt.dt) ишлатилади.
+        jdbc.time_zone: UTC
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+# Home currency энди CompanySettings жадвалида - конфигда эмас
+
+# Техник логгинг даражалари (Arbitr-099, docs/modules/logging.md).
+# Appender'лар/rotation - logback-spring.xml'да; бу ерда фақат даражалар.
+# Серверда env билан ошириш: LOGGING_LEVEL_COM_AVERPO_ERP=DEBUG
+# (Spring стандарт override, рестарт билан).
+logging:
+  level:
+    root: INFO
+    com.averpo.erp: INFO   # керакда DEBUG (муаммо ташхиси)
+    org.hibernate: WARN
+    org.springframework.security: WARN
+
+# Жонли серверда илова Cloudflare + nginx ортида - Tomcat'га келган socket
+# манзили доим 127.0.0.1 (nginx). Ҳақиқий клиент IP nginx қўядиган X-Real-IP
+# header'ида (у CF-Connecting-IP'дан олади). RemoteIpValve шу header'ни ФАҚАТ
+# ички proxy'дан (default internal-proxies 127.0.0.1 ни қамрайди) келганда
+# ишонади - спуфинг ҳимояси; локал dev'да header йўқ, хулқ ўзгармайди. Шусиз
+# аудит журнали ҳамма кириш IP'сини 127.0.0.1 деб ёзиб қоларди (Arbitr-058).
+server:
+  tomcat:
+    remoteip:
+      remote-ip-header: x-real-ip
+      protocol-header: x-forwarded-proto
+
+# Ҳужжат иловалари сақланадиган каталог (attachments.md). Default локал
+# dev учун - .gitignore'да; серверда ATTACHMENTS_DIR env билан алоҳида
+# доимий йўлга қўйилади (backup сиёсатига киради).
+app:
+  attachments:
+    dir: ${ATTACHMENTS_DIR:./attachments}
+
+gg:
+  jte:
+    development-mode: true
+    template-location: src/main/jte

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Тест логгинг конфигурацияси (Arbitr-099, 4-тузоқ кафолати): logback
+  logback-test.xml'ни logback-spring.xml'дан УСТУН қўяди, шунинг учун
+  БАРЧА тестлар (Spring контекстли ҳам, оддий unit ҳам) фақат console'га
+  ёзади - logs/ папка ҲЕЧ ҚАЧОН яратилмайди. WARN даража тестлари
+  (BR ради) logback ListAppender'ни programmatik улаб текширади, файлга
+  боғлиқ эмас.
+-->
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%X{rid:-}] %-12X{user:--} %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

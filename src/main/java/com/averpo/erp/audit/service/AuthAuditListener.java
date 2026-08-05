@@ -82,7 +82,7 @@ public class AuthAuditListener {
      * CF-Connecting-IP; конфиг application.yml server.tomcat.remoteip).
      * Спуфинг ҳимояси - валве header'га ФАҚАТ ички proxy'дан келганда
      * ишонади (internal-proxies рўйхати); локал dev'да proxy йўқ, 127.0.0.1
-     * қолаверади (Arbitr-058).
+     * қолаверади (DEC-058).
      */
     public static String clientIp(Authentication authentication) {
         return authentication.getDetails() instanceof WebAuthenticationDetails web

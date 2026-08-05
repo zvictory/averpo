@@ -10,7 +10,7 @@
 @param PriceList list
 @param List<PriceRow> prices
 @param List<CustomerRow> customers
-<%-- Beruniy-018: select'лар енгил DTO - тўлиқ entity'лар юкланмайди --%>
+<%-- PERF-018: select'лар енгил DTO - тўлиқ entity'лар юкланмайди --%>
 @param List<ContactRef> freeCustomers
 @param List<ItemRef> items
 @param List<Currency> currencies

@@ -29,7 +29,7 @@ public class ArAgingController {
     private final CompanySettingsService settingsService;
 
     /**
-     * Ҳисобот экрани - ФАҚАТ жорий ҳолат (BR-RPT-001, Komil-004):
+     * Ҳисобот экрани - ФАҚАТ жорий ҳолат (BR-RPT-001, IFRS-004):
      * сана танлаш олиб ташланган, доим бугун (компания вақт
      * минтақасида). Тарихий as-of реконструкцияси 9-босқичда.
      */
@@ -39,7 +39,7 @@ public class ArAgingController {
         var rows = invoiceService.arAging(today);
         model.addAttribute("rows", rows);
         // Мижоз номлари - фақат aging қаторларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1);
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1);
         // нофаоллар ҳам киради - эски қарз кўринсин
         model.addAttribute("customerNames", contactService.namesByIds(
                 rows.stream().map(r -> r.customerId())

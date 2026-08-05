@@ -116,7 +116,7 @@
     <script>
         (function () {
             function fmt(v) {
-                // Минг ажратгич NBSP (Arbitr-053 банд 8) - Fmt.money/
+                // Минг ажратгич NBSP (DEC-053 банд 8) - Fmt.money/
                 // money-input.js мослиги (қоида: минг ажратгич NBSP)
                 return v.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2})
                         .replace(/,/g, " ");

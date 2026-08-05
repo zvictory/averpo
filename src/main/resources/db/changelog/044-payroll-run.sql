@@ -35,7 +35,7 @@ CREATE UNIQUE INDEX ux_payroll_run_period_posted
 -- ўзгарса тарихий ҳужжат ўзгармайди (payroll.md «Қатъий қарорлар»).
 -- class_id - Йўналиш, фақат харажат легига кўчади (class-tracking.md).
 -- UNIQUE (run_id, employee_id) - бир run'да ходим бир марта
--- (BR-PYR-003); (run_id, line_no) - Beruniy-010 қолипи.
+-- (BR-PYR-003); (run_id, line_no) - PERF-010 қолипи.
 CREATE TABLE payroll_run_line (
     id             UUID PRIMARY KEY,
     version        INT NOT NULL DEFAULT 0,

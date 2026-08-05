@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * Shared ва plugins модуллари ҳодисаларини (созламалар, заводга қайтариш,
- * Excel import, плагин toggle) аудитга ёзади (Arbitr-062). Боғлиқлик
+ * Excel import, плагин toggle) аудитга ёзади (DEC-062). Боғлиқлик
  * йўналиши {@link LedgerAuditListener} нақши: audit → манба модул (event
  * record'ларини import қилади), манба эса audit'ни билмайди - тескариси
  * цикл бўларди (audit BaseEntity орқали shared'га боғлиқ).
@@ -52,7 +52,7 @@ public class SharedAuditListener {
     }
 
     /**
-     * Плагин ёқилди/ўчирилди (Arbitr-113): details'да калит + янги ҳолат -
+     * Плагин ёқилди/ўчирилди (DEC-113): details'да калит + янги ҳолат -
      * ким/қачон AuditLogService'нинг ўзидан (username/IP/UA/вақт).
      */
     @EventListener
@@ -72,7 +72,7 @@ public class SharedAuditListener {
     }
 
     /**
-     * ЦБ авто-курс импорти якунланди (Arbitr-164, санагич Arbitr-168):
+     * ЦБ авто-курс импорти якунланди (DEC-164, санагич DEC-168):
      * муваффақият «N текширилди, M ўзгарди, K ўтказилди» ёки хато «амалга
      * ошмади: сабаб». Actor доим {@link AuditLogService#SYSTEM_ACTOR}
      * («Тизим») - фон scheduler'да фойдаланувчи ЙЎҚ, currentUsername()
@@ -93,7 +93,7 @@ public class SharedAuditListener {
     }
 
     /**
-     * ЦБ импорти details матни (Arbitr-168 - ҳалол санагич): муваффақиятда
+     * ЦБ импорти details матни (DEC-168 - ҳалол санагич): муваффақиятда
      * «N валюта текширилди, {M ўзгарди|курслар ўзгармади}, K ўтказилди»,
      * хатода «амалга ошмади: сабаб». «Янгиланди» сўзи АТАЙЛАБ ЙЎҚ - дам
      * олишда ЦБ курсни ўзгартирмайди (жума курсини қайтаради), фойдаланувчи

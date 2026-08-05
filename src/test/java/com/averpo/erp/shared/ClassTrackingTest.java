@@ -144,7 +144,7 @@ class ClassTrackingTest {
     @Test
     void foreignCurrency_technicalLegsClassless_balanced() {
         // Чет валюта invoice: даромад леглари class'ли, AR class'сиз.
-        // Arbitr-087: чет валюта ҳужжати USD валютали контактга ёзилади
+        // DEC-087: чет валюта ҳужжати USD валютали контактга ёзилади
         Contact usdCustomer = contactService.create(ContactType.CUSTOMER, new ContactData(
                 "Class USD мижози", null, null, null, null, null,
                 "USD", null, null, null, null));
@@ -267,7 +267,7 @@ class ClassTrackingTest {
     }
 
     /**
-     * Arbitr-052 (045): flagship тестни кучайтириш - пул АНИҚ устунга
+     * DEC-052 (045): flagship тестни кучайтириш - пул АНИҚ устунга
      * боғланиши (даромад 1000 filial / 700 online / 300 кўрсатилмаган
      * устунларида, per-cell) - аввалги тест фақат устунлар ЙИҒИНДИСИ ==
      * оддий P&L'ни текширарди (class аралашиб кетса ҳам ўтарди).

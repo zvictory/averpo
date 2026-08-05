@@ -81,7 +81,7 @@ class GlobalSearchServiceTest {
         // Кичик ҳарфда қидириш ҳам топади (регистрсиз)
         SearchResults r = searchService.search(TOKEN.toLowerCase(), false);
         assertThat(r.contacts()).extracting(SearchHit::url)
-                // Arbitr-002: мижоз/таъминотчи → КОНТАКТ КАРТОЧКАСИ (/edit эмас);
+                // DEC-002: мижоз/таъминотчи → КОНТАКТ КАРТОЧКАСИ (/edit эмас);
                 // ходим → эски таҳрир (ходим картаси 2-босқич)
                 .anyMatch(url -> url.matches("/customers/[^/]+"))
                 .anyMatch(url -> url.matches("/vendors/[^/]+"))
@@ -98,9 +98,9 @@ class GlobalSearchServiceTest {
     }
 
     /**
-     * Arbitr-074: тўловлар (RCPT-/PAY-), банк txn ref_no ва landed cost
+     * DEC-074: тўловлар (RCPT-/PAY-), банк txn ref_no ва landed cost
      * (LC-) ҳам «Ҳужжатлар» гуруҳида - QBO Navigate паритети. BT- рақами
-     * аввалдан қамровда эди, энди ref_no бўйича ҳам топилади (Ulugbek-016).
+     * аввалдан қамровда эди, энди ref_no бўйича ҳам топилади (AUD-016).
      */
     @Test
     void paymentsBankRefNoLandedCost_found() {
@@ -239,7 +239,7 @@ class GlobalSearchServiceTest {
                 .param("total", new BigDecimal(total)).update();
     }
 
-    /** Банк транзакцияси (BT-) - ref_no билан (Ulugbek-016 сценарийси). */
+    /** Банк транзакцияси (BT-) - ref_no билан (AUD-016 сценарийси). */
     private void insertBankTransaction(String number, UUID accountId, String refNo, String total) {
         jdbc.sql("""
                         INSERT INTO bank_transaction (id, txn_number, type, bank_account_id,

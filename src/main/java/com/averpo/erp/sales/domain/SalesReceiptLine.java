@@ -56,7 +56,7 @@ public class SalesReceiptLine extends BaseEntity {
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal quantity;
 
-    /** Бирлик нархи (ҳужжат валютасида) - invoice_line кўзгуси, 24,12 (Arbitr-076). */
+    /** Бирлик нархи (ҳужжат валютасида) - invoice_line кўзгуси, 24,12 (DEC-076). */
     @Column(name = "unit_price", nullable = false, precision = 24, scale = 12)
     private BigDecimal unitPrice;
 

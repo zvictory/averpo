@@ -5,7 +5,7 @@
 @param String name
 @param Msg msg
 @param String selected = null
-<%-- Кўриниш Penguin НАЗОРАТ канонида (Arbitr-121, ui-style-guide
+<%-- Кўриниш Penguin НАЗОРАТ канонида (DEC-121, ui-style-guide
      «2. Форма»); default - line-item зич варианти (py-1.5), ҳужжат
      бош майдонида чақирувчи тўлиқ канонни (mt-1 w-full ...py-2...)
      ўзи беради. --%>

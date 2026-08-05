@@ -78,7 +78,7 @@
     @if(register.rows().isEmpty())
         <p class="mt-2 text-current/60">${msg.localize("tb.empty")}</p>
     @endif
-    <%-- Саҳифалаш (ARBITR-105б): rows фақат жорий саҳифа, жорий қолдиқ
+    <%-- Саҳифалаш (DEC-105б): rows фақат жорий саҳифа, жорий қолдиқ
          саҳифалараро узлуксиз (service «саҳифагача йиғинди» aggregate'и);
          давр филтри линкларда сақланади --%>
     @template.shared.pagination(page = page, baseUrl = "/accounts/" + register.account().getId().toString() + "/transactions", filterQuery = filterQuery, msg = msg)

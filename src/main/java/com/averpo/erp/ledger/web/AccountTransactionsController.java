@@ -36,7 +36,7 @@ public class AccountTransactionsController {
 
     /**
      * Давр танланмаса - шу йил бошидан бугунгача (TB билан бир хил default).
-     * Саҳифаланган (ARBITR-105б): ?page= + ҳажм PageSizeResolver'дан;
+     * Саҳифаланган (DEC-105б): ?page= + ҳажм PageSizeResolver'дан;
      * давр филтри саҳифа линкларида ЕЧИЛГАН қийматлари билан сақланади -
      * ярим тунда default силжиса ҳам варақлаш кесими барқарор қолади.
      */
@@ -49,11 +49,11 @@ public class AccountTransactionsController {
                        HttpServletResponse response,
                        Model model) {
         // Default оралиқ - компания zoneId'даги «бугун»гача (JVM tz эмас,
-        // қоида 12/Arbitr-055)
+        // қоида 12/DEC-055)
         LocalDate f = from != null ? from
                 : LocalDate.now(settingsService.zoneId()).withDayOfYear(1);
         LocalDate t = to != null ? to : LocalDate.now(settingsService.zoneId());
-        // ARBITR-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
+        // DEC-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
         int size = PageSizeResolver.resolve(request, response, "account-transactions");
         var paged = transactionsService.registerPage(id, f, t, page, size);
         var register = paged.register();
@@ -65,7 +65,7 @@ public class AccountTransactionsController {
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         // Контакт номлари - ФАҚАТ саҳифада кўринган сатрлардаги id'лар бўйича,
         // ledger service'нинг хом SQL name-map'и орқали (contact модулига
-        // боғланмайди - ТЕМИР ҚОИДА №6; бутун каталог юкланмайди, Arbitr-044)
+        // боғланмайди - ТЕМИР ҚОИДА №6; бутун каталог юкланмайди, DEC-044)
         var contactIds = register.rows().stream()
                 .map(AccountTransactionsService.Row::contactId)
                 .filter(Objects::nonNull).distinct().toList();

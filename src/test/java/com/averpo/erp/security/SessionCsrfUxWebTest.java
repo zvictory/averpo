@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Сессия муддати + CSRF 403 UX (Arbitr-096) web тестлари:
+ * Сессия муддати + CSRF 403 UX (DEC-096) web тестлари:
  * <ol>
  *   <li>КИРГАН фойдаланувчи CSRF'сиз POST (эскирган токен симуляцияси) -
  *       хом 403 Whitelabel эмас, {@code /login?expired} га redirect;</li>

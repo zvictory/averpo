@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Режим bean'ларининг профил тақсими тести (Arbitr-138): тест
+ * Режим bean'ларининг профил тақсими тести (DEC-138): тест
  * профилда ({@code test}) НА poller (у {@code @Profile("dev")}), НА
  * webhook registrar (у {@code @Profile("!dev & !test")}) яратилмайди -
  * тест тармоққа умуман тегмайди ва детерминистик қолади.

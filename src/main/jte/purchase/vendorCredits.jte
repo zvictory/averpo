@@ -33,7 +33,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт филтр қатори (Arbitr-068): давр + статус + таъминотчи + матн --%>
+    <%-- Стандарт филтр қатори (DEC-068): давр + статус + таъминотчи + матн --%>
     @template.shared.listFilter(action = "/vendor-credits", from = from, to = to, q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.status")}
             <select name="status" class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
@@ -99,6 +99,6 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш - рўйхат саҳифаланган туғилади (Beruniy-perf1 қолипи) --%>
+    <%-- Саҳифалаш - рўйхат саҳифаланган туғилади (PERF-perf1 қолипи) --%>
     @template.shared.pagination(page = page, baseUrl = "/vendor-credits", filterQuery = filterQuery, msg = msg)
 `)

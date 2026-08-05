@@ -67,7 +67,7 @@ public class UserController {
     @GetMapping("/new")
     public String createForm(Model model) {
         UserForm form = new UserForm();
-        // Default роль - энг кам ҳуқуқли (Arbitr-092): select'нинг биринчи
+        // Default роль - энг кам ҳуқуқли (DEC-092): select'нинг биринчи
         // банди SUPER_ADMIN, танлов унутилса тасодифан тўлиқ ҳуқуқ
         // берилмасин (хавфсиз томонга default)
         form.setRole(UserRole.VIEWER_AUDITOR.name());
@@ -102,7 +102,7 @@ public class UserController {
 
     /**
      * Таҳрир формаси - username read-only, парол алоҳида картада. Ходим
-     * танлагичи учун фаол EMPLOYEE контактлар рўйхати (Arbitr-101
+     * танлагичи учун фаол EMPLOYEE контактлар рўйхати (DEC-101
      * 4-бўлим) - фақат таҳрирда (super-admin боғлайди).
      */
     @GetMapping("/{id}/edit")

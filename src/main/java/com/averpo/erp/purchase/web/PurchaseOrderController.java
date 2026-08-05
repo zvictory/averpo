@@ -72,8 +72,8 @@ public class PurchaseOrderController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - саҳифаланган (Beruniy-perf1); тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/vendor/матн, саҳифа линклари филтрни
+     * Рўйхат - саҳифаланган (PERF-perf1); тўлиқ филтр қатори
+     * (DEC-068): давр/статус/vendor/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -96,7 +96,7 @@ public class PurchaseOrderController {
                 .add("from", from).add("to", to).add("status", status)
                 .add("vendorId", vendorId).add("q", q).toString());
         // Vendor номлари - фақат саҳифадаги сатрлар (+ филтр id'си)
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         java.util.Set<UUID> vendorIds = new java.util.HashSet<>();
         for (PurchaseOrder order : orderPage.getContent()) {
             vendorIds.add(order.getVendorId());
@@ -119,7 +119,7 @@ public class PurchaseOrderController {
     @GetMapping("/new")
     public String createForm(Model model) {
         PurchaseOrderForm form = PurchaseOrderForm.empty(3);
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setPoDate(LocalDate.now(settingsService.zoneId()));
         fillFormModel(model, form);
         return "purchase/purchaseOrderForm";
@@ -173,7 +173,7 @@ public class PurchaseOrderController {
         model.addAttribute("vendorName",
                 contactService.get(po.getVendorId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар byIds/IN
-        // сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 po.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));

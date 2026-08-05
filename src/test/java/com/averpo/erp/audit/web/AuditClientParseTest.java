@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * UA парс ва IPv6 қисқартириш unit тестлари (Arbitr-091, карта «Тест
+ * UA парс ва IPv6 қисқартириш unit тестлари (DEC-091, карта «Тест
  * кутилмаси»: камида 6 реал UA намунаси). Ҳамма намуна ҳақиқий браузер
  * қаторлари - regex/contains занжири реал форматларга мослигини
  * гаровлайди: Chrome-асосли тартиб (Edge Chrome'дан олдин), Android

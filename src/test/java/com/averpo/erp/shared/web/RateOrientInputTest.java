@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * {@link Fmt#orientInput} unit тести (Arbitr-097): курс блоки компоненти
+ * {@link Fmt#orientInput} unit тести (DEC-097): курс блоки компоненти
  * КИРИТИШ ориентацияси - ИККАЛА home вариантида (SABOQLAR янги қоидаси:
  * home=UZS ва home=USD). Каноник (сақланадиган) курс home-per-doc
- * ЎЗГАРМАЙДИ; кўринадиган қиймат кучли-валюта базисида ва Arbitr-135
+ * ЎЗГАРМАЙДИ; кўринадиган қиймат кучли-валюта базисида ва DEC-135
  * дан бери {@link Fmt#rate} кўрсатиш форматида (>= 1 → 2 хона NBSP
  * билан, &lt; 1 → макс 8 хона).
  */

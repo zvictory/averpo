@@ -29,7 +29,7 @@ public class JpaUserDetailsService implements UserDetailsService {
      * бўлса LockedException, парол текширилмасдан ҳам - Spring Security
      * pre-auth текшируви). Иккала қоида ҳам шу битта жойда ижро этилади.
      *
-     * <p>Authority'лар (Arbitr-092) роль номидан эмас,
+     * <p>Authority'лар (DEC-092) роль номидан эмас,
      * {@link com.averpo.erp.security.domain.RolePermissions}
      * матрицасидан келади: ROLE_&lt;роль&gt; + соҳа VIEW/EDIT'лари +
      * имкониятлар - SecurityConfig соҳа қоидалари айнан шуларни

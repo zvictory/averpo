@@ -11,8 +11,8 @@ import java.util.UUID;
 /**
  * Кредит-ноталар репозиторийси - фақат sales модули ичида.
  * Рўйхат экрани саҳифаланган: findAll(Specification, Pageable) (тартиб
- * CreditMemoService.LIST_SORT'дан) - Beruniy-perf1 2-босқич +
- * Arbitr-068 рўйхат филтри.
+ * CreditMemoService.LIST_SORT'дан) - PERF-perf1 2-босқич +
+ * DEC-068 рўйхат филтри.
  */
 public interface CreditMemoRepository extends JpaRepository<CreditMemo, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<CreditMemo> {

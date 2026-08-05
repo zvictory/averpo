@@ -13,7 +13,7 @@
 @param String editId = null
 @param String error = null
 
-<%-- Arbitr-024: асосий йўл - drawer (HTMX, accountFormDrawer); бу тўлиқ
+<%-- DEC-024: асосий йўл - drawer (HTMX, accountFormDrawer); бу тўлиқ
      саҳифа JS'сиз fallback ва тўғридан-тўғри URL учун сақланади. --%>
 @template.layout.form(title = editId == null ? msg.lookup("accounts.form.titleNew") : msg.lookup("accounts.form.titleEdit"), closeHref = "/accounts", lang = lang, content = @`
     @template.ledger.accountFormFields(form = form, parents = parents,

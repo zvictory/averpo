@@ -57,7 +57,7 @@ class StatementWebTest {
     /** Кўчирма ҳисобланадиган мижоз (July 2026 да POSTED invoice'и бор). */
     private Contact customer;
 
-    /** POSTED invoice - Arbitr-063 href асserti учун id сақланади. */
+    /** POSTED invoice - DEC-063 href асserti учун id сақланади. */
     private Invoice invoice;
 
     @BeforeEach
@@ -103,10 +103,10 @@ class StatementWebTest {
                 .andExpect(content().string(containsString("Давр боши қолдиқ")))
                 .andExpect(content().string(containsString("Давр охири қолдиқ")))
                 .andExpect(content().string(containsString("INV-2026")))
-                // Arbitr-063 банд 4: сатр рақами манба ҳужжатга линк
+                // DEC-063 банд 4: сатр рақами манба ҳужжатга линк
                 .andExpect(content().string(containsString("/invoices/" + invoice.getId())))
                 .andExpect(content().string(containsString("Чоп этиш")))
-                // Print қатлами Tailwind print: утилиталарида (Arbitr-122):
+                // Print қатлами Tailwind print: утилиталарида (DEC-122):
                 // чоп-фақат блок ва экран-фақат қисм маркерлари
                 .andExpect(content().string(containsString("hidden print:block")))
                 .andExpect(content().string(containsString("print:hidden")));

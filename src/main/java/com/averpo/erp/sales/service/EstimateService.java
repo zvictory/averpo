@@ -94,13 +94,13 @@ public class EstimateService {
                 .orElseThrow(() -> new NotFoundException("Estimate топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экран тартиби
-     * ўзгармасин (Beruniy-perf1). A-тўлқин рўйхати retrofit'и.
+     * ўзгармасин (PERF-perf1). A-тўлқин рўйхати retrofit'и.
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -109,7 +109,7 @@ public class EstimateService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -118,8 +118,8 @@ public class EstimateService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -135,7 +135,7 @@ public class EstimateService {
                         "estimateNumber", "memo")), pageable);
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<Estimate> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -173,7 +173,7 @@ public class EstimateService {
         estimate.clearLines();
         // uq_estimate_line_no билан: Hibernate flush'да INSERT DELETE'дан
         // олдин бажарилади - эски сатрлар аввал ўчирилиши шарт
-        // (InvoiceService updateDraft'даги Beruniy-010 сабоғи)
+        // (InvoiceService updateDraft'даги PERF-010 сабоғи)
         repository.flush();
         applyLines(estimate, normalized.lines());
         return repository.saveAndFlush(estimate);
@@ -229,7 +229,7 @@ public class EstimateService {
 
     /**
      * Тўлиқ валидация (BR-EST-001, валюта мижоздан - BR-EST-004,
-     * Arbitr-087) + нормализация: ҚҚС бўлиниши tax.md механизмида
+     * DEC-087) + нормализация: ҚҚС бўлиниши tax.md механизмида
      * (net/tax фақат кўрсатиш учун сақланади - GL йўқ).
      */
     private Normalized validate(EstimateData data) {
@@ -247,7 +247,7 @@ public class EstimateService {
             throw new BusinessRuleException(BusinessRule.BR_EST_001,
                     "Estimate санаси киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(customer, data.currency(), BusinessRule.BR_EST_004));
@@ -257,7 +257,7 @@ public class EstimateService {
             throw new BusinessRuleException(BusinessRule.BR_EST_001,
                     "Estimate'да камида битта сатр бўлиши шарт");
         }
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003): сатр-циклда
+        // Батч lookup (DEC-045 findAllById, OPT-003): сатр-циклда
         // item биттадан ўқилмасин - битта IN сўров билан Map'га олинади
         Map<UUID, Item> items = BatchLookup.byId(
                 itemService.findAllById(BatchLookup.ids(data.lines(), LineData::itemId)));
@@ -272,7 +272,7 @@ public class EstimateService {
 
     /**
      * Сатр валидацияси: item фаол, сонлар мусбат, net/tax бўлиниши.
-     * item олдиндан юкланган батч Map'дан ўқилади (Sanjar-003) -
+     * item олдиндан юкланган батч Map'дан ўқилади (OPT-003) -
      * топилмаса {@link NotFoundException} (аввалги get() хулқи айнан).
      */
     private NormalizedLine validateLine(int no, LineData line, boolean inclusive,

@@ -102,13 +102,13 @@ public class BillPaymentService {
                 .orElseThrow(() -> new NotFoundException("Тўлов топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экран тартиби
-     * ўзгармасин (Beruniy-perf1, BillService.LIST_SORT қолипи).
+     * ўзгармасин (PERF-perf1, BillService.LIST_SORT қолипи).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -117,7 +117,7 @@ public class BillPaymentService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -126,8 +126,8 @@ public class BillPaymentService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/vendor/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/vendor/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -143,7 +143,7 @@ public class BillPaymentService {
                         Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BillPayment> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -287,7 +287,7 @@ public class BillPaymentService {
                         ? settingsService.homeCurrency() : data.currency());
         BigDecimal rate = currencyService.requireDocumentRate(
                 currency, data.exchangeRate(), BusinessRule.BR_PAY_012);
-        // BR-PAY-002 (Arbitr-070/Nargiza-001): банк счёти ўз валютасидан
+        // BR-PAY-002 (DEC-070/BA-001): банк счёти ўз валютасидан
         // бошқа валютадаги тўловни ёзмайди (SR BR-SR-002 / InvoicePayment
         // нақши) - акс ҳолда bankBalances() валюта кесими бузилади. Курсдан
         // КЕЙИН текширилади - аввалги BR тартиби (012 курс хатоси) ўзгармасин

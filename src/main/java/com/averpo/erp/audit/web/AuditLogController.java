@@ -81,7 +81,7 @@ public class AuditLogController {
         // бўлмасин (UserController.lockedTexts нақши)
         Map<UUID, String> times = new HashMap<>();
         // «IP: x · Chrome 126 · Windows · десктоп · UZ» матни ҳам олдиндан
-        // (Arbitr-062, кенгайиши Arbitr-091): тўлиқ UA шаблонда title'га
+        // (DEC-062, кенгайиши DEC-091): тўлиқ UA шаблонда title'га
         // боради, қисқа client шу ерда ажратилади
         Map<UUID, String> clients = new HashMap<>();
         for (AuditEvent event : events.getContent()) {
@@ -116,7 +116,7 @@ public class AuditLogController {
 
     /**
      * Тафсилот устунидаги «IP: 240.1.2.3 · v6: 2a05:…40c1 · Chrome 126 ·
-     * Windows · десктоп · UZ» матни (Arbitr-062, кенгайиши Arbitr-091) -
+     * Windows · десктоп · UZ» матни (DEC-062, кенгайиши DEC-091) -
      * ҳамма бўлак null-safe: эски ёзувларда ipV4/country бўш, dev'да CF
      * header'лар йўқ, фон ёзувларида IP/UA умуман йўқ (ҳаммаси бўш бўлса
      * null - span умуман чиқмайди). IPv4 бор бўлса БИРИНЧИ (фойдаланувчи
@@ -159,7 +159,7 @@ public class AuditLogController {
      * Тартиб муҳим: Chrome-асосли браузерлар (Edge/Opera) UA'сида
      * «Chrome/» ҳам бор - аввал ўзи текширилади; Safari эса Chrome'сиз
      * UA'дагина Safari (версияси «Version/» токенида). Major кифоя - UA
-     * reduction сабаб minor барибир аниқ эмас (Arbitr-091). Нотаниш UA -
+     * reduction сабаб minor барибир аниқ эмас (DEC-091). Нотаниш UA -
      * биринчи токен (масалан curl/8.5) 30 белгигача. Package-private -
      * unit тест тўғридан чақиради.
      */

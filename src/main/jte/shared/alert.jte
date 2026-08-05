@@ -1,7 +1,7 @@
 @param String message = null
 @param String error = null
 
-<%-- Arbitr-119 (Penguin alert, реф: docs/penguin-refs/alert.html): флеш
+<%-- DEC-119 (Penguin alert, реф: docs/penguin-refs/alert.html): флеш
      хабар жуфти - controller redirect'дан келадиган message (success) /
      error (danger). Ихчам бир қаторли шакл (иконка/сарлавҳасиз - Averpo
      мослашуви реф файлида изоҳланган); role="alert" скрин-ридерга дарҳол

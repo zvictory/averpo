@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:054-company-info
--- Компания реквизит майдонлари (Arbitr-112, docs/modules/company-info.md):
+-- Компания реквизит майдонлари (DEC-112, docs/modules/company-info.md):
 -- QBO Company Settings + Ўзбекистон реквизитлари (СТИР/банк/директор -
 -- ҳужжат/чоп сарлавҳаси учун). Ҳаммаси nullable/ихтиёрий, `name`
 -- аллақачон бор. Соф кўрсатиш маълумоти - GL/posting'га таъсир қилмайди.

@@ -11,7 +11,7 @@
      ном + detail type (группаланган select - accountFormFields кўзгуси);
      код/ота/валюта/OB кейин тўлиқ формада. pgCombo (penguin-combobox.js)
      submit'ни ушлаб JSON {id,label} кутади; BR хато [data-combo-error]'да. --%>
-<%-- Arbitr-161: валютага боғланган турлар (AccountType.isCurrencyDenominated
+<%-- DEC-161: валютага боғланган турлар (AccountType.isCurrencyDenominated
      ягона манба) - валюта майдони x-show шу рўйхатдан ўқийди --%>
 <script>
     window.accountCurrencyTypes = [
@@ -44,7 +44,7 @@
             @endfor
         </select>
     </label>
-    <%-- Валюта - фақат валютага боғланган турда кўринади (Arbitr-161 x-show);
+    <%-- Валюта - фақат валютага боғланган турда кўринади (DEC-161 x-show);
          :disabled - боғланмаган турда select ЎЧИРИЛАДИ (disabled control submit
          қилинмайди - x-show яширин select stale currency'ни юбормайди); x-effect
          Alpine cur'ни тозалайди --%>

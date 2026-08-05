@@ -108,7 +108,7 @@ public class Money {
      * targetBase, сатрлар - lineBases largest-remainder билан) ва шу
      * тайёр қийматлар билан Money ясалади; {@link #of} эса base'ни
      * ҳар сафар ўзи яхлитлаб ҳисоблар эди - тақсимот кафолатлари
-     * (Asrorxoja-002) йўқолар эди. BR-LED-003 инварианти (±0.0001)
+     * (LOG-002) йўқолар эди. BR-LED-003 инварианти (±0.0001)
      * кучда қолади - узоқлашган base бари бир рад этилади.
      */
     public static Money withBase(BigDecimal amount, String currency,

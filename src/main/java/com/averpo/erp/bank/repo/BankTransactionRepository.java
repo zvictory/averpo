@@ -10,9 +10,9 @@ import java.util.UUID;
 
 /**
  * Банк транзакциялари репозиторийси - фақат bank модули ичида.
- * JpaSpecificationExecutor - рўйхат/ўтказмалар филтри учун (Arbitr-068):
+ * JpaSpecificationExecutor - рўйхат/ўтказмалар филтри учун (DEC-068):
  * transfers'нинг эски List findByTypeWithCurrency методи Specification +
- * fetch бўлагига алмашди (Beruniy-020 N+1 ҳимояси сақланган).
+ * fetch бўлагига алмашди (PERF-020 N+1 ҳимояси сақланган).
  */
 public interface BankTransactionRepository extends JpaRepository<BankTransaction, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<BankTransaction> {

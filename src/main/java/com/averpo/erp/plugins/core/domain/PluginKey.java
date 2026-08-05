@@ -3,7 +3,7 @@ package com.averpo.erp.plugins.core.domain;
 import lombok.Getter;
 
 /**
- * Built-in плагинлар реестри (docs/modules/plugins.md, Arbitr-113).
+ * Built-in плагинлар реестри (docs/modules/plugins.md, DEC-113).
  *
  * <p>Plugin = код ичида олдиндан ёзилган ИХТИЁРИЙ фича; фойдаланувчи
  * код юкламайди - динамик plugin loader/marketplace атайлаб ЙЎҚ
@@ -20,7 +20,7 @@ import lombok.Getter;
 public enum PluginKey {
 
     /**
-     * Telegram интеграцияси - биринчи плагин (Arbitr-103): бот токени
+     * Telegram интеграцияси - биринчи плагин (DEC-103): бот токени
      * созламаси, профиль улаш блоки ва poller. Ёқилганда
      * {@code /settings/telegram} очилади, ўчирилганда ҳаммаси яширин
      * ва poller ухлайди (токен сақланиб қолади).

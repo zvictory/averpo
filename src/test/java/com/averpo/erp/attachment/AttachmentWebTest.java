@@ -136,7 +136,7 @@ class AttachmentWebTest {
                 .andExpect(header().string("Content-Disposition", containsString("mavjud.pdf")));
 
         // VIEWER жойида кўради (200) - view ҳам download каби GET, очиқ
-        // (ARBITR-094: read-only роль иловани кўра олади)
+        // (DEC-094: read-only роль иловани кўра олади)
         mockMvc.perform(get("/attachments/" + existing.getId() + "/view")
                         .with(TestRoles.as("kuzatuvchi", UserRole.VIEWER_AUDITOR)))
                 .andExpect(status().isOk())
@@ -144,13 +144,13 @@ class AttachmentWebTest {
     }
 
     /**
-     * ARBITR-094 хавфсизлик: view endpoint ФАҚАТ whitelist турни inline
+     * DEC-094 хавфсизлик: view endpoint ФАҚАТ whitelist турни inline
      * беради. (1) PDF - inline + nosniff; (2) сақланган MIME image/svg+xml
      * (кенгайтма рухсат этилган png, лекин browser svg+xml юборган) inline
      * ЭМАС - download'га 302 (SVG ичида script → XSS). Бу view'нинг
      * ҳақиқат манбаи эканини (UI тугмасидан мустақил) тасдиқлайди.
      *
-     * <p>ARBITR-128: жавобда X-Frame-Options: SAMEORIGIN ҳам текширилади -
+     * <p>DEC-128: жавобда X-Frame-Options: SAMEORIGIN ҳам текширилади -
      * default DENY бўлса модалдаги PDF iframe'ни браузернинг ўзи блоклайди
      * (SecurityConfig frameOptions sameOrigin шу тестга боғланган).
      */

@@ -21,7 +21,7 @@ public interface PriceListRepository extends JpaRepository<PriceList, UUID> {
 
     /**
      * Default рўйхат валютаси билан БИТТА сўровда - resolvePrice йўли
-     * (Beruniy-018): derived query'да EAGER валюта алоҳида SELECT
+     * (PERF-018): derived query'да EAGER валюта алоҳида SELECT
      * бўлиб келарди.
      */
     @Query("""

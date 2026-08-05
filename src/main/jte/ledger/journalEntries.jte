@@ -22,7 +22,7 @@
 @param String message = null
 @param String error = null
 
-<%-- Arbitr-106: сайдбар/панель филтри каби жорий фойдаланувчи имконияти
+<%-- DEC-106: сайдбар/панель филтри каби жорий фойдаланувчи имконияти
      SecurityContext'дан (Perms) - «Даврни ёпиш» тугмаси PERIOD_CLOSE
      эгаларигагина кўринади. Server ҳақиқати SecurityConfig'да
      (@PreAuthorize saveClosingDate'да) - бу фақат кўриниш. --%>
@@ -31,7 +31,7 @@
     <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("entries.title")}</h1>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-            <%-- Arbitr-106: «Даврни ёпиш» кириш нуқтаси - сайдбардан кўчди.
+            <%-- DEC-106: «Даврни ёпиш» кириш нуқтаси - сайдбардан кўчди.
                  Фақат PERIOD_CLOSE эгаларига (SUPER_ADMIN, CHIEF_ACCOUNTANT):
                  092 дизайн шарти сақланади - CHIEF SETTINGS'сиз ҳам даврни
                  айнан шу тугма орқали бошқаради. Иккиламчи амал → outline
@@ -48,7 +48,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт филтр қатори (Arbitr-068): давр + статус + матн
+    <%-- Стандарт филтр қатори (DEC-068): давр + статус + матн
          (давр default'и - жорий йил, аввалги хатти-ҳаракат) --%>
     @template.shared.listFilter(action = "/journal-entries", from = from.toString(), to = to.toString(), q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.status")}
@@ -67,7 +67,7 @@
         <p class="text-current/60">${msg.localize("entries.empty")}</p>
     @else
         @template.shared.table(cls = "min-w-[640px]", c = @`
-            <%-- Устун саралаш (ARBITR-105б): whitelist'даги устунлар
+            <%-- Устун саралаш (DEC-105б): whitelist'даги устунлар
                  sortth линк (description - узун эркин матн, actions -
                  маъносиз, оддий th қолади). --%>
             <thead>
@@ -93,7 +93,7 @@
                         @template.shared.badge(value = entry.getStatus().name(), msg = msg)
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @template.shared.rowMenu(msg = msg, items = @`
                             <a href="/journal-entries/${entry.getId().toString()}">${msg.localize("common.view")}</a>
                         `)
@@ -103,7 +103,7 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш (Beruniy-perf1) - филтрлар линкларда сақланади.
+    <%-- Саҳифалаш (PERF-perf1) - филтрлар линкларда сақланади.
          pageQuery = филтр + жорий sort (105б) - варақлаганда тартиб сақланади --%>
     @template.shared.pagination(page = page, baseUrl = "/journal-entries", filterQuery = pageQuery, msg = msg)
 `)

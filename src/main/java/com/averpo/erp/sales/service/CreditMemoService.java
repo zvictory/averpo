@@ -161,13 +161,13 @@ public class CreditMemoService {
                 .orElseThrow(() -> new NotFoundException("Кредит-нота топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экран тартиби
-     * ўзгармасин (Beruniy-perf1). A-тўлқин рўйхати retrofit'и.
+     * ўзгармасин (PERF-perf1). A-тўлқин рўйхати retrofit'и.
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -176,7 +176,7 @@ public class CreditMemoService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -185,8 +185,8 @@ public class CreditMemoService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -202,7 +202,7 @@ public class CreditMemoService {
                         Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<CreditMemo> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -381,7 +381,7 @@ public class CreditMemoService {
                                   BigDecimal taxAmount, UUID classId,
                                   InvoiceLine originalLine) { }
 
-    /** Сарлавҳа + сатрлар валидацияси (BR-RET-001/002/006/008 - валюта мижоздан, Arbitr-087). */
+    /** Сарлавҳа + сатрлар валидацияси (BR-RET-001/002/006/008 - валюта мижоздан, DEC-087). */
     private Normalized validate(CreditMemoData data) {
         if (data.customerId() == null) {
             throw new BusinessRuleException(BusinessRule.BR_RET_001,
@@ -401,7 +401,7 @@ public class CreditMemoService {
             throw new BusinessRuleException(BusinessRule.BR_RET_001,
                     "Камида битта сатр киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(customer, data.currency(), BusinessRule.BR_RET_008));
@@ -427,7 +427,7 @@ public class CreditMemoService {
             }
         }
 
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003 - SalesReceipt
+        // Батч lookup (DEC-045 findAllById, OPT-003 - SalesReceipt
         // эталони): сатр-циклда item/омбор/счёт биттадан ўқилмасин; даромад
         // счёти доим item default'идан - id'лар юкланган item'лардан йиғилади
         Map<UUID, Item> items = BatchLookup.byId(
@@ -451,7 +451,7 @@ public class CreditMemoService {
 
     /**
      * Сатр валидацияси - invoice validateLine кўзгуси (BR-RET кодларида).
-     * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади (Sanjar-003) -
+     * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади (OPT-003) -
      * топилмаса {@link NotFoundException} (аввалги get() хулқи айнан).
      */
     private NormalizedLine validateLine(int no, LineData line, boolean inclusive,
@@ -655,7 +655,7 @@ public class CreditMemoService {
                 null, credit, memo.getCustomerId(), null, null, null));
 
         // 3) ITEM сатрлар: омборга қайтим кирими + Dr INVENTORY / Cr COGS.
-        // Батч (Sanjar-003): asset счёти учун item'лар олдиндан битта IN
+        // Батч (OPT-003): asset счёти учун item'лар олдиндан битта IN
         // сўровда - сатр циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(memo.getLines(),
@@ -726,7 +726,7 @@ public class CreditMemoService {
      * gain Cr), нол - JE ёзилмайди.
      *
      * <p>JE санаси = ҚЎЛЛАШ куни (компания timezone'идаги бугун), кредит
-     * санаси ЭМАС (Arbitr-050 / Беруний-031): realized FX қўллаш пайтида
+     * санаси ЭМАС (DEC-050 / Беруний-031): realized FX қўллаш пайтида
      * тан олинади (BillPayment payment_date прецеденти) - эски даврдаги
      * кредитни янги очиқ даврдаги invoice'га қўллаш BR-LED-020 ёпиқ давр
      * блокига урилмайди ва фарқ тўғри даврга тушади.

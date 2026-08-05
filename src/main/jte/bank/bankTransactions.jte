@@ -34,7 +34,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт филтр қатори (Arbitr-068): давр + статус + контакт + матн
+    <%-- Стандарт филтр қатори (DEC-068): давр + статус + контакт + матн
          (матн txn рақами, банк ҳужжат ҳаваласи ref_no ва изоҳни қамрайди) --%>
     @template.shared.listFilter(action = "/bank-transactions", from = from, to = to, q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.status")}
@@ -99,7 +99,7 @@
                         @template.shared.badge(value = txn.getStatus().name(), msg = msg)
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @template.shared.rowMenu(msg = msg, items = @`
                             <a href="/bank-transactions/${txn.getId().toString()}">${msg.localize("common.view")}</a>
                         `)
@@ -109,6 +109,6 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш (Beruniy-perf1); филтрсиз рўйхат --%>
+    <%-- Саҳифалаш (PERF-perf1); филтрсиз рўйхат --%>
     @template.shared.pagination(page = page, baseUrl = "/bank-transactions", filterQuery = filterQuery, msg = msg)
 `)

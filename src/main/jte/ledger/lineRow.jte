@@ -10,14 +10,14 @@
 @param String classMode = "OFF"
 @param List<ClassOption> classes = java.util.List.of()
 @param Boolean canEdit = false
-<%-- Arbitr-107 (QBO parity): валюта/курс устунлари ОЛИНДИ - улар энди
+<%-- DEC-107 (QBO parity): валюта/курс устунлари ОЛИНДИ - улар энди
      ҳужжат даражасида (header rateBlock). Сатрда фақат: счёт | дебет |
      кредит | [Йўналиш] | изоҳ. --%>
 
 <tr class="line" data-index="${index}">
     <td class="text-center text-current/60">${index + 1}</td>
     <td>
-        <%-- Arbitr-014: QBO tree - гуруҳ сарлавҳалари comboGroup бўлиб чиқади --%>
+        <%-- DEC-014: QBO tree - гуруҳ сарлавҳалари comboGroup бўлиб чиқади --%>
         @template.shared.combobox(name = "lines[" + index + "].accountId", msg = msg,
                 value = line != null ? line.getAccountId() : null,
                 placeholder = msg.lookup("entries.row.selectAccount"),

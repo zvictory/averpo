@@ -1,6 +1,6 @@
 @param String type
 
-<%-- ARBITR-089: ҳужжат/транзакция view сарлавҳаси (h1) бошидаги entity
+<%-- DEC-089: ҳужжат/транзакция view сарлавҳаси (h1) бошидаги entity
      икони - фойдаланувчи қайси саҳифада турганини бир қарашда ажратиб
      олади. Глифлар main.jte сайдбар нақшига мос (viewBox 24, stroke
      currentColor, қалинлик 2); учтаси айнан реюз: journalEntry -
@@ -43,10 +43,10 @@
     <%-- repeat: икки счёт ораси айланма --%>
     <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
 @elseif("stockAdjustment".equals(type))
-    <%-- ARBITR-093: sliders - инвентаризация (қолдиқни созлаш) --%>
+    <%-- DEC-093: sliders - инвентаризация (қолдиқни созлаш) --%>
     <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
 @elseif("stockTransfer".equals(type))
-    <%-- ARBITR-093: омборлараро юк кўчиши (иккита қути + ўқ) --%>
+    <%-- DEC-093: омборлараро юк кўчиши (иккита қути + ўқ) --%>
     <rect x="2" y="7" width="7" height="7" rx="1"/><rect x="15" y="10" width="7" height="7" rx="1"/><polyline points="10 5 13 8 10 11"/><path d="M13 8H8"/>
 @elseif("bankTransaction".equals(type))
     <%-- bank (main.jte реюз): банк биноси --%>

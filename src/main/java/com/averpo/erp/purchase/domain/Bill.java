@@ -184,7 +184,7 @@ public class Bill extends BaseEntity {
      * {@link com.averpo.erp.shared.domain.MoneyAllocation#targetBase} -
      * битта яхлитлаш: GL'да AP кредити айнан шу target, дебет сатрлар
      * (net'лар + ҚҚС'лар) base'лари largest-remainder билан шунга
-     * тақсимланади (Asrorxoja-002).
+     * тақсимланади (LOG-002).
      */
     private void recalcTotals() {
         BigDecimal sum = BigDecimal.ZERO;

@@ -16,7 +16,7 @@
 @param String message = null
 @param String error = null
 
-<%-- Инвентаризация акти кўриши (Arbitr-093): сатрлар + GL ҳавола (080) +
+<%-- Инвентаризация акти кўриши (DEC-093): сатрлар + GL ҳавола (080) +
      reverse (қарши-акт prefill). GL линки фақат актда нолдан фарқли
      қиймат бўлса кўринади (hasGl - controller ҳисоблайди). --%>
 @template.layout.main(title = act.getAdjNumber(), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
@@ -27,7 +27,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("inv.col.warehouse")}</span>

@@ -54,7 +54,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Контакт карточкаси (Arbitr-002) тестлари - spec docs/modules/
+ * Контакт карточкаси (DEC-002) тестлари - spec docs/modules/
  * contact-card.md «Тестлар» бўлими (5 мажбурий):
  * <ol>
  *   <li>стат-карта қийматлари controller model'да - қолдиқ=statement

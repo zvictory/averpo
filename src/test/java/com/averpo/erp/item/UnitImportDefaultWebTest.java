@@ -25,14 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-147б: /settings/units саҳифасидаги «Стандарт гуруҳларни юклаш»
+ * DEC-147б: /settings/units саҳифасидаги «Стандарт гуруҳларни юклаш»
  * тугмаси (POST /settings/units/import-default) - chart importDefault
  * кўзгуси. 147 installer'ни мавжуд базада ҳам ишга солади.
  *
  * <p>Гейт: /settings/units/** INVENTORY соҳасида - POST editAuthority
  * талаб қилади (WAREHOUSE_MANAGER киради, VIEWER йўқ). CSRF мажбурий:
  * токенсиз POST {@code CsrfException} билан {@code /login?expired} га
- * (Arbitr-096 семантикаси, ProfileWebTest каби). Роль: WAREHOUSE_MANAGER
+ * (DEC-096 семантикаси, ProfileWebTest каби). Роль: WAREHOUSE_MANAGER
  * (INVENTORY EDIT - combobox тестидаги /warehouses/quick билан бир хил).
  */
 @SpringBootTest
@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockRole(value = UserRole.WAREHOUSE_MANAGER, username = "omborchi")
 class UnitImportDefaultWebTest {
 
-    /** Кутилган стандарт гуруҳлар (Arbitr-147 тўплами). */
+    /** Кутилган стандарт гуруҳлар (DEC-147 тўплами). */
     private static final List<String> STANDARD_GROUPS =
             List.of("Дона", "Оғирлик", "Узунлик", "Ҳажм", "Юза", "Вақт");
 

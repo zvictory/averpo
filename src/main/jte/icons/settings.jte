@@ -1,6 +1,6 @@
 @param String cls = "size-5"
 <%-- Tabler Icons 3.44.0 (MIT) - "settings" (outline) НАМУНА иконкаси,
-     Arbitr-116. Усул: ҳар иконка = битта JTE фрагмент
+     DEC-116. Усул: ҳар иконка = битта JTE фрагмент
      (src/main/jte/icons/<ном>.jte), чақириқ:
      @template.icons.settings(cls = "size-5 text-on-surface").
      cls - Tailwind ўлчов/ранг класслари; ранг currentColor орқали

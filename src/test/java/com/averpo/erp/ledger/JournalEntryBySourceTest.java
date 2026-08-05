@@ -48,7 +48,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Ҳужжатдан GL ёзувига (JE) ўтиш (Arbitr-080): by-source endpoint +
+ * Ҳужжатдан GL ёзувига (JE) ўтиш (DEC-080): by-source endpoint +
  * document view линклари + reverseBySource репост hardening'и.
  *
  * <p>063 (JE → ҳужжат) нинг тескари симметрияси текширилади: (1) by-source

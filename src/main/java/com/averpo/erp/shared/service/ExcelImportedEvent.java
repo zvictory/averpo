@@ -4,7 +4,7 @@ import com.averpo.erp.shared.service.ExcelImportService.ImportResult;
 
 /**
  * Excel'дан бошланғич import муваффақиятли қўлланди -
- * {@code ExcelImportService.apply} якунида эълон қилинади (Arbitr-062,
+ * {@code ExcelImportService.apply} якунида эълон қилинади (DEC-062,
  * IMPORT_EXCEL). Синхрон listener туфайли apply rollback бўлса аудит
  * ёзуви ҳам йўқолади (журнал фақат содир бўлган ишни акс эттиради).
  *

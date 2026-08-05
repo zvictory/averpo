@@ -12,9 +12,9 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Alisa-005: ўтказмалар рўйхатида манзил сумма ўз валюта коди билан
+ * UI-005: ўтказмалар рўйхатида манзил сумма ўз валюта коди билан
  * чиқади - счёт → валюта харитаси Spring'сиз соф unit тест билан
- * (Arbitr-025 тест кутилмаси). Beruniy-020: ном ва валюта харитаси
+ * (DEC-025 тест кутилмаси). PERF-020: ном ва валюта харитаси
  * энди битта циклда (accountViewMaps) - тест шу методга кўчди.
  */
 class TransferControllerTest {

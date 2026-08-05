@@ -13,7 +13,7 @@
 @param org.springframework.security.web.csrf.CsrfToken csrf = null
 @param String error = null
 
-<%-- Ҳужжатли инвентаризация акти формаси (Arbitr-093): битта омбор, кўп
+<%-- Ҳужжатли инвентаризация акти формаси (DEC-093): битта омбор, кўп
      сатр. Ҳар сатрда ЯНГИ qty киритилади (QBO New quantity) - жорий qty
      ва delta JS'да омбор on-hand харитасидан кўрсатилади (фақат кўрсатиш;
      ҳақиқий delta server'да newQty − жорий). Дарҳол POSTED, актга битта JE. --%>
@@ -47,7 +47,7 @@
                        value="${form.getDate() != null ? form.getDate().toString() : today}"
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
-            <%-- Arbitr-109: ташқи (қоғоз) ҳужжат рақами - QBO Reference no. --%>
+            <%-- DEC-109: ташқи (қоғоз) ҳужжат рақами - QBO Reference no. --%>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("inv.col.externalRef")}
                 <input name="externalRef" maxlength="50"
@@ -192,7 +192,7 @@
             var id = itemSel.value;
             var unit = itemSel.dataset.unit || '';
             var current = id ? (onhand[id] != null ? parseFloat(onhand[id]) : 0) : null;
-            // Arbitr-109: жорий қолдиқ ёнида бирлик (UoM) кўрсатилади
+            // DEC-109: жорий қолдиқ ёнида бирлик (UoM) кўрсатилади
             curEl.textContent = current == null ? '-'
                     : (trim(current) + (unit ? ' ' + unit : ''));
             var nv = num(newInput.value);

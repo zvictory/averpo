@@ -36,7 +36,7 @@
         @if(form.getEstimateId() != null && !form.getEstimateId().isBlank())
             <input type="hidden" name="estimateId" value="${form.getEstimateId()}">
         @endif
-        <%-- Arbitr-134: header қатъий гридда (flex-wrap тартибсиз синарди:
+        <%-- DEC-134: header қатъий гридда (flex-wrap тартибсиз синарди:
              Rate лабели вертикал ҳарф бўлиб кетган, Memo узоқлашган).
              Схема: 1-қатор Мижоз(2 улуш)+Сана+Муддат; 2-қатор Валюта+
              Курс+Солиқ(+шартли Йўналиш); охирги қатор Memo тўлиқ кенглик.
@@ -81,7 +81,7 @@
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
                 <small class="block text-current/60">${msg.localize("sinv.form.dueDateNote")}</small>
             </label>
-            <%-- Arbitr-097: валюта select + курс майдони - shared.rateBlock
+            <%-- DEC-097: валюта select + курс майдони - shared.rateBlock
                  компоненти (prefill + кўриниш + кучли-валюта ориентация). --%>
             @template.shared.rateBlock(currencies = currencies, selected = form.getCurrency(),
                     exchangeRate = form.getExchangeRate(), homeCurrency = homeCurrency,
@@ -148,7 +148,7 @@
                 hx-vals='js:{index: Math.max(0, ...[...document.querySelectorAll("#lineRows tr")].map(r => 1 + Number(r.dataset.index || 0)))}'
                 hx-target="#lineRows" hx-swap="beforeend">${msg.localize("sinv.form.addRow")}</button>
 
-        <%-- Arbitr-088 1-банд: жамилар жадвал скролл ўрамидан ТАШҚАРИДА -
+        <%-- DEC-088 1-банд: жамилар жадвал скролл ўрамидан ТАШҚАРИДА -
              кенг жадвалда қийматлар кесилмайди, доим кўз олдида (QBO Total
              қолипи; expenseForm намунаси). Recompute скрипти id бўйича ёзади -
              id'лар айнан сақланган, скрипт ўзгармаган. --%>
@@ -167,7 +167,7 @@
                     <span style="white-space:nowrap;font-variant-numeric:tabular-nums;"><span id="invTotalLive" data-rate-total>0.00</span>
                         <span data-curtag class="font-normal">${form.getCurrency() != null ? form.getCurrency() : homeCurrency}</span></span>
                 </div>
-                <%-- Arbitr-088/097: home жамиси - жами × КАНОНИК курс; кўрсат/
+                <%-- DEC-088/097: home жамиси - жами × КАНОНИК курс; кўрсат/
                      яшир ва ҳисоб rate-block.js'да (data-rate-*). --%>
                 <div id="invTotalHomeRow" data-rate-home-row style="display:${form.getCurrency() != null && !form.getCurrency().equals(homeCurrency) ? "flex" : "none"}" class="justify-between gap-6 text-sm text-current/60">
                     <span>${msg.localize("tax.totalHome", homeCurrency)}</span>
@@ -269,7 +269,7 @@
                         if (listPrice && listPrice.trim() !== '') {
                             applyPrice(priceInput, parseFloat(listPrice) * factor);
                         } else if (meta && meta.price && (!currency || currency.toUpperCase() === "${homeCurrency}")) {
-                            // Komil-014: каталог нархи HOME валютада - чет
+                            // IFRS-014: каталог нархи HOME валютада - чет
                             // валютали ҳужжатга қуйилмайди (×курс жим хато
                             // бўларди); пастдаги тармоқ эскирган autofill'ни
                             // тозалайди, майдон бўш қолади
@@ -377,8 +377,8 @@
             recompute();
         })();
 
-        <%-- Arbitr-097: курс prefill (Arbitr-029) + кўриниш/home жами
-             (Arbitr-088) + кучли-валюта ориентация - rate-block.js
+        <%-- DEC-097: курс prefill (DEC-029) + кўриниш/home жами
+             (DEC-088) + кучли-валюта ориентация - rate-block.js
              компонентида. Иккала эски IIFE шу ерда ЎЧИРИЛДИ. --%>
     </script>
 `, actions = @`

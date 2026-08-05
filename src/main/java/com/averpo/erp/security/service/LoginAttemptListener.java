@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * Login lockout (BR-USR-009, Eldor-002): Spring Security auth
+ * Login lockout (BR-USR-009, SEC-002): Spring Security auth
  * event'ларини тинглаб app_user'даги счётчикни юритади - мантиқ
  * controller'да ЭМАС, security қатламида (арбитр талаби).
  *
@@ -37,7 +37,7 @@ import java.time.Instant;
 public class LoginAttemptListener {
 
     /**
-     * Хавфсизлик изи логгери (docs/modules/logging.md, Arbitr-099):
+     * Хавфсизлик изи логгери (docs/modules/logging.md, DEC-099):
      * lockout - developer/admin кўриши керак бўлган ҳодиса (WARN), шунинг
      * учун error.log триажида ҳам чиқади. Парол ҲЕЧ ҚАЧОН логланмайди.
      */
@@ -66,7 +66,7 @@ public class LoginAttemptListener {
     public void onFailure(AuthenticationFailureBadCredentialsEvent event) {
         String username = event.getAuthentication().getName();
         Instant now = Instant.now();
-        // Счётчик АТОМАР SQL билан (Beruniy-014): параллел хато
+        // Счётчик АТОМАР SQL билан (PERF-014): параллел хато
         // уринишлар row lock'да навбатлашади - optimistic lock 500'и
         // йўқ, иккала уриниш ҳам саналади. Муддати ўтган қулфни ҳам
         // шу UPDATE тозалайди (янги серия 1 дан).
@@ -78,7 +78,7 @@ public class LoginAttemptListener {
         repository.findByUsername(username).ifPresent(user -> {
             if (user.getFailedAttempts() >= MAX_FAILED_ATTEMPTS) {
                 user.lockUntil(now.plus(LOCK_DURATION));
-                // Техник log (Arbitr-099): lockout - WARN (error.log триажи).
+                // Техник log (DEC-099): lockout - WARN (error.log триажи).
                 // Username кузатув учун, парол ЁЗИЛМАЙДИ.
                 log.warn("Login lockout: '{}' {} хато уринишдан кейин {} дақиқага қулфланди",
                         username, MAX_FAILED_ATTEMPTS, LOCK_DURATION.toMinutes());

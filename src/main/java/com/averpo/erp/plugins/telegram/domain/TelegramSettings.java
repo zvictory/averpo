@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
  * {@code @ToString} бу класда ҲАМ тақиқ (BaseEntity қоидаси) - токен
  * тасодифан логга тушмасин (logging.md).
  *
- * <p>ЁҚИЛИШ ҲОЛАТИ бу ерда ЭМАС - {@code plugin_state}'да (Arbitr-113):
+ * <p>ЁҚИЛИШ ҲОЛАТИ бу ерда ЭМАС - {@code plugin_state}'да (DEC-113):
  * токен сақланиб қолади, плагин ўчирилса фақат яширинади ва poller
  * тўхтайди (plugins.md: «маълумот ЎЧМАЙДИ»).
  */
@@ -57,7 +57,7 @@ public class TelegramSettings extends BaseEntity {
     private long updateOffset;
 
     /**
-     * Webhook сирининг ШИФРЛАНГАН қиймати (Arbitr-138, changeset 068):
+     * Webhook сирининг ШИФРЛАНГАН қиймати (DEC-138, changeset 068):
      * prod webhook режимда Telegram ҳар POST'да юборадиган
      * {@code X-Telegram-Bot-Api-Secret-Token} шу билан таққосланади.
      * token_enc билан бир хил ҳимоя (AES-GCM); очиқ секрет entity'да

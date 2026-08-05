@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-058: аудит журналига кириш IP'си клиент манзилидан ёзилиши.
+ * DEC-058: аудит журналига кириш IP'си клиент манзилидан ёзилиши.
  *
  * <p>Иккита қатлам гаровланади:
  * <ol>
@@ -109,7 +109,7 @@ class LoginAuditIpTest {
      * application.yml {@code server.tomcat.remoteip} nginx контрактига мос:
      * X-Real-IP (nginx X-Real-IP ← CF-Connecting-IP) ва X-Forwarded-Proto.
      * Бу гаров конфиг ўчиб кетса ёки нотўғри header'га алмашса йиқилади
-     * (Arbitr-058 регресс тутгичи).
+     * (DEC-058 регресс тутгичи).
      */
     @Test
     void applicationYml_remoteIpForwardingMatchesNginxContract() {

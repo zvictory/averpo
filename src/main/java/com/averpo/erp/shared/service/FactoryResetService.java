@@ -116,7 +116,7 @@ public class FactoryResetService {
 
     /**
      * ҚҚС ставкаси seed id'лари (changeset 032-tax.sql: QQS12, NO_TAX).
-     * Код бўйича эмас, айнан id бўйича (Arbitr-072): admin seed КОДини
+     * Код бўйича эмас, айнан id бўйича (DEC-072): admin seed КОДини
      * таҳрирлаган бўлса ҳам сатр seed бўлиб қолади - реставрация қилинади.
      */
     private static final String TAX_RATE_SEED_IDS = """
@@ -136,14 +136,14 @@ public class FactoryResetService {
 
     /**
      * Стандарт UOM гуруҳларини қайта ўрнатиш порти (item имплементация
-     * қилади, Arbitr-147) - reset бирликларни seed ҳолатига (гуруҳсиз)
+     * қилади, DEC-147) - reset бирликларни seed ҳолатига (гуруҳсиз)
      * келтиргач стандарт гуруҳларни қайта тиклайди, шунда fresh install
      * билан бир хил тайёр ҳолат чиқади.
      */
     private final DefaultUnitsInstaller unitsInstaller;
 
     /**
-     * Аудит event'и учун (Arbitr-062): shared audit'ни import қила олмайди
+     * Аудит event'и учун (DEC-062): shared audit'ни import қила олмайди
      * (цикл), шунга reset ўз event'ини эълон қилади - синхрон listener
      * FACTORY_RESET ёзувини ШУ транзакцияда киритади.
      */
@@ -168,7 +168,7 @@ public class FactoryResetService {
      */
     @Transactional
     public void reset(UUID currentAdminId) {
-        // (0) FK ечиш (Arbitr-101/112): app_user ва company_settings
+        // (0) FK ечиш (DEC-101/112): app_user ва company_settings
         // (иккови (4)/(5) қадамда DELETE билан сақланади) attachment ва
         // contact'ни reference қилади (profile_image_id, employee_contact_id,
         // logo_attachment_id). Postgres TRUNCATE FK КОНСТРЕЙНТ мавжудлигини
@@ -191,7 +191,7 @@ public class FactoryResetService {
         jdbcClient.sql("DELETE FROM attachment").update();
         jdbcClient.sql("DELETE FROM contact").update();
 
-        // Аудит (Arbitr-062): TRUNCATE'дан ДАРҲОЛ КЕЙИН - синхрон listener
+        // Аудит (DEC-062): TRUNCATE'дан ДАРҲОЛ КЕЙИН - синхрон listener
         // ёзуви тоза журналнинг БИРИНЧИ ёзуви бўлиб қолади (кейинги (6)
         // қадамдаги chart қайта ўрнатиш CHART_IMPORTED бўлиб иккинчи туради).
         // Rollback бўлса ёзув ҳам йўқолади - журнал фақат содир бўлган иш.
@@ -208,7 +208,7 @@ public class FactoryResetService {
         // қарамай). unit'лар юқорида detach қилинди - актуал референс йўқ,
         // DELETE бемалол ўтади.
         jdbcClient.sql("DELETE FROM unit_group").update();
-        // Seed бирлик НОМЛАРИ ҳам seed қийматига (Arbitr-072, warehouse нақши):
+        // Seed бирлик НОМЛАРИ ҳам seed қийматига (DEC-072, warehouse нақши):
         // import шаблони «дона»га таянади - таҳрирланган ном reset'дан кейин
         // шаблонни синдирмасин. DELETE'дан кейин фақат seed қаторлар қолган -
         // CASE ҳаммасини қамрайди.
@@ -221,7 +221,7 @@ public class FactoryResetService {
                 + "WHEN '019f337a-8415-77ad-bb54-002766e1b043'::uuid THEN 'хизмат' "
                 + "END").update();
 
-        // (2b) Стандарт UOM гуруҳларини қайта ўрнатиш (Arbitr-147): бирликлар
+        // (2b) Стандарт UOM гуруҳларини қайта ўрнатиш (DEC-147): бирликлар
         // энди seed ҳолатида (6 гуруҳсиз) - порт орқали (item имплементацияси)
         // стандарт гуруҳлар тикланиб seed бирликлар (дона/кг/литр/метр/соат)
         // тегишли гуруҳга ютилади. Chart нақши айнан: shared item'га боғлана
@@ -236,7 +236,7 @@ public class FactoryResetService {
                 + "('UZS','USD','EUR','RUB','GBP','KZT','CNY')").update();
         jdbcClient.sql("UPDATE currency SET active = (code IN ('UZS','USD'))").update();
 
-        // ҚҚС ставкалари фиксирланган seed UUID бўйича (Arbitr-072): аввалги
+        // ҚҚС ставкалари фиксирланган seed UUID бўйича (DEC-072): аввалги
         // код бўйича DELETE admin таҳрирлаган seed'ни (QQS12→QQS15) ўчириб
         // юборарди - тизимда ҚҚС қолмасди, Excel import BR-IMP-005 билан
         // йиқиларди. Warehouse услубида тўлиқ реставрация (код/ном/фоиз/фаол).
@@ -246,7 +246,7 @@ public class FactoryResetService {
         jdbcClient.sql("UPDATE tax_rate SET code = 'NO_TAX', name = 'ҚҚСсиз', rate = 0, "
                 + "active = true WHERE id = '019f8a10-0002-7a22-9c02-0000000000a2'::uuid").update();
 
-        // Тўлов шарти/усули номлари ҳам seed қийматига (Arbitr-072) - DELETE
+        // Тўлов шарти/усули номлари ҳам seed қийматига (DEC-072) - DELETE
         // дан кейин фақат seed қаторлар қолган, CASE ҳаммасини қамрайди.
         jdbcClient.sql("DELETE FROM payment_term WHERE id NOT IN ("
                 + PAYMENT_TERM_SEED_IDS + ")").update();
@@ -285,7 +285,7 @@ public class FactoryResetService {
         // (setup_done=false → setup оқими 056 табиий қайта бошланади).
         jdbcClient.sql("DELETE FROM company_settings").update();
 
-        // (5b) Плагинлар default ҳолатига (Arbitr-113): қатор йўқлиги =
+        // (5b) Плагинлар default ҳолатига (DEC-113): қатор йўқлиги =
         // ўчиқ - янги ўрнатишда ҳамма плагин ўчиқ бўлгани каби. Плагин
         // ички маълумотини сақлаш қоидаси (спец: toggle-off ўчирмайди)
         // фақат ОДДИЙ ўчиришга тегишли - заводга қайтариш тўлиқ тозалайди.
@@ -326,7 +326,7 @@ public class FactoryResetService {
      * reset муваффақиятли ҳисобланади (база аллақачон commit бўлган) -
      * фақат WARN ёзилади, қолган orphan файл зарарсиз.
      *
-     * <p>Static package-private (Arbitr-072 / Botir-051): {@code afterCommit}
+     * <p>Static package-private (DEC-072 / TST-051): {@code afterCommit}
      * синхронизацияси @Transactional тестда ҳеч қачон ишламайди (rollback -
      * commit йўқ), шунга диск мантиғи транзакциядан ажратилган ҳолда шу ерда
      * алоҳида unit тестланади.

@@ -68,8 +68,8 @@ import java.util.UUID;
  * <b>LIFO атайлаб амалга оширилмаган, чунки IAS 2 уни тақиқлайди</b> -
  * бу «улгурилмаган иш» эмас, стандарт талаби.
  *
- * <p><b>Бошқа тизимларда қандай</b> (2026-08 да бирламчи манбалардан
- * текширилган; README «Қиёсий тадқиқот» бўлими):
+ * <p><b>Бошқа тизимларда қандай</b> (бирламчи манбалардан текширилган;
+ * README «Қиёсий тадқиқот» бўлими):
  * <ul>
  *   <li><b>Xero</b> - ядрода фақат ўртача нарх, FIFO умуман йўқ; омбор
  *       тушунчаси ҳам йўқ (кўп-жой фақат алоҳида Inventory Plus
@@ -151,10 +151,10 @@ public class InventoryService {
     /** Ҳужжатли акт рақамлари (ADJ-/WTR-2026-NNNNN) - умумий механизм. */
     private final DocumentSequenceService sequenceService;
 
-    /** Ҳужжатли инвентаризация актлари сақлагичи (Arbitr-093). */
+    /** Ҳужжатли инвентаризация актлари сақлагичи (DEC-093). */
     private final StockAdjustmentRepository adjustmentRepository;
 
-    /** Ҳужжатли кўчириш актлари сақлагичи (Arbitr-093). */
+    /** Ҳужжатли кўчириш актлари сақлагичи (DEC-093). */
     private final StockTransferRepository transferRepository;
 
     /** Манба ҳужжатнинг омбор ҳаракатлари - ҳужжат модуллари reverse'да ишлатади. */
@@ -164,13 +164,13 @@ public class InventoryService {
                 referenceType, referenceId);
     }
 
-    /** Ҳаракатлар рўйхати саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Ҳаракатлар рўйхати саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int MOVEMENTS_PAGE_SIZE = 25;
 
     /**
      * Ҳаракатлар рўйхати тартиби - аввалги ORDER BY'га айнан мос
      * (янгидан эскига, тенг санада ёзилиш вақти). Саҳифалашга ўтишда
-     * экран тартиби ўзгармасин (Beruniy-perf1, BillService.LIST_SORT қолипи).
+     * экран тартиби ўзгармасин (PERF-perf1, BillService.LIST_SORT қолипи).
      */
     private static final org.springframework.data.domain.Sort MOVEMENTS_SORT =
             org.springframework.data.domain.Sort.by(
@@ -179,7 +179,7 @@ public class InventoryService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Ҳаракатлар экрани - саҳифаланган (Beruniy-perf1 2-босқич): аввалги
+     * Ҳаракатлар экрани - саҳифаланган (PERF-perf1 2-босқич): аввалги
      * findTop100 ФУНКЦИОНАЛ ТЕШИК эди - 100-ёзувдан эскиси УМУМАН
      * кўринмасди. Энди ҳақиқий LIMIT/OFFSET, ихтиёрий омбор ва/ёки item
      * филтри (T9 drill-down) билан тўртала комбинация.
@@ -206,7 +206,7 @@ public class InventoryService {
     }
 
     /**
-     * Ҳаракатлар экранининг мукаммал филтри (Arbitr-093, фойдаланувчи
+     * Ҳаракатлар экранининг мукаммал филтри (DEC-093, фойдаланувчи
      * талаби): тур/омбор/item/сана оралиғи/ҳужжат рақами. Specification
      * билан server-side; warehouse ва counterpart to-one fetch фақат DATA
      * сўровида қўшилади (count'да эмас) - N+1'дан қочилади ва to-one
@@ -275,7 +275,7 @@ public class InventoryService {
 
     /**
      * Танланган ҳаракатлар warehouse графи билан битта IN сўровда
-     * (Arbitr-045 findAllById нақши, Sanjar-007) - landed cost N
+     * (DEC-045 findAllById нақши, OPT-007) - landed cost N
      * receipt'ни биттадан {@link #movement} қилмасин. Топилмаганлар
      * рўйхатда бўлмайди; мавжудликни чақирувчи текширади.
      */
@@ -429,7 +429,7 @@ public class InventoryService {
         return new TransferResult(outbound, inbound, outbound.getTotalCost());
     }
 
-    // ---- ҳужжатли актлар (Arbitr-093, docs/modules/inventory.md) ----
+    // ---- ҳужжатли актлар (DEC-093, docs/modules/inventory.md) ----
 
     /** reference_type: ҳужжатли акт ҳаракатлари шу белги орқали боғланади. */
     public static final String ADJUSTMENT_REFERENCE = "STOCK_ADJUSTMENT";
@@ -445,7 +445,7 @@ public class InventoryService {
 
     /**
      * Инвентаризация акти маълумоти: битта омбор, кўп сатр + ихтиёрий
-     * ташқи ҳужжат рақами (Arbitr-109, QBO «Reference no.»).
+     * ташқи ҳужжат рақами (DEC-109, QBO «Reference no.»).
      */
     public record DocumentAdjustData(UUID warehouseId, LocalDate date, String memo,
                                      String externalRef, List<AdjustLineData> lines) {
@@ -461,7 +461,7 @@ public class InventoryService {
 
     /**
      * Кўчириш акти маълумоти: манба/манзил омбор, кўп сатр + ихтиёрий
-     * ташқи ҳужжат рақами (Arbitr-109).
+     * ташқи ҳужжат рақами (DEC-109).
      */
     public record DocumentTransferData(UUID fromWarehouseId, UUID toWarehouseId,
                                        LocalDate date, String memo, String externalRef,
@@ -478,7 +478,7 @@ public class InventoryService {
     public record DocumentFilter(UUID warehouseId, LocalDate from, LocalDate to) { }
 
     /**
-     * Ҳужжатли инвентаризация акти (Arbitr-093): кўп сатрли, БИТТА омбор,
+     * Ҳужжатли инвентаризация акти (DEC-093): кўп сатрли, БИТТА омбор,
      * дарҳол POSTED, актнинг ҲАММА сатрига БИТТА JE (posting-rules
      * «Ҳужжатли Adjustment»). Ҳар сатр ЯНГИ qty киритилади → delta авто
      * (new − жорий); мусбат delta - ADJUST_IN (Dr item inventory), манфий -
@@ -505,7 +505,7 @@ public class InventoryService {
                 com.averpo.erp.shared.Strings.blankToNull(data.externalRef()));
 
         List<JournalEntryRequest.Line> legs = new ArrayList<>();
-        // Батч (Arbitr-045 findAllById, Sanjar-008): requireUniqueItems
+        // Батч (DEC-045 findAllById, OPT-008): requireUniqueItems
         // такрорни тақиқлаган - N сатр айнан N item SELECT эди; энди
         // ҳаммаси битта IN сўровда, циклда Map.get()
         Map<UUID, Item> items = BatchLookup.byId(itemService.findAllById(
@@ -581,7 +581,7 @@ public class InventoryService {
     }
 
     /**
-     * Ҳужжатли омборлараро кўчириш акти (Arbitr-093): кўп сатрли, манба/
+     * Ҳужжатли омборлараро кўчириш акти (DEC-093): кўп сатрли, манба/
      * манзил омбор, дарҳол POSTED, GL'СИЗ (posting-rules). Ҳар сатр
      * TRANSFER_OUT+IN жуфти (reference=акт id); таннарх мавжуд движок
      * transfer мантиғидек (манба ўртачаси/FIFO партиялари сақланади).
@@ -606,7 +606,7 @@ public class InventoryService {
                 from, to, data.date(),
                 com.averpo.erp.shared.Strings.blankToNull(data.memo()),
                 com.averpo.erp.shared.Strings.blankToNull(data.externalRef()));
-        // Батч (Sanjar-008): item каталог текшируви битта IN сўровда
+        // Батч (OPT-008): item каталог текшируви битта IN сўровда
         // (adjustDocument нақши) - balance/FIFO query'лари ўзгармайди
         Map<UUID, Item> items = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(data.lines(), TransferLineData::itemId)));
@@ -711,7 +711,7 @@ public class InventoryService {
      * шарт; AVCO'да қиймат асл unit cost билан айирилиб ўртача қайта
      * ҳисобланади.
      *
-     * <p>BR-INV-010 (Beruniy-003): кирим фақат шу (item, warehouse)даги
+     * <p>BR-INV-010 (PERF-003): кирим фақат шу (item, warehouse)даги
      * ЭНГ ОХИРГИ ҳаракат бўлсагина қайтарилади - кейин чиқим/кирим
      * бўлган бўлса AVCO ўртачаси маълумот йўқотган (асл нархда айириш
      * бошқа партия қийматини «ўғирлайди», кейинги COGS/P&amp;L бузилади),
@@ -864,7 +864,7 @@ public class InventoryService {
      * unit_cost += delta - қолган R донага R × delta қиймат қўшилади;
      * AVCO'да партия сақланмагани учун R «эски аввал сотилади» фарази
      * билан баҳоланади: R = min(Q, жорий қолдиқ − шу receipt'дан КЕЙИН
-     * кирган миқдор), манфий бўлса нол (Beruniy-004: бутун қолдиқни
+     * кирган миқдор), манфий бўлса нол (PERF-004: бутун қолдиқни
      * олиш сотилган receipt харажатини кейинги партия активига ёзиб
      * қўяр эди). Сотилган улуш (amount - inventoryShare) чақирувчида
      * COGS'га боради.
@@ -875,7 +875,7 @@ public class InventoryService {
 
     /**
      * {@link #addReceiptValue(UUID, BigDecimal)} нинг юкланган (managed)
-     * receipt устидаги варианти (Sanjar-007): landed cost биринчи циклда
+     * receipt устидаги варианти (OPT-007): landed cost биринчи циклда
      * юклаган entity'ни қайта select қилмай тўғридан-тўғри узатади - id
      * имзоси бошқа чақирувчилар учун {@link #movement} орқали шу ерга
      * делегат қилади, хулқ айнан.
@@ -936,7 +936,7 @@ public class InventoryService {
      * бўлган - GL сторноси билан омбор қиймати ажралиб кетар эди);
      * AVCO'да қолдиқ ўшандагидан кам эмас ВА тақсимотдан кейин шу
      * (item, warehouse)да умуман ҳаракат бўлмаган бўлиши шарт
-     * (BR-INV-010, Asrorxoja-001: qty шартининг ўзи етмайди - оралиқ
+     * (BR-INV-010, LOG-001: qty шартининг ўзи етмайди - оралиқ
      * чиқим + янги кирим уни алдаб ўтади, ортиқча айирма бошқа партия
      * қийматидан «ўғирланар» эди). Бузилса BR-INV-003/BR-INV-010 -
      * чақирувчи ўз кодига (BR-LC-006) ўрайди.
@@ -1185,8 +1185,8 @@ public class InventoryService {
 
     /**
      * BR-INV-010 гарови - «қиймат ортга қайтариш фақат кейин ҳаракат
-     * бўлмаганда» инвариантининг ягона жойи (Beruniy-003 ва
-     * Asrorxoja-001 иккаласи шу орқали ёпилади). Хронология created_at
+     * бўлмаганда» инвариантининг ягона жойи (PERF-003 ва
+     * LOG-001 иккаласи шу орқали ёпилади). Хронология created_at
      * бўйича: valuation ҳаракатларни айнан ёзилиш тартибида қўллаган.
      * Instant варианти - landed cost reverse учун (anchor movement йўқ,
      * таянч - аллокация қаторининг ёзилиш пайти).
@@ -1258,7 +1258,7 @@ public class InventoryService {
     /**
      * Receipt'дан КЕЙИН кирган миқдор (барча inbound турлар) - AVCO
      * «эски аввал сотилади» фаразида шу receipt'дан қолганини баҳолаш
-     * учун (Beruniy-004). Кейинлик anchor қоидаси билан: created_at
+     * учун (PERF-004). Кейинлик anchor қоидаси билан: created_at
      * тенг бўлса UUIDv7 id тартиби ҳал қилади.
      */
     private BigDecimal inboundQtyAfterAnchor(StockMovement receipt) {
@@ -1288,7 +1288,7 @@ public class InventoryService {
     }
 
     /**
-     * BR-INV-001 - олдиндан юкланган батч Map варианти (Sanjar-008,
+     * BR-INV-001 - олдиндан юкланган батч Map варианти (OPT-008,
      * ҳужжатли актлар): топилмаса {@link NotFoundException} (аввалги
      * get() хулқи айнан), тур гарови бир хил.
      */

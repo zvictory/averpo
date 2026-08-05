@@ -20,9 +20,9 @@
 @param List<ContactAddress> addresses = java.util.List.of()
 @param List<ContactPerson> persons = java.util.List.of()
 @param List<ContactBankAccount> bankAccounts = java.util.List.of()
-<%-- BR-CON-012 (Arbitr-087): POSTED тарихли контакт валютаси қулф --%>
+<%-- BR-CON-012 (DEC-087): POSTED тарихли контакт валютаси қулф --%>
 @param Boolean currencyLocked = false
-<%-- Arbitr-100: accordion очиқ бўлими (drawer'да бўлим формалари
+<%-- DEC-100: accordion очиқ бўлими (drawer'да бўлим формалари
      редирект қилмайди - тўлиқлик учун узатилади) --%>
 @param String openSection = null
 
@@ -35,7 +35,7 @@
       title = editId == null ? msg.lookup("contact.form.titleNewVendor") : msg.lookup("contact.form.titleEditVendor");
   }}
 
-<%-- Arbitr-024: drawer жавоби (HX-Request). Манзил/шахс/банк бўлимлари
+<%-- DEC-024: drawer жавоби (HX-Request). Манзил/шахс/банк бўлимлари
      drawer'да ҳам кўринади; уларнинг ўз формалари оддий POST - submit
      тўлиқ таҳрир саҳифасига олиб чиқади (ҳужжатланган чеклов). --%>
 <div class="flex items-center justify-between gap-3 bg-surface-dark px-5 py-3.5 font-semibold text-on-surface-dark-strong">

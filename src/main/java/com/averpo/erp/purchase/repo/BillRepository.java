@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Bill репозиторийси - фақат purchase модули ичида ишлатилади.
- * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068): давр/
+ * JpaSpecificationExecutor - рўйхат филтри учун (DEC-068): давр/
  * статус/vendor/матн комбинациялари битта Specification'да, аввалги
  * findByStatus/findByVendorId derived методлари шунга алмашди.
  */

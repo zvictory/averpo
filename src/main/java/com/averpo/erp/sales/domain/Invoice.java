@@ -176,7 +176,7 @@ public class Invoice extends BaseEntity {
      * {@link com.averpo.erp.shared.domain.MoneyAllocation#targetBase} -
      * битта яхлитлаш: GL'да AR дебети айнан шу target, даромад сатрлари
      * base'лари эса largest-remainder билан шунга тақсимланади
-     * (Asrorxoja-002, Bill қолипи).
+     * (LOG-002, Bill қолипи).
      */
     private void recalcTotals() {
         BigDecimal sum = BigDecimal.ZERO;

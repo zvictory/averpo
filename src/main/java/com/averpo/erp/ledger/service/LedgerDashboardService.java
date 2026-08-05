@@ -108,7 +108,7 @@ public class LedgerDashboardService {
     /**
      * Охирги N ойнинг пул оқими (fromMonth..toMonth, иккиси билан):
      * BANK тур счётлардаги GL ҳаракатлар ой кесимида - Dt base кирим,
-     * Cr base чиқим (Arbitr-036). POSTED билан REVERSED бирга -
+     * Cr base чиқим (DEC-036). POSTED билан REVERSED бирга -
      * сторно жуфти иккала томонга тушиб нетто оқимни бузмайди
      * (monthlyPl конвенцияси). Ҳаракат бўлмаган ойлар нол билан
      * тўлдирилади - график устунлари узилмасин.
@@ -189,7 +189,7 @@ public class LedgerDashboardService {
      * asOf санагача (инклюзив), POSTED+REVERSED - subledger қолдиғи учун
      * (payroll clearing ведомости/prefill; келажакда бошқа контакт
      * кесимли счётлар). JdbcClient агрегат - хотирага entity ЮКЛАНМАЙДИ
-     * (Beruniy-028: EPOCH register бутун тарихни объект қиларди).
+     * (PERF-028: EPOCH register бутун тарихни объект қиларди).
      * Контактсиз сатрлар четда (map калити - contact_id).
      */
     public Map<UUID, BigDecimal> contactBalances(UUID accountId, LocalDate asOf) {
@@ -217,7 +217,7 @@ public class LedgerDashboardService {
     /**
      * Счётнинг контакт кесимида МАНБА МОДУЛ бўйича давр ичи [from, to]
      * нетто ҳаракати (Dt − Cr base), POSTED+REVERSED. Ведомостнинг
-     * «даврда тўланган» устуни учун (source=PAYROLL_PAYMENT, Arbitr-047):
+     * «даврда тўланган» устуни учун (source=PAYROLL_PAYMENT, DEC-047):
      * тўлов Dt − сторно Cr - шунда тўлов reverse қилинса ҳам жуфти нолга
      * тушиб инвариант (давр_охири = давр_боши + net − тўланган) сақланади.
      * Run кредитлари (бошқа source_module) четда қолади.

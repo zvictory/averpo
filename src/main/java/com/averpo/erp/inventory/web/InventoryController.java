@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 
 /**
  * Омбор экранлари: қолдиқлар, ҳаракатлар (мукаммал филтр), ва ҲУЖЖАТЛИ
- * инвентаризация/кўчириш актлари (Arbitr-093: кўп сатрли ҳужжат + рўйхат
+ * инвентаризация/кўчириш актлари (DEC-093: кўп сатрли ҳужжат + рўйхат
  * + view). Контроллер юпқа - мантиқ InventoryService'да; ўз модул
  * repo'ларидан фақат ўқийди (lazy view қаторлари транзакция ичида
  * йиғилади - open-in-view=false).
@@ -69,7 +69,7 @@ public class InventoryController {
     /**
      * Ҳаракатлар экранининг битта қатори. docUrl - манба ҳужжат кўриш
      * саҳифаси ({@link #referenceUrl}); ҳужжатли акт (STOCK_ADJUSTMENT/
-     * STOCK_TRANSFER) ҳам view'га боради (Arbitr-093).
+     * STOCK_TRANSFER) ҳам view'га боради (DEC-093).
      */
     public record MovementRow(LocalDate date, String typeKey,
                               String itemName, String unit,
@@ -79,7 +79,7 @@ public class InventoryController {
                               String docUrl) { }
 
     /**
-     * stock_movement reference тури → ҳужжат кўриш URL'и (Arbitr-063/093).
+     * stock_movement reference тури → ҳужжат кўриш URL'и (DEC-063/093).
      * Харита ЛОКАЛ (қоида №6 руҳи - URL string шунчаки манзил); саҳифасиз
      * турлар (тест ёзувлари, эски ADJUSTMENT/TRANSFER) null - линк
      * чиқмайди. Ҳужжатли акт турлари view саҳифасига боради.
@@ -112,7 +112,7 @@ public class InventoryController {
     /** Item номлари ва INVENTORY select'и учун public API. */
     private final ItemService itemService;
 
-    /** Категория филтри select'и учун (Arbitr-093 қолдиқлар филтри). */
+    /** Категория филтри select'и учун (DEC-093 қолдиқлар филтри). */
     private final ItemCategoryService itemCategoryService;
 
     /** Бугунги сана (компания вақт минтақасида) - форма default'и. */
@@ -127,10 +127,10 @@ public class InventoryController {
     // ---- Қолдиқлар ----
 
     /**
-     * Қолдиқлар экрани - мукаммал филтр (Arbitr-093): омбор, item ном
+     * Қолдиқлар экрани - мукаммал филтр (DEC-093): омбор, item ном
      * қидируви, категория, «нолни яшир» (default: яширилган - QBO услуби).
      *
-     * <p>Саҳифаланган (ARBITR-105б): филтр in-memory қолади (item номи
+     * <p>Саҳифаланган (DEC-105б): филтр in-memory қолади (item номи
      * бошқа модул каталогида - DB-даражали Specification учун модул
      * чегарасини бузувчи join керак бўларди; ҳажм item×омбор билан
      * чегараланган), тайёр филтрланган рўйхат PageImpl билан кесилади -
@@ -170,7 +170,7 @@ public class InventoryController {
                 .sorted(Comparator.comparing(BalanceRow::itemName)
                         .thenComparing(BalanceRow::warehouseName))
                 .toList();
-        // ARBITR-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
+        // DEC-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
         int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                 request, response, "inventory-balances");
         var pageable = org.springframework.data.domain.PageRequest.of(
@@ -198,8 +198,8 @@ public class InventoryController {
     // ---- Ҳаракатлар ----
 
     /**
-     * Ҳаракатлар экрани - мукаммал филтр (Arbitr-093): тур/омбор/item/
-     * сана оралиғи/ҳужжат рақами, саҳифаланган (Beruniy-perf1). Server-
+     * Ҳаракатлар экрани - мукаммал филтр (DEC-093): тур/омбор/item/
+     * сана оралиғи/ҳужжат рақами, саҳифаланган (PERF-perf1). Server-
      * side Specification (InventoryService.MovementFilter).
      */
     @GetMapping("/movements")
@@ -216,7 +216,7 @@ public class InventoryController {
         var movementPage = inventoryService.movements(new InventoryService.MovementFilter(
                 movementType, warehouseId, itemId, from, to, Strings.blankToNull(docNumber)), page);
         // Item ном/бирликлари - фақат саҳифадаги қаторлар (+ филтр чипи
-        // itemId'си) byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1:
+        // itemId'си) byIds/IN сўровда (DEC-105б, AUD-003 §1:
         // бутун каталог юкланмайди)
         java.util.Set<UUID> itemIds = new java.util.HashSet<>();
         for (StockMovement m : movementPage.getContent()) {
@@ -294,7 +294,7 @@ public class InventoryController {
         return map;
     }
 
-    // ---- Инвентаризация актлари (Arbitr-093) ----
+    // ---- Инвентаризация актлари (DEC-093) ----
 
     /** Актлар рўйхати - саҳифаланган + филтр (омбор/сана оралиғи). */
     @GetMapping("/adjustments")
@@ -347,7 +347,7 @@ public class InventoryController {
         StockAdjustment act = inventoryService.adjustment(id);
         model.addAttribute("act", act);
         // Item номлари - фақат акт сатрларидаги id'лар byIds/IN сўровда
-        // (ARBITR-105б, Ulugbek-003 §1)
+        // (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 act.getLines().stream().map(StockAdjustmentLine::getItemId)
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -383,7 +383,7 @@ public class InventoryController {
         return "inventory/adjustmentForm";
     }
 
-    // ---- Кўчириш актлари (Arbitr-093) ----
+    // ---- Кўчириш актлари (DEC-093) ----
 
     /** Кўчириш актлари рўйхати - саҳифаланган + филтр. */
     @GetMapping("/transfers")
@@ -436,7 +436,7 @@ public class InventoryController {
         StockTransfer act = inventoryService.transferDoc(id);
         model.addAttribute("act", act);
         // Item номлари - фақат акт сатрларидаги id'лар byIds/IN сўровда
-        // (ARBITR-105б, Ulugbek-003 §1)
+        // (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 act.getLines().stream().map(StockTransferLine::getItemId)
                         .filter(java.util.Objects::nonNull).distinct().toList()));

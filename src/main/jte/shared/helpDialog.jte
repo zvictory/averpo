@@ -1,6 +1,6 @@
 @import com.averpo.erp.i18n.Msg
 @param Msg msg = null
-<%-- Arbitr-079: контекстли ёрдам - битта глобал диалог + (?) delegation
+<%-- DEC-079: контекстли ёрдам - битта глобал диалог + (?) delegation
      тингловчиси БИТТА умумий partial'да. ИККАЛА layout охирида уланади
      (main.jte ВА form.jte) - ҳужжат формаларидаги майдон (?) лари ҳам
      ишлаши шарт (spec «Дизайн қарорлари», 2026-07-11 фойдаланувчи
@@ -13,7 +13,7 @@
      help-open event юборади, Alpine window листенери диалогни очади.
      Матн x-text орқали чиқади - HTML сифатида талқин қилинмайди (XSS
      йўқ), абзацлар whitespace-pre-line билан. Кўриниш Penguin
-     утилиталарда (Arbitr-122): мобилда bottom-sheet max-md: жуфтларда.
+     утилиталарда (DEC-122): мобилда bottom-sheet max-md: жуфтларда.
      Ёпиш: Esc / ✕ / ташқи click. --%>
 <div x-data="{helpOpen:false, helpTitle:'', helpBody:''}"
      x-on:help-open.window="helpTitle=$event.detail.title; helpBody=$event.detail.body; helpOpen=true"

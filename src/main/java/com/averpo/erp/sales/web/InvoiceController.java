@@ -88,12 +88,12 @@ public class InvoiceController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - тўлиқ филтр қатори (Arbitr-068, list-filters.md): давр
+     * Рўйхат - тўлиқ филтр қатори (DEC-068, list-filters.md): давр
      * (from/to), статус, мижоз select, матн (рақам/изоҳ). AR aging
      * drill-down (customer + «фақат очиқ», T11 паттерни) аввалгидек
-     * саҳифасиз. Саҳифаланган (Beruniy-perf1): ?page=, филтрлар саҳифа
+     * саҳифасиз. Саҳифаланган (PERF-perf1): ?page=, филтрлар саҳифа
      * линкларида сақланади (FilterQuery, audit қолипи). Устун саралаш
-     * (ARBITR-105б): ?sort=/&dir= service whitelist'и орқали ечилади;
+     * (DEC-105б): ?sort=/&dir= service whitelist'и орқали ечилади;
      * th линклари филтрни (sort'сиз), саҳифа линклари филтр+sort'ни
      * бирга ташийди.
      */
@@ -115,10 +115,10 @@ public class InvoiceController {
             // Aging'даги маънонинг ўзи: POSTED ва қолдиғи > 0
             invoices = invoiceService.openInvoices(customerId);
         } else {
-            // ARBITR-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
+            // DEC-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
             int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                     request, response, "invoices");
-            // ARBITR-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
+            // DEC-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
             var sorted = InvoiceService.sortOf(sort, dir);
             org.springframework.data.domain.Page<Invoice> invoicePage = invoiceService.list(
                     new InvoiceService.ListFilter(from, to, parseStatusSafe(status),
@@ -164,14 +164,14 @@ public class InvoiceController {
     @GetMapping("/new")
     public String createForm(@RequestParam(required = false) UUID estimateId,
                              Model model) {
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
         InvoiceForm form = estimateId == null
                 ? InvoiceForm.empty(3)
                 : InvoiceForm.fromEstimate(estimateService.requireConvertible(estimateId),
                         settings.homeCurrencyCode());
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setInvoiceDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "sales/invoiceForm";
@@ -203,7 +203,7 @@ public class InvoiceController {
     public String save(@ModelAttribute InvoiceForm form,
                        @RequestParam String action,
                        Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             InvoiceData data = toData(form, settings);
@@ -247,7 +247,7 @@ public class InvoiceController {
         model.addAttribute("customerName",
                 contactService.get(invoice.getCustomerId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар byIds/IN
-        // сўровда (ARBITR-105б, Ulugbek-003 §1: бутун каталог юкланмайди)
+        // сўровда (DEC-105б, AUD-003 §1: бутун каталог юкланмайди)
         model.addAttribute("itemNames", itemService.namesByIds(
                 invoice.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -262,7 +262,7 @@ public class InvoiceController {
                 creditMemoService.applicationsForInvoice(invoice.getId()));
         model.addAttribute("creditsFromThis",
                 creditMemoService.byInvoice(invoice.getId()));
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today", LocalDate.now(settings.zoneId()).toString());
@@ -325,7 +325,7 @@ public class InvoiceController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'ини тўлдиради (select маълумотлари билан) - settings
-     * оқим бошидаги snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * оқим бошидаги snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, InvoiceForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);

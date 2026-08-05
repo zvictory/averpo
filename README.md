@@ -7,7 +7,7 @@ and IFRS-style financial statements in a single, self-hosted application.
 Built in Java 21 / Spring Boot 4 with server-side rendering (JTE + HTMX), no SPA
 framework, no CDN dependency, and no external service required to run.
 
-🇺🇿 [Ўзбекча (README.uz.md)](README.uz.md)
+ [Ўзбекча (README.uz.md)](README.uz.md)
 
 ![Averpo ERP dashboard](docs/screenshots/01-dashboard.png)
 
@@ -48,12 +48,12 @@ Small and medium businesses in Uzbekistan are served badly by the current
 software landscape:
 
 - **Global cloud products** (QuickBooks Online, Xero) do not localise here:
-  no Uzbek language, no UZS-first workflows, no local banking or tax practice,
-  and pricing in foreign currency per company per month.
+ no Uzbek language, no UZS-first workflows, no local banking or tax practice,
+ and pricing in foreign currency per company per month.
 - **Large ERPs** (SAP, Oracle NetSuite) are far too expensive and heavy for a
-  5-50 person company, and require a permanent implementation partner.
+ 5-50 person company, and require a permanent implementation partner.
 - **Spreadsheets** remain the default. They do not enforce double-entry, do not
-  produce a Balance Sheet that provably balances, and leave no audit trail.
+ produce a Balance Sheet that provably balances, and leave no audit trail.
 
 Averpo targets the gap in the middle: **the accounting rigour of a real ERP with
 the footprint and usability of a small-business product**, in Uzbek, in UZS,
@@ -162,34 +162,34 @@ essential missing, and does our vocabulary match accepted industry usage?
 We worked from Intuit's own artefacts rather than marketing pages:
 
 - **`Finance.xsd`** and **`IntuitNamesTypes.xsd`** from the official
-  [QuickBooks V3 Java SDK](https://github.com/intuit/QuickBooks-V3-Java-SDK)
-  (`ipp-v3-java-data`, Apache 2.0) - vendored into
-  [`docs/qbo-reference/`](docs/qbo-reference/) so every claim is checkable.
+ [QuickBooks V3 Java SDK](https://github.com/intuit/QuickBooks-V3-Java-SDK)
+ (`ipp-v3-java-data`, Apache 2.0) - vendored into
+ [`docs/qbo-reference/`](docs/qbo-reference/) so every claim is checkable.
 - A field-by-field comparison of QBO entities against ours in
-  [`docs/qbo-reference/entities.md`](docs/qbo-reference/entities.md).
+ [`docs/qbo-reference/entities.md`](docs/qbo-reference/entities.md).
 
 What this gave us - verified directly in the schema:
 
 - The **three-level chart of accounts** (`Classification → AccountType →
-  AccountSubType`), including the exact official `AccountSubType` names.
+ AccountSubType`), including the exact official `AccountSubType` names.
 - The **`Transaction` supertype**: in QBO's own object model every document
-  (`Invoice`, `Bill`, `Payment`, `JournalEntry`, `Transfer`, …) inherits from a
-  common `Transaction` base carrying `DocNumber`, `TxnDate`, `CurrencyRef`,
-  `ExchangeRate`, `Line[]`, `LinkedTxn[]`. Sales documents descend further via
-  `SalesTransaction`, purchase documents via `PurchaseByVendor`.
+ (`Invoice`, `Bill`, `Payment`, `JournalEntry`, `Transfer`, …) inherits from a
+ common `Transaction` base carrying `DocNumber`, `TxnDate`, `CurrencyRef`,
+ `ExchangeRate`, `Line[]`, `LinkedTxn[]`. Sales documents descend further via
+ `SalesTransaction`, purchase documents via `PurchaseByVendor`.
 - The rule that **one document has one currency and one exchange rate** (both
-  live on the header, not the line).
+ live on the header, not the line).
 
 Two areas where we went further, because the businesses we build for need them:
 
 1. **Multi-warehouse inventory** (plus landed cost and a unit-of-measure
-   catalogue) - QBO has no concept of a warehouse at all.
+ catalogue) - QBO has no concept of a warehouse at all.
 2. **Payroll Lite** - payroll is not part of the QBO core product.
 
 Beyond that we add a feature when the local business case is proven, not because
 a competitor ships it. Scope discipline is deliberate.
 
-### 3.2 Xero - verified August 2026
+### 3.2 Xero
 
 Xero was studied through the
 [Accounting API](https://developer.xero.com/documentation/api/accounting/overview)
@@ -206,7 +206,7 @@ cloud segment, and the comparison is instructive:
 | Posted document edits | An approved, unpaid invoice **can be edited, amounts included** | POSTED is immutable - correction only by reversal |
 | Period close | Lock dates only, and an administrator can remove them at any time | Closing-date lock enforced in the posting service (`BR-LED-020`) |
 | Analytical dimensions | Hard cap of **2 active** tracking categories | Class tracking at line level |
-| Group consolidation | Not in any standard plan (Xero stated in July 2025 that native consolidated reporting was *"not currently planned"*); it arrived only in July 2026 through Syft, bundled into the new Australia-only *Xero Ultra* tier | Multi-tenant design in progress (see roadmap) |
+| Group consolidation | Not available on any standard plan; it exists only through Syft, bundled into the top-tier *Xero Ultra* offering (Australia) | Multi-tenant design in progress (see roadmap) |
 
 ### 3.3 Oracle NetSuite
 
@@ -215,18 +215,18 @@ Studied through the
 NetSuite sits at the opposite architectural extreme from QBO:
 
 - **One transaction table for everything.** NetSuite models all document types in
-  a single `transaction` table striped by a `TYPE` column, with lines in
-  `transactionline` and the actual GL debits and credits in a third table,
-  `transactionaccountingline`.
+ a single `transaction` table striped by a `TYPE` column, with lines in
+ `transactionline` and the actual GL debits and credits in a third table,
+ `transactionaccountingline`.
 - **Seven costing methods** - Average (default), FIFO, LIFO, Standard, Group
-  Average, Specific, Lot Numbered - with true per-layer costing.
+ Average, Specific, Lot Numbered - with true per-layer costing.
 - **Void semantics are configurable.** By default voiding a transaction *mutates
-  the original*, setting its amount to zero. With the *Void Transactions Using
-  Reversing Journals* preference enabled, the original is preserved and a dated
-  reversing journal carries the offset - but enabling it makes invoices, credit
-  memos and cash sales no longer voidable at all.
+ the original*, setting its amount to zero. With the *Void Transactions Using
+ Reversing Journals* preference enabled, the original is preserved and a dated
+ reversing journal carries the offset - but enabling it makes invoices, credit
+ memos and cash sales no longer voidable at all.
 - **OneWorld / Multi-Book** support multi-subsidiary and parallel accounting
-  books - the closest analogue to our planned multi-tenant model.
+ books - the closest analogue to our planned multi-tenant model.
 
 What we took: the **discriminator pattern** (used in our `BankTransaction`,
 which covers deposit / expense / transfer in one table) and the principle that a
@@ -242,19 +242,19 @@ Studied through SAP's official learning material, Help Portal and Knowledge Base
 articles. SAP contributed the single most influential idea in our architecture:
 
 - **Two layers.** Operational documents live per domain (`VBAK`/`VBAP` sales,
-  `EKKO`/`EKPO` purchasing, `MATDOC` material movements in S/4HANA) and post to
-  accounting through account determination. The accounting document is separate
-  from the operational document.
+ `EKKO`/`EKPO` purchasing, `MATDOC` material movements in S/4HANA) and post to
+ accounting through account determination. The accounting document is separate
+ from the operational document.
 - **The Universal Journal** (`ACDOCA`, introduced with SAP S/4HANA Finance 1503)
-  unifies FI, CO, asset accounting and material ledger into one line-item table,
-  eliminating reconciliation between sub-ledgers.
+ unifies FI, CO, asset accounting and material ledger into one line-item table,
+ eliminating reconciliation between sub-ledgers.
 - **Posted amounts are immutable.** Corrections go through reversal with a
-  mandatory reason code; only non-value fields (reference, text) can be changed
-  afterwards, governed by document change rules.
+ mandatory reason code; only non-value fields (reference, text) can be changed
+ afterwards, governed by document change rules.
 - **Perpetual valuation is moving average or standard price.** FIFO and LIFO in
-  SAP are *periodic balance-sheet valuation procedures*, not per-layer perpetual
-  costing - and LIFO is not supported in S/4HANA Cloud at all, because it is not
-  permitted under international standards.
+ SAP are *periodic balance-sheet valuation procedures*, not per-layer perpetual
+ costing - and LIFO is not supported in S/4HANA Cloud at all, because it is not
+ permitted under international standards.
 
 Averpo follows exactly this two-layer philosophy: **documents are operational,
 the ledger is the single financial truth**, and posted records are immutable.
@@ -304,24 +304,24 @@ and are referenced here by number only.
 Global products are built for other markets. The adaptations that matter here:
 
 - **Uzbek first.** The entire interface is Uzbek (Cyrillic), with Russian and
-  English alongside - 1 762 translated keys per language. Not a partial
-  translation layer: every screen, message and business-rule error.
+ English alongside - 1 762 translated keys per language. Not a partial
+ translation layer: every screen, message and business-rule error.
 - **UZS as home currency** by default, with the multi-currency machinery needed
-  for real trade (buying in USD, selling in UZS). Exchange rates are imported
-  **automatically from the Central Bank of Uzbekistan** twice a day, and the
-  system pivots rates correctly whichever currency the company keeps its books in.
+ for real trade (buying in USD, selling in UZS). Exchange rates are imported
+ **automatically from the Central Bank of Uzbekistan** twice a day, and the
+ system pivots rates correctly whichever currency the company keeps its books in.
 - **Number and money formatting for local reading habits**: decimal point,
-  non-breaking-space thousands separator (`12 600.50`), amounts always shown with
-  their currency code, quantities always with their unit.
+ non-breaking-space thousands separator (`12 600.50`), amounts always shown with
+ their currency code, quantities always with their unit.
 - **VAT (ҚҚС) as a first-class catalogue** with per-line rate snapshots, so
-  historical documents stay correct when the rate catalogue changes.
+ historical documents stay correct when the rate catalogue changes.
 - **Payroll Lite** with the local deduction structure (income tax, pension and
-  social contribution rates in company settings) - deliberately outside the QBO
-  reference, because small businesses here expect payroll in the same system.
+ social contribution rates in company settings) - deliberately outside the QBO
+ reference, because small businesses here expect payroll in the same system.
 - **Self-hosted, single-server deployment.** No per-seat cloud subscription in
-  foreign currency, no dependency on an offshore service being reachable.
+ foreign currency, no dependency on an offshore service being reachable.
 - **Multi-warehouse inventory**, which trading companies here need and neither
-  QuickBooks Online nor Xero provides in its core product.
+ QuickBooks Online nor Xero provides in its core product.
 
 ---
 
@@ -337,10 +337,10 @@ ledger, and the ledger depends on nobody.
 
 ```
 sales · purchase · bank · inventory · payroll · pricing · tax · contact · item
-                                  ↓
-                          ledger (PostingService)
-                                  ↓
-                    journal_entry / journal_entry_line
+ ↓
+ ledger (PostingService)
+ ↓
+ journal_entry / journal_entry_line
 ```
 
 ### 5.2 The ledger is the single source of truth
@@ -355,9 +355,9 @@ is immutable; a mistake is corrected by a reversing entry, never by an update.
 ### 5.3 Document lifecycle
 
 ```
-DRAFT  →  POSTED  →  REVERSED
- free     GL entry    storno entry
- editing  read-only   created
+DRAFT → POSTED → REVERSED
+ free GL entry storno entry
+ editing read-only created
 ```
 
 Purchase orders and estimates are deliberately GL-free: they participate in the
@@ -366,11 +366,11 @@ document flow without touching the ledger.
 ### 5.4 Persistence
 
 - **UUIDv7 primary keys**, assigned in the constructor (time-ordered, index
-  friendly) rather than generated by Hibernate.
+ friendly) rather than generated by Hibernate.
 - Money is stored as `NUMERIC(19,4)`, exchange rates as `NUMERIC(24,12)` so that
-  inverse rates (`1 UZS = 0.000082690073 USD`) keep eight significant digits.
+ inverse rates (`1 UZS = 0.000082690073 USD`) keep eight significant digits.
 - **Liquibase is the only schema authority** - 62 sequential migrations;
-  Hibernate runs in `validate` mode and never generates DDL.
+ Hibernate runs in `validate` mode and never generates DDL.
 - All timestamps are stored in UTC and rendered in the company's timezone.
 
 ---
@@ -389,12 +389,12 @@ Thirteen invariants that every code review checks. The full text is in
 7. Every posting rule has a unit test asserting debit = credit.
 8. Postings must match [`docs/posting-rules.md`](docs/posting-rules.md) exactly.
 9. Inventory valuation (AVCO/FIFO) is chosen per company and locked after the
-   first stock movement.
+ first stock movement.
 10. Every field and method carries documentation explaining *why*.
 11. Currency is a catalogue entity; `Money` stores the ISO code.
 12. All times are stored in UTC.
 13. Business-rule violations raise `BusinessRuleException` with a unique `BR-*`
-    code from [`docs/business-rules.md`](docs/business-rules.md).
+ code from [`docs/business-rules.md`](docs/business-rules.md).
 
 ---
 
@@ -433,16 +433,16 @@ themes, mobile-first layouts (every screen works at 375 px).
 ## 9. Quality and engineering discipline
 
 - **860 test methods**, the majority of them integration tests running against a
-  real PostgreSQL database - not mocks, not H2.
+ real PostgreSQL database - not mocks, not H2.
 - **Every posting rule is tested for balance**: debit equals credit, in home
-  currency, for every document type and every reversal path.
+ currency, for every document type and every reversal path.
 - **253 business rules** catalogued with unique codes before they are
-  implemented. A rule that is not in the catalogue does not exist in the code.
+ implemented. A rule that is not in the catalogue does not exist in the code.
 - **Specification before code**: each module has a written specification in
-  [`docs/modules/`](docs/modules/) agreed before implementation starts.
+ [`docs/modules/`](docs/modules/) agreed before implementation starts.
 - **Schema is versioned, never generated** - Hibernate validates, Liquibase owns.
 - **Documentation is part of the deliverable**: 50+ living documents covering
-  architecture, posting rules, business rules, UI conventions and every module.
+ architecture, posting rules, business rules, UI conventions and every module.
 
 ---
 
@@ -547,5 +547,5 @@ A print-ready PDF of the complete documentation set is generated into
 ---
 
 <sub>Comparative statements about QuickBooks Online, Xero, NetSuite and SAP were
-verified against those vendors' own primary documentation in August 2026. All
+verified against those vendors' own primary documentation. All
 product names are trademarks of their respective owners.</sub>

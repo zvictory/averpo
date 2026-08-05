@@ -121,7 +121,7 @@ public class ContactService {
     }
 
     /**
-     * Каталог рўйхати филтри (Arbitr-068, list-filters.md): тип мажбурий
+     * Каталог рўйхати филтри (DEC-068, list-filters.md): тип мажбурий
      * (экран route'идан келади); active - TRUE фақат фаол / FALSE фақат
      * нофаол / null ҳаммаси; q - ном/компания contains (катта-кичик
      * фарқсиз, кирилл ҳам).
@@ -130,7 +130,7 @@ public class ContactService {
     }
 
     /**
-     * Рўйхат экрани - тўлиқ филтр (Arbitr-068): фаоллик/матн битта
+     * Рўйхат экрани - тўлиқ филтр (DEC-068): фаоллик/матн битта
      * Specification'да (audit услуби, ListSpecs бўлаклари), ном тартибида.
      */
     @Transactional(readOnly = true)
@@ -146,7 +146,7 @@ public class ContactService {
     /**
      * Енгил контакт ссылкаси (id + кўрсатиладиган ном) - ном хариталари
      * ва select'лар учун; тўлиқ entity хотирага юкланмайди
-     * (Beruniy-018 overfetch'га қарши).
+     * (PERF-018 overfetch'га қарши).
      */
     public record ContactRef(UUID id, String displayName) { }
 
@@ -161,8 +161,8 @@ public class ContactService {
     }
 
     /**
-     * id → displayName харитаси битта IN сўровда (ARBITR-105б,
-     * Ulugbek-003 §1): view/рўйхат name-map'лари бутун каталогни
+     * id → displayName харитаси битта IN сўровда (DEC-105б,
+     * AUD-003 §1): view/рўйхат name-map'лари бутун каталогни
      * юкламасин. Топилмаган id харитада бўлмайди - чақирувчи
      * {@code getOrDefault} билан ўқийди; фаоллик филтрланмайди
      * (тарихий ҳужжатда нофаол контакт номи ҳам кўринади).
@@ -203,7 +203,7 @@ public class ContactService {
     public Contact create(ContactType type, ContactData data) {
         validate(type, data, null);
         Contact contact = new Contact(type, data.displayName().strip());
-        // Arbitr-159: бўш валюта null сақланмайди - янги контактга home
+        // DEC-159: бўш валюта null сақланмайди - янги контактга home
         // қўйилади (мавжуд контакт йўқ, coalesce'нинг create шохи)
         apply(contact, data, effectiveCurrencyCode(data.currency(), null));
         return repository.save(contact);
@@ -216,7 +216,7 @@ public class ContactService {
     public Contact update(UUID id, ContactData data, boolean active) {
         Contact contact = get(id);
         validate(contact.getType(), data, id);
-        // Arbitr-159: эффектив валюта коди (coalesce) БИТТА манбадан -
+        // DEC-159: эффектив валюта коди (coalesce) БИТТА манбадан -
         // қулф ҲАМ, apply ҲАМ ўшани олади. Акс ҳолда қулф хом
         // data.currency()'га қараб blank input'ни адаштиради (мавжуд
         // валютани ресетлаб ёки value→null деб рад қилиб)
@@ -243,7 +243,7 @@ public class ContactService {
 
     /**
      * AP/AR ҳужжат валютасининг ҳақиқат манбаи - КОНТАКТ (QBO қатъий,
-     * Arbitr-087, docs/modules/multi-currency.md «Контакт валютаси»):
+     * DEC-087, docs/modules/multi-currency.md «Контакт валютаси»):
      * контакт валютаси null бўлса home currency коди, акс ҳолда
      * контактники. Ҳужжат servis'лари validate()'да шуни чақириб
      * қайтарилган кодни ҳужжатга ЁЗАДИ - client қийматига ишонилмайди;
@@ -457,7 +457,7 @@ public class ContactService {
     }
 
     /**
-     * Контакт валютаси ҚУЛФИ (BR-CON-012, QBO қатъий, Arbitr-087):
+     * Контакт валютаси ҚУЛФИ (BR-CON-012, QBO қатъий, DEC-087):
      * контакт камида битта POSTED ҳужжатда қатнашган бўлса currency
      * ўзгартирилмайди - қиймат→қиймат ва қиймат→null доим тақиқ (QBO
      * хулқи: бошқа валюта керак бўлса янги контакт очилади). Ўтиш
@@ -536,7 +536,7 @@ public class ContactService {
      * алоҳида параметр - {@code data.currency()} эмас: чақирувчи уни
      * {@link #effectiveCurrencyCode} орқали coalesce қилган (бўш форма
      * қиймати home ёки мавжуд контакт валютасига айланган), шунда
-     * контакт валютаси server'да ҳеч қачон null сақланмайди (Arbitr-159).
+     * контакт валютаси server'да ҳеч қачон null сақланмайди (DEC-159).
      */
     private void apply(Contact contact, ContactData data, String currencyCode) {
         contact.update(data.displayName().strip(),
@@ -554,7 +554,7 @@ public class ContactService {
     }
 
     /**
-     * Контактга ёзиладиган эффектив валюта КОДИ (Arbitr-159, coalesce) -
+     * Контактга ёзиладиган эффектив валюта КОДИ (DEC-159, coalesce) -
      * контакт валютаси server'да ҳеч қачон null сақланмаслиги учун
      * (087 «client қийматига ишонилмайди» фалсафаси server кафолати
      * билан тўлдирилади: UI home'ни юбормаса ҳам - quick-add, API,

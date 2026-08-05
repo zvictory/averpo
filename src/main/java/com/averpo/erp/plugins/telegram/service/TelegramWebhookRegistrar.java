@@ -13,7 +13,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * Prod'да Telegram webhook'ни рўйхатдан ўтказиб турадиган компонент
- * (Arbitr-138) - «қачон» бошқарувчиси, ишлов мантиғи
+ * (DEC-138) - «қачон» бошқарувчиси, ишлов мантиғи
  * {@link TelegramService}да. Учта нуқтада webhook ҳолати
  * янгиланади: старт, плагин toggle, токен ўзгариши.
  *

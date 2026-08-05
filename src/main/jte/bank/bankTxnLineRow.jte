@@ -18,7 +18,7 @@
 <tr class="line" data-index="${index}">
     <td class="text-center text-current/60">${index + 1}</td>
     <td>
-        <%-- Arbitr-014: QBO tree - гуруҳ сарлавҳалари comboGroup бўлиб чиқади --%>
+        <%-- DEC-014: QBO tree - гуруҳ сарлавҳалари comboGroup бўлиб чиқади --%>
         @template.shared.combobox(name = "lines[" + index + "].accountId", msg = msg,
                 value = line != null ? line.getAccountId() : null,
                 placeholder = msg.lookup("bt.row.selectAccount"),

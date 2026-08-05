@@ -19,7 +19,7 @@
      select name (одатда "currency"); currencyId - 087 contact-currency.js
      мослиги учун (null - id'сиз).
 
-     Курс блоки компоненти (Arbitr-097): валюта select + курс майдони.
+     Курс блоки компоненти (DEC-097): валюта select + курс майдони.
      Форма id'ларига боғланмайди - rate-block.js data-атрибутлар билан
      form ичида scoped ишлайди (currencyId фақат 087 contact-currency.js
      мослиги учун - у ҳамон id билан топади).
@@ -32,7 +32,7 @@
 !{var oi = Fmt.orientInput(selected, homeCurrency, exchangeRate);}
 <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
     ${msg.localize(labelKey)}
-    <%-- Валюта - native select (Arbitr-123 сурув қарори: 3-10 ёзув,
+    <%-- Валюта - native select (DEC-123 сурув қарори: 3-10 ёзув,
          rate-block.js/contact-currency.js программ ёзади) --%>
     <select name="${currencyName}" id="${currencyId}" class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark" data-rate-currency
            >
@@ -46,7 +46,7 @@
 </label>
 <%-- Курс майдони фақат ҳужжат валютаси != home бўлганда кўринади (QBO
      қолипи). data-rate-flipped: визуал йўналиш каноникдан тескарими.
-     Arbitr-134: лабел матни + валютажуфт спанлари + (?) БИТТА nowrap
+     DEC-134: лабел матни + валютажуфт спанлари + (?) БИТТА nowrap
      span ичида - flex-col label ҳар болакни алоҳида flex item қилиб
      вертикал устма-уст ташлаб юборарди («Rate (1 / USD / = ?» синиши);
      min-w - грид катаги курс блокидан тор бўлиб қолмасин. --%>

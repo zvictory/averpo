@@ -15,7 +15,7 @@
 @param Boolean canEdit = false
 @param String attError = null
 
-<%-- ARBITR-094: inline кўрсатишга хавфсиз MIME турлари - «Кўриш» тугмаси
+<%-- DEC-094: inline кўрсатишга хавфсиз MIME турлари - «Кўриш» тугмаси
      ФАҚАТ шуларда чиқади. AttachmentController.INLINE_VIEWABLE_TYPES билан
      бир хил (himoya-in-depth: бу рўйхат UI тугмасини бошқаради, сервер
      view endpoint'и барибир текширади - SVG ва бошқа тур ҳеч қачон inline
@@ -31,7 +31,7 @@
      collapse қилади - қўш-масофа бўлмайди. --%>
 <section id="attachments-${documentId.toString()}"
          class="my-4 rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark p-4">
-    <%-- ARBITR-128: юклаш бўлим тепасида - иловалар кўп бўлса ҳам доим
+    <%-- DEC-128: юклаш бўлим тепасида - иловалар кўп бўлса ҳам доим
          кўринишда. Форма сарлавҳа ТАГИДА, чап томонда (кенг экранда ўнг
          четга кетиб қолмасин); 375px'да input тўлиқ энли қаторга ўралади
          (flex-wrap + max-md:flex-1). Юклаш механикаси: multipart, CSRF
@@ -52,7 +52,7 @@
             <button type="submit" class="cursor-pointer whitespace-nowrap rounded-radius border border-primary bg-primary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-primary-dark dark:bg-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">${msg.localize("att.upload")}</button>
         </form>
 
-        <%-- Ҳинтлар (att.hint + ARBITR-094 clipboard paste) - форма остида
+        <%-- Ҳинтлар (att.hint + DEC-094 clipboard paste) - форма остида
              ихчам: paste'ни қуйидаги JS шу бўлимда ушлаб формага юборади. --%>
         <div class="mb-3 mt-1.5">
             <p class="text-xs text-current/60">${msg.localize("att.hint")}</p>
@@ -67,7 +67,7 @@
     @if(attachments.isEmpty())
         <p class="text-current/60">${msg.localize("att.empty")}</p>
     @else
-        <%-- ARBITR-128: кўп иловада бўлим чўзилмасин - жадвал ўрами ички
+        <%-- DEC-128: кўп иловада бўлим чўзилмасин - жадвал ўрами ички
              вертикал скроллда (max-h-80 + sidebar scrollbar канони),
              юклаш формаси доим кўринишда қолади. --%>
         @template.shared.table(cls = "min-w-[420px]", wrap = "max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-outline scrollbar-track-transparent dark:scrollbar-thumb-outline-dark", c = @`
@@ -121,12 +121,12 @@
         `)
     @endif
 
-    <%-- ARBITR-094: жойида кўриш модали (расм <img> / PDF <iframe>).
+    <%-- DEC-094: жойида кўриш модали (расм <img> / PDF <iframe>).
          Бўлим фрагменти ичида - hx-swap outerHTML'да у ҳам янгиланади
          (бир саҳифада битта бўлим = битта модал). Ёпиқ ҳолатда зарарсиз.
          Alpine ЭМАС, соф vanilla: fragment алмашинишида init талаб
          қилмасин. Кўрсатиш/ёпиш JS орқали (document-level delegation). --%>
-    <%-- Кўриниш Penguin утилиталарда (Arbitr-122, helpDialog нақши:
+    <%-- Кўриниш Penguin утилиталарда (DEC-122, helpDialog нақши:
          fixed марказ, мобилда max-md: bottom-sheet). att-modal /
          att-modal-title / att-modal-img / att-modal-frame /
          att-modal-newwin - JS СЕЛЕКТОР маркерлари (қуйидаги скрипт),
@@ -151,7 +151,7 @@
     </div>
 </section>
 <script>
-    // ARBITR-094: иловаларни жойида кўриш + clipboard paste.
+    // DEC-094: иловаларни жойида кўриш + clipboard paste.
     // Document-level delegation - фрагмент hx-swap outerHTML'да алмашса
     // ҳам тингловчилар document'да қолади (helpbtn/helpDialog претседенти).
     // Гвард: фрагмент ҳар swap'да бу <script>'ни қайта бажаради - шунда

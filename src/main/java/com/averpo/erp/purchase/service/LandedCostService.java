@@ -88,7 +88,7 @@ public class LandedCostService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам). Контакт майдони йўқ - landed
      * cost тақсимоти таъминотчига боғланмайди.
@@ -98,7 +98,7 @@ public class LandedCostService {
     }
 
     /**
-     * Рўйхат экрани - янгидан эскига, тўлиқ филтр (Arbitr-068): давр/
+     * Рўйхат экрани - янгидан эскига, тўлиқ филтр (DEC-068): давр/
      * статус/матн битта Specification'да (audit услуби). Саҳифаланмаган
      * (рўйхат табиатан қисқа) - тартиб аввалгига айнан мос.
      */
@@ -125,7 +125,7 @@ public class LandedCostService {
      * Receipt'га ФАОЛ (POSTED) тақсимот борми - BillService.reverse
      * BR-BILL-012 гарови учун: тақсимот кучда туриб bill қайтарилса,
      * receipt'га юкланган қиймат ва клиринг кредити GL'да «осилиб»
-     * қолар эди (Beruniy-005).
+     * қолар эди (PERF-005).
      */
     @Transactional(readOnly = true)
     public boolean activeAllocationExists(UUID movementId) {
@@ -157,7 +157,7 @@ public class LandedCostService {
             throw new BusinessRuleException(BusinessRule.BR_LC_003,
                     "Receipt такрор танланган");
         }
-        // Батч (Sanjar-007): танланган receipt'лар warehouse'и билан битта
+        // Батч (OPT-007): танланган receipt'лар warehouse'и билан битта
         // IN сўровда - биттадан movement() қилинмайди; мавжудлик (NotFound,
         // аввалги movement() хулқи айнан) ва BR-LC-004 input тартибида
         Map<UUID, StockMovement> receiptsById = BatchLookup.byId(
@@ -190,7 +190,7 @@ public class LandedCostService {
         String home = settingsService.homeCurrency();
         UUID cogsAccount = accountService
                 .requireSystemAccountId(AccountDetailType.SUPPLIES_MATERIALS_COGS);
-        // Батч (Sanjar-007): asset счёти учун receipt item'лари олдиндан
+        // Батч (OPT-007): asset счёти учун receipt item'лари олдиндан
         // битта IN сўровда - тақсимлаш циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(receipts, StockMovement::getItemId)));
@@ -209,7 +209,7 @@ public class LandedCostService {
             if (share.signum() == 0) {
                 continue; // нол улуш - қатор ҳам, GL сатр ҳам ёзилмайди
             }
-            // Юкланган managed receipt тўғридан-тўғри узатилади (Sanjar-007) -
+            // Юкланган managed receipt тўғридан-тўғри узатилади (OPT-007) -
             // id имзосидаги иккинчи movement() SELECT'и йўқолади
             InventoryService.ReceiptValueResult result =
                     inventoryService.addReceiptValue(receipt, share);

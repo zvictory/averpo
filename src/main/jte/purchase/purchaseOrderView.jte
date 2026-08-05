@@ -28,7 +28,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("po.col.vendor")}</span>
@@ -49,7 +49,7 @@
             <span class="text-base text-on-surface dark:text-on-surface-dark">@template.shared.badge(value = po.getStatus().name(), family = "po.status", msg = msg)</span>
         </div>
         @if(!po.getCurrency().getCode().equals(homeCurrency))
-            <%-- Arbitr-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+            <%-- DEC-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
             !{var rateOr = Fmt.orient(po.getCurrency().getCode(), homeCurrency, po.getExchangeRate());}
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("po.form.currency")}</span>
@@ -65,7 +65,7 @@
         @endif
     </div>
 
-    <%-- Arbitr-153: PO GL'сиз (non-posting) ҳужжат - молиявий ҳаракат
+    <%-- DEC-153: PO GL'сиз (non-posting) ҳужжат - молиявий ҳаракат
          тегишли Bill'да ёзилади; шу боис бу экранда сторно/таҳрир йўқ
          (BR-PO-002/003). Битта хира қатор ҳинт - фойдаланувчи «нега
          сторно йўқ» деб ажабланмасин. --%>

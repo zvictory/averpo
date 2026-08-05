@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * {@link RequestLogFilter} MDC хулқи тести (logging.md «Тестлар»
- * 1-банд, Arbitr-099): rid ва user сўров ДАВОМИДА MDC'да туради,
+ * 1-банд, DEC-099): rid ва user сўров ДАВОМИДА MDC'да туради,
  * сўров ОХИРИДА тозаланади (thread pool'да leak бўлмасин). Web контекст
  * шарт эмас - filter'ни тўғридан-тўғри юритамиз.
  */

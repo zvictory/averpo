@@ -49,7 +49,7 @@ public interface JournalEntryLineRepository extends JpaRepository<JournalEntryLi
                                              @Param("to") LocalDate to);
 
     /**
-     * {@link #findRegisterLines} нинг саҳифаланган варианти (ARBITR-105б):
+     * {@link #findRegisterLines} нинг саҳифаланган варианти (DEC-105б):
      * тартиб айнан ўша - жорий қолдиқ саҳифама-саҳифа узлуксиз давом
      * этиши учун ҳар икки query бир хил детерминистик кетма-кетликка
      * таянади. {@code countQuery} қўлда берилади: {@code join fetch}'дан
@@ -78,7 +78,7 @@ public interface JournalEntryLineRepository extends JpaRepository<JournalEntryLi
     /**
      * Регистр тартибидаги ДАСТЛАБКИ {@code rowLimit} сатрнинг home
      * йиғиндиси: sum(debitBase - creditBase) - «саҳифагача йиғинди»
-     * (ARBITR-105б). Саҳифа очилиш қолдиғи давр opening'ига шу қиймат
+     * (DEC-105б). Саҳифа очилиш қолдиғи давр opening'ига шу қиймат
      * қўшилиб топилади - олдинги саҳифалар сатрлари Java'га юкланмайди.
      *
      * <p>Native, чунки JPQL субсўровда LIMIT йўқ. Ички SELECT'даги
@@ -112,7 +112,7 @@ public interface JournalEntryLineRepository extends JpaRepository<JournalEntryLi
     /**
      * Счётнинг [from, to] давр ичидаги home айланма йиғиндиси:
      * sum(debitBase - creditBase). Давр closing'и охирги саҳифагача
-     * бормай ҳисоблансин учун (ARBITR-105б): closing = opening + шу.
+     * бормай ҳисоблансин учун (DEC-105б): closing = opening + шу.
      *
      * @return йиғинди ёки даврда сатр бўлмаса {@code null}
      */

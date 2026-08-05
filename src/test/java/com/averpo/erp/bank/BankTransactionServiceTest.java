@@ -162,7 +162,7 @@ class BankTransactionServiceTest {
 
     @Test
     void expense_foreignMultiLine_pennyRounding_balancedAndPosts() {
-        // Beruniy-009 + Asrorxoja-002: банк томони (назорат сатри) битта
+        // PERF-009 + LOG-002: банк томони (назорат сатри) битта
         // яхлитлашли target = round(0.06 × 12345.6789) = 740.7407, сатр
         // base'лари largest-remainder билан шунга тақсимланади
         BankTransaction txn = bankService.expense(new TxnData(usdBank, DATE,
@@ -180,7 +180,7 @@ class BankTransactionServiceTest {
 
     @Test
     void expense_foreignThreeLines_everyLineKeepsMoneyInvariant() {
-        // Asrorxoja-002 сценарийси: 3 × 0.01 USD, rate 10012.345 - эски
+        // LOG-002 сценарийси: 3 × 0.01 USD, rate 10012.345 - эски
         // «йиғинди» ечимида банк сатри BR-LED-003 дан 0.00015 га чиқиб,
         // тўғри киритилган транзакция пост бўлмай қоларди
         BankTransaction txn = bankService.expense(new TxnData(usdBank, DATE,
@@ -231,11 +231,11 @@ class BankTransactionServiceTest {
 
     @Test
     void transfer_toNonBankBalanceSheetAccount_works() {
-        // BR-TXF-001 (Arbitr-022): транзфер BANK эмас, ҳар қандай Balance
+        // BR-TXF-001 (DEC-022): транзфер BANK эмас, ҳар қандай Balance
         // Sheet счёти орасида. loan = LOAN_PAYABLE (Мажбурият) - заёмни
         // банкдан ёпиш (spec'даги «заёмни ёпиш» ҳолати). Аввал бу тест
         // UNDEPOSITED_FUNDS билан эди - у энди тизим назорат счёти
-        // сифатида BR-TXF-002 билан рад этилади (Komil-008).
+        // сифатида BR-TXF-002 билан рад этилади (IFRS-008).
         BankTransaction txn = bankService.transfer(new TransferData(bank, loan, DATE,
                 new BigDecimal("75000"), null, null, null, "заём тўлови"));
 
@@ -249,7 +249,7 @@ class BankTransactionServiceTest {
 
     @Test
     void linedTransaction_systemControlAccountLine_rejectedBt010() {
-        // Xorazmiy-012 (BR-TXF-002 кўзгуси): deposit/expense сатрида ҳам
+        // QA-012 (BR-TXF-002 кўзгуси): deposit/expense сатрида ҳам
         // тизим назорат счёти рад - GL subledger'сиз ўзгармасин
         UUID inventory = accountRepository
                 .findByName("Товар-моддий заҳиралар").orElseThrow().getId();
@@ -272,7 +272,7 @@ class BankTransactionServiceTest {
 
     @Test
     void expense_withPaymentMethodAndRefNo_savedAndBalanced() {
-        // Arbitr-033: тўлов усули (seed каталогдан) ва ҳужжат рақами
+        // DEC-033: тўлов усули (seed каталогдан) ва ҳужжат рақами
         // сақланади, JE аввалгидек балансда - проводка ўзгармаган
         UUID method = paymentMethodService.all().stream()
                 .filter(m -> "Нақд".equals(m.getName())).findFirst().orElseThrow().getId();
@@ -287,7 +287,7 @@ class BankTransactionServiceTest {
         assertBalanced(entry, "40000"); // ТЕМИР ҚОИДА №7: debit == credit
         assertThat(baseOf(entry, "CHECKING", false)).isEqualByComparingTo("40000");
 
-        // Каталогда йўқ усул - NotFound (BR кодисиз, Arbitr-033 кўлами)
+        // Каталогда йўқ усул - NotFound (BR кодисиз, DEC-033 кўлами)
         assertThatThrownBy(() -> bankService.expense(new TxnData(bank, DATE, null,
                 null, null, List.of(new LineData(rent, BigDecimal.ONE, null, null)),
                 UUID.randomUUID(), null)))
@@ -312,7 +312,7 @@ class BankTransactionServiceTest {
 
     @Test
     void transfer_systemControlAccount_rejectedTxf002() {
-        // Komil-008: тизим назорат счёти (systemManaged) - GL'га ёзув фақат
+        // IFRS-008: тизим назорат счёти (systemManaged) - GL'га ёзув фақат
         // ўз subledger хизмати орқали. Қўлда транзфер GL'ни ўзгартириб,
         // StockMovement/aging'ни ўзгартирмасди - мувофиқлик бузиларди.
         UUID inventory = accountRepository
@@ -370,7 +370,7 @@ class BankTransactionServiceTest {
 
     @Test
     void transfer_singleForeign_upsertsRateToCatalog() {
-        // Т3 (Arbitr-022): бир томони уй валютаси (UZS→USD), курс 12700
+        // Т3 (DEC-022): бир томони уй валютаси (UZS→USD), курс 12700
         // берилди - ўша курс каталогга ҳужжат санаси билан ёзилиши шарт.
         bankService.transfer(new TransferData(bank, usdBank, DATE,
                 new BigDecimal("1270000"), null,
@@ -407,7 +407,7 @@ class BankTransactionServiceTest {
 
     @Test
     void transfers_onlyTransferType_newestFirst() {
-        // Beruniy-020: рўйхат бутун журнални тортмайди - deposit
+        // PERF-020: рўйхат бутун журнални тортмайди - deposit
         // аралашмайди, тартиб умумий рўйхатдек (сана, кейин created_at)
         bankService.deposit(new TxnData(bank, DATE, null, null, null,
                 List.of(new LineData(rent, new BigDecimal("5000"), null, null))));
@@ -428,7 +428,7 @@ class BankTransactionServiceTest {
 
     @Test
     void transfers_pagination_secondPageSlice() {
-        // ARBITR-105 3-босқич: transfers Page<>'га ўтди - size+1 ўтказма,
+        // DEC-105 3-босқич: transfers Page<>'га ўтди - size+1 ўтказма,
         // 2-саҳифада биттагина қолади (JOIN FETCH count сўровини бузмайди)
         for (int i = 0; i <= BankTransactionService.LIST_PAGE_SIZE; i++) {
             bankService.transfer(new TransferData(bank, cash,
@@ -448,7 +448,7 @@ class BankTransactionServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 2-босқич: size+1 ёзув - 2-саҳифада биттагина
+        // PERF-perf1 2-босқич: size+1 ёзув - 2-саҳифада биттагина
         // қолади; саналар ҳар хил - тартиб детерминистик текширилади
         BankTransaction oldest = null;
         BankTransaction newest = null;
@@ -479,7 +479,7 @@ class BankTransactionServiceTest {
 
     @Test
     void expenses_pagination_secondPageSlice_onlyExpenseType() {
-        // Beruniy-perf1 2-босқич: /expenses фақат EXPENSE турини саҳифалайди;
+        // PERF-perf1 2-босқич: /expenses фақат EXPENSE турини саҳифалайди;
         // аралашга битта deposit ҳам яратилади - у чиқмаслиги шарт
         bankService.deposit(new TxnData(bank, DATE, null, null, null,
                 List.of(new LineData(rent, new BigDecimal("5000"), null, null))));
@@ -515,7 +515,7 @@ class BankTransactionServiceTest {
 
     @Test
     void expenses_filter_byDateStatusPayeeText() {
-        // Fazliddin-009 (Arbitr-068): давр/статус/payee/матн ҳар бири кесади;
+        // UX-009 (DEC-068): давр/статус/payee/матн ҳар бири кесади;
         // transfers'дан фарқ - payee (contactId) филтри (чиқимда Олувчи бор)
         UUID payeeA = contactService.create(ContactType.VENDOR, new ContactData(
                 "Олувчи А 009", null, null, null, null, null,

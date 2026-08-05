@@ -56,7 +56,7 @@ public class AttachmentService {
     public static final long MAX_BYTES = 20L * 1024 * 1024;
 
     /**
-     * Расм (аватар/лого) юклаш чегараси: 2MB (BR-ATT-006, Arbitr-101/112) -
+     * Расм (аватар/лого) юклаш чегараси: 2MB (BR-ATT-006, DEC-101/112) -
      * умумий 20MB'дан қатъийроқ, расмлар кичик бўлгани учун.
      */
     public static final long MAX_IMAGE_BYTES = 2L * 1024 * 1024;
@@ -108,7 +108,7 @@ public class AttachmentService {
             Map.entry(DocumentType.REFUND_RECEIPT, "refund_receipt"),
             Map.entry(DocumentType.ESTIMATE, "estimate"),
             Map.entry(DocumentType.PURCHASE_ORDER, "purchase_order"),
-            // Arbitr-048: қолган транзакция турлари (кўришларига «Иловалар»
+            // DEC-048: қолган транзакция турлари (кўришларига «Иловалар»
             // уланди). Жадвал номлари entity @Table'дан: LANDED_COST →
             // landed_cost_allocation (LC ҳужжати = тақсимот), RECEIPT →
             // invoice_payment (мижоз тушуми), PAYMENT → bill_payment.
@@ -118,11 +118,11 @@ public class AttachmentService {
             Map.entry(DocumentType.LANDED_COST, "landed_cost_allocation"),
             Map.entry(DocumentType.PAYROLL_RUN, "payroll_run"),
             Map.entry(DocumentType.PAYROLL_PAYMENT, "payroll_payment"),
-            // Arbitr-093: ҳужжатли инвентаризация/кўчириш актлари (view'ларига
+            // DEC-093: ҳужжатли инвентаризация/кўчириш актлари (view'ларига
             // «Иловалар» уланган - жадвал номлари entity @Table'дан).
             Map.entry(DocumentType.STOCK_ADJUSTMENT, "stock_adjustment"),
             Map.entry(DocumentType.STOCK_TRANSFER, "stock_transfer"),
-            // Arbitr-101/112: профиль расми (аватар) ва компания логоси -
+            // DEC-101/112: профиль расми (аватар) ва компания логоси -
             // Attachment инфрасини қайта ишлатади (disk storage + path
             // traversal ҳимояси). Target жадваллари: app_user (ҳар user'да
             // profile_image_id FK), company_settings (singleton logo).
@@ -210,7 +210,7 @@ public class AttachmentService {
     }
 
     /**
-     * Расм юклаш (профиль аватари / компания логоси, Arbitr-101/112):
+     * Расм юклаш (профиль аватари / компания логоси, DEC-101/112):
      * умумий {@link #upload}'дан ТОР allowlist билан фарқ қилади - фақат
      * png/jpeg/webp (BR-ATT-005: SVG inline XSS'дан ҳимоя) ва 2MB
      * (BR-ATT-006). Қолган оқим айнан бир хил: BR-ATT-003 target
@@ -346,7 +346,7 @@ public class AttachmentService {
     }
 
     /**
-     * Расм ЎЛЧОВини текширади (BR-ATT-007, Arbitr-101/112 рефайнмент):
+     * Расм ЎЛЧОВини текширади (BR-ATT-007, DEC-101/112 рефайнмент):
      * ImageIO билан ўқиб кенглик×баландлик диапазонда эканини (жуда кичик/
      * катта эмас) кафолатлайди. Умумий валидатор - аватар, company logo,
      * brand logo учун бир хил.

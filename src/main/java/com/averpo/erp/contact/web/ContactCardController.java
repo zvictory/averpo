@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * Контакт карточкаси (мижоз/таъминотчи КЎРИШ саҳифаси, Arbitr-002,
+ * Контакт карточкаси (мижоз/таъминотчи КЎРИШ саҳифаси, DEC-002,
  * spec: docs/modules/contact-card.md) - QBO Customer/Vendor саҳифаси
  * паритети: сарлавҳа + 4 стат-карта + шу контактнинг кўчирмаси
  * (running balance, давр филтри).

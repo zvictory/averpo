@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Ҳужжатли омборлараро кўчириш акти формаси (Arbitr-093): манба/манзил
+ * Ҳужжатли омборлараро кўчириш акти формаси (DEC-093): манба/манзил
  * омбор, кўп сатр (item + qty). Ҳамма сон String - бузуқ киритишда BR
  * хабари билан қийматлар сақланиб қайтади (SalesReceiptForm қолипи).
  */
@@ -30,7 +30,7 @@ public class TransferForm {
     /** Эркин изоҳ. */
     private String memo;
 
-    /** Ташқи ҳужжат рақами (Arbitr-109, ихтиёрий - қоғоз акт №). */
+    /** Ташқи ҳужжат рақами (DEC-109, ихтиёрий - қоғоз акт №). */
     private String externalRef;
 
     /** Сатрлар - Spring indexed binding (auto-grow). */

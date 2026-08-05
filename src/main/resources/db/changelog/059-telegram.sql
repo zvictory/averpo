@@ -2,7 +2,7 @@
 
 --changeset averpo:059-01-telegram-settings
 -- Telegram бот созламаси (docs/modules/user-profile.md 3-бўлим,
--- Arbitr-103): singleton қатор - биз бир-tenant, ҳар компания ЎЗ ботини
+-- DEC-103): singleton қатор - биз бир-tenant, ҳар компания ЎЗ ботини
 -- яратади (@BotFather), умумий платформа боти йўқ.
 --
 -- token_enc - ШИФРЛАНГАН токен (AES-GCM, base64(IV||CT); арбитр қарори

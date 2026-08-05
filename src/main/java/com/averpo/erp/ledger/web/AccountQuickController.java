@@ -18,10 +18,10 @@ import java.util.Map;
 
 /**
  * Combobox «+ Янги қўшиш» қуйма endpoint'лари - счёт
- * (spec: docs/modules/combobox.md, Arbitr-066).
+ * (spec: docs/modules/combobox.md, DEC-066).
  *
  * <p>Қуйма формада ном + detail type (группаланган select) + валюта
- * (фақат валютага боғланган турда - Arbitr-161) - код, ота, opening
+ * (фақат валютага боғланган турда - DEC-161) - код, ота, opening
  * balance кейин тўлиқ формада. Мантиқ бутунлай {@link AccountService#create}
  * реюзи (BR-COA-001/008/009/010/011 ўша ерда) - янги бизнес қоида ЙЎҚ.
  * VIEWER ҳимояси SecurityConfig POST қоидасида.
@@ -33,7 +33,7 @@ public class AccountQuickController {
     /** Счётлар service - қуйма яратишда валидацияси реюз қилинади. */
     private final AccountService accountService;
 
-    /** Фаол валюталар рўйхати - қуйма формадаги валюта select учун (Arbitr-161). */
+    /** Фаол валюталар рўйхати - қуйма формадаги валюта select учун (DEC-161). */
     private final com.averpo.erp.shared.service.CurrencyService currencyService;
 
     /** Модал ичи учун мини форма fragment'и (CSRF token + валюталар рўйхати). */

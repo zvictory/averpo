@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:052-01-user-roles-migration
--- Роль тизими миграцияси (Arbitr-092, docs/modules/user-roles.md):
+-- Роль тизими миграцияси (DEC-092, docs/modules/user-roles.md):
 -- эски 3 роль янги 8 роллик тўпламга мапланади. СХЕМА ЎЗГАРМАЙДИ
 -- (role VARCHAR(20) STRING enum) - фақат мавжуд маълумот UPDATE'лари.
 -- ADMIN → SUPER_ADMIN (тўлиқ ҳуқуқ ўзгармайди); ACCOUNTANT номи

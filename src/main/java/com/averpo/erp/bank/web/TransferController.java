@@ -35,7 +35,7 @@ import java.util.UUID;
 /**
  * Ўтказма (Transfer) экрани - QBO «+ Янги → Ўтказма» паритети: иккита
  * Balance Sheet счёти орасида пул кўчириш, алоҳида битта мақсадли форма
- * (docs/modules/transfer.md, Arbitr-022). Умумий Bank Transactions
+ * (docs/modules/transfer.md, DEC-022). Умумий Bank Transactions
  * формасидан ажратилди - у ерда тур танлагич ва сатрлар жадвали бор,
  * бу эса тоза, QBO'дек.
  *
@@ -58,7 +58,7 @@ public class TransferController {
     private final LedgerDashboardService dashboardService;
 
     /**
-     * Bank бўлмаган BS счётларнинг жонли қолдиғи учун (Asrorxoja-005) -
+     * Bank бўлмаган BS счётларнинг жонли қолдиғи учун (LOG-005) -
      * ledger'нинг мавжуд read-only методи (balancesByAccountId), ёзувчи
      * мантиққа тегилмайди.
      */
@@ -72,7 +72,7 @@ public class TransferController {
 
     /**
      * Рўйхат - фақат TRANSFER турдаги транзакциялар, янгидан эскига;
-     * тўлиқ филтр қатори (Arbitr-068): давр/статус/матн (контактсиз
+     * тўлиқ филтр қатори (DEC-068): давр/статус/матн (контактсиз
      * ҳужжат тури).
      */
     @GetMapping
@@ -84,9 +84,9 @@ public class TransferController {
                        jakarta.servlet.http.HttpServletRequest request,
                        jakarta.servlet.http.HttpServletResponse response,
                        Model model) {
-        // Beruniy-020: бутун банк журнали эмас - фақат ўтказмалар, валюта
+        // PERF-020: бутун банк журнали эмас - фақат ўтказмалар, валюта
         // JOIN FETCH билан (in-memory филтр ҳам, N+1 ҳам йўқ).
-        // ARBITR-105: саҳифаланган (3-босқич) + ҳажм ?size=/cookie'дан
+        // DEC-105: саҳифаланган (3-босқич) + ҳажм ?size=/cookie'дан
         int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                 request, response, "transfers");
         var transferPage = bankService.transfers(new BankTransactionService.ListFilter(
@@ -100,7 +100,7 @@ public class TransferController {
         AccountViewMaps maps = accountViewMaps(accountService.all(),
                 settingsService.homeCurrency());
         model.addAttribute("accountNames", maps.names());
-        // Alisa-005: кросс-валютада манзил сумма ўз валюта коди билан чиқади
+        // UI-005: кросс-валютада манзил сумма ўз валюта коди билан чиқади
         model.addAttribute("accountCurrencies", maps.currencies());
         model.addAttribute("from", from == null ? "" : from.toString());
         model.addAttribute("to", to == null ? "" : to.toString());
@@ -122,7 +122,7 @@ public class TransferController {
     }
 
     /**
-     * Ўтказмани кўриш - dedicated view (Otabek-003): транзфер label'лари
+     * Ўтказмани кўриш - dedicated view (QBO-003): транзфер label'лари
      * (Манбадан/Манзилга), орқага /transfers, сторно шу ерда. «bank» номи
      * фақат ички қолади деган spec қарори (transfer.md) шу билан тўлиқ
      * бажарилади. TRANSFER бўлмаган id келса умумий банк view'ига
@@ -137,7 +137,7 @@ public class TransferController {
         model.addAttribute("txn", txn);
         model.addAttribute("accountNames", accountNames());
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
-        // Манзил сумма манзил счёти валютасида кўрсатилади (Alisa-003 паттерни)
+        // Манзил сумма манзил счёти валютасида кўрсатилади (UI-003 паттерни)
         String counterpartCurrency = null;
         if (txn.getCounterpartAccountId() != null) {
             Account counterpart = accountService.get(txn.getCounterpartAccountId());
@@ -153,7 +153,7 @@ public class TransferController {
     /**
      * Сторно - мавжуд {@link BankTransactionService#reverse} қайта
      * ишлатилади (ёзувчи мантиқ ўзгармайди), фақат redirect транзфер
-     * view'ида қолади (Otabek-003).
+     * view'ида қолади (QBO-003).
      */
     @PostMapping("/{id}/reverse")
     public String reverse(@PathVariable UUID id,
@@ -175,7 +175,7 @@ public class TransferController {
     public String createForm(Model model) {
         BankTransactionForm form = BankTransactionForm.empty(0);
         form.setType(BankTransactionType.TRANSFER.name());
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setTxnDate(LocalDate.now(settingsService.zoneId()));
         fillFormModel(model, form);
         return "bank/transferForm";
@@ -188,7 +188,7 @@ public class TransferController {
         try {
             BankTransaction txn = bankService.transfer(toTransferData(form));
             redirect.addFlashAttribute("message", msg.get("bt.saved", txn.getTxnNumber()));
-            // Otabek-003: сақлагач транзфернинг ўз view'ига (банкникига эмас)
+            // QBO-003: сақлагач транзфернинг ўз view'ига (банкникига эмас)
             return "redirect:/transfers/" + txn.getId();
         } catch (BusinessRuleException e) {
             fillFormModel(model, form);
@@ -204,7 +204,7 @@ public class TransferController {
         model.addAttribute("form", form);
         // BR-TXF-001: транзфер счётлари Balance Sheet (Актив/Мажбурият/
         // Капитал), фаол ва postable - банк оқимидан фарқли (QBO Transfer).
-        // BR-TXF-002 (Komil-008): тизим назорат счётлари (AR/AP/INVENTORY...)
+        // BR-TXF-002 (IFRS-008): тизим назорат счётлари (AR/AP/INVENTORY...)
         // dropdown'да умуман кўринмайди - service гарови устига UI ҳимояси
         List<Account> bsAccounts = accountService.all().stream()
                 .filter(a -> a.getClassification().isBalanceSheet()
@@ -215,7 +215,7 @@ public class TransferController {
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         // Жонли қолдиқ (QBO Balance). Банк/касса счётларида ўз валютасидаги
         // аниқ қолдиқ (dashboardService); қолган BS счётларда (заём, аванс,
-        // капитал...) умумий GL қолдиғи home'да (Asrorxoja-005) - ишора
+        // капитал...) умумий GL қолдиғи home'да (LOG-005) - ишора
         // счёт табиатига нормаланган (актив дебет-мусбат, мажбурият/капитал
         // кредит-мусбат - CoA Balance устуни услуби).
         Map<String, String> balances = new HashMap<>();
@@ -234,7 +234,7 @@ public class TransferController {
             }
             BigDecimal raw = glBalances.get(account.getId());
             if (raw == null) {
-                // Alisa-009: ҳаракати йўқ счёт «номаълум» эмас - 0.00 home
+                // UI-009: ҳаракати йўқ счёт «номаълум» эмас - 0.00 home
                 // кўрсатилади, акс ҳолда нол қолдиқ билан аралашарди
                 balances.put(key, Fmt.money(BigDecimal.ZERO) + " " + home);
                 continue;
@@ -273,8 +273,8 @@ public class TransferController {
 
     /**
      * Рўйхат саҳифасининг счёт маълумотномалари: id → ном ва id → валюта
-     * коди БИТТА циклда (Beruniy-020 - счётлар базадан бир марта
-     * олинади). Валютасиз счётга home коди қайтади (Alisa-005).
+     * коди БИТТА циклда (PERF-020 - счётлар базадан бир марта
+     * олинади). Валютасиз счётга home коди қайтади (UI-005).
      * Static - Spring контекстисиз unit тестланади.
      */
     static AccountViewMaps accountViewMaps(List<Account> accounts, String home) {

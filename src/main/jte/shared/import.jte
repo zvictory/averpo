@@ -36,7 +36,7 @@
                   style="display:grid;gap:.6rem;">
                 @template.shared.csrf(csrf = csrf)
                 <b>${msg.localize("import.step2")}</b>
-                <%-- Alisa-050: чегаралар олдиндан кўринади (BR-IMP-001/004
+                <%-- UI-050: чегаралар олдиндан кўринади (BR-IMP-001/004
                      server'да ҳақиқат манбаи бўлиб қолади) --%>
                 <p class="m-0 text-[.9rem] text-current/60">${msg.localize("import.limits")}</p>
                 <input type="file" name="file" accept=".xlsx" required

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Fmt кўрсатиш helper'лари - Spring'сиз соф unit тестлар (HALF_UP,
  * trailing ноллар, NBSP минг ажратгич, чегара ҳолатлар). Пул формати
- * Arbitr-011 қарори бўйича: 2 хона + НУҚТА каср ажратгичи (QBO
+ * DEC-011 қарори бўйича: 2 хона + НУҚТА каср ажратгичи (QBO
  * стандарти: 12 600.50).
  */
 class FmtTest {
@@ -24,7 +24,7 @@ class FmtTest {
 
     @Test
     void money_fixedTwoDecimals_dotSeparator_withNbspGrouping() {
-        // Arbitr-011 намунаси: 12 600.50 (QBO стандарти)
+        // DEC-011 намунаси: 12 600.50 (QBO стандарти)
         assertThat(Fmt.money(new BigDecimal("12600.50")))
                 .isEqualTo("12" + NBSP + "600.50");
         // 2 хонага тўлдирилади - trailing ноллар олиб ташланМАЙДИ
@@ -59,7 +59,7 @@ class FmtTest {
 
     @Test
     void moneyDisplayScale_isTwo() {
-        // Arbitr-011: QBO'дагидек 2 хона - тест жорий келишувни қайд этади
+        // DEC-011: QBO'дагидек 2 хона - тест жорий келишувни қайд этади
         assertThat(Fmt.MONEY_DISPLAY_SCALE).isEqualTo(2);
     }
 
@@ -122,11 +122,11 @@ class FmtTest {
         assertThat(Fmt.qty(null, "дона")).isEqualTo("");
     }
 
-    // ---- rate (Arbitr-135): >= 1 → қатъий 2 хона; < 1 → макс 8 хона ----
+    // ---- rate (DEC-135): >= 1 → қатъий 2 хона; < 1 → макс 8 хона ----
 
     @Test
     void rate_atLeastOne_fixedTwoDecimals_nbspGrouping() {
-        // Arbitr-135: катта курс пул кўринишидек ўқилади - 12 090.45
+        // DEC-135: катта курс пул кўринишидек ўқилади - 12 090.45
         assertThat(Fmt.rate(new BigDecimal("12090.45")))
                 .isEqualTo("12" + NBSP + "090.45");
         // 3-хона HALF_UP билан 2 хонага яхлитланади
@@ -157,7 +157,7 @@ class FmtTest {
     void rate_boundaryAndNull() {
         // Тармоқ танлови яхлитлашдан ОЛДИН: 0.999999995 «< 1» тармоғида
         // 8 хонада 1.00000000 бўлиб стрипдан кейин «1» кўринади - карта
-        // (Arbitr-135) ҳужжатлаган чегара хулқи; айнан 1 эса «1.00»
+        // (DEC-135) ҳужжатлаган чегара хулқи; айнан 1 эса «1.00»
         assertThat(Fmt.rate(new BigDecimal("0.999999995"))).isEqualTo("1");
         assertThat(Fmt.rate(new BigDecimal("1.000000"))).isEqualTo("1.00");
         assertThat(Fmt.rate(null)).isEqualTo("");

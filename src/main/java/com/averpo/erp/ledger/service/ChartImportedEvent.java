@@ -4,7 +4,7 @@ package com.averpo.erp.ledger.service;
  * Default счётлар режаси импорт қилинди - {@code AccountService.importDefaultChart}
  * якунида эълон қилинади: қўлда тугма (AccountController) ва авто-init
  * (DefaultChartInitializer, FactoryReset ичидаги қайта ўрнатиш) - учала йўл
- * ҳам шу нуқтадан ўтади (Arbitr-062, CHART_IMPORTED).
+ * ҳам шу нуқтадан ўтади (DEC-062, CHART_IMPORTED).
  *
  * <p>Event ledger ичида туради, тингловчи audit модулида -
  * {@link JournalEntryPostedEvent} нақши (қоида №6: ledger audit'ни билмайди).

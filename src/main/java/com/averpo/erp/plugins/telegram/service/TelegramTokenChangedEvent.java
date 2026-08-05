@@ -1,7 +1,7 @@
 package com.averpo.erp.plugins.telegram.service;
 
 /**
- * Telegram bot токени ўзгарди (Arbitr-138) - {@code TelegramService}
+ * Telegram bot токени ўзгарди (DEC-138) - {@code TelegramService}
  * saveToken/deleteToken якунида эълон қилинади. Webhook registrar (prod)
  * {@code @TransactionalEventListener(AFTER_COMMIT)} билан тинглаб
  * webhook'ни қайта рўйхатдан ўтказади ёки ўчиради.

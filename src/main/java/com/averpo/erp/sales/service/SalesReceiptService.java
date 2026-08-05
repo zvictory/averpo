@@ -74,7 +74,7 @@ public class SalesReceiptService {
     /** GL/омбор ҳаволаларидаги манба модул белгиси (posting-rules). */
     public static final String SOURCE_MODULE = "SALES_RECEIPT";
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 қолипи). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 қолипи). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /** Рўйхат тартиби: янгидан эскига, тенг санада яратилиш вақти. */
@@ -146,7 +146,7 @@ public class SalesReceiptService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -156,7 +156,7 @@ public class SalesReceiptService {
 
     /**
      * Рўйхат экрани - саҳифаланган (янгидан эскига), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -171,7 +171,7 @@ public class SalesReceiptService {
                 PageRequest.of(Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public Page<SalesReceipt> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -238,7 +238,7 @@ public class SalesReceiptService {
     /**
      * NormalizedLine'лардан item → inventory asset счёт харитаси - postGl
      * ITEM сатрларда asset счётни item'ни қайта юкламай шундан олади
-     * (Beruniy-035). Фақат ITEM сатрларда asset бор (SERVICE'да null).
+     * (PERF-035). Фақат ITEM сатрларда asset бор (SERVICE'да null).
      */
     private Map<UUID, UUID> assetAccountByItem(Normalized normalized) {
         Map<UUID, UUID> byItem = new HashMap<>();
@@ -254,7 +254,7 @@ public class SalesReceiptService {
      * Нормаллашган сатр - Invoice NormalizedLine кўзгуси. {@code
      * inventoryAssetAccountId} - фақат ITEM сатрда (item'дан валидацияда
      * олинган); postGl шу орқали asset счётни item'ни қайта юкламай олади
-     * (Beruniy-035). Domain SalesReceiptLine'га сақланмайди - фақат яратиш
+     * (PERF-035). Domain SalesReceiptLine'га сақланмайди - фақат яратиш
      * оқимидаги транзиент қиймат (schema ўзгармайди).
      */
     private record NormalizedLine(InvoiceLineType type, UUID itemId, UUID warehouseId,
@@ -270,7 +270,7 @@ public class SalesReceiptService {
      * пул счёти BANK туридан, фаол/postable, валютаси ҳужжат валютасига
      * тенг (BR-SR-002) - пул счётига ўз валютасидан бошқа валютада ёзиб
      * бўлмайди, FX фарқи туғилмайди. Ҳужжат валютаси мижоз контактидан
-     * (BR-SR-004, Arbitr-087) - BR-SR-002 энди «мижоз валютасига мос
+     * (BR-SR-004, DEC-087) - BR-SR-002 энди «мижоз валютасига мос
      * тўлов счёти» маъносини беради.
      */
     private Normalized validate(SalesReceiptData data) {
@@ -291,15 +291,15 @@ public class SalesReceiptService {
             throw new BusinessRuleException(BusinessRule.BR_SR_001,
                     "Камида битта сатр киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(customer, data.currency(), BusinessRule.BR_SR_004));
         BigDecimal rate = currencyService.requireDocumentRate(
                 currency, data.exchangeRate(), BusinessRule.BR_SR_001);
 
-        // Батч lookup (Arbitr-045 findAllById нақши): сатр-циклда item/счёт/
-        // омбор қайта-қайта ўқилмасин (Beruniy-035 - бир хил item 20 марта
+        // Батч lookup (DEC-045 findAllById нақши): сатр-циклда item/счёт/
+        // омбор қайта-қайта ўқилмасин (PERF-035 - бир хил item 20 марта
         // такрорланса ҳам битта round-trip). Item'лар ва омборлар ягона id
         // тўпламларида IN сўров билан; счётлар каталоги битта марта Map'га
         // (PayrollRun buildGlLines нақши) - банк ва даромад счётлари шундан.
@@ -318,7 +318,7 @@ public class SalesReceiptService {
         return new Normalized(currency, rate, lines);
     }
 
-    /** Сатрлардаги item'ларни битта IN сўровда Map'га (Arbitr-045 findAllById). */
+    /** Сатрлардаги item'ларни битта IN сўровда Map'га (DEC-045 findAllById). */
     private Map<UUID, Item> itemsByIds(List<LineData> lines) {
         Set<UUID> ids = new HashSet<>();
         for (LineData line : lines) {
@@ -333,7 +333,7 @@ public class SalesReceiptService {
         return byId;
     }
 
-    /** Сатрлардаги омборларни битта IN сўровда Map'га (Arbitr-045 findAllById). */
+    /** Сатрлардаги омборларни битта IN сўровда Map'га (DEC-045 findAllById). */
     private Map<UUID, Warehouse> warehousesByIds(List<LineData> lines) {
         Set<UUID> ids = new HashSet<>();
         for (LineData line : lines) {
@@ -397,7 +397,7 @@ public class SalesReceiptService {
      * Сатр валидацияси - Invoice validateLine кўзгуси: item фаоллиги,
      * тур, омбор (ITEM'да), сонлар, ҚҚС бўлиниши (net/tax), даромад счёти
      * REVENUE. amount - НЕТТО. item/счёт/омбор олдиндан юкланган батч
-     * Map'лардан ўқилади (Beruniy-035) - топилмаса {@link NotFoundException}
+     * Map'лардан ўқилади (PERF-035) - топилмаса {@link NotFoundException}
      * (мавжуд get() хулқи айнан). ITEM сатрда inventory asset счёти шу ерда
      * item'дан олиниб NormalizedLine'га сақланади (postGl item'ни қайта
      * юкламайди).
@@ -444,7 +444,7 @@ public class SalesReceiptService {
             }
             warehouseId = line.warehouseId(); // мавжудлик текширилди (фаоллик issue'да)
             // Asset счёти постингда керак - item'дан шу ерда олиб NormalizedLine'га
-            // (postGl'да itemService.get қайта чақирилмайди, Beruniy-035)
+            // (postGl'да itemService.get қайта чақирилмайди, PERF-035)
             inventoryAssetAccountId = item.getInventoryAssetAccountId();
         } else {
             type = InvoiceLineType.SERVICE;
@@ -482,7 +482,7 @@ public class SalesReceiptService {
      *
      * @param assetAccountByItem ITEM сатрлар учун item → inventory asset
      *        счёт харитаси (валидацияда йиғилган) - asset счёт item'ни
-     *        қайта юкламай шундан олинади (Beruniy-035)
+     *        қайта юкламай шундан олинади (PERF-035)
      */
     private void postGl(SalesReceipt receipt, Map<UUID, UUID> assetAccountByItem) {
         String home = settingsService.homeCurrency();

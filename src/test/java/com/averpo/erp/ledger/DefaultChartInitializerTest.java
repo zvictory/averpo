@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Arbitr-059: янги (бўш) ўрнатишда default chart автоматик юкланиши.
+ * DEC-059: янги (бўш) ўрнатишда default chart автоматик юкланиши.
  *
  * <p>{@link DefaultChartInitializer} тест профилида {@code @Profile("!test")}
  * туфайли КЎТАРИЛМАЙДИ (акс ҳолда ҳар контекстда 51 счёт commit бўлиб

@@ -30,7 +30,7 @@ ALTER TABLE company_settings ADD COLUMN track_classes VARCHAR(10) NOT NULL DEFAU
 
 --changeset averpo:037-03-line-class-columns
 --validCheckSum: 9:b3a110c689899c7486ecd906fed81cc3
--- (validCheckSum - Arbitr-077: танадаги «Finance.xsd'да ClassRef йўқ»
+-- (validCheckSum - DEC-077: танадаги «Finance.xsd'да ClassRef йўқ»
 -- изоҳи ЯЛҒОН эди, тузатилди; SQL ўзгармаган, эски checksum шу
 -- директива билан оқланади - қўлланган базалар validation'дан ўтади.)
 -- Сатр даражасидаги тег: GL сатри (ҳисобот шу устундан ўқийди - индекс)

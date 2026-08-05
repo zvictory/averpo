@@ -4,8 +4,8 @@
 @param Msg msg
 @param String filterQuery = ""
 
-<%-- Умумий саҳифалаш (Beruniy-perf1 + ARBITR-105 QBO мукаммал pager;
-     Penguin кўриниши - Arbitr-120, реф: docs/penguin-refs/
+<%-- Умумий саҳифалаш (PERF-perf1 + DEC-105 QBO мукаммал pager;
+     Penguin кўриниши - DEC-120, реф: docs/penguin-refs/
      pagination.html): ҳажм танлагичи (25/50/100/200) + Биринчи/
      Олдинги/Кейинги/Охирги + «жами X та, Y-Z кўрсатиляпти». Ҳажм
      cookie'да эсланади (сервер - PageSizeResolver); бу ерда фақат
@@ -16,7 +16,7 @@
      ва танлагич кўринади; бутунлай бўш рўйхатда ҳеч нарса чиқмайди
      (экраннинг ўз хабари бор). Тугмалар Penguin ghost линк услубида,
      ҳисоб сатри text-on-surface (хира эмас - фойдаланувчи талаби).
-     dark: жуфтлари бор (Arbitr-122): боди Penguin токенларида -
+     dark: жуфтлари бор (DEC-122): боди Penguin токенларида -
      тўқ режимда бутун саҳифа тўқ, пагинация ҳам жуфтлар билан
      ўқилади; Аралашда контент оч, жуфтлар ёнмайди. --%>
 @if(page != null && page.getTotalElements() > 0)

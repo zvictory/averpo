@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Telegram webhook кириш нуқтаси (Arbitr-138, prod режим): Telegram
+ * Telegram webhook кириш нуқтаси (DEC-138, prod режим): Telegram
  * янгиликларни шу йўлга POST қилади. Дев'да polling ишлатилади - бу
  * endpoint prod учун (лекин route ҳар муҳитда мавжуд; хавфсизлик
  * секрет header'ида).

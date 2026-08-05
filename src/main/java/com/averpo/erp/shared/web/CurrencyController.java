@@ -57,7 +57,7 @@ public class CurrencyController {
     @GetMapping("/settings/currencies")
     public String list(Model model) {
         String home = settingsService.homeCurrency();
-        // Beruniy-023: ҳар валютага алоҳида latest() N+1 эди - энди
+        // PERF-023: ҳар валютага алоҳида latest() N+1 эди - энди
         // ҳамма валютанинг амалдаги курси битта сўровда
         var latest = exchangeRateService.latestForEachCurrency();
         List<CurrencyRow> rows = currencyService.all().stream()
@@ -96,7 +96,7 @@ public class CurrencyController {
                     ? date : LocalDate.now(settingsService.zoneId());
             ExchangeRateService.ImportResult result =
                     exchangeRateService.importFromCbu(importDate);
-            // «Янгиланди» ФАҚАТ курс ўзгарганда (Arbitr-168): дам олишда ЦБ
+            // «Янгиланди» ФАҚАТ курс ўзгарганда (DEC-168): дам олишда ЦБ
             // жума курсини қайтаради - «текширилди, ўзгармади» деб ҳалол
             // хабар, фойдаланувчи «курс олинмаяпти» деб адашмасин
             String message = result.changed() > 0
@@ -125,7 +125,7 @@ public class CurrencyController {
 
     /**
      * Курс киритиш - тарихга ЯНГИ MANUAL ёзув қўшилади (append-only,
-     * Arbitr-022): эски сақланади, амалда энг охиргиси; айнан бир хил
+     * DEC-022): эски сақланади, амалда энг охиргиси; айнан бир хил
      * курс такрор келса дубль ёзилмайди. upsert номи тарихий - амалда
      * record(MANUAL) (ExchangeRateService изоҳи).
      */

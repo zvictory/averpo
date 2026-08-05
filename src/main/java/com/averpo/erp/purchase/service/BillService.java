@@ -177,13 +177,13 @@ public class BillService {
                 .orElseThrow(() -> new NotFoundException("Bill топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 1-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 1-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экрандаги
-     * тартиб ўзгармасин (Beruniy-perf1 3-банд).
+     * тартиб ўзгармасин (PERF-perf1 3-банд).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -192,7 +192,7 @@ public class BillService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Устун саралаш WHITELIST'и (ARBITR-105б): th калити → entity
+     * Устун саралаш WHITELIST'и (DEC-105б): th калити → entity
      * property. Хом параметр Sort'га тушмайди - фақат шу харита
      * орқали ({@link com.averpo.erp.shared.web.TableSort}).
      * Сумма/қолдиқ home қийматлар (totalBase/balanceDue) бўйича -
@@ -220,7 +220,7 @@ public class BillService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - bill рақами/vendor ҳисобварақ
      * рақами/изоҳ contains (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -229,8 +229,8 @@ public class BillService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/vendor/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/vendor/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари) - derived query'ларнинг
      * комбинацион портлашисиз.
      */
@@ -240,7 +240,7 @@ public class BillService {
     }
 
     /**
-     * Устун саралашли рўйхат (ARBITR-105б): sort {@link #sortOf}
+     * Устун саралашли рўйхат (DEC-105б): sort {@link #sortOf}
      * орқали ечиб берилади - хом параметр бу ерга етиб келмайди.
      */
     @Transactional(readOnly = true)
@@ -257,7 +257,7 @@ public class BillService {
                         "billNumber", "vendorInvoiceNumber", "memo")), pageable);
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<Bill> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -285,7 +285,7 @@ public class BillService {
      * (қолдиқ × ҳужжат курси) vendor бўйича йиғилади. Vendor'лар
      * жами қарзи бўйича камайиш тартибида.
      *
-     * <p>ФАҚАТ ЖОРИЙ ҲОЛАТ (BR-RPT-001, Komil-004): қолдиқлар жорий
+     * <p>ФАҚАТ ЖОРИЙ ҲОЛАТ (BR-RPT-001, IFRS-004): қолдиқлар жорий
      * balance_due'дан ўқилади - ўтган санага сўралса ундан кейинги
      * тўловлар «ортга қайтарилмас» ва ҳисобот TB'га мос келмас эди.
      * Шунинг учун asOf фақат бугун (компания вақт минтақасида)
@@ -353,7 +353,7 @@ public class BillService {
                 data.billDate(), normalized.dueDate(), normalized.currency(),
                 normalized.rate(), data.amountsInclusive(), Strings.blankToNull(data.memo()));
         bill.clearLines();
-        // ux_bill_line_no (Beruniy-010) билан: Hibernate flush'да INSERT
+        // ux_bill_line_no (PERF-010) билан: Hibernate flush'да INSERT
         // DELETE'дан олдин бажарилади - эски сатрлар аввал ўчирилиши шарт,
         // акс ҳолда янги 1-сатр эски (bill_id, line_no=1) билан тўқнашади
         repository.flush();
@@ -420,7 +420,7 @@ public class BillService {
      * GL сторно. Товар ишлатилган/кейин ҳаракат бўлса BR-BILL-010
      * (inventory BR-INV-003/010 хатоси ўралади).
      *
-     * <p>BR-BILL-012 (Beruniy-005): receipt'ларга ФАОЛ landed cost
+     * <p>BR-BILL-012 (PERF-005): receipt'ларга ФАОЛ landed cost
      * тақсимоти бўлса reverse тўсилади - Bill сторноси LANDED_COST
      * JE'сини қайтармайди, тақсимот кучда қолса юкланган қиймат ва
      * клиринг кредити GL'да «осилиб» қолар эди. Фойдаланувчи аввал
@@ -474,7 +474,7 @@ public class BillService {
      * Тўлиқ валидация (BR-BILL-001..005, 009, 011, 013) + нормализация:
      * ITEM сатр суммаси qty × нарх дан ҳисобланади, due date vendor
      * тўлов шартидан келади (берилмаса). Валюта - vendor контактидан
-     * (BR-BILL-013, Arbitr-087).
+     * (BR-BILL-013, DEC-087).
      */
     private Normalized validate(BillData data, UUID selfId) {
         if (data.vendorId() == null) {
@@ -490,7 +490,7 @@ public class BillService {
             throw new BusinessRuleException(BusinessRule.BR_BILL_011,
                     "Bill санаси киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - таъминотчи контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - таъминотчи контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(vendor, data.currency(), BusinessRule.BR_BILL_013));
@@ -501,7 +501,7 @@ public class BillService {
             throw new BusinessRuleException(BusinessRule.BR_BILL_002,
                     "Bill'да камида битта сатр бўлиши шарт");
         }
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003 - SalesReceipt
+        // Батч lookup (DEC-045 findAllById, OPT-003 - SalesReceipt
         // эталони): сатр-циклда item/омбор/счёт биттадан ўқилмасин,
         // id'лар олдиндан йиғилиб учта IN сўров билан Map'га олинади
         Map<UUID, Item> items = BatchLookup.byId(
@@ -535,7 +535,7 @@ public class BillService {
      * бошқада киритилган) ставка+режим бўйича net/tax'га ажратилади;
      * сақланадиган {@code amount} - НЕТТО, {@code taxAmount} - ҚҚС.
      * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади
-     * (Sanjar-003) - топилмаса {@link NotFoundException} (get() хулқи айнан).
+     * (OPT-003) - топилмаса {@link NotFoundException} (get() хулқи айнан).
      */
     private LineData validateLine(int no, LineData line, boolean inclusive,
                                   Map<UUID, Item> items, Map<UUID, Account> accounts,
@@ -720,7 +720,7 @@ public class BillService {
      * ёзилмайди) + AP кредити = GROSS. Ҳисобга олинадиган ҚҚС таннархга
      * кирмайди - алоҳида леги.
      *
-     * <p>Penny rounding (Beruniy-001 + Asrorxoja-002): чет валютада AP
+     * <p>Penny rounding (PERF-001 + LOG-002): чет валютада AP
      * кредити (назорат сатри) base'и gross × rate'нинг БИТТА яхлитлаши
      * ({@link MoneyAllocation#targetBase}), қолган ЛЕГЛАР (net'лар +
      * ҚҚС'лар) base'лари largest-remainder билан айнан шу target'га
@@ -734,7 +734,7 @@ public class BillService {
         boolean isHome = docCurrency.equals(home);
         BigDecimal rate = bill.getExchangeRate();
 
-        // Батч (Sanjar-003): ITEM сатрлар asset счёти учун item'лар олдиндан
+        // Батч (OPT-003): ITEM сатрлар asset счёти учун item'лар олдиндан
         // битта IN сўровда - сатр циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(bill.getLines(),

@@ -33,7 +33,7 @@
             @template.shared.csrf(csrf = csrf)
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("rcn.form.account")}
                 <%-- Валюта коди ёрлиқда - қолдиқ майдонлари қайси валютада
-                     киритилишини танлашдаёқ кўрсатади (Alisa-002) --%>
+                     киритилишини танлашдаёқ кўрсатади (UI-002) --%>
                 @template.shared.combobox(name = "accountId", msg = msg,
                         value = null,
                         placeholder = msg.lookup("bt.form.selectBank"),

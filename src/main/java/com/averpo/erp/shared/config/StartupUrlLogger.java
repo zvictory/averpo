@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Илова кўтарилиб битгач лог охирида кириш URL'ини аниқ кўрсатади
- * (Arbitr-082): «Илова тайёр: http://localhost:8080». Spring'нинг
+ * (DEC-082): «Илова тайёр: http://localhost:8080». Spring'нинг
  * стандарт «Started ... in N seconds» сатридан кейин фойдаланувчи
  * қайси манзилга киришни бир қарашда кўрмас эди.
  *

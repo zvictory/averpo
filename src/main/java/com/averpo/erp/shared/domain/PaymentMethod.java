@@ -8,11 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Тўлов усули каталоги (Arbitr-033, QBO PaymentMethod): Нақд, Банк
+ * Тўлов усули каталоги (DEC-033, QBO PaymentMethod): Нақд, Банк
  * ўтказмаси, Пластик карта... Ҳужжатда (bank_transaction) FK билан
  * туради - усул ЎЧИРИЛМАЙДИ, фақат нофаол қилинади (каталог қолипи:
  * тарихий ҳужжат изи сақланади). QBO'даги Type майдони атайлаб йўқ -
- * credit card кўлами рад этилган (Otabek-001).
+ * credit card кўлами рад этилган (QBO-001).
  */
 @Entity
 @Table(name = "payment_method")

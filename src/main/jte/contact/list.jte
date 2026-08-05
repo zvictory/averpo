@@ -21,8 +21,8 @@
     <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${isEmployee != null && isEmployee ? msg.localize("contact.employees.title") : (isCustomer ? msg.localize("contact.customers.title") : msg.localize("contact.vendors.title"))}</h1>
         @if(canEdit != null && canEdit)
-            <%-- Arbitr-024: drawer'да очилади; JS'сиз href fallback.
-                 Arbitr-133: лабел энди kind'га боғлиқ эмас - ягона
+            <%-- DEC-024: drawer'да очилади; JS'сиз href fallback.
+                 DEC-133: лабел энди kind'га боғлиқ эмас - ягона
                  «Яратиш» (contact.new.* учталаси ўлик қолди) --%>
             @template.shared.createButton(msg = msg, href = "/" + kind + "/new", hxGet = "/" + kind + "/new")
         @endif
@@ -30,7 +30,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт каталог филтр қатори (Arbitr-068): фаоллик + матн
+    <%-- Стандарт каталог филтр қатори (DEC-068): фаоллик + матн
          (эски showInactive тогли ўрнида; тур - route'нинг ўзи) --%>
     @template.shared.listFilter(action = "/" + kind, q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.active")}
@@ -49,7 +49,7 @@
             <thead>
             <tr>
                 <th>${msg.localize("contact.col.name")}</th>
-                <%-- Nargiza-043: ходимга «Компания»/«Валюта» маъносиз -
+                <%-- BA-043: ходимга «Компания»/«Валюта» маъносиз -
                      ўрнига «Ойлик» (oklad home валютада) --%>
                 @if(isEmployee != null && isEmployee)
                     <th class="text-right">${msg.localize("contact.col.salary")}</th>
@@ -67,7 +67,7 @@
             </thead>
             <tbody>
             @for(Contact contact : contacts)
-                <%-- T7 ниҳоят тўғри ҳолда (Arbitr-002): мижоз/таъминотчи
+                <%-- T7 ниҳоят тўғри ҳолда (DEC-002): мижоз/таъминотчи
                      қатори КОНТАКТ КАРТОЧКАСига (кўриш) - барча роль, VIEWER
                      ҳам; ходим қатори эса эски таҳрир drawer'ида (ходим
                      картаси 2-босқич). --%>
@@ -102,7 +102,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @if(canEdit != null && canEdit)
                             @template.shared.rowMenu(msg = msg, items = @`
                                 <a href="/${kind}/${contact.getId().toString()}/edit"

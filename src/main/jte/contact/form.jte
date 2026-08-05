@@ -23,9 +23,9 @@
 @param List<ContactAddress> addresses = java.util.List.of()
 @param List<ContactPerson> persons = java.util.List.of()
 @param List<ContactBankAccount> bankAccounts = java.util.List.of()
-<%-- BR-CON-012 (Arbitr-087): POSTED тарихли контакт валютаси қулф --%>
+<%-- BR-CON-012 (DEC-087): POSTED тарихли контакт валютаси қулф --%>
 @param Boolean currencyLocked = false
-<%-- Arbitr-100: POST redirect'дан кейин очиқ келадиган accordion бўлими --%>
+<%-- DEC-100: POST redirect'дан кейин очиқ келадиган accordion бўлими --%>
 @param String openSection = null
 
 !{String title;
@@ -37,7 +37,7 @@
       title = editId == null ? msg.lookup("contact.form.titleNewVendor") : msg.lookup("contact.form.titleEditVendor");
   }}
 
-<%-- Arbitr-024: асосий йўл - drawer (HTMX, formDrawer); бу тўлиқ саҳифа
+<%-- DEC-024: асосий йўл - drawer (HTMX, formDrawer); бу тўлиқ саҳифа
      JS'сиз fallback, тўғридан-тўғри URL ва бўлим формалари redirect'и
      учун сақланади. --%>
 @template.layout.form(title = title, closeHref = "/" + kind, lang = lang, content = @`

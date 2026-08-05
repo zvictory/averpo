@@ -24,7 +24,7 @@ import java.util.Optional;
  * орқали олади: формалардаги prefill, кейинроқ Invoice/Bill default
  * курслари ҳам шу ердан.
  *
- * <p>Курс append-only ТАРИХ (Arbitr-022): бир (валюта, сана)га кўп
+ * <p>Курс append-only ТАРИХ (DEC-022): бир (валюта, сана)га кўп
  * ёзув - ЦБ ва қўлда/ўтказма ўзгартиришлар устига ёзилмайди. Ёзиш
  * {@link #record} орқали (манба билан); {@link #upsert} - қўлда/MANUAL
  * учун юпқа wrapper. Амалдаги курс = энг охирги ёзув (сана, кейин id).
@@ -52,7 +52,7 @@ import java.util.Optional;
 public class ExchangeRateService {
 
     /**
-     * ЦБ импорти якуни (Arbitr-168): нечта чет валюта ТЕКШИРИЛДИ (ЦБ'да
+     * ЦБ импорти якуни (DEC-168): нечта чет валюта ТЕКШИРИЛДИ (ЦБ'да
      * курси топилди ва ёзилди), нечтасининг қиймати аввалги амалдагидан
      * ЎЗГАРДИ, нечтаси ЦБ рўйхатида йўқлиги учун ЎТКАЗИЛДИ. checked
      * changed'дан фарқли: дам олиш/такрор импортда ЦБ эски (жума) курсни
@@ -101,7 +101,7 @@ public class ExchangeRateService {
     /**
      * ҲАР валютанинг амалдаги (энг охирги) ёзуви - код → ёзув харитаси.
      * Currencies экрани учун: ҳар валютага алоҳида {@link #latest} N+1
-     * бўлар эди, бу битта window-function сўрови (Beruniy-023).
+     * бўлар эди, бу битта window-function сўрови (PERF-023).
      */
     @Transactional(readOnly = true)
     public Map<String, ExchangeRate> latestForEachCurrency() {
@@ -170,10 +170,10 @@ public class ExchangeRateService {
      *
      * <p>ЦБ ҳамиша «1 F = N UZS» беради. home=UZS бўлса қиймат
      * ЎЗГАРИШСИЗ ёзилади (аввалги йўл - regression йўқ). home≠UZS бўлса
-     * кросс-курс UZS орқали pivot қилинади (Arbitr-067, фойдаланувчи
+     * кросс-курс UZS орқали pivot қилинади (DEC-067, фойдаланувчи
      * талаби 2026-07-10): rate(home per F) = сўм/F ÷ сўм/home, UZS'нинг
      * ўзига 1 ÷ сўм/home - иккиси ҳам scale 12 HALF_UP (устун
-     * NUMERIC(24,12)). Кўрсатиш йўналиши бу ерга кирмайди - Arbitr-065.
+     * NUMERIC(24,12)). Кўрсатиш йўналиши бу ерга кирмайди - DEC-065.
      *
      * @throws BusinessRuleException BR-FX-001 (сана шарт), BR-FX-003
      *         (home≠UZS ва home валюта ЦБ рўйхатида йўқ - pivot
@@ -208,10 +208,10 @@ public class ExchangeRateService {
         int changed = 0;
         int skipped = 0;
         List<Currency> currencies = currencyService.active();
-        // Sanjar-011: амалдаги ёзувлар БИР сўровда олдиндан - public record()
+        // OPT-011: амалдаги ёзувлар БИР сўровда олдиндан - public record()
         // йўли ҳар валютага уч SELECT (require + home + current) берарди;
         // active() аввал юклангани учун EAGER currency боғлари сессиядан
-        // ҳал бўлади. Arbitr-168: effective (rate_date<=date) битта сўровда
+        // ҳал бўлади. DEC-168: effective (rate_date<=date) битта сўровда
         // ҳам «ўзгарди» текшируви, ҳам skip-if-same current'ини беради
         Map<String, ExchangeRate> effectiveByCode = new HashMap<>();
         for (ExchangeRate effective : repository.findLatestEffectivePerCurrencyOn(date)) {
@@ -230,7 +230,7 @@ public class ExchangeRateService {
             ExchangeRate effective = effectiveByCode.get(currency.getCode());
             // «Ўзгарди» = олдинги амалдаги курс умуман йўқ (илк импорт) ёки
             // қиймат фарқли. Дам олишда ЦБ жума курсини қайтаради - effective
-            // билан тенг, changed эмас (санагич ҳалоллиги, Arbitr-168)
+            // билан тенг, changed эмас (санагич ҳалоллиги, DEC-168)
             if (effective == null || effective.getRate().compareTo(rate) != 0) {
                 changed++;
             }
@@ -246,7 +246,7 @@ public class ExchangeRateService {
     }
 
     /**
-     * Импортнинг ички ёзиш йўли (Sanjar-011): {@link #record} билан айнан
+     * Импортнинг ички ёзиш йўли (OPT-011): {@link #record} билан айнан
      * бир хил қоида/семантика (BR-FX-001/002 гаровлари, skip-if-same,
      * append-only), лекин олдиндан юкланган {@code Currency}, home ва шу
      * санадаги амалдаги ёзув билан ишлайди - ҳар валютага учта такрор
@@ -274,7 +274,7 @@ public class ExchangeRateService {
     /**
      * Битта валютанинг home'даги импорт курси. home=UZS'да (uzsPerHome
      * null) ЦБ қиймати айнан ўзи - бўлиниш йўқ, эски хулқ сақланади;
-     * home≠UZS'да UZS орқали pivot (Arbitr-067). Топилмаса null -
+     * home≠UZS'да UZS орқали pivot (DEC-067). Топилмаса null -
      * чақирувчи skipped ҳисоблайди.
      */
     private static BigDecimal importRateFor(String code, Map<String, BigDecimal> cbuRates,

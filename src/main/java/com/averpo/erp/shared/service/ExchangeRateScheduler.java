@@ -21,7 +21,7 @@ import java.time.ZoneId;
  *
  * <p>Ҳар fetch якунида (муваффақият ЁКИ хато) {@link ExchangeRateImportedEvent}
  * эълон қилинади - audit модули уни /audit-log'га ёзади, фойдаланувчи авто
- * янгиланишни кўрсин (Arbitr-164). {@link #importDaily} АТАЙЛАБ
+ * янгиланишни кўрсин (DEC-164). {@link #importDaily} АТАЙЛАБ
  * {@code @Transactional} эмас: event importFromCbu ЎЗ транзакциясидан
  * ТАШҚАРИДА (у аллақачон қайтган ёки throw бўлган) эълон қилинади, шунда
  * хато импортнинг rollback'и аудит ёзувини ютмайди (тингловчи ҳам
@@ -48,7 +48,7 @@ public class ExchangeRateScheduler {
         try {
             result = exchangeRateService.importFromCbu(LocalDate.now(CBU_ZONE));
         } catch (Exception e) {
-            // BR-FX-003 (home ЦБ рўйхатида йўқ - pivot имконсиз, Arbitr-067)
+            // BR-FX-003 (home ЦБ рўйхатида йўқ - pivot имконсиз, DEC-067)
             // ҳам шу ерга тушади - жимгина ўтказилади (қўлда киритиш очиқ)
             log.warn("ЦБ курс импорти амалга ошмади (қўлда киритиш очиқ): {}",
                     e.getMessage());
@@ -57,7 +57,7 @@ public class ExchangeRateScheduler {
         }
         log.info("ЦБ курс импорти: {} валюта текширилди, {} ўзгарди, {} ўтказилди",
                 result.checked(), result.changed(), result.skipped());
-        // Success publish АТАЙЛАБ try/catch'дан ТАШҚАРИДА (Arbitr-168,
+        // Success publish АТАЙЛАБ try/catch'дан ТАШҚАРИДА (DEC-168,
         // Асрорхўжа-017): аудит тингловчиси REQUIRES_NEW commit хатоси
         // (pool тугаши, lock timeout) шу ерда чиқса, юқоридаги catch уни
         // ушлаб «амалга ошмади» ёзиб қўярди - импорт эса T1'да аллақачон

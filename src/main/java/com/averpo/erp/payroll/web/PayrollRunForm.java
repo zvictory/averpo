@@ -44,7 +44,7 @@ public class PayrollRunForm {
     public static PayrollRunForm empty(int rows) {
         PayrollRunForm form = new PayrollRunForm();
         // period default'ини controller компания zoneId'даги ой билан беради
-        // (JVM YearMonth.now() ой алмашиш кечасида фарқ қиларди - қоида 12/Arbitr-055)
+        // (JVM YearMonth.now() ой алмашиш кечасида фарқ қиларди - қоида 12/DEC-055)
         for (int i = 0; i < rows; i++) {
             form.lines.add(new LineForm());
         }

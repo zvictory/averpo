@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:053-01-audit-ipv4-country
--- Аудит ўқилиши полиши (Arbitr-091): IPv6 уланишларда Cloudflare берадиган
+-- Аудит ўқилиши полиши (DEC-091): IPv6 уланишларда Cloudflare берадиган
 -- синтетик Pseudo IPv4 (Cf-Pseudo-IPv4, 240.0.0.0/4 - мижознинг реал IPv4'и
 -- ЭМАС, таниб олиш/боғлаш учун) ва давлат коди (CF-IPCountry, ISO 3166-1
 -- alpha-2). Иккиси ҳам NULL рухсатли: dev муҳитда CF header'лар йўқ, фон

@@ -40,14 +40,14 @@ public class Msg implements LocalizationSupport {
     }
 
     /**
-     * ФОН оқимлари учун АНИҚ тилдаги қиймат (Arbitr-103 - Telegram
+     * ФОН оқимлари учун АНИҚ тилдаги қиймат (DEC-103 - Telegram
      * poller жавоблари).
      *
      * <p>Нега керак: {@link LocaleContextHolder} request'сиз оқимда
      * (poller thread'и, scheduler) сессия тилини БИЛМАЙДИ - у JVM'нинг
      * system locale'ига тушади, яъни хабар сервернинг {@code LANG}
      * созламасига қараб инглизча ёки русча чиқиб қоларди. Буни
-     * Arbitr-103 тести тутди (бот ўзбекча ўрнига инглизча жавоб
+     * DEC-103 тести тутди (бот ўзбекча ўрнига инглизча жавоб
      * берди). Фон хабарини юборувчи ҳар доим тилни ЎЗИ айтади.
      */
     public String getIn(java.util.Locale locale, String key, Object... args) {

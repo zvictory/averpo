@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Transfer формасидаги курс ориентацияси render тести (Arbitr-097б).
+ * Transfer формасидаги курс ориентацияси render тести (DEC-097б).
  *
  * <p>Transfer формаси client-side Alpine - актуал ориентация қиймати
  * браузерда ҳисобланади (JS orient(), Fmt.orient кўзгуси; math'нинг ўзи
@@ -54,7 +54,7 @@ class TransferRateOrientRenderTest {
                 .andReturn().getResponse().getContentAsString();
 
         // Битта чет валюта: ёрлиқ base/quote динамик, input кўринадиган БУФЕР
-        // (Arbitr-108: computed x-model'дан оддий буфер - курсор сакрамасин)
+        // (DEC-108: computed x-model'дан оддий буфер - курсор сакрамасин)
         org.assertj.core.api.Assertions.assertThat(body)
                 .as("курс ёрлиғи кучли-валюта базисига динамик")
                 .contains("x-text=\"rateBase\"")
@@ -67,7 +67,7 @@ class TransferRateOrientRenderTest {
                 .contains("x-text=\"to2Base\"").contains("x-text=\"to2Quote\"")
                 .contains("x-model=\"to2Buf\"");
 
-        // Эски computed visible боғланишлари ЙЎҚ (Arbitr-108 - getter қайта
+        // Эски computed visible боғланишлари ЙЎҚ (DEC-108 - getter қайта
         // ёзиб курсорни сакратар эди) ва каноник модел визуал input'да ЭМАС
         org.assertj.core.api.Assertions.assertThat(body)
                 .as("эски computed visible ва каноник боғланишлар визуал input'да йўқ")
@@ -80,13 +80,13 @@ class TransferRateOrientRenderTest {
     }
 
     /**
-     * Arbitr-108: учала кўринадиган курс input'и мини-калькулятор
+     * DEC-108: учала кўринадиган курс input'и мини-калькулятор
      * (class="money" - money-input.js фақат шунга уланади) ва edit-buffer
      * нақшига (x-on:input буфер→каноник, x-ref фокус текшируви учун) уланган;
-     * буфер курс формати Arbitr-135 қоидасида (fmtRate → averpoRateFmt:
+     * буфер курс формати DEC-135 қоидасида (fmtRate → averpoRateFmt:
      * &gt;= 1 → 2 хона, &lt; 1 → макс 8 хона), калькулятор натижаси учун
      * data-rate-field маркер. Курс ҳақиқати битта манбада - ориентацияли
-     * input (Arbitr-136: алоҳида fxLine матни йўқ). Курсор сакраши ва хом
+     * input (DEC-136: алоҳида fxLine матни йўқ). Курсор сакраши ва хом
      * float илдизлари шу боғланишларда ёпилади (жонли smoke тасдиқлайди).
      */
     @Test
@@ -96,7 +96,7 @@ class TransferRateOrientRenderTest {
                 .andReturn().getResponse().getContentAsString();
 
         // Мини-калькулятор: учала курс input'ида money класси (fromAmount/
-        // toAmount қаторида 5 та .money - 3 курс + 2 сумма). Arbitr-121:
+        // toAmount қаторида 5 та .money - 3 курс + 2 сумма). DEC-121:
         // money энди Penguin канон класслари билан ЁНМА-ЁН туради
         // (class="money mt-1 ...") - маркер префикс бўйича саналади.
         org.assertj.core.api.Assertions.assertThat(
@@ -118,13 +118,13 @@ class TransferRateOrientRenderTest {
                 .contains("fmtRate(")
                 .contains("window.averpoRateFmt(") // 135: ягона JS кўзгу
                 .contains("window.averpoMoneyFmt("); // авто-сумма пул форматида
-        // Arbitr-136: курс ҳақиқати фақат input'да - дубликат fxLine йўқ,
+        // DEC-136: курс ҳақиқати фақат input'да - дубликат fxLine йўқ,
         // conversionNote ҳинти туради (uz локализация матни бўйича)
         org.assertj.core.api.Assertions.assertThat(body)
                 .as("fxLine дубликат ўчган, ҳинт қолган")
                 .doesNotContain("fxLine")
                 .contains("Валюталар фарқли");
-        // Arbitr-135: учала курс input'ида data-rate-field маркер -
+        // DEC-135: учала курс input'ида data-rate-field маркер -
         // калькулятор натижаси курс кўрсатиш қоидасида ёзилади
         org.assertj.core.api.Assertions.assertThat(
                         body.split("data-rate-field", -1).length - 1)

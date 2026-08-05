@@ -9,7 +9,7 @@ import java.util.UUID;
 
 /**
  * Омборлар репозиторийси - фақат inventory модули ичида ишлатилади.
- * JpaSpecificationExecutor - каталог рўйхати филтри учун (Arbitr-068).
+ * JpaSpecificationExecutor - каталог рўйхати филтри учун (DEC-068).
  */
 public interface WarehouseRepository extends JpaRepository<Warehouse, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Warehouse> {

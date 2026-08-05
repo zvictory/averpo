@@ -4,7 +4,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Саҳифалаш линклари учун филтр query-string йиғувчи (Arbitr-068,
+ * Саҳифалаш линклари учун филтр query-string йиғувчи (DEC-068,
  * audit-log контроллеридаги filterQuery нақшининг умумлашгани):
  * бўш қийматлар ташлаб кетилади, қийматлар URL-encode қилинади,
  * натижа «&name=value&...» кўринишида - «page» параметрини

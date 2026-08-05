@@ -78,7 +78,7 @@ public class RefundReceiptService {
     /** GL/омбор ҳаволаларидаги манба модул белгиси (posting-rules). */
     public static final String SOURCE_MODULE = "REFUND_RECEIPT";
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 қолипи - рўйхат саҳифаланган туғилади). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 қолипи - рўйхат саҳифаланган туғилади). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /** Рўйхат тартиби: янгидан эскига, тенг санада яратилиш вақти. */
@@ -160,7 +160,7 @@ public class RefundReceiptService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -170,7 +170,7 @@ public class RefundReceiptService {
 
     /**
      * Рўйхат экрани - саҳифаланган (янгидан эскига), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -185,7 +185,7 @@ public class RefundReceiptService {
                 PageRequest.of(Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public Page<RefundReceipt> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -263,7 +263,7 @@ public class RefundReceiptService {
      * BANK туридан, фаол/postable ва валютаси ҳужжат валютасига тенг
      * (BR-RET-001 оиласи, каталог «Қўшимча») - пул счётига ўз
      * валютасидан бошқа валютада ёзиб бўлмайди (banking қолипи).
-     * Ҳужжат валютаси мижоз контактидан (BR-RET-008, Arbitr-087).
+     * Ҳужжат валютаси мижоз контактидан (BR-RET-008, DEC-087).
      */
     private Normalized validate(RefundReceiptData data) {
         if (data.customerId() == null) {
@@ -284,7 +284,7 @@ public class RefundReceiptService {
             throw new BusinessRuleException(BusinessRule.BR_RET_001,
                     "Камида битта сатр киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(customer, data.currency(), BusinessRule.BR_RET_008));
@@ -311,7 +311,7 @@ public class RefundReceiptService {
             }
         }
 
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003 - SalesReceipt
+        // Батч lookup (DEC-045 findAllById, OPT-003 - SalesReceipt
         // эталони): сатр-циклда item/омбор/счёт биттадан ўқилмасин; даромад
         // счёти доим item default'идан - id'лар юкланган item'лардан йиғилади
         Map<UUID, Item> items = BatchLookup.byId(
@@ -361,7 +361,7 @@ public class RefundReceiptService {
 
     /**
      * Сатр валидацияси - CreditMemo validateLine'нинг айнан кўзгуси.
-     * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади (Sanjar-003) -
+     * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади (OPT-003) -
      * топилмаса {@link NotFoundException} (аввалги get() хулқи айнан).
      */
     private NormalizedLine validateLine(int no, LineData line, boolean inclusive,
@@ -563,7 +563,7 @@ public class RefundReceiptService {
                 null, credit, receipt.getCustomerId(), null, null, null));
 
         // 3) ITEM сатрлар: омборга қайтим кирими + Dr INVENTORY / Cr COGS.
-        // Батч (Sanjar-003): asset счёти учун item'лар олдиндан битта IN
+        // Батч (OPT-003): asset счёти учун item'лар олдиндан битта IN
         // сўровда - сатр циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(receipt.getLines(),

@@ -68,7 +68,7 @@ class PayrollRunWebTest {
 
     /**
      * Форма PAYROLL EDIT эгасига очилади: сарлавҳа + prefill тугмаси render.
-     * Arbitr-092: payroll энди CHIEF_ACCOUNTANT иши - янги ACCOUNTANT'да
+     * DEC-092: payroll энди CHIEF_ACCOUNTANT иши - янги ACCOUNTANT'да
      * PAYROLL=NONE (матрица), эски тест роли онгли алмаштирилди.
      */
     @Test

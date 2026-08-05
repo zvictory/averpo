@@ -21,7 +21,7 @@ public interface PriceListCustomerRepository
 
     /**
      * Мижоз рўйхати валютаси билан БИТТА сўровда - resolvePrice йўли
-     * (Beruniy-018): аввал бириктирув, lazy рўйхат ва EAGER валюта учта
+     * (PERF-018): аввал бириктирув, lazy рўйхат ва EAGER валюта учта
      * алоҳида SELECT бўлиб келарди ва ҳар item lookup'ида такрорланарди.
      */
     @Query("""

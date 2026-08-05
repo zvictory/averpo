@@ -12,7 +12,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import java.io.IOException;
 
 /**
- * Кириш муваффақиятли бўлгач онбординг йўналтириши (Arbitr-056).
+ * Кириш муваффақиятли бўлгач онбординг йўналтириши (DEC-056).
  *
  * <p>Янги (бўш) ўрнатишда компания созламалари ҳали тўлдирилмаган -
  * ADMIN'ни бир марта {@code /settings?setup=1} га олиб борамиз (QBO

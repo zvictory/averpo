@@ -98,7 +98,7 @@ public class PriceListController {
     @GetMapping("/{id}")
     public String view(@PathVariable UUID id, Model model) {
         PriceList list = priceListService.get(id);
-        // Beruniy-018: номлар фақат рўйхатда қатнашаётган id'лар бўйича
+        // PERF-018: номлар фақат рўйхатда қатнашаётган id'лар бўйича
         // битта IN сўровда, select'лар енгил DTO - бутун item/contact
         // каталоги (EAGER боғлари билан) хотирага юкланмайди
         List<PriceListItem> tiers = priceListService.pricesOf(id);
@@ -182,7 +182,7 @@ public class PriceListController {
         return "redirect:/settings/price-lists/" + id;
     }
 
-    /** Поғонани ўчириш - {id} scope'и service'да текширилади (Arbitr-030). */
+    /** Поғонани ўчириш - {id} scope'и service'да текширилади (DEC-030). */
     @PostMapping("/{id}/prices/{priceId}/delete")
     public String removePrice(@PathVariable UUID id, @PathVariable UUID priceId,
                               RedirectAttributes redirect) {

@@ -69,7 +69,7 @@ class PayrollPaymentServiceTest {
     }
 
     /**
-     * unpaidByEmployee - JdbcClient native SQL (Arbitr-047), Hibernate
+     * unpaidByEmployee - JdbcClient native SQL (DEC-047), Hibernate
      * flush'ни триггер қилмайди; бир tx'да ёзиб-ўқийдиган тест олдин flush
      * қилиши шарт (прод'да prefill alohida request, маълумот commit'ланган).
      */
@@ -122,7 +122,7 @@ class PayrollPaymentServiceTest {
     }
 
     /**
-     * Arbitr-071 (Asrorxoja-012): DRAFT сақлангандан кейин ходим нофаол
+     * DEC-071 (LOG-012): DRAFT сақлангандан кейин ходим нофаол
      * қилинса post РАД (run post кўзгуси) - аввал тўлов post'да ходим
      * қайта текширилмасди (асимметрия), нофаол ходимга тўлов ўтарди.
      */
@@ -267,7 +267,7 @@ class PayrollPaymentServiceTest {
         PayrollPayment draft = paymentService.saveDraft(null, new PaymentData(
                 PayrollPaymentType.SALARY, DATE, bank, null,
                 List.of(new LineData(employeeA.getId(), new BigDecimal("100000")))));
-        // Ўша ходимни қайта тўлдириш (Beruniy-010: flush INSERT DELETE'дан олдин)
+        // Ўша ходимни қайта тўлдириш (PERF-010: flush INSERT DELETE'дан олдин)
         PayrollPayment updated = paymentService.saveDraft(draft.getId(), new PaymentData(
                 PayrollPaymentType.SALARY, DATE, bank, null,
                 List.of(new LineData(employeeA.getId(), new BigDecimal("250000")))));

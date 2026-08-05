@@ -16,7 +16,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Changeset 051 DB инвариантлари тести (Arbitr-076): service гаровини
+ * Changeset 051 DB инвариантлари тести (DEC-076): service гаровини
  * ЧЕТЛАБ хом SQL билан ёзилганда ҳам DB рад этишини тасдиқлайди
  * (PostingServiceTest.dbIndex_duplicateSource қолипи). Темир қоида 4
  * замини (home балансланиш) энди returns/чек оиласида ҳам DB

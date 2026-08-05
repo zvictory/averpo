@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:060-01-stock-adjustment-external-ref
--- Ташқи ҳужжат рақами (Arbitr-109, фойдаланувчи талаби): қоғоз акт/
+-- Ташқи ҳужжат рақами (DEC-109, фойдаланувчи талаби): қоғоз акт/
 -- дафтар рақамини актга боғлаш (QBO «Reference no.» қолипи). Ихтиёрий -
 -- nullable; GL/movement мантиғига тегмайди, соф аудит майдони.
 ALTER TABLE stock_adjustment ADD COLUMN external_ref VARCHAR(50);

@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:050-01-audit-user-agent
--- Аудит қамрови кенгайиши (Arbitr-062): «қайси client'дан» саволига жавоб -
+-- Аудит қамрови кенгайиши (DEC-062): «қайси client'дан» саволига жавоб -
 -- audit_event'га User-Agent устуни. NULL рухсатли: фон жараёнларда (auto-init,
 -- scheduler) web контексти йўқ. 255 чегара - хом UA қаторлари узунроқ бўлса
 -- илова ёзишдан олдин қирқади (AuditEvent конструктори).

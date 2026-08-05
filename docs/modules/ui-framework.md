@@ -42,30 +42,30 @@ Tailwind standalone CLI `src/main/jte/**/*.jte` (ва керакли .java)
 - dev режимда watch (ихтиёрий, ёки қайта run).
 Бу лойиҳанинг ЯГОНА frontend build қадами - JS build йўқ.
 
-### Build амалда (Arbitr-116)
+### Build амалда (DEC-116)
 
 - PIN: Tailwind CLI **v4.3.2** standalone (SHA256'лар build.gradle'да,
- манба - релизнинг расмий sha256sums.txt файли).
+  манба - релизнинг расмий sha256sums.txt файли).
 - `./gradlew tailwindBuild`: binary биринчи прогонда юкланиб
- `.gradle/tailwind/v4.3.2/` га кэшланади (репога кирмайди), кейин
- `src/main/css/app.css` дан минифи CSS
- `build/generated/tailwind/static/css/app.css` га йиғилади.
- `processResources` шу task'ка боғланган - `build`/`bootRun`/`test`
- да автоматик юради; натижа jar ичида `/css/app.css` бўлиб хизмат
- қилади (`src/` га generated файл ёзилмайди).
+  `.gradle/tailwind/v4.3.2/` га кэшланади (репога кирмайди), кейин
+  `src/main/css/app.css` дан минифи CSS
+  `build/generated/tailwind/static/css/app.css` га йиғилади.
+  `processResources` шу task'ка боғланган - `build`/`bootRun`/`test`
+  да автоматик юради; натижа jar ичида `/css/app.css` бўлиб хизмат
+  қилади (`src/` га generated файл ёзилмайди).
 - Dev оқими: JTE'да класс ўзгарса оддий қайта run кифоя (bootRun
- олдидан processResources қайта йиғади). Узлуксиз watch керак бўлса
- кэшдаги binary қўлда юргизилади: `.gradle/tailwind/v4.3.2/
- tailwindcss-windows-x64.exe -i src/main/css/app.css -o
- build/generated/tailwind/static/css/app.css --watch`.
+  олдидан processResources қайта йиғади). Узлуксиз watch керак бўлса
+  кэшдаги binary қўлда юргизилади: `.gradle/tailwind/v4.3.2/
+  tailwindcss-windows-x64.exe -i src/main/css/app.css -o
+  build/generated/tailwind/static/css/app.css --watch`.
 - Вендоринг PIN'лари: Alpine.js ядро + плагинлар (mask/collapse/
- focus/persist) **3.15.12** - `static/js/vendor/` (ҳар файл бошида
- версия изоҳи); Inter woff2 subset'лар (**@fontsource/inter 5.2.8**:
- latin, latin-ext, cyrillic, cyrillic-ext; 400/500/600/700) -
- `static/fonts/`; Tabler Icons **3.44.0** намуна фрагменти -
- `src/main/jte/icons/settings.jte`.
+  focus/persist) **3.15.12** - `static/js/vendor/` (ҳар файл бошида
+  версия изоҳи); Inter woff2 subset'лар (**@fontsource/inter 5.2.8**:
+  latin, latin-ext, cyrillic, cyrillic-ext; 400/500/600/700) -
+  `static/fonts/`; Tabler Icons **3.44.0** намуна фрагменти -
+  `src/main/jte/icons/settings.jte`.
 - ДИҚҚАТ: `app.css` ҳали бирорта саҳифага уланмаган (preflight глобал
- reset беради) - улаш 117 скелет картасида.
+  reset беради) - улаш 117 скелет картасида.
 
 ## Тема ва ранглар
 
@@ -73,46 +73,46 @@ Tailwind standalone CLI `src/main/jte/**/*.jte` (ва керакли .java)
 
 ```css
 @theme {
- /* Light Theme */
- --color-surface: var(--color-white);
- --color-surface-alt: var(--color-slate-100);
- --color-on-surface: var(--color-slate-700);
- --color-on-surface-strong: var(--color-black);
- --color-primary: var(--color-blue-700);
- --color-on-primary: var(--color-slate-100);
- --color-secondary: var(--color-indigo-700);
- --color-on-secondary: var(--color-slate-100);
- --color-outline: var(--color-slate-300);
- --color-outline-strong: var(--color-slate-800);
+    /* Light Theme */
+    --color-surface: var(--color-white);
+    --color-surface-alt: var(--color-slate-100);
+    --color-on-surface: var(--color-slate-700);
+    --color-on-surface-strong: var(--color-black);
+    --color-primary: var(--color-blue-700);
+    --color-on-primary: var(--color-slate-100);
+    --color-secondary: var(--color-indigo-700);
+    --color-on-secondary: var(--color-slate-100);
+    --color-outline: var(--color-slate-300);
+    --color-outline-strong: var(--color-slate-800);
 
- /* Dark Theme */
- --color-surface-dark: var(--color-slate-900);
- --color-surface-dark-alt: var(--color-slate-800);
- --color-on-surface-dark: var(--color-slate-300);
- --color-on-surface-dark-strong: var(--color-white);
- --color-primary-dark: var(--color-blue-600);
- --color-on-primary-dark: var(--color-slate-100);
- --color-secondary-dark: var(--color-indigo-600);
- --color-on-secondary-dark: var(--color-slate-100);
- --color-outline-dark: var(--color-slate-700);
- --color-outline-dark-strong: var(--color-slate-300);
+    /* Dark Theme */
+    --color-surface-dark: var(--color-slate-900);
+    --color-surface-dark-alt: var(--color-slate-800);
+    --color-on-surface-dark: var(--color-slate-300);
+    --color-on-surface-dark-strong: var(--color-white);
+    --color-primary-dark: var(--color-blue-600);
+    --color-on-primary-dark: var(--color-slate-100);
+    --color-secondary-dark: var(--color-indigo-600);
+    --color-on-secondary-dark: var(--color-slate-100);
+    --color-outline-dark: var(--color-slate-700);
+    --color-outline-dark-strong: var(--color-slate-300);
 
- /* Shared Colors */
- --color-info: var(--color-sky-600);
- --color-on-info: var(--color-white);
- --color-success: var(--color-green-600);
- --color-on-success: var(--color-white);
- --color-warning: var(--color-amber-500);
- --color-on-warning: var(--color-white);
- --color-danger: var(--color-red-600);
- --color-on-danger: var(--color-white);
+    /* Shared Colors */
+    --color-info: var(--color-sky-600);
+    --color-on-info: var(--color-white);
+    --color-success: var(--color-green-600);
+    --color-on-success: var(--color-white);
+    --color-warning: var(--color-amber-500);
+    --color-on-warning: var(--color-white);
+    --color-danger: var(--color-red-600);
+    --color-on-danger: var(--color-white);
 
- /* Border Radius */
- --radius-radius: var(--radius-md);
+    /* Border Radius */
+    --radius-radius: var(--radius-md);
 }
 ```
 
-**Уч режим (фойдаланувчи, Arbitr-117в)**: Оч / Тўқ /
+**Уч режим (фойдаланувчи, DEC-117в)**: Оч / Тўқ /
 Аралаш. Аралашда фақат sidebar оиласи (nav дарахти + мобил бар) тўқ,
 контент оч. Механизм: `<html>`'да `dark` (тўлиқ тун) ёки `sb-dark`
 (аралаш) класси; app.css `@custom-variant dark` қамрови sb-dark
@@ -131,50 +131,50 @@ Inter/Inter шрифтлар, radius `-md`, юқоридаги ранглар (�
 ## Компонентлар қоидаси
 
 - **Ҳар қандай UI бўлаги учун аввал Penguin'дан қолип олинади**:
- жадвал, input/форма, card, badge, alert/toast, modal, dropdown,
- tabs, **пагинация** - ҳаммаси. Ўзимиз янги генерик компонент
- ўйлаб топмаймиз; Penguin'да йўқ нарса чиқса - аввал фойдаланувчи
- билан келишилади.
+  жадвал, input/форма, card, badge, alert/toast, modal, dropdown,
+  tabs, **пагинация** - ҳаммаси. Ўзимиз янги генерик компонент
+  ўйлаб топмаймиз; Penguin'да йўқ нарса чиқса - аввал фойдаланувчи
+  билан келишилади.
 - Такрорланадиган қолиплар умумий **JTE фрагмент**ларга олинади
- (жадвал устма-уст ёзилмасин) - лекин фрагмент ичи соф
- Penguin/Tailwind markup.
+  (жадвал устма-уст ёзилмасин) - лекин фрагмент ичи соф
+  Penguin/Tailwind markup.
 - Inline style тақиқи ҚОЛАДИ.
 - ui-style-guide.md пилот босқичида «Penguin қолиплар каталоги»
- сифатида қайта ёзилади (қайси компонент қаердан олинган, қандай
- токенлар билан).
+  сифатида қайта ёзилади (қайси компонент қаердан олинган, қандай
+  токенлар билан).
 
 ## Пул ва сонлар (темир чегара)
 
 - Киритишда **Alpine Mask** (`$money`): минг ажратгич NBSP, каср
- НУҚТА; пул 2 хона, миқдор макс 4, курс макс 6 - Fmt қоидаларига
- айнан мос параметрланади. Мавжуд қўлбола money-input/edit-buffer
- кодининг ўрнини босади.
+  НУҚТА; пул 2 хона, миқдор макс 4, курс макс 6 - Fmt қоидаларига
+  айнан мос параметрланади. Мавжуд қўлбола money-input/edit-buffer
+  кодининг ўрнини босади.
 - Mask - ФАҚАТ киритиш қулайлиги. Сақлаш/ҳисоб аниқлиги серверда:
- `Money`, `FormParsers` (вергулни ҳам қабул қилаверади - ҳимоя
- қатлами), кўрсатиш `Fmt` орқали - engineering-rules.md 1-темир қоида
- ўзгармайди.
+  `Money`, `FormParsers` (вергулни ҳам қабул қилаверади - ҳимоя
+  қатлами), кўрсатиш `Fmt` орқали - engineering-rules.md 1-темир қоида
+  ўзгармайди.
 
 ## Sidebar (скелет босқичининг маркази)
 
 Penguin «Sidebar with collapsible menus» қолипи асосида, уч зона:
 
 1. **Тепа**: white-label бренд (112 сақланади: компания логоси ёки
- «Averpo ERP»).
+   «Averpo ERP»).
 2. **Ўрта**: навигация гуруҳлари (Сотув, Харид, Омбор, Банк,
- Ҳисобот, Payroll, Созламалар...) - Collapse билан очил-ёпил,
- жорий экран гуруҳи автоматик очиқ, фаол пункт ажралган; қайси
- гуруҳлар очиқлиги Persist'да (сервер render'ида ҳолат
- йўқолмайди). Пункт кўриниши серверда роль шартлари билан
- (hasAuthority) - мантиқ ўзгармайди.
+   Ҳисобот, Payroll, Созламалар...) - Collapse билан очил-ёпил,
+   жорий экран гуруҳи автоматик очиқ, фаол пункт ажралган; қайси
+   гуруҳлар очиқлиги Persist'да (сервер render'ида ҳолат
+   йўқолмайди). Пункт кўриниши серверда роль шартлари билан
+   (hasAuthority) - мантиқ ўзгармайди.
 3. **Паст**: **user-profile item** - аватар-инициал, исм, роль;
- меню: Профиль, Компания маълумотлари, Чиқиш (POST + CSRF).
+   меню: Профиль, Компания маълумотлари, Чиқиш (POST + CSRF).
 
 Режимлар:
 - **Desktop**: тўлиқ очиқ ҲАМДА **иконкагача йиғиладиган режим**
- (фақат иконкалар қолади, hover/фокусда tooltip ном кўрсатади;
- ҳолат Persist'да).
+  (фақат иконкалар қолади, hover/фокусда tooltip ном кўрсатади;
+  ҳолат Persist'да).
 - **Мобил (<lg)**: drawer - overlay, Focus плагини фокусни тутади,
- Escape ёпади. 375px қоидаси сақланади.
+  Escape ёпади. 375px қоидаси сақланади.
 
 Иконкалар: ҳар пунктга Tabler Icons SVG.
 
@@ -183,7 +183,7 @@ Penguin «Sidebar with collapsible menus» қолипи асосида, уч з�
 марказда modal (Penguin қидируви услуби): автофокус майдон, гуруҳли
 натижалар, ↑/↓ + Enter навигация, Esc ёпади. Орқа фон ДЕЯРЛИ ШАФФОФ
 (кучли blur ERP'га мос эмас - орқадаги экран танилиб туриши шарт).
-Фақат main.jte layout'ида. Карта: Arbitr-117в.
+Фақат main.jte layout'ида. Карта: DEC-117в.
 
 **Топбар ЙЎҚ (фойдаланувчи)**: desktop'да топбар
 бўлмайди - контент тепадан бошланади; мобилда фақат минимал бар
@@ -195,8 +195,8 @@ success/яшил вариант -), dark toggle user-profile
 
 | Босқич | Мазмун | Ҳолат |
 |---|---|---|
-| 0. Инфра | Tailwind CLI + Gradle + @theme + Alpine плагинлар + Tabler SVG'лар вендоринги | ✅ (Arbitr-116) |
-| 1. Скелет | layout + Penguin sidebar + топбар + login + dark toggle | ✅ (Arbitr-117) |
+| 0. Инфра | Tailwind CLI + Gradle + @theme + Alpine плагинлар + Tabler SVG'лар вендоринги | (DEC-116) |
+| 1. Скелет | layout + Penguin sidebar + топбар + login + dark toggle | (DEC-117) |
 | 2+. КОМПОНЕНТ свиплари | Қуйида - фойдаланувчи қарори | навбатда |
 
 **Компонент свиплари** (модул тўлқинлари ўрнига - фойдаланувчи: ўз CSS энг тез йўқолсин, ҳар свип ўлчанадиган): ҳар
@@ -204,14 +204,14 @@ success/яшил вариант -), dark toggle user-profile
 ва main.jte/form.jte style блокидан ўз бўлимини ЎЧИРАДИ. Мезон:
 54 ўз селектор → 0.
 
-1. Тугмалар (.btn оиласи) - Arbitr-118;
-2. Badge/card/alert/muted - Arbitr-119;
+1. Тугмалар (.btn оиласи) - DEC-118;
+2. Badge/card/alert/muted - DEC-119;
 3. Жадвал (zebra, actions, data-href, .table-wrap) + пагинация -
- Arbitr-120;
+   DEC-120;
 4. Форма элементлари (input/label/.cols2/каталог drawer) -
- Arbitr-121;
+   DEC-121;
 5. Қолган утилиталар (.r/.c/.num/.mb1...) → Tailwind утилиталари +
- preflight компенсация блокини ўчириш - Arbitr-122.
+   preflight компенсация блокини ўчириш - DEC-122.
 
 Ҳар свипда: ui-style-guide.md'га шу компонентнинг Penguin бўлими
 ёзилади (каталог шу тарзда қайта туғилади); такрор оғир жойда
@@ -226,6 +226,6 @@ success/яшил вариант -), dark toggle user-profile
 ## Билим манбалари
 
 - Context7 MCP уланган (.mcp.json) - Tailwind 4 / Alpine 3 нинг энг
- янги ҳужжатлари сессия ичида олинади.
+  янги ҳужжатлари сессия ичида олинади.
 - Penguin компонентлари: ишлатилганлари реф сифатида репога
- кўчирилади (вендоринг) - сайтга боғланиб қолмаймиз.
+  кўчирилади (вендоринг) - сайтга боғланиб қолмаймиз.

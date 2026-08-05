@@ -42,7 +42,7 @@ public class PriceListService {
     /**
      * Рўйхат сарлавҳаси формаси маълумотлари - create/update учун умумий.
      * {@code active} фақат update'да ишлатилади: create ҳамиша фаол
-     * яратади (каталог қолипи - tax/unit нақши, Arbitr-030 7-банд).
+     * яратади (каталог қолипи - tax/unit нақши, DEC-030 7-банд).
      */
     public record PriceListData(String name, String currencyCode,
                                 LocalDate validFrom, LocalDate validTo,
@@ -96,7 +96,7 @@ public class PriceListService {
             releaseDefault(null);
         }
         // Каталог қолипи (tax/unit нақши): янги ёзув ҲАМИША фаол -
-        // data.active() фақат update'да ишлайди (Arbitr-030 7-банд)
+        // data.active() фақат update'да ишлайди (DEC-030 7-банд)
         return saveGuarded(new PriceList(data.name().strip(), currency,
                 data.validFrom(), data.validTo(), data.defaultList()));
     }
@@ -112,7 +112,7 @@ public class PriceListService {
         list.update(data.name().strip(), currency, data.validFrom(),
                 data.validTo(), data.defaultList(), data.active());
         // saveGuarded орқали: параллел иккинчи default commit'да эмас,
-        // шу ерда ушланиб BR-PL-003 га таржима қилинади (Arbitr-030 3-банд)
+        // шу ерда ушланиб BR-PL-003 га таржима қилинади (DEC-030 3-банд)
         return saveGuarded(list);
     }
 
@@ -156,7 +156,7 @@ public class PriceListService {
      * Поғонани ўчиради (ҳужжатларга ҳавола йўқ - фақат prefill манбаси).
      * Scope текширилади: поғона айнан шу рўйхатники бўлиши шарт - акс
      * ҳолда URL'даги {id} бузиб бошқа рўйхатнинг поғонаси ўчиши мумкин
-     * эди (Arbitr-030 4-банд; BR эмас - URL бузиш, бизнес қоида эмас).
+     * эди (DEC-030 4-банд; BR эмас - URL бузиш, бизнес қоида эмас).
      */
     public void removePrice(UUID priceListId, UUID priceItemId) {
         PriceListItem price = itemRepository.findById(priceItemId)
@@ -194,7 +194,7 @@ public class PriceListService {
             existing.get().moveTo(list);
             return existing.get();
         }
-        // saveGuarded нақши (Arbitr-030 1-банд): параллел иккита assign
+        // saveGuarded нақши (DEC-030 1-банд): параллел иккита assign
         // иккиси ҳам юқоридаги текширувдан ўтиши мумкин - ҳақиқий кафолат
         // uq_price_list_customer, у 500 эмас BR-PL-006 бўлиб қайтади
         try {
@@ -216,7 +216,7 @@ public class PriceListService {
      * Мижоз бириктирувини олиб ташлайди (рўйхатсиз - default'га қайтади).
      * Scope текширилади: бириктирув айнан шу рўйхатники бўлиши шарт -
      * акс ҳолда URL'даги {id} бузиб бошқа рўйхатнинг бириктируви
-     * ўчиши мумкин эди (Arbitr-030 4-банд).
+     * ўчиши мумкин эди (DEC-030 4-банд).
      */
     public void unassignCustomer(UUID priceListId, UUID customerId) {
         PriceListCustomer assignment = customerRepository.findByCustomerId(customerId)
@@ -243,7 +243,7 @@ public class PriceListService {
                                              String currencyCode, LocalDate date) {
         BigDecimal qty = baseQty == null || baseQty.signum() <= 0
                 ? BigDecimal.ONE : baseQty;
-        // Кириш нормализацияси (Arbitr-030 5/6-бандлар): сана берилмаса
+        // Кириш нормализацияси (DEC-030 5/6-бандлар): сана берилмаса
         // компания зонасида бугун (аввал appliesTo NPE берарди); валюта
         // коди catalog'дагидек катта ҳарфда солиштирилади (defensive)
         LocalDate at = date != null ? date
@@ -265,7 +265,7 @@ public class PriceListService {
     /**
      * Номзодлар тартиби: мижоз рўйхати → default (такрорсиз).
      * Иккала номзод валютаси билан JOIN FETCH'ли сўровларда келади
-     * (Beruniy-018): аввал бириктирув + lazy рўйхат + EAGER валюта
+     * (PERF-018): аввал бириктирув + lazy рўйхат + EAGER валюта
      * алоҳида SELECT'лар эди - битта lookup 5-6 сўров қиларди,
      * энди кўпи билан 3 (номзодлар 2 + поғоналар 1).
      */
@@ -324,7 +324,7 @@ public class PriceListService {
                 .filter(list -> !list.getId().equals(exceptId))
                 .ifPresent(list -> {
                     list.clearDefault();
-                    // ux_price_list_default (Beruniy-010 дарси): Hibernate
+                    // ux_price_list_default (PERF-010 дарси): Hibernate
                     // flush'да INSERT UPDATE'дан олдин кетади - эски default
                     // аввал DB'да бўшатилиши шарт, акс ҳолда янгиси partial
                     // unique'га урилади

@@ -35,7 +35,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
     boolean existsByEmployeeContactIdAndActiveTrueAndIdNot(UUID employeeContactId, UUID id);
 
     /**
-     * Telegram улаш коди бўйича топади (Arbitr-103): poller ботдан келган
+     * Telegram улаш коди бўйича топади (DEC-103): poller ботдан келган
      * {@code /start <код>}ни шу орқали эгасига боғлайди. Код DB'да
      * partial unique (changeset 059) - иккита эга бўлиши мумкин эмас.
      * Муддат текшируви чақирувчида (BR-TG-002).
@@ -43,7 +43,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
     Optional<AppUser> findByTelegramLinkCode(String telegramLinkCode);
 
     /**
-     * Хато уриниш счётчигини АТОМАР оширади (Beruniy-014): иккита
+     * Хато уриниш счётчигини АТОМАР оширади (PERF-014): иккита
      * параллел хато login entity орқали юритилса optimistic lock
      * тўқнашуви бериб фойдаланувчига 500 чиқарарди; SQL даражасидаги
      * UPDATE row lock билан ўз-ўзидан навбатлашади ва иккала уриниш

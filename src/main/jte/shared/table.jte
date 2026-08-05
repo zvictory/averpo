@@ -8,7 +8,7 @@
      (ягона жой: reports/profitLossByClass). Статик энга min-w-[...]. --%>
 @param String tableStyle = null
 
-<%-- Penguin table канони (Arbitr-120; реф: docs/penguin-refs/table.html,
+<%-- Penguin table канони (DEC-120; реф: docs/penguin-refs/table.html,
      каталог: docs/ui-style-guide.md «1. Жадвал (Penguin)»). Ҳамма
      жадвал шу фрагмент орқали чиқади - узун utility йиғими БИР жойда
      (янги CSS класс/@apply тақиқ, шунинг учун фрагмент).

@@ -20,10 +20,10 @@
 @param Boolean isAdmin = false
 
 @template.layout.main(helpKey = "page.statement", title = msg.lookup("statement.title"), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
-    <%-- Print полиши (Arbitr-053 банд 4 / 014): жадвал min-width:720px A4
+    <%-- Print полиши (DEC-053 банд 4 / 014): жадвал min-width:720px A4
          (≈688px)га сиғмайди - чоп этишда 0 + компакт padding (қатор
          чекланмайди). Локал <style> ўрнига print: утилиталар фрагмент
-         cls/wrap'ида (Arbitr-120); padding'да ! - канон [&_td]:px-3
+         cls/wrap'ида (DEC-120); padding'да ! - канон [&_td]:px-3
          дан устун бўлиши кафолати учун. --%>
     <%-- Форма/сарлавҳа/тугма - чоп этишда яширин (print:hidden) --%>
     <div class="print:hidden">
@@ -98,7 +98,7 @@
                 <tr>
                     <td class="whitespace-nowrap">${r.date().toString()}</td>
                     <td>@if(r.sourceModule() == null)${msg.localize("statement.type.MANUAL")}@else${msg.localize("statement.type." + r.sourceModule())}@endif</td>
-                    <%-- Arbitr-063: рақам линк - ҳужжатга (тур маълум бўлса),
+                    <%-- DEC-063: рақам линк - ҳужжатга (тур маълум бўлса),
                          бўлмаса JE'га; print'да линк оддий матндек чиқаверади --%>
                     !{var docUrl = SourceDocLinks.url(r.sourceModule(), r.documentId());}
                     <td>

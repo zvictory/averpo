@@ -167,7 +167,7 @@ class InvoiceTaxTest {
 
     @Test
     void foreignCurrency_withTax_balancedAndInvariant() {
-        // Arbitr-087: чет валюта ҳужжати USD валютали контактга ёзилади
+        // DEC-087: чет валюта ҳужжати USD валютали контактга ёзилади
         Contact usdCustomer = contactService.create(ContactType.CUSTOMER, new ContactData(
                 "Солиқ USD мижози", null, null, null, null, null,
                 "USD", null, null, null, null));

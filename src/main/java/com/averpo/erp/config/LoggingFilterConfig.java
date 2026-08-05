@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * {@link RequestLogFilter}'ни Spring Security занжиридан КЕЙИН (ичкарида)
- * рўйхатга олади (docs/modules/logging.md, Arbitr-099 1-тузоқ).
+ * рўйхатга олади (docs/modules/logging.md, DEC-099 1-тузоқ).
  *
  * <p>Тартиб = {@link #FILTER_ORDER} (-99): Spring Security'нинг
  * {@code FilterChainProxy}'си servlet занжирида -100 (SecurityProperties.

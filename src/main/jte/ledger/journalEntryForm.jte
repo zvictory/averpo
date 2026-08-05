@@ -28,7 +28,7 @@
                        value="${form.getEntryDate() != null ? form.getEntryDate().toString() : ""}"
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
-            <%-- Arbitr-107 (QBO parity): ҲУЖЖАТ валютаси + курс header'да -
+            <%-- DEC-107 (QBO parity): ҲУЖЖАТ валютаси + курс header'да -
                  shared.rateBlock реюзи (097). Ориентация/prefill/home жами
                  rate-block.js'да; hidden name="exchangeRate" КАНОНИК (server
                  айнан шуни олади). Валюта home бўлса курс блоки яширин. --%>
@@ -58,7 +58,7 @@
             <tr>
                 <th class="w-10">#</th>
                 <th class="min-w-[220px]">${msg.localize("entries.col.account")}</th>
-                <%-- Arbitr-107: Дт/Кт сарлавҳасида жорий ҳужжат валютаси коди
+                <%-- DEC-107: Дт/Кт сарлавҳасида жорий ҳужжат валютаси коди
                      жонли (QBO «DEBITS (USD)»); data-curtag'ни rate-block.js
                      валюта танланганда янгилайди. --%>
                 <th>${msg.localize("entries.col.debit")} <span data-curtag class="font-normal">${form.getCurrency() != null ? form.getCurrency() : homeCurrency}</span></th>
@@ -84,18 +84,18 @@
                     hx-get="/journal-entries/line-row"
                     hx-vals='js:{index: Math.max(0, ...[...document.querySelectorAll("#lineRows tr")].map(r => 1 + Number(r.dataset.index || 0)))}'
                     hx-target="#lineRows" hx-swap="beforeend">${msg.localize("entries.form.addRow")}</button>
-            <%-- Arbitr-107 (QBO «Clear all lines»): сатрлар олиб ташланмайди,
+            <%-- DEC-107 (QBO «Clear all lines»): сатрлар олиб ташланмайди,
                  фақат қийматлари бўшатилади; жамилар дарҳол қайта ҳисобланади. --%>
             <button type="button" class="cursor-pointer whitespace-nowrap rounded-radius border border-outline-dark bg-transparent px-4 py-2 text-center text-sm font-medium tracking-wide text-on-surface-dark transition hover:border-outline-dark-strong hover:text-on-surface-dark-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark active:outline-offset-0" id="jeClearLines">${msg.localize("entries.form.clearLines")}</button>
         </div>
 
-        <%-- Arbitr-088 1-банд: Дт/Кт жамилари ва баланс фарқи жадвал скролл ўрами
+        <%-- DEC-088 1-банд: Дт/Кт жамилари ва баланс фарқи жадвал скролл ўрами
              скролл зонасидан ТАШҚАРИДА - кенг жадвалда ҳам доим кўз олдида.
-             Nargiza-005 жонли скрипти id бўйича ёзади - jeDtLive/jeCtLive/
+             BA-005 жонли скрипти id бўйича ёзади - jeDtLive/jeCtLive/
              jeDiffLive айнан сақланган, скрипт ўзгармаган. --%>
         <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
             <div class="min-w-[260px] rounded-radius border border-outline bg-surface-alt px-4 py-3 font-semibold dark:border-outline-dark dark:bg-surface-dark-alt">
-                <%-- Arbitr-107 (QBO «Total USD»): ҲУЖЖАТ валютасидаги жами -
+                <%-- DEC-107 (QBO «Total USD»): ҲУЖЖАТ валютасидаги жами -
                      фақат чет валютада кўринади (home бўлса doc==home). Дт/Кт
                      сатр суммаларининг оддий йиғиндиси (курссиз). --%>
                 <div data-je-doc-row class="mb-2 border-b border-dashed border-outline pb-2 dark:border-outline-dark" style="${form.getCurrency() != null && !form.getCurrency().equals(homeCurrency) ? null : "display:none"}">
@@ -129,7 +129,7 @@
         <p class="text-sm text-current/60">
             ${msg.localize("entries.form.homeNote", homeCurrency)}
         </p>
-        <%-- Arbitr-107 иловалар банди: янги (id'сиз) формада файл бириктириш
+        <%-- DEC-107 иловалар банди: янги (id'сиз) формада файл бириктириш
              учун аввал Draft сақлаш керак (QBO қолипи) - сақлагач КЎРИШ
              саҳифасида иловалар секцияси кўринади (journalEntryView). --%>
         <p class="text-sm text-current/60">
@@ -138,7 +138,7 @@
     </form>
 
     <script>
-        // Arbitr-107 (QBO parity): валюта/курс header'да - Дт/Кт жамилари
+        // DEC-107 (QBO parity): валюта/курс header'да - Дт/Кт жамилари
         // ҲУЖЖАТ валютасида (оддий йиғинди) ҲАМДА home валютада (× КАНОНИК
         // курс, hidden data-rate-canonical'дан) жонли кўрсатилади. Баланс
         // фарқи home'да (ledger шунда балансланади, BR-LED-006) - фақат

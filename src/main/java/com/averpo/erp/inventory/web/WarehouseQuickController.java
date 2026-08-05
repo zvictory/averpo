@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Combobox «+ Янги қўшиш» қуйма endpoint'лари - омбор
- * (spec: docs/modules/combobox.md, Arbitr-066).
+ * (spec: docs/modules/combobox.md, DEC-066).
  *
  * <p>Алоҳида controller, чунки {@link WarehouseController} /settings
  * остида (INVENTORY соҳаси) - қуйма қўшиш эса ҳужжат формаларидан

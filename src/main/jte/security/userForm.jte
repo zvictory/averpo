@@ -47,7 +47,7 @@
                    class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
         </label>
 
-        <%-- Arbitr-092: 8 роль + танланган роль тавсифи (user-roles.md
+        <%-- DEC-092: 8 роль + танланган роль тавсифи (user-roles.md
              «Экранлар»). Alpine r ҳолати танловга эргашади - тавсиф
              серверда тўлиқ render бўлиб фақат кўриниши алмашади
              (JS'сиз ҳам форма ишлайверади, тавсиф эса қулайлик). --%>
@@ -84,7 +84,7 @@
                        class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
 
-            <%-- Ходим улаш (Arbitr-101 4-бўлим): super-admin app_user'ни
+            <%-- Ходим улаш (DEC-101 4-бўлим): super-admin app_user'ни
                  ходимга (Contact type=EMPLOYEE) боғлайди. Combobox -
                  қидирувли (кўп ходимда топиш осон); quick-add ЙЎҚ - фақат
                  мавжуд ходимлардан танлаш. Фақат фаол EMPLOYEE (BR-USR-015:

@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Диск иловаларини тозалаш unit тести (Arbitr-072 / Botir-051).
+ * Диск иловаларини тозалаш unit тести (DEC-072 / TST-051).
  *
  * <p>Нега алоҳида класс: {@link FactoryResetServiceTest} @Transactional -
  * {@code afterCommit} синхронизацияси у ерда ҲЕЧ ҚАЧОН ишламайди (тест

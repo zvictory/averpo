@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * Estimate репозиторийси - фақат sales модули ичида ишлатилади.
  * Рўйхат экрани саҳифаланган: findAll(Specification, Pageable) (тартиб
- * EstimateService.LIST_SORT'дан) - Beruniy-perf1 2-босқич + Arbitr-068
+ * EstimateService.LIST_SORT'дан) - PERF-perf1 2-босқич + DEC-068
  * рўйхат филтри (аввалги findByStatus шунга алмашди).
  */
 public interface EstimateRepository extends JpaRepository<Estimate, UUID>,

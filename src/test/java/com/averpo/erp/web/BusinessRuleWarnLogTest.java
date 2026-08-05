@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * БР ради WARN даражада логланиши тести (logging.md «Тестлар» 2-банд,
- * Arbitr-099): аввал DEBUG эди - default INFO'да умуман кўринмасди;
+ * DEC-099): аввал DEBUG эди - default INFO'да умуман кўринмасди;
  * энди {@link GlobalExceptionHandler} БР радини WARN'да код+йўл билан
  * ёзади (error.log триажига тушади). ListAppender'ни handler логгерига
  * улаб текширамиз - файлга боғлиқ эмас.

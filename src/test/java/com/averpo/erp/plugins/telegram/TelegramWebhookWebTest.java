@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Telegram webhook endpoint web қатлами (Arbitr-138): POST
+ * Telegram webhook endpoint web қатлами (DEC-138): POST
  * /telegram/webhook хавфсизлик ва оқими.
  *
  * <p>Текширилади: (1) permitAll + CSRF ўчиқ - аутентификациясиз ва

@@ -33,7 +33,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт филтр қатори (Arbitr-068): давр + статус + мижоз + матн --%>
+    <%-- Стандарт филтр қатори (DEC-068): давр + статус + мижоз + матн --%>
     @template.shared.listFilter(action = "/invoice-payments", from = from, to = to, q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.status")}
             <select name="status" class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
@@ -98,7 +98,7 @@
                         @template.shared.badge(value = payment.getStatus().name(), msg = msg)
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @template.shared.rowMenu(msg = msg, items = @`
                             <a href="/invoice-payments/${payment.getId().toString()}">${msg.localize("common.view")}</a>
                         `)
@@ -108,6 +108,6 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш (Beruniy-perf1); линклар филтрни сақлайди --%>
+    <%-- Саҳифалаш (PERF-perf1); линклар филтрни сақлайди --%>
     @template.shared.pagination(page = page, baseUrl = "/invoice-payments", filterQuery = filterQuery, msg = msg)
 `)

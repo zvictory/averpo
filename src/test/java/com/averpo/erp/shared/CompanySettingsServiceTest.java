@@ -141,7 +141,7 @@ class CompanySettingsServiceTest {
 
     @Test
     void update_marksSetupDone_forOnboarding() {
-        // Arbitr-056: янги (бўш) ўрнатишда флаг false - login success handler
+        // DEC-056: янги (бўш) ўрнатишда флаг false - login success handler
         // ADMIN'ни /settings?setup=1 га йўналтиради. Биринчи муваффақиятли
         // сақлашдан кейин true бўлади ва фойдаланувчи қайта йўналтирилмайди.
         assertThat(settingsService.isSetupDone()).isFalse();
@@ -150,7 +150,7 @@ class CompanySettingsServiceTest {
     }
 
     /**
-     * Arbitr-112: компания реквизитлари round-trip (сақлаш→қайта ўқиш);
+     * DEC-112: компания реквизитлари round-trip (сақлаш→қайта ўқиш);
      * email тўлдирилса формат текширилади (BR-SET-007). Реквизитлар
      * GL'га таъсирсиз - қулф йўқ.
      */
@@ -180,7 +180,7 @@ class CompanySettingsServiceTest {
 
     @Test
     void update_inactiveHomeCurrency_autoActivated() {
-        // Arbitr-056 банд 6: онбординг формаси ТЎЛИҚ каталогни кўрсатади.
+        // DEC-056 банд 6: онбординг формаси ТЎЛИҚ каталогни кўрсатади.
         // Деактив валюта (seed'да EUR нофаол) home сифатида танланса -
         // автоматик активлашади (home валюта нофаол бўла олмайди, PostingService
         // require() қилади - BR-CUR-002). Аввалги хулқ require()'да BR-CUR-002

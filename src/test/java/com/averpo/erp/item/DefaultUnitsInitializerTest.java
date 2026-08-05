@@ -19,7 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Arbitr-147: янги ўрнатишда стандарт UOM гуруҳлари автоматик ўрнатилиши
+ * DEC-147: янги ўрнатишда стандарт UOM гуруҳлари автоматик ўрнатилиши
  * ва seed бирликлар билан ярашуви.
  *
  * <p>{@link DefaultUnitsInitializer} тест профилида {@code @Profile("!test")}
@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class DefaultUnitsInitializerTest {
 
-    /** Кутилган стандарт гуруҳлар (Arbitr-147 тўплами). */
+    /** Кутилган стандарт гуруҳлар (DEC-147 тўплами). */
     private static final List<String> STANDARD_GROUPS =
             List.of("Дона", "Оғирлик", "Узунлик", "Ҳажм", "Юза", "Вақт");
 

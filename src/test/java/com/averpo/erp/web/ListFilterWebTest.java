@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Рўйхат филтрлари web тестлари (Arbitr-068, list-filters.md «Тестлар»
+ * Рўйхат филтрлари web тестлари (DEC-068, list-filters.md «Тестлар»
  * 1-3): ҳар модулда давр+статус+матн филтри web орқали рўйхатни тўғри
  * кесиши, кирилл матн қидируви катта-кичик фарқсизлиги ва pagination
  * линклари филтрни сақлаши текширилади. Филтрсиз default регресси -
@@ -102,7 +102,7 @@ class ListFilterWebTest {
                 // аҳамиятсиз: сана бир хил, created_at транзакцияда тенг,
                 // id тасодифий UUID - тартиб башорат қилинмайди
                 .andExpect(content().string(containsString("INV-" + T + "-PG-")))
-                // Саҳифа линки филтрни сақлайди. ARBITR-105 (QBO pager) линкка
+                // Саҳифа линки филтрни сақлайди. DEC-105 (QBO pager) линкка
                 // &size= қўшган; 105б HTML-валидлик тозалови билан статик
                 // амперсанд ҳам «&amp;» бўлиб ёзилади - бутун линк изчил
                 // «?page=0&amp;size=<N>&amp;status=POSTED». Интент ЎША -
@@ -152,7 +152,7 @@ class ListFilterWebTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("BT-" + T + "-B")))
                 .andExpect(content().string(not(containsString("BT-" + T + "-A"))));
-        // ref_no бўйича, кичик ҳарфда (кирилл fold) - Ulugbek-016/068 изчиллиги
+        // ref_no бўйича, кичик ҳарфда (кирилл fold) - AUD-016/068 изчиллиги
         mockMvc.perform(get("/bank-transactions").param("q", "реф" + T.toLowerCase()))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("BT-" + T + "-A")))
@@ -226,7 +226,7 @@ class ListFilterWebTest {
     }
 
     /**
-     * Inventory: қолдиқлар - филтр + саҳифа БИРГА (ARBITR-105б D):
+     * Inventory: қолдиқлар - филтр + саҳифа БИРГА (DEC-105б D):
      * item қидируви кесимида 2-саҳифа очилади, филтр (q) саҳифа
      * линкларида сақланади. Ном тартиби zero-padded суффикс билан
      * детерминик - қайси саҳифада қайси ном чиқиши башоратли.
@@ -257,7 +257,7 @@ class ListFilterWebTest {
     }
 
     /**
-     * ARBITR-105б устун саралаш (invoice): сана бўйича asc/desc тартиб,
+     * DEC-105б устун саралаш (invoice): сана бўйича asc/desc тартиб,
      * жорий устунда стрелка, th линки филтрни сақлайди, саҳифа линклари
      * sort'ни сақлайди, нотаниш калит жим default'га тушади (whitelist).
      */
@@ -300,7 +300,7 @@ class ListFilterWebTest {
                 .andExpect(status().isOk());
     }
 
-    /** ARBITR-105б устун саралаш (bill): рақам бўйича asc/desc. */
+    /** DEC-105б устун саралаш (bill): рақам бўйича asc/desc. */
     @Test
     void bills_columnSorting() throws Exception {
         UUID vendor = insertContact("VENDOR", T + " сорт таъминотчиси", true);
@@ -324,7 +324,7 @@ class ListFilterWebTest {
         assertThat(desc).contains("↓");
     }
 
-    /** ARBITR-105б устун саралаш (JE): рақам бўйича asc/desc (107 ёпилган зона). */
+    /** DEC-105б устун саралаш (JE): рақам бўйича asc/desc (107 ёпилган зона). */
     @Test
     void journalEntries_columnSorting() throws Exception {
         insertJournalEntry("JE-" + T + "-СОРТ-А", LocalDate.of(2026, 7, 4),

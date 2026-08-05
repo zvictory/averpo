@@ -31,13 +31,13 @@ public class UserForm {
     private boolean active = true;
 
     /**
-     * Уланган ходим контакт id'си (Arbitr-101 4-бўлим): super-admin
+     * Уланган ходим контакт id'си (DEC-101 4-бўлим): super-admin
      * таҳрирда танлайди - фақат type=EMPLOYEE контактлар; бўш - уланмаган.
      */
     private String employeeContactId;
 
     /**
-     * Email (Arbitr-101 рефайнмент банд 4): super-admin таҳрирда ихтиёрий
+     * Email (DEC-101 рефайнмент банд 4): super-admin таҳрирда ихтиёрий
      * киритади - профилдаги (self-service) email билан айнан бир майдон.
      */
     private String email;

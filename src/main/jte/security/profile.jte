@@ -12,7 +12,7 @@
 @param AppUser user
 @param Gender[] genders
 @param String employeeName = null
-<%-- Telegram блоки (Arbitr-103): enabled - плагин гейти (Arbitr-113),
+<%-- Telegram блоки (DEC-103): enabled - плагин гейти (DEC-113),
      configured - бот токени созланган; link - «улаш» босилгандан кейин
      flash билан келган бир марталик код + deep link --%>
 @param Boolean telegramEnabled = false
@@ -71,7 +71,7 @@
         <span class="mt-2.5 block text-[.8rem] text-current/60">${msg.localize("profile.avatar.hint", AttachmentService.MAX_IMAGE_PX)}</span>
     </div>
 
-    <%-- Маълумотлар: кўрсатиладиган ном (Arbitr-148, required - BR-USR-004)
+    <%-- Маълумотлар: кўрсатиладиган ном (DEC-148, required - BR-USR-004)
          + ихтиёрий шахсий майдонлар. Битта форма, битта «Сақлаш» - ном
          ўзгарса sidebar/топбар кейинги render'да ўзи янгиланади --%>
     <form method="post" action="/profile"
@@ -134,7 +134,7 @@
         <button class="cursor-pointer whitespace-nowrap rounded-radius border border-primary bg-primary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-primary-dark dark:bg-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark" type="submit">${msg.localize("common.save")}</button>
     </form>
 
-    <%-- Telegram блоки (Arbitr-103) - ФАҚАТ плагин ёқиқда (Arbitr-113
+    <%-- Telegram блоки (DEC-103) - ФАҚАТ плагин ёқиқда (DEC-113
          гейти; ўчиқда route'лар ҳам 404 беради, UI яшириш кифоя эмас) --%>
     @if(telegramEnabled)
         <div class="mt-5 grid max-w-[560px] gap-[.9rem] rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark p-5">

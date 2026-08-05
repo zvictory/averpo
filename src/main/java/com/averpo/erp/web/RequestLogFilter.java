@@ -17,7 +17,7 @@ import java.util.UUID;
 
 /**
  * Ҳар сўровга MDC контексти (rid + user) + ёзувчи сўровлар изи
- * (docs/modules/logging.md, Arbitr-099). Марказий «ҳар амал кўринсин»
+ * (docs/modules/logging.md, DEC-099). Марказий «ҳар амал кўринсин»
  * нуқтаси - ҳар service'га қўлда log ёзилмайди.
  *
  * <p><b>Тартиб ТУЗОҒИ (карта 1-тузоқ):</b> бу filter Spring Security

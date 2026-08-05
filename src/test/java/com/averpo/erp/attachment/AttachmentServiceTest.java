@@ -115,7 +115,7 @@ class AttachmentServiceTest {
     }
 
     /**
-     * Arbitr-052 (041): resolve() иккинчи (defense-in-depth) traversal
+     * DEC-052 (041): resolve() иккинчи (defense-in-depth) traversal
      * ҳимояси - хавфли stored_path'ли ёзув (кўп ../) билан download ҲАМ
      * delete ҲАМ BR-ATT-002 отади (normalize + base'дан чиқмаслик текшируви).
      * Одатда storedPath сервер UUID, лекин бузилган ёзув/миграцияда база
@@ -266,7 +266,7 @@ class AttachmentServiceTest {
     }
 
     /**
-     * Arbitr-048: янги уланган турлар DOCUMENT_TABLES'да бор ва жадвал
+     * DEC-048: янги уланган турлар DOCUMENT_TABLES'да бор ва жадвал
      * номи ҲАҚИҚИЙ (EXISTS сўрови ишлайди). Мавжуд бўлмаган target →
      * BR-ATT-003 (жадвал номи типоси бўлса SQL exception берарди, BR
      * эмас). Ижобий upload→list→download йўли мавжуд ESTIMATE тести
@@ -286,7 +286,7 @@ class AttachmentServiceTest {
     }
 
     /**
-     * Arbitr-093: РЕАЛ инвентаризация актига upload муваффақияти -
+     * DEC-093: РЕАЛ инвентаризация актига upload муваффақияти -
      * STOCK_ADJUSTMENT → stock_adjustment map тўғри (target мавжуд,
      * BR-ATT-003 ОТИЛМАЙДИ). Юқоридаги параметрланган тест манфий
      * (мавжуд эмас target)ни, бу тест ижобий йўлни қоплайди.
@@ -315,7 +315,7 @@ class AttachmentServiceTest {
     }
 
     /**
-     * Arbitr-101/112: uploadImage тўғри png'ни сақлайди - content_type
+     * DEC-101/112: uploadImage тўғри png'ни сақлайди - content_type
      * ва диск номи кенгайтмаси мос. Target ESTIMATE (расм валидацияси
      * target-агностик - BR-ATT-005/006 target текширувидан ОЛДИН);
      * реал аватар/лого оқими UserService/CompanyInfoController тестларида.
@@ -330,7 +330,7 @@ class AttachmentServiceTest {
         assertThat(saved.getDocumentType()).isEqualTo(DocumentType.ESTIMATE);
     }
 
-    /** Arbitr-101/112: SVG рад (BR-ATT-005 - inline XSS ҳимояси). */
+    /** DEC-101/112: SVG рад (BR-ATT-005 - inline XSS ҳимояси). */
     @Test
     void uploadImage_svg_rejectedAtt005() {
         assertThatThrownBy(() -> attachmentService.uploadImage(DocumentType.ESTIMATE,
@@ -340,7 +340,7 @@ class AttachmentServiceTest {
                         .isEqualTo("BR-ATT-005"));
     }
 
-    /** Arbitr-101/112: png кенгайтма, лекин MIME png эмас - BR-ATT-005 (тур текшируви). */
+    /** DEC-101/112: png кенгайтма, лекин MIME png эмас - BR-ATT-005 (тур текшируви). */
     @Test
     void uploadImage_wrongContentType_rejectedAtt005() {
         assertThatThrownBy(() -> attachmentService.uploadImage(DocumentType.ESTIMATE,
@@ -350,7 +350,7 @@ class AttachmentServiceTest {
                         .isEqualTo("BR-ATT-005"));
     }
 
-    /** Arbitr-101/112: 2MB дан катта расм рад (BR-ATT-006). */
+    /** DEC-101/112: 2MB дан катта расм рад (BR-ATT-006). */
     @Test
     void uploadImage_oversize_rejectedAtt006() {
         MultipartFile huge = new MockMultipartFile("file", "big.png",
@@ -367,7 +367,7 @@ class AttachmentServiceTest {
                         .isEqualTo("BR-ATT-006"));
     }
 
-    /** Arbitr-101/112: APP_USER ва COMPANY турлари DOCUMENT_TABLES'да (тип-харита свипи). */
+    /** DEC-101/112: APP_USER ва COMPANY турлари DOCUMENT_TABLES'да (тип-харита свипи). */
     @Test
     void profileAndCompanyTypes_mappedToTables() {
         assertThat(AttachmentService.supportedDocumentTypes())

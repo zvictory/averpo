@@ -7,7 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Тест прогонида бажарилган SQL матнларини ушлаб берадиган Hibernate
- * {@link StatementInspector} (Sanjar-005 query-count тестлари учун).
+ * {@link StatementInspector} (OPT-005 query-count тестлари учун).
  *
  * <p>application-test.yml даги {@code hibernate.session_factory.
  * statement_inspector} орқали уланади - фақат тест контекстида ишлайди.

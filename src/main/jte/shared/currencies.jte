@@ -59,7 +59,7 @@
                             @if(row.home())
                                 1
                             @elseif(row.latest() != null)
-                                <%-- Arbitr-065: рўйхатда ҳам курс кучли валюта базисида --%>
+                                <%-- DEC-065: рўйхатда ҳам курс кучли валюта базисида --%>
                                 !{var rateOr = Fmt.orient(row.currency().getCode(), homeCurrency, row.latest().getRate());}
                                 ${msg.localize("rate.oriented", rateOr.base(), Fmt.rate(rateOr.value()), rateOr.quote())}
                                 <span class="text-[.8rem] text-current/50">(${row.latest().getRateDate().toString()})</span>

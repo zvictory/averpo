@@ -23,12 +23,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-037 (+ Arbitr-002 янгиланиши): каталог рўйхатларида қатор
+ * DEC-037 (+ DEC-002 янгиланиши): каталог рўйхатларида қатор
  * босилса ⋮ «Таҳрир» билан бир хил ўнг drawer'да очилиши. Смок:
  * қатор data-drawer белгисини олади (T0 handler htmx.ajax → #drawerBody),
  * edit route HX-Request'да drawer partial, HX'сиз тўлиқ саҳифа (fallback).
  *
- * <p>Arbitr-002 дан кейин drawer хулқи ХОДИМ (employee) қаторида қолди;
+ * <p>DEC-002 дан кейин drawer хулқи ХОДИМ (employee) қаторида қолди;
  * МИЖОЗ/ТАЪМИНОТЧИ қатори эса энди КОНТАКТ КАРТОЧКАСига (кўриш) боради -
  * шу файлда иккиси ҳам текширилади.
  */
@@ -69,7 +69,7 @@ class CatalogDrawerRowTest {
 
     @Test
     void employeeRow_carriesDataDrawerAndEditHref() throws Exception {
-        // Arbitr-002: мижоз/таъминотчи қатори ЭНДИ карточкага (drawer эмас,
+        // DEC-002: мижоз/таъминотчи қатори ЭНДИ карточкага (drawer эмас,
         // ContactCardControllerTest'да текширилади); ходим қатори эса эски
         // drawer таҳрир хулқини сақлайди (ходим картаси 2-босқич)
         Contact e = contactService.create(ContactType.EMPLOYEE, new ContactData(
@@ -83,7 +83,7 @@ class CatalogDrawerRowTest {
     @Test
     void customerRow_pointsToContactCard_noDrawer() throws Exception {
         Contact c = customer("Карточка мижоз");
-        // Arbitr-002: мижоз қатори карточка кўриш саҳифасига (data-drawer'сиз
+        // DEC-002: мижоз қатори карточка кўриш саҳифасига (data-drawer'сиз
         // → T0 handler тўлиқ навигация қилади, drawer эмас)
         mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk())
@@ -94,7 +94,7 @@ class CatalogDrawerRowTest {
     void editRoute_hxRequest_returnsDrawerPartial() throws Exception {
         Contact c = customer("Дроер таҳрир");
         // HX-Request → drawer partial (drawer-body чроми), тўлиқ layout эмас.
-        // Arbitr-121: drawer-head класси Penguin утилиталарга ўтган -
+        // DEC-121: drawer-head класси Penguin утилиталарга ўтган -
         // барқарор маркер drawer-body (компенсация селектори учун сақланган)
         mockMvc.perform(get("/customers/" + c.getId() + "/edit").header("HX-Request", "true"))
                 .andExpect(status().isOk())

@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Тўлов усуллари каталоги тестлари (Arbitr-033): CRUD + seed +
+ * Тўлов усуллари каталоги тестлари (DEC-033): CRUD + seed +
  * BR кодисиз валидация чегаралари (NotFound, DB unique дубли,
  * нофаол усул select'дан тушиб қолиши).
  */

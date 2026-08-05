@@ -20,10 +20,10 @@
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("accounts.title")}</h1>
         @if(canEdit != null && canEdit)
             <div style="display:flex;gap:.5rem;align-items:center;">
-                <%-- Arbitr-024: drawer'да очилади; JS'сиз href fallback --%>
+                <%-- DEC-024: drawer'да очилади; JS'сиз href fallback --%>
                 @template.shared.createButton(msg = msg, href = "/accounts/new", hxGet = "/accounts/new")
                 <%-- QBO услуби: кам ишлатиладиган амаллар уч нуқта менюда.
-                     Penguin dropdown (Arbitr-120, реф: docs/penguin-refs/
+                     Penguin dropdown (DEC-120, реф: docs/penguin-refs/
                      dropdown-menu.html); панел absolute - жадвал
                      ташқарисида overflow муаммоси йўқ. Бандлар услуби
                      панел тегидаги [&_button] variant'ларида; файл
@@ -55,7 +55,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт каталог филтр қатори (Arbitr-068): матн + фаоллик +
+    <%-- Стандарт каталог филтр қатори (DEC-068): матн + фаоллик +
          classification. Default (ҳаммаси) - тўлиқ дарахт; филтр танланса
          текис рўйхат (иерархия узилмасин деб контроллер шундай беради) --%>
     @template.shared.listFilter(action = "/accounts", q = q, msg = msg, extra = @`
@@ -91,7 +91,7 @@
             @template.shared.table(cls = "min-w-[820px]", c = @`
                 <thead>
                 <tr>
-                    <%-- Arbitr-023: Number алоҳида чап устун (QBO CoA) --%>
+                    <%-- DEC-023: Number алоҳида чап устун (QBO CoA) --%>
                     <th class="w-[5.5rem]">${msg.localize("accounts.col.code")}</th>
                     <th class="min-w-[240px]">${msg.localize("accounts.col.name")}</th>
                     <th>${msg.localize("accounts.col.detailType")}</th>
@@ -109,7 +109,7 @@
                          Edit ҳаволаси қатор ичида ишлашда қолади (T0 истисноси) --%>
                     <tr x-show="!(${row.hiddenExpr()})"
                         data-href="${row.account().isPostable() ? "/accounts/" + row.account().getId() + "/transactions" : null}">
-                        <%-- Arbitr-023: кодлар текис чап колонкада - кўз билан тез топилади --%>
+                        <%-- DEC-023: кодлар текис чап колонкада - кўз билан тез топилади --%>
                         <td class="whitespace-nowrap tabular-nums">
                             @if(row.account().getCode() != null)${row.account().getCode()}@endif
                         </td>
@@ -131,7 +131,7 @@
                             </span>
                         </td>
                         <td>${msg.localize(row.account().getDetailType().titleKey())}</td>
-                        <%-- Arbitr-149: тур устуни - AccountType номи (i18n) ва юқори
+                        <%-- DEC-149: тур устуни - AccountType номи (i18n) ва юқори
                              синфи (classification) badge'и ёнма-ён (фойдаланувчи
                              2026-07-18: иккови билла). Badge инглизча (label =
                              englishName - locale'дан қатъи назар english) ва юмшоқ
@@ -144,12 +144,12 @@
                                 @template.shared.badge(value = type.getClassification().name(), family = "classification", label = type.getClassification().englishName(), msg = msg)
                             </div>
                         </td>
-                        <%-- Arbitr-161: валютага боғланган турда (Bank/AR/AP/Credit Card)
+                        <%-- DEC-161: валютага боғланган турда (Bank/AR/AP/Credit Card)
                              валюта коди кўринади - home бўлса ҳам (QBO нақши; currency
                              null = home коди). Бошқа турда бўш (валютаси йўқ) --%>
                         <td>@if(row.account().getType().isCurrencyDenominated())${row.account().getCurrency() != null ? row.account().getCurrency().getCode() : homeCurrency}@endif</td>
                         <td class="text-right whitespace-nowrap tabular-nums text-on-surface-strong dark:text-on-surface-dark-strong">
-                            <%-- Arbitr-023: пул доим валютаси билан; қиймат home'да
+                            <%-- DEC-023: пул доим валютаси билан; қиймат home'да
                                  (GL base) - шунинг учун код ҳам home'ники. Манфий
                                  қолдиқ қизил кўринади --%>
                             @if(row.balance() != null)
@@ -164,9 +164,9 @@
                             @endif
                         </td>
                         <td class="text-right whitespace-nowrap">
-                            <%-- Arbitr-023: «Счёт амаллари» - кўринган яшил амал
+                            <%-- DEC-023: «Счёт амаллари» - кўринган яшил амал
                                  (QBO Account history); Таҳрир ⋮ да қолади ва
-                                 drawer'да очилади (Arbitr-024) --%>
+                                 drawer'да очилади (DEC-024) --%>
                             @if(row.account().isPostable())
                                 <a href="/accounts/${row.account().getId().toString()}/transactions"
                                    class="font-semibold text-success">${msg.localize("acctTx.title")}</a>

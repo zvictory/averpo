@@ -115,7 +115,7 @@ public class BankTransaction extends BaseEntity {
     private UUID contactId;
 
     /**
-     * Ихтиёрий тўлов усули (Arbitr-033, QBO PaymentMethodRef) -
+     * Ихтиёрий тўлов усули (DEC-033, QBO PaymentMethodRef) -
      * dimension паттерни: DB'да FK, JPA'да UUID (bank модули shared
      * domain'ига entity боғланмайди, қоида №6 услуби).
      */
@@ -162,7 +162,7 @@ public class BankTransaction extends BaseEntity {
     /**
      * Тўлов реквизитлари (усул + ҳужжат рақами) - конструкторни
      * узайтирмасдан алоҳида: transfer оқимида бу майдонлар йўқ,
-     * фақат createLinedTransaction тўлдиради (Arbitr-033).
+     * фақат createLinedTransaction тўлдиради (DEC-033).
      */
     public void applyPaymentDetails(UUID paymentMethodId, String refNo) {
         this.paymentMethodId = paymentMethodId;
@@ -191,7 +191,7 @@ public class BankTransaction extends BaseEntity {
      * Жами ва base жамини сатрлардан қайта ҳисоблайди. totalBase =
      * {@link com.averpo.erp.shared.domain.MoneyAllocation#targetBase} -
      * битта яхлитлаш: GL'да банк томони айнан шу target, сатр base'лари
-     * эса largest-remainder билан шунга тақсимланади (Asrorxoja-002,
+     * эса largest-remainder билан шунга тақсимланади (LOG-002,
      * Bill қолипи). TRANSFER'да сатр йўқ - жами битта сумма
      * ({@link #applyTransferTotal}), формула ўша.
      */

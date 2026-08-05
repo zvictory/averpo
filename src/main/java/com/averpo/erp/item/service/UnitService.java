@@ -54,7 +54,7 @@ public class UnitService implements DefaultUnitsInstaller {
 
     /**
      * Янги ўрнатиш/заводга қайтаришда тайёр келадиган стандарт UOM
-     * тўплами (Arbitr-147). Кичик бизнес амалиётида энг кўп учрайдиган
+     * тўплами (DEC-147). Кичик бизнес амалиётида энг кўп учрайдиган
      * ўлчовлар - фойдаланувчи буларни қўлда киритмасин (керак бўлмаса
      * ўчиради/нофаоллайди). Мавжуд seed бирликлар (дона, кг, литр, метр,
      * соат) айнан шу номлар билан тегишли гуруҳга ютилади (дубликат
@@ -223,7 +223,7 @@ public class UnitService implements DefaultUnitsInstaller {
 
     /**
      * Стандарт UOM гуруҳларини ({@link #DEFAULT_GROUPS}) ўрнатади -
-     * порт имплементацияси (Arbitr-147, {@link DefaultUnitsInstaller}).
+     * порт имплементацияси (DEC-147, {@link DefaultUnitsInstaller}).
      *
      * <p>Idempotent - гуруҳ НОМИ мавжуд бўлса бутун гуруҳ ўтказиб
      * юборилади (фойдаланувчи ўзгартиргани/ўчиргани бузилмайди, такрор
@@ -277,7 +277,7 @@ public class UnitService implements DefaultUnitsInstaller {
     /**
      * Ҳужжат сатридаги бирлик factor'ининг snapshot'и (uom.md) - олти
      * ҳужжат service'и (Invoice/Bill/CreditMemo/VendorCredit/RefundReceipt/
-     * SalesReceipt) учун ЯГОНА helper (Xorazmiy-041: 6 байтма-байт нусха
+     * SalesReceipt) учун ЯГОНА helper (QA-041: 6 байтма-байт нусха
      * бирлаштирилди - бир хиллик кейин жимгина бузилмасин). Мантиқ:
      * (1) бирлик танланмаган → null (factor 1); (2) item'да base бирлик
      * йўқ → BR-UOM-006; (3) танланган бирлик base'нинг ўзи → null;

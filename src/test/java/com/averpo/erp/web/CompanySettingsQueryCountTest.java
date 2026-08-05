@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Sanjar-005 query-count регрессияси: ҳужжат формаси GET'ида
+ * OPT-005 query-count регрессияси: ҳужжат формаси GET'ида
  * company_settings бир request ичида фақат икки марта ўқилади -
  * биттаси {@link GlobalModelAttributes} layout'и (топбар бренди),
  * биттаси controller оқимининг snapshot'и. Тузатишдан олдин 5 та эди

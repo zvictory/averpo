@@ -68,7 +68,7 @@ class BillServiceTest {
     private Contact vendor;
 
     /**
-     * USD валютали vendor (Arbitr-087): ҳужжат валютаси контактдан
+     * USD валютали vendor (DEC-087): ҳужжат валютаси контактдан
      * келади - чет валюта bill'лари шу vendor'га ёзилади.
      */
     private Contact usdVendor;
@@ -117,7 +117,7 @@ class BillServiceTest {
 
     @org.junit.jupiter.api.Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 1-босқич: size+1 ёзув - 2-саҳифада биттагина
+        // PERF-perf1 1-босқич: size+1 ёзув - 2-саҳифада биттагина
         // қолади; саналар ҳар хил - тартиб детерминистик текширилади
         Bill oldest = null;
         Bill newest = null;
@@ -282,7 +282,7 @@ class BillServiceTest {
 
     @Test
     void post_foreignMultiLine_pennyRounding_balancedAndPosts() {
-        // Beruniy-001 + Asrorxoja-002: AP кредити (назорат сатри) битта
+        // PERF-001 + LOG-002: AP кредити (назорат сатри) битта
         // яхлитлашли target = round(0.06 × 12345.6789) = 740.7407, дебет
         // сатрлар largest-remainder билан шунга тақсимланади
         BillData data = new BillData(usdVendor.getId(), null, DATE, null,
@@ -310,7 +310,7 @@ class BillServiceTest {
 
     @Test
     void post_foreignThreeLines_everyLineKeepsMoneyInvariant() {
-        // Asrorxoja-002 сценарийси: ҳар сатр exact base'и 100.12345
+        // LOG-002 сценарийси: ҳар сатр exact base'и 100.12345
         // (яхлитлаш хатоси максимал) - эски «йиғинди» ечимида AP сатри
         // BR-LED-003 дан 0.00015 га чиқиб, ҳужжат пост бўлмай қоларди
         BillData data = new BillData(usdVendor.getId(), null, DATE, null,
@@ -411,7 +411,7 @@ class BillServiceTest {
 
     @Test
     void apAging_onlyCurrentDate_rejectsHistorical() {
-        // BR-RPT-001 (Komil-004): жорий balanceDue'дан ўқилади - ўтган
+        // BR-RPT-001 (IFRS-004): жорий balanceDue'дан ўқилади - ўтган
         // санага сўралса ҳисобот ёлғон гапирар эди
         LocalDate today = LocalDate.now(settingsService.zoneId());
         assertThatThrownBy(() -> billService.apAging(today.minusDays(1)))
@@ -447,7 +447,7 @@ class BillServiceTest {
                         .isEqualTo("BR-BILL-007"));
     }
 
-    /** Arbitr-087 (BR-BILL-013): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-BILL-013): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD vendor'дан ўзи олади (ҳақиқат манбаи)

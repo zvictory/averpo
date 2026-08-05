@@ -10,8 +10,8 @@ import java.util.UUID;
 /**
  * PurchaseOrder репозиторийси - фақат purchase модули ичида.
  * Рўйхат экрани саҳифаланган: findAll(Specification, Pageable) (тартиб
- * PurchaseOrderService.LIST_SORT'дан) - Beruniy-perf1 2-босқич +
- * Arbitr-068 рўйхат филтри (аввалги findByStatus шунга алмашди).
+ * PurchaseOrderService.LIST_SORT'дан) - PERF-perf1 2-босқич +
+ * DEC-068 рўйхат филтри (аввалги findByStatus шунга алмашди).
  */
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<PurchaseOrder> {

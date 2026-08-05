@@ -66,7 +66,7 @@ class InvoicePaymentServiceTest {
     private Contact customer;
 
     /**
-     * USD валютали мижоз (Arbitr-087): invoice валютаси контактдан келади -
+     * USD валютали мижоз (DEC-087): invoice валютаси контактдан келади -
      * USD invoice ва унинг тўловлари шу мижозга ёзилади (BR-RCPT-009:
      * allocation фақат ўша мижознинг invoice'ига).
      */
@@ -79,7 +79,7 @@ class InvoicePaymentServiceTest {
     private UUID bankAccountId;
 
     /**
-     * USD банк счёти (default chart) - Arbitr-070 дан бери чет валюта
+     * USD банк счёти (default chart) - DEC-070 дан бери чет валюта
      * тўлов фақат ўз валютасидаги счётга тушади (BR-RCPT-002).
      */
     private UUID usdBankAccountId;
@@ -158,7 +158,7 @@ class InvoicePaymentServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 2-босқич: size+1 тушум (аллокациясиз аванс) -
+        // PERF-perf1 2-босқич: size+1 тушум (аллокациясиз аванс) -
         // 2-саҳифада биттагина қолади; саналар ҳар хил - тартиб детерминистик
         InvoicePayment oldest = null;
         InvoicePayment newest = null;
@@ -242,7 +242,7 @@ class InvoicePaymentServiceTest {
     }
 
     /**
-     * Arbitr-070 (Nargiza-001): BANK счёт валютаси тўлов валютасига тенг
+     * DEC-070 (BA-001): BANK счёт валютаси тўлов валютасига тенг
      * бўлиши шарт (BR-RCPT-002) - акс ҳолда UZS счётга USD Money сатр
      * ёзилиб bankBalances() валюта кесими бузиларди. Икки йўналиш ҳам
      * рад, мос валюта ўтади ва GL балансланган.
@@ -273,7 +273,7 @@ class InvoicePaymentServiceTest {
     }
 
     /**
-     * Arbitr-070 истисноси: UNDEPOSITED_FUNDS клиринг чўнтагига чет валюта
+     * DEC-070 истисноси: UNDEPOSITED_FUNDS клиринг чўнтагига чет валюта
      * тўлов ТУШАДИ (QBO'да ҳам foreign payment undeposited'га боради) -
      * валюта гарови унга қўлланмайди, акс ҳолда чет валюта тўловни
      * undeposited орқали қабул қилиш оқими бутунлай синарди.
@@ -358,7 +358,7 @@ class InvoicePaymentServiceTest {
 
     @Test
     void paidTotal_windowBoundary_andReversedExcluded() {
-        // Arbitr-036 dashboard: 30 кун ойнаси чегараси - ичидагиси
+        // DEC-036 dashboard: 30 кун ойнаси чегараси - ичидагиси
         // киради, ташқаридагиси йўқ; REVERSED тушум жамга кирмайди
         paymentService.create(new PaymentData(customer.getId(), DATE, bankAccountId,
                 null, null, new BigDecimal("60000"), null, List.of()));
@@ -396,7 +396,7 @@ class InvoicePaymentServiceTest {
         assertThat(invoice.getPaidAmount()).isEqualByComparingTo("0");
         assertThat(invoice.getBalanceDue()).isEqualByComparingTo("100");
         assertThat(invoice.getPaymentStatus()).isEqualTo(InvoicePaymentStatus.UNPAID);
-        // Beruniy-008: тўловнинг ЎЗ денормализацияси ҳам тикланади
+        // PERF-008: тўловнинг ЎЗ денормализацияси ҳам тикланади
         assertThat(payment.getAllocatedAmount()).isEqualByComparingTo("0");
         assertThat(payment.getUnallocatedAmount()).isEqualByComparingTo("100");
 
@@ -490,7 +490,7 @@ class InvoicePaymentServiceTest {
                         .isEqualTo("BR-RCPT-009"));
 
         // BR-RCPT-006: home тушум - USD invoice (тўлов ҳам USD мижоз номидан -
-        // контакт мос, валюта номос; Arbitr-087: USD invoice фақат USD контактда)
+        // контакт мос, валюта номос; DEC-087: USD invoice фақат USD контактда)
         Invoice usdInvoice = postedInvoice(usdCustomer.getId(), "USD",
                 new BigDecimal("12600"), new BigDecimal("100"));
         assertThatThrownBy(() -> paymentService.create(new PaymentData(usdCustomer.getId(),

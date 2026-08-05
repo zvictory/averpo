@@ -86,7 +86,7 @@ class TelegramServiceTest {
         jdbcClient.sql("INSERT INTO app_user (id, username, password_hash, display_name, role) "
                         + "VALUES (?, 'tgadmin', 'x', 'Телеграм админ', 'SUPER_ADMIN')")
                 .param(UUID.randomUUID()).update();
-        // Плагин гейти (Arbitr-113): Telegram оқимлари фақат ёқиқда
+        // Плагин гейти (DEC-113): Telegram оқимлари фақат ёқиқда
         pluginService.setEnabled(PluginKey.TELEGRAM, true);
     }
 
@@ -360,7 +360,7 @@ class TelegramServiceTest {
         assertThat(user.getTelegramLinkCode()).isNull();
     }
 
-    // ---- Плагин гейти (Arbitr-113) ----
+    // ---- Плагин гейти (DEC-113) ----
 
     /**
      * Плагин ўчиқ: гейт ёпиқ ва poller УМУМАН тармоққа чиқмайди
@@ -394,7 +394,7 @@ class TelegramServiceTest {
         assertThat(telegramService.pollTarget().orElseThrow().offset()).isEqualTo(42);
     }
 
-    // ---- Webhook (Arbitr-138) ----
+    // ---- Webhook (DEC-138) ----
 
     /** AVERPO_PUBLIC_URL'ни тест ичида ўрнатади (@Value майдони). */
     private void setPublicUrl(String url) {

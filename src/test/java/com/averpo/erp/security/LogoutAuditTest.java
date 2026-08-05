@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * LOGOUT аудит ёзуви + user_agent сақланиши (Arbitr-062): logout success
+ * LOGOUT аудит ёзуви + user_agent сақланиши (DEC-062): logout success
  * handler ҳодисани username/IP/User-Agent билан ёзади ва одатий
  * {@code /login?logout} манзилига йўналтиради (аввалги logoutSuccessUrl
  * хулқи ўзгармаган). MockMvc web оқими - LoginAuditIpTest нақши

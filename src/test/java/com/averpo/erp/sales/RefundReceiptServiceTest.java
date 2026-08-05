@@ -68,7 +68,7 @@ class RefundReceiptServiceTest {
 
     private Contact customer;
 
-    /** USD валютали мижоз (Arbitr-087): чет валюта ҳужжатлари шунга ёзилади. */
+    /** USD валютали мижоз (DEC-087): чет валюта ҳужжатлари шунга ёзилади. */
     private Contact usdCustomer;
 
     private Item invItem;
@@ -135,7 +135,7 @@ class RefundReceiptServiceTest {
     }
 
     /**
-     * Arbitr-069 (Komil-019) - карта сценарийси айнан: 10 доналик
+     * DEC-069 (IFRS-019) - карта сценарийси айнан: 10 доналик
      * invoice'га CM 6 дона POSTED бўлгач RR 6 дона РАД (кумулятив
      * 12 > 10 - ҳовуз CM+RR умумий), лимитга айнан тенг 4 дона ЎТАДИ,
      * кейин яна 1 дона ҳам сиғмайди. Аввал ҳар ҳужжат алоҳида
@@ -220,7 +220,7 @@ class RefundReceiptServiceTest {
     @Test
     void create_bankCurrencyMismatch_rejected() {
         // UZS (home) банк счётига USD ҳужжат ёзиб бўлмайди (контакт USD -
-        // Arbitr-087 валюта гарови ўтади, банк мослиги ушлайди)
+        // DEC-087 валюта гарови ўтади, банк мослиги ушлайди)
         assertThatThrownBy(() -> refundReceiptService.create(new RefundReceiptData(
                 usdCustomer.getId(), null, bankAccountId, DATE, "USD",
                 new BigDecimal("12600"), false, null,
@@ -231,7 +231,7 @@ class RefundReceiptServiceTest {
                         .isEqualTo("BR-RET-001"));
     }
 
-    /** Arbitr-087 (BR-RET-008): RR валютаси контактга мос бўлмаса рад. */
+    /** DEC-087 (BR-RET-008): RR валютаси контактга мос бўлмаса рад. */
     @Test
     void currency_mismatchRejected() {
         // home контактга USD ҳужжат - валюта контактдан келиши шарт
@@ -246,7 +246,7 @@ class RefundReceiptServiceTest {
     }
 
     /**
-     * Arbitr-052 (007): create сатр валидация чегаралари - миқдор мусбат,
+     * DEC-052 (007): create сатр валидация чегаралари - миқдор мусбат,
      * нарх манфий эмас (BR-RET-001), INVENTORY сатрида омбор шарт
      * (BR-RET-002). Аввал фақат тўлов счёти валютаси текширилар эди.
      */

@@ -10,7 +10,7 @@
 @param String dataUnit = null
 @param String dataAcctype = null
 
-<%-- Combobox варианти (Arbitr-123, shared/combobox.jte options ичида).
+<%-- Combobox варианти (DEC-123, shared/combobox.jte options ичида).
      Класслар Penguin combobox li канонидан (реф: docs/penguin-refs/
      combobox.html; px-4→px-2 зич мослашув, галочка Alpine binding
      ўрнига group-aria-selected - минг li'да арзон). data-* параметрлар

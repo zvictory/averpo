@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-127: чиройли error саҳифалар web тестлари.
+ * DEC-127: чиройли error саҳифалар web тестлари.
  * <ol>
  *   <li>404/403 полиш render: катта статус код + иккита амал тугмаси,
  *       аноним ҳам кўра олади (096 хулқи - /error permitAll);</li>

@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * /settings форма парси хулқи (Xorazmiy-021/Arbitr-045 банд 5): ставка ва
+ * /settings форма парси хулқи (QA-021/DEC-045 банд 5): ставка ва
  * давр ёпилиш санаси String сифатида олиниб FormParsers орқали парсланади -
  * бузуқ форматда фойдаланувчи хом 400 эмас, ўша экранда кириллча BR хабарини
  * («[BR-SET-005]» / «[BR-SET-006]») кўради; тўғри форматда сақланиб redirect
@@ -106,7 +106,7 @@ class SettingsWebTest {
     }
 
     /**
-     * Arbitr-104: settings тагидаги build версия қатори рендери. Бу
+     * DEC-104: settings тагидаги build версия қатори рендери. Бу
      * репо'да {@code ./gradlew test} bootBuildInfo'ни (classes task
      * орқали) ишга туширади - build-info.properties main classpath'да
      * бўлади, шунинг учун {@code BuildProperties} bean МАВЖУД ва «Averpo

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Рўйхат филтрлари учун умумий Specification бўлаклари (Arbitr-068,
+ * Рўйхат филтрлари учун умумий Specification бўлаклари (DEC-068,
  * docs/modules/list-filters.md). Ҳар модул ЎЗ repo'сида
  * JpaSpecificationExecutor'ни очиб, ЎЗ service'ида шу бўлаклардан
  * спецификация йиғади - класс модуллараро чегарани бузмайди (қоида 6:

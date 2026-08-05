@@ -17,7 +17,7 @@ import java.util.List;
  * P&amp;L by Class ҳисоботи экрани (class-tracking.md). Алоҳида
  * controller - умумий ҳисобот контроллерларига тегилмайди (параллел
  * иш); давр default'и оддий P&amp;L билан бир хил (йил боши - бугун,
- * компания минтақасида; тескари давр default'га қайтади, Alisa-005).
+ * компания минтақасида; тескари давр default'га қайтади, UI-005).
  */
 @Controller
 @RequiredArgsConstructor
@@ -41,7 +41,7 @@ public class ProfitAndLossByClassController {
         LocalDate f = from != null ? from : today.withDayOfYear(1);
         LocalDate t = to != null ? to : today;
         if (f.isAfter(t)) {
-            // Бузуқ URL - default даврга қайтамиз (Alisa-005 нақши)
+            // Бузуқ URL - default даврга қайтамиз (UI-005 нақши)
             f = today.withDayOfYear(1);
             t = today;
         }

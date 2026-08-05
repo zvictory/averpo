@@ -63,7 +63,7 @@ public class AppUser extends BaseEntity {
     @Column(name = "locked_until")
     private java.time.Instant lockedUntil;
 
-    // --- Профиль шахсий майдонлари (Arbitr-101, changeset 057) - ҳаммаси
+    // --- Профиль шахсий майдонлари (DEC-101, changeset 057) - ҳаммаси
     // ихтиёрий/nullable, login'га таъсир қилмайди, фақат маълумот ---
 
     /**
@@ -110,7 +110,7 @@ public class AppUser extends BaseEntity {
     private java.util.UUID employeeContactId;
 
     /**
-     * Паролни алмаштириш зарурлиги (Arbitr-101 рефайнмент, changeset 066):
+     * Паролни алмаштириш зарурлиги (DEC-101 рефайнмент, changeset 066):
      * admin парол қўйганда (create) ёки reset қилганда true бўлади -
      * фойдаланувчи биринчи login'дан кейин ЎЗ паролини алмаштиргач false.
      * Оддий версия: banner + login redirect (мажбурий эмас); парол-муддати
@@ -119,7 +119,7 @@ public class AppUser extends BaseEntity {
     @Column(name = "must_change_password", nullable = false)
     private boolean mustChangePassword = false;
 
-    // --- Telegram улаш (Arbitr-103, changeset 059) - user-profile.md
+    // --- Telegram улаш (DEC-103, changeset 059) - user-profile.md
     // 3-бўлим. Мақсад ҳозирча ФАҚАТ улаш; билдиришнома турлари 2-босқич ---
 
     /**
@@ -169,7 +169,7 @@ public class AppUser extends BaseEntity {
     }
 
     /**
-     * ФАҚАТ кўрсатиладиган номни ўзгартиради (Arbitr-148, /profile
+     * ФАҚАТ кўрсатиладиган номни ўзгартиради (DEC-148, /profile
      * self-service): фойдаланувчи ўз исмини таҳрирлайди - роль/active
      * ТЕГИЛМАЙДИ (admin {@link #update} нақшидан фарқли, у учаласини
      * бирга ёзади). Бўш эмаслик гарови (BR-USR-004) UserService'да.
@@ -184,7 +184,7 @@ public class AppUser extends BaseEntity {
     }
 
     /**
-     * Паролни алмаштириш зарур деб белгилайди (Arbitr-101 рефайнмент):
+     * Паролни алмаштириш зарур деб белгилайди (DEC-101 рефайнмент):
      * admin create ёки reset'да - фойдаланувчи биринчи кириши олдида
      * banner кўради. {@code true} - қайта паролгача.
      */
@@ -201,7 +201,7 @@ public class AppUser extends BaseEntity {
     }
 
     /**
-     * Email'ни алоҳида ўрнатади (Arbitr-101 рефайнмент): super-admin
+     * Email'ни алоҳида ўрнатади (DEC-101 рефайнмент): super-admin
      * /users/edit'да ходим/фойдаланувчи email'ини киритади (self-service
      * {@link #updateProfileInfo}'дан фарқли - у gender/birthdate/phone'ни
      * ҳам ўзгартиради, admin эса фақат email). Формат текшируви UserService'да.
@@ -211,7 +211,7 @@ public class AppUser extends BaseEntity {
     }
 
     /**
-     * Ўз профилининг шахсий майдонларини янгилайди (Arbitr-101) -
+     * Ўз профилининг шахсий майдонларини янгилайди (DEC-101) -
      * фойдаланувчи /profile'да ўзгартиради. Формат/қоида текшируви
      * (email BR-USR-013, birthdate BR-USR-014) UserService'да; entity
      * фақат ҳолат юритади. Барчаси битта жойда - update() нақши.

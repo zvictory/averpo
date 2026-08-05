@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Контейнер даражасидаги хато диспетчери (Arbitr-096): Spring Boot
+ * Контейнер даражасидаги хато диспетчери (DEC-096): Spring Boot
  * default Whitelabel саҳифасини АЛМАШТИРАДИ. {@code sendError(...)} ёки
  * фильтр қатламидаги хатолар (масалан соҳа-даража 403 -
  * {@link com.averpo.erp.security.config.CsrfAwareAccessDeniedHandler}
@@ -44,7 +44,7 @@ public class ErrorController implements org.springframework.boot.webmvc.error.Er
      * Status атрибути {@code jakarta.servlet.error.status_code}'дан
      * олинади (диспетчер қўяди); йўқ бўлса 500 деб қаралади.
      *
-     * <p>Arbitr-127: HTMX partial сўровида (масалан drawer hx-get'и
+     * <p>DEC-127: HTMX partial сўровида (масалан drawer hx-get'и
      * фильтр даражасида 403 еса) тўлиқ саҳифа ўрнига ихчам alert
      * фрагмент қайтади - механика GlobalExceptionHandler.errorView
      * изоҳида (X-Averpo-Error + HX-Reswap жуфти, статус ўзгармайди).
@@ -66,7 +66,7 @@ public class ErrorController implements org.springframework.boot.webmvc.error.Er
         model.addAttribute("msg", msg);
         model.addAttribute("lang", modelAttributes.lang());
         model.addAttribute("csrf", csrfToken);
-        // canEdit энди соҳага-сезгир (Arbitr-092) - request узатилади
+        // canEdit энди соҳага-сезгир (DEC-092) - request узатилади
         model.addAttribute("canEdit", modelAttributes.canEdit(auth, request));
         model.addAttribute("isAdmin", modelAttributes.isAdmin(auth));
         model.addAttribute("status", status);
@@ -92,7 +92,7 @@ public class ErrorController implements org.springframework.boot.webmvc.error.Er
     /**
      * Статусга мос сарлавҳа (404/403/400/405 - махсус; қолгани умумий).
      * Static ва package-private: GlobalExceptionHandler ҳам шу
-     * мосликдан фойдаланади - икки жойда ёзилмайди (Arbitr-127).
+     * мосликдан фойдаланади - икки жойда ёзилмайди (DEC-127).
      */
     static String titleFor(int status, Msg msg) {
         return switch (status) {

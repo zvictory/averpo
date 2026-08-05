@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Сир шифрлаш примитиви тести (Arbitr-103, арбитр қарори 2026-07-17:
+ * Сир шифрлаш примитиви тести (DEC-103, арбитр қарори 2026-07-17:
  * токен базада очиқ ётмайди). Spring контексти йўқ - соф unit тест
  * (CbuRestClientTest нақши): муҳит {@link StandardEnvironment} билан
  * қўлда қурилади, шунда «production'да калит йўқ» ҳолатини ҳам

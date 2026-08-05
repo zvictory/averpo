@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * ARBITR-107: JE формаси QBO parity - валюта/курс ҲУЖЖАТ даражасида.
+ * DEC-107: JE формаси QBO parity - валюта/курс ҲУЖЖАТ даражасида.
  *
  * <p>QBO'да JournalEntry битта валютада (CurrencyRef header'да,
  * entities.md:97-98). Бу тест форма энди валюта/курсни header'да

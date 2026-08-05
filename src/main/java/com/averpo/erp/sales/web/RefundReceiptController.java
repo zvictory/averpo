@@ -84,7 +84,7 @@ public class RefundReceiptController {
 
     /**
      * Рўйхат - саҳифаланган, янгидан эскига; тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
+     * (DEC-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -103,7 +103,7 @@ public class RefundReceiptController {
                 from, to, parseStatusSafe(status), customerId, q), page, size);
         model.addAttribute("receipts", receiptPage.getContent());
         model.addAttribute("page", receiptPage);
-        // Beruniy-032: бутун каталог эмас - саҳифадаги мижоз id'лари бўйича IN
+        // PERF-032: бутун каталог эмас - саҳифадаги мижоз id'лари бўйича IN
         Map<UUID, String> customerNames = new HashMap<>();
         for (var ref : contactService.refsByIds(receiptPage.getContent().stream()
                 .map(r -> r.getCustomerId()).distinct().toList())) {
@@ -141,10 +141,10 @@ public class RefundReceiptController {
         RefundReceiptForm form = invoiceId == null
                 ? RefundReceiptForm.empty(3)
                 : RefundReceiptForm.from(invoiceService.getWithLines(invoiceId));
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setRrDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "sales/refundReceiptForm";
@@ -162,7 +162,7 @@ public class RefundReceiptController {
     @PostMapping
     public String create(@ModelAttribute RefundReceiptForm form,
                          Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             RefundReceipt receipt = refundReceiptService.create(toData(form, settings));
@@ -184,7 +184,7 @@ public class RefundReceiptController {
         model.addAttribute("customerName",
                 contactService.get(receipt.getCustomerId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 receipt.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -192,7 +192,7 @@ public class RefundReceiptController {
         model.addAttribute("taxRateNames", taxRateNames());
         model.addAttribute("bankAccountName",
                 accountService.get(receipt.getBankAccountId()).getName());
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today",
@@ -219,7 +219,7 @@ public class RefundReceiptController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'и (CreditMemo формаси қолипи + пул счётлари) - settings
-     * оқим бошидаги snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * оқим бошидаги snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, RefundReceiptForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);

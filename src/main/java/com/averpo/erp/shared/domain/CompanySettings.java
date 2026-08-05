@@ -111,7 +111,7 @@ public class CompanySettings extends BaseEntity {
     @Column(name = "social_tax_rate", nullable = false, precision = 9, scale = 4)
     private java.math.BigDecimal socialTaxRate = new java.math.BigDecimal("12");
 
-    // --- Компания реквизит майдонлари (Arbitr-112, changeset 054) - соф
+    // --- Компания реквизит майдонлари (DEC-112, changeset 054) - соф
     // кўрсатиш маълумоти, GL/posting'га таъсирсиз; чоп сарлавҳаси ва
     // document-print (29) ЎҚИЙДИ. Ҳаммаси nullable/ихтиёрий ---
 
@@ -169,7 +169,7 @@ public class CompanySettings extends BaseEntity {
     private java.util.UUID logoAttachmentId;
 
     /**
-     * Бренд логоси (Arbitr-112 рефайнмент, changeset 066) - топбар
+     * Бренд логоси (DEC-112 рефайнмент, changeset 066) - топбар
      * WHITE-LABEL учун. {@link #logoAttachmentId}'дан ФАРҚли: у ҳужжат/чоп
      * сарлавҳаси учун, бу UI топбар учун (login'дан кейин ҳар роль кўради,
      * «AVERPO» ўрнига компания бренди). Soft ref (ON DELETE SET NULL -
@@ -179,7 +179,7 @@ public class CompanySettings extends BaseEntity {
     private java.util.UUID brandLogoAttachmentId;
 
     /**
-     * Онбординг флаги (Arbitr-056): компания созламалари камида бир марта
+     * Онбординг флаги (DEC-056): компания созламалари камида бир марта
      * сақланганми. Явный флаг керак - name'ни default 'Компания'га
      * солиштириш мўрт (ном ростдан шундай бўлиши мумкин, шунда фойдаланувчи
      * ҳар киришда setup'га тушарди). Биринчи муваффақиятли update()'да true
@@ -210,7 +210,7 @@ public class CompanySettings extends BaseEntity {
     public void rename(String name) { this.name = name; }
 
     /**
-     * Компания реквизитларини янгилайди (Arbitr-112) - валидация
+     * Компания реквизитларини янгилайди (DEC-112) - валидация
      * (email BR-SET-007) CompanySettingsService'да. Реквизитлар соф
      * кўрсатиш маълумоти: GL/posting'га таъсир қилмайди, шунинг учун
      * қулф йўқ (исталган пайт таҳрирланади). `name` шу метод ичида
@@ -244,7 +244,7 @@ public class CompanySettings extends BaseEntity {
 
     /**
      * Бренд логоси (топбар) attachment id'сини ўрнатади (null - олиб
-     * ташлаш; Arbitr-112 рефайнмент). {@link #setLogoAttachmentId} нақши -
+     * ташлаш; DEC-112 рефайнмент). {@link #setLogoAttachmentId} нақши -
      * эски файлни ўчириш чақирувчида (CompanyInfoService), бу метод фақат FK.
      */
     public void setBrandLogoAttachmentId(java.util.UUID brandLogoAttachmentId) {
@@ -273,7 +273,7 @@ public class CompanySettings extends BaseEntity {
     }
 
     /**
-     * Онбординг тугаганини белгилайди (Arbitr-056) - CompanySettingsService
+     * Онбординг тугаганини белгилайди (DEC-056) - CompanySettingsService
      * муваффақиятли сақлагач чақиради. Ортга қайтариш йўқ: бир марта
      * созлангач фойдаланувчи қайта setup'га йўналтирилмайди.
      */

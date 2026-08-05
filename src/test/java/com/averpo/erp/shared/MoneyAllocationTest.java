@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * MoneyAllocation (largest-remainder, Asrorxoja-002) кафолатлари:
+ * MoneyAllocation (largest-remainder, LOG-002) кафолатлари:
  * йиғинди айнан target, ҳар сатр четлашиши ≤ 0.0001 (BR-LED-003
  * tolerance) - Spring'сиз соф unit тест.
  */
@@ -39,7 +39,7 @@ class MoneyAllocationTest {
 
     @Test
     void pathologicalHalfUnitFractions_sumEqualsTarget_eachLineWithinTolerance() {
-        // Asrorxoja-002 сценарийси: ҳар сатр exact'и 100.12345 - каср
+        // LOG-002 сценарийси: ҳар сатр exact'и 100.12345 - каср
         // айнан ярим бирлик, эски «йиғинди» ечими 0.00015 га четлашарди
         assertAllocation(List.of(new BigDecimal("0.01"), new BigDecimal("0.01"),
                 new BigDecimal("0.01")), "10012.345");

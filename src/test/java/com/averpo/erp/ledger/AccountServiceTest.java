@@ -103,7 +103,7 @@ class AccountServiceTest {
 
     @Test
     void create_secondActiveSystemDetailType_rejected() {
-        // Arbitr-060 жонли ҳодиса ҳимояси: тизим турида (AP) фаол счёт
+        // DEC-060 жонли ҳодиса ҳимояси: тизим турида (AP) фаол счёт
         // турганда иккинчисини яратиш BR-COA-010 билан рад, хабарда мавжуд ном
         accountService.create("060 AP биринчи", AccountDetailType.ACCOUNTS_PAYABLE,
                 null, null, null, true, null);
@@ -163,7 +163,7 @@ class AccountServiceTest {
 
     @Test
     void create_secondPayrollExpenses_allowed() {
-        // PAYROLL_EXPENSES истисно (Arbitr-060): payroll НОМ бўйича топади,
+        // PAYROLL_EXPENSES истисно (DEC-060): payroll НОМ бўйича топади,
         // атайлаб иккита счёт бўлади - ҳимоя бу турни чекламайди
         accountService.create("060 иш ҳақи харажати", AccountDetailType.PAYROLL_EXPENSES,
                 null, null, null, true, null);
@@ -175,7 +175,7 @@ class AccountServiceTest {
 
     @Test
     void requireSystemAccount_messages_distinguishMissingAndMultiple() {
-        // Arbitr-060: BR-LED-021 хабари иккига ажралди. 0 та - «топилмади»
+        // DEC-060: BR-LED-021 хабари иккига ажралди. 0 та - «топилмади»
         // (chart юкланмаган янги база ҳолати)
         assertThatThrownBy(() ->
                 accountService.requireSystemAccount(AccountDetailType.INVENTORY_CLEARING))
@@ -207,7 +207,7 @@ class AccountServiceTest {
 
     @Test
     void create_currencyOnNonCurrencyType_rejected() {
-        // Arbitr-161: даромад/харажат каби турга валюта = BR-COA-011 рад
+        // DEC-161: даромад/харажат каби турга валюта = BR-COA-011 рад
         // (валюта фақат банк/дебитор/кредитор/кредит карта турида)
         String currency = currencyService.active().get(0).getCode();
         assertThatThrownBy(() -> accountService.create("161 даромад валютали",
@@ -220,7 +220,7 @@ class AccountServiceTest {
 
     @Test
     void create_currencyOnCurrencyType_allowed() {
-        // Arbitr-161: валютага боғланган турга (банк) валюта берилади
+        // DEC-161: валютага боғланган турга (банк) валюта берилади
         String currency = currencyService.active().get(0).getCode();
         Account bank = accountService.create("161 валютали банк",
                 AccountDetailType.CHECKING, null, null, null, true, currency);
@@ -230,7 +230,7 @@ class AccountServiceTest {
 
     @Test
     void update_currencyOnNonCurrencyType_rejected() {
-        // Arbitr-161: таҳрирда ҳам чекланади - мавжуд харажат счётига валюта
+        // DEC-161: таҳрирда ҳам чекланади - мавжуд харажат счётига валюта
         // беришга уриниш BR-COA-011
         String currency = currencyService.active().get(0).getCode();
         Account expense = accountService.create("161 харажат",

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Янги (fresh) ўрнатишда стандарт UOM гуруҳларини автоматик ўрнатади
- * (Arbitr-147) - {@link com.averpo.erp.ledger.config.DefaultChartInitializer}
+ * (DEC-147) - {@link com.averpo.erp.ledger.config.DefaultChartInitializer}
  * кўзгуси. Фойдаланувчи дона/оғирлик/узунлик... каби кундалик ўлчов
  * гуруҳларини қўлда киритиб ўтирмасин - default chart каби тайёр келади.
  * {@code DefaultChartInstaller} каби порт орқали ({@link UnitService}

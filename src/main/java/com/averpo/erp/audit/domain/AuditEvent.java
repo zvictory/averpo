@@ -58,7 +58,7 @@ public class AuditEvent extends BaseEntity {
     private String details;
 
     /**
-     * Клиент манзили (IPv6 сиғади) - Arbitr-062 дан бери web контекстдаги
+     * Клиент манзили (IPv6 сиғади) - DEC-062 дан бери web контекстдаги
      * ҲАММА ҳодисага ёзилади (RequestContextHolder орқали), фон
      * жараёнларда null.
      */
@@ -72,7 +72,7 @@ public class AuditEvent extends BaseEntity {
      * ўзаро боғлашга хизмат қилади; IPv4 уланишда header келмайди - null.
      * ИШОНЧ ЧЕГАРАСИ: header фақат Cloudflare орқали келганда ишончли
      * (origin тўғридан очиқ бўлса сохталаш мумкин) - шу боис аудит-only
-     * майдон, хавфсизлик/бизнес қарорларга асос бўлмайди (Arbitr-091).
+     * майдон, хавфсизлик/бизнес қарорларга асос бўлмайди (DEC-091).
      */
     @Column(name = "ip_v4", length = 15)
     private String ipV4;
@@ -86,7 +86,7 @@ public class AuditEvent extends BaseEntity {
     private String country;
 
     /**
-     * Клиент User-Agent қатори (қайси браузер/дастурдан - Arbitr-062,
+     * Клиент User-Agent қатори (қайси браузер/дастурдан - DEC-062,
      * changeset 050). Web контекстда ёзилади, фонда null; 255 га қирқилади
      * - хом UA қаторлари узунроқ бўлиши мумкин, аудит ёзуви асосий амални
      * йиқитмасин.

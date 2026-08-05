@@ -32,7 +32,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * Arbitr-164/168: ЦБ авто-курс импорти /audit-log'га ёзилиши - муваффақият
+ * DEC-164/168: ЦБ авто-курс импорти /audit-log'га ёзилиши - муваффақият
  * ҲАМ, хато ҲАМ, ва санагич ҳалоллиги («ўзгарди» фақат курс ўзгарса).
  * Scheduler {@link ExchangeRateService}'ни сохта билан юргизади (тармоқ/
  * DB'сиз): success йўли {@link ImportResult} қайтаради, хато йўли throw
@@ -83,7 +83,7 @@ class ExchangeRateSchedulerAuditTest {
     }
 
     /**
-     * Arbitr-168: курс ўзгармаган импорт (дам олиш) - «янгиланди» ЭМАС,
+     * DEC-168: курс ўзгармаган импорт (дам олиш) - «янгиланди» ЭМАС,
      * «курслар ўзгармади» деб ҳалол ёзилади (фойдаланувчи адашмасин).
      */
     @Test
@@ -121,7 +121,7 @@ class ExchangeRateSchedulerAuditTest {
     }
 
     /**
-     * Arbitr-168 (Асрорхўжа-017) B шохи: success publish try/catch'дан
+     * DEC-168 (Асрорхўжа-017) B шохи: success publish try/catch'дан
      * ТАШҚАРИДА - аудит commit хатоси муваффақ импортни FAILURE қилмайди.
      * Local mock publisher: success event publish'да throw қилдирилади;
      * importFromCbu аллақачон қайтган (импорт T1'да commit) - хато

@@ -50,7 +50,7 @@ import java.util.UUID;
 public class AttachmentController {
 
     /**
-     * Браузерда inline кўрсатишга ХАВФСИЗ MIME турлари (ARBITR-094).
+     * Браузерда inline кўрсатишга ХАВФСИЗ MIME турлари (DEC-094).
      * Фақат статик расм + PDF: булар {@code <img>}/{@code <iframe>} ичида
      * скрипт бажармайди. image/svg+xml ва text/html АТАЙЛАБ ЙЎҚ - SVG/HTML
      * ичида {@code <script>} бўлиши мумкин, inline кўрсатилса XSS (юклаган
@@ -110,7 +110,7 @@ public class AttachmentController {
     }
 
     /**
-     * Жойида кўриш (ARBITR-094): расм/PDF'ни браузер ойнасида очиш учун
+     * Жойида кўриш (DEC-094): расм/PDF'ни браузер ойнасида очиш учун
      * Content-Disposition <b>inline</b> билан беради. Даунлоаддан фарқи
      * иккита: (1) inline (браузер сақламай кўрсатади), (2) ФАҚАТ
      * {@link #INLINE_VIEWABLE_TYPES} рўйхатидаги хавфсиз турлар - бошқаси
@@ -169,7 +169,7 @@ public class AttachmentController {
     }
 
     /**
-     * Сақланган MIME inline кўрсатишга хавфсизми (ARBITR-094). Параметрлар
+     * Сақланган MIME inline кўрсатишга хавфсизми (DEC-094). Параметрлар
      * ({@code ;charset=...}) ташланади, регистр нормаллаштирилади - шунда
      * «image/png» ва «image/png; charset=utf-8» бир хил кўрилади. null/бўш
      * → хавфсиз эмас (даунлоадга ўтади).

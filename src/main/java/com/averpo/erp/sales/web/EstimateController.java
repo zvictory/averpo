@@ -74,8 +74,8 @@ public class EstimateController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - саҳифаланган (Beruniy-perf1); тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
+     * Рўйхат - саҳифаланган (PERF-perf1); тўлиқ филтр қатори
+     * (DEC-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -98,7 +98,7 @@ public class EstimateController {
                 .add("from", from).add("to", to).add("status", status)
                 .add("customerId", customerId).add("q", q).toString());
         // Мижоз номлари - фақат саҳифа қаторларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("customerNames", contactService.namesByIds(
                 estimatePage.getContent().stream().map(e -> e.getCustomerId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -116,7 +116,7 @@ public class EstimateController {
     @GetMapping("/new")
     public String createForm(Model model) {
         EstimateForm form = EstimateForm.empty(3);
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setEstimateDate(LocalDate.now(settingsService.zoneId()));
         fillFormModel(model, form);
         return "sales/estimateForm";
@@ -172,7 +172,7 @@ public class EstimateController {
         model.addAttribute("customerName",
                 contactService.get(estimate.getCustomerId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 estimate.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));

@@ -58,7 +58,7 @@ public class PayrollRunController {
 
     /**
      * Рўйхат - саҳифаланган, period DESC; тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/матн, саҳифа линклари филтрни сақлайди
+     * (DEC-068): давр/статус/матн, саҳифа линклари филтрни сақлайди
      * (audit қолипи). Контакт филтри йўқ - ходим run САТРИДА.
      */
     @GetMapping
@@ -79,7 +79,7 @@ public class PayrollRunController {
         model.addAttribute("page", runPage);
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         // Жами gross/net - JPQL агрегатдан (рўйхат сатри lazy lines'ни айланмасин,
-        // open-in-view=false → LazyInitializationException, Arbitr-054)
+        // open-in-view=false → LazyInitializationException, DEC-054)
         model.addAttribute("totals", payrollRunService.totalsByRun(
                 runs.stream().map(PayrollRun::getId).toList()));
         model.addAttribute("from", from == null ? "" : from.toString());
@@ -108,11 +108,11 @@ public class PayrollRunController {
     @GetMapping("/new")
     public String createForm(Model model) {
         PayrollRunForm form = PayrollRunForm.empty(3);
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId ×2/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
         // Default сана + period ойи - компания zoneId'даги «бугун» (JVM tz эмас,
-        // қоида 12; сана Arbitr-044, period ойи Arbitr-055)
+        // қоида 12; сана DEC-044, period ойи DEC-055)
         form.setRunDate(LocalDate.now(settings.zoneId()));
         form.setPeriod(java.time.YearMonth.now(settings.zoneId()).toString());
         fillFormModel(model, form, settings);
@@ -163,7 +163,7 @@ public class PayrollRunController {
     public String save(@ModelAttribute PayrollRunForm form,
                        @RequestParam String action,
                        Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             UUID id = FormParsers.uuid(form.getId(), BusinessRule.NOT_FOUND, "Ҳисоблаш");
@@ -185,7 +185,7 @@ public class PayrollRunController {
     @GetMapping("/{id}")
     public String view(@PathVariable UUID id, Model model) {
         PayrollRun run = payrollRunService.getWithLines(id);
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("run", run);
         model.addAttribute("employeeNames", employeeNames(run));
@@ -227,7 +227,7 @@ public class PayrollRunController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'и: сатр ставкалари жонли ҳисоб учун JS'га узатилади -
-     * settings оқим бошидаги snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * settings оқим бошидаги snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, PayrollRunForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);
@@ -281,7 +281,7 @@ public class PayrollRunController {
 
     /**
      * Run сатрларидаги ходим номлари - фақат керакли id'лар byIds/IN
-     * сўровда (ARBITR-105б, Ulugbek-003 §1); нофаоллар ҳам келади -
+     * сўровда (DEC-105б, AUD-003 §1); нофаоллар ҳам келади -
      * тарихий ҳисоблашда ном кўриниши шарт.
      */
     private Map<UUID, String> employeeNames(PayrollRun run) {

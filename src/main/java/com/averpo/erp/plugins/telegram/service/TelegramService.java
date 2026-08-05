@@ -29,7 +29,7 @@ import java.util.Optional;
 
 /**
  * Telegram улаш хизмати (docs/modules/user-profile.md 3-бўлим,
- * Arbitr-103) - бот созлаш (токен), профил улаш оқими ва poller учун
+ * DEC-103) - бот созлаш (токен), профил улаш оқими ва poller учун
  * ишлов мантиғи. Мақсад ҳозирча ФАҚАТ улаш; билдиришнома турлари
  * 2-босқич (auth-security-policy lockout огоҳлантириши шу канални
  * ишлатади).
@@ -104,7 +104,7 @@ public class TelegramService {
     /** Токенни шифрлаш/очиш (калит env'да, базада эмас). */
     private final SecretCrypto crypto;
 
-    /** Плагин гейти (Arbitr-113) - ўчиқда Telegram умуман ишламайди. */
+    /** Плагин гейти (DEC-113) - ўчиқда Telegram умуман ишламайди. */
     private final PluginService pluginService;
 
     /** app_user'даги улаш коди/чат майдонлари эгаси (тескари боғлиқлик ЙЎҚ). */
@@ -140,7 +140,7 @@ public class TelegramService {
     public record PollTarget(String token, long offset) { }
 
     /**
-     * Плагин ёқиқми (Arbitr-113 гейти) - Telegram'нинг ҳар бир route/
+     * Плагин ёқиқми (DEC-113 гейти) - Telegram'нинг ҳар бир route/
      * блоки/poller'и шу саволдан бошланади. Ўчиқда UI яширинади ВА
      * backend 404 беради (092 сабоғи: UI яшириш кифоя эмас).
      */
@@ -330,7 +330,7 @@ public class TelegramService {
         repository.findFirstBy().ifPresent(settings -> settings.advanceOffset(nextOffset));
     }
 
-    // ---- Webhook (Arbitr-138, prod режим) ----
+    // ---- Webhook (DEC-138, prod режим) ----
 
     /**
      * Webhook сирини таққослайди (endpoint ҳимояси) - Telegram ҳар

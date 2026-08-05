@@ -46,10 +46,10 @@ public class TrialBalanceController {
     public String show(@RequestParam(required = false) LocalDate from,
                        @RequestParam(required = false) LocalDate to,
                        Model model) {
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId ×2 + homeCurrency) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Давр default'и - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-055)
+        // Давр default'и - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-055)
         LocalDate f = from != null ? from
                 : LocalDate.now(settings.zoneId()).withDayOfYear(1);
         LocalDate t = to != null ? to : LocalDate.now(settings.zoneId());

@@ -162,7 +162,7 @@ class ProfitAndLossServiceTest {
 
     @Test
     void build_taxExpense_separateSection_netPreserved() {
-        // Komil-010 (IAS 1.82(b)): TAXES_PAID операцион харажатлардан ажралади
+        // IFRS-010 (IAS 1.82(b)): TAXES_PAID операцион харажатлардан ажралади
         Account tax = ensure("Даромад солиғи харажати", AccountDetailType.TAXES_PAID);
         post(DATE, bank, sales, "1000000");   // даромад
         post(DATE, rent, bank, "200000");     // операцион харажат

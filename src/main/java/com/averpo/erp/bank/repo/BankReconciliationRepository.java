@@ -17,7 +17,7 @@ public interface BankReconciliationRepository
 
     /**
      * Opening учун: ЯНГИ кўчирма санасидан ОЛДИНГИ энг сўнгги COMPLETED
-     * reconciliation (Zumrad-003: глобал энг сўнггисини олиш тартибсиз
+     * reconciliation (CHK-003: глобал энг сўнггисини олиш тартибсиз
      * бошлашда кейинги даврнинг closing'ини «ўғирлаб» келар эди).
      */
     Optional<BankReconciliation> findTopByAccountIdAndStatusAndStatementDateLessThanOrderByStatementDateDesc(

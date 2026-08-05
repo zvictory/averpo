@@ -5,7 +5,7 @@ import org.springframework.data.domain.Sort;
 import java.util.Map;
 
 /**
- * Рўйхат устун саралаши ечувчиси (ARBITR-105б, Nargiza-007 P1b):
+ * Рўйхат устун саралаши ечувчиси (DEC-105б, BA-007 P1b):
  * {@code ?sort=<калит>&dir=asc|desc} параметрларини хавфсиз
  * {@link Sort}'га айлантиради.
  *

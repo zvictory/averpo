@@ -69,7 +69,7 @@ class VendorCreditServiceTest {
 
     private Contact vendor;
 
-    /** USD валютали vendor (Arbitr-087): чет валюта ҳужжатлари шунга ёзилади. */
+    /** USD валютали vendor (DEC-087): чет валюта ҳужжатлари шунга ёзилади. */
     private Contact usdVendor;
 
     private Item invItem;
@@ -127,7 +127,7 @@ class VendorCreditServiceTest {
     }
 
     /**
-     * Валютага мос контакт (Arbitr-087: ҳужжат валютаси контактдан) -
+     * Валютага мос контакт (DEC-087: ҳужжат валютаси контактдан) -
      * USD ҳужжатлар usdVendor'га, home ҳужжатлар vendor'га ёзилади.
      */
     private UUID vendorFor(String currency) {
@@ -152,7 +152,7 @@ class VendorCreditServiceTest {
     }
 
     /**
-     * Arbitr-069 - bill томони кўзгуси: BR-RET-006 кумулятив (аввалги
+     * DEC-069 - bill томони кўзгуси: BR-RET-006 кумулятив (аввалги
      * POSTED VC'лар йиғиндиси ҳисобга киради - акс ҳолда 10 доналик
      * харидга иккита VC билан омбордан 20 дона чиқарилар эди) + асл
      * bill POSTED бўлиши шарт (REVERSED рад).
@@ -282,7 +282,7 @@ class VendorCreditServiceTest {
         assertThat(baseOf(equalEntry, "OTHER_COSTS_OF_SERVICE_COS", false)).isEqualByComparingTo("0");
     }
 
-    /** Arbitr-087 (BR-RET-008): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-RET-008): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD vendor'дан ўзи олади
@@ -329,7 +329,7 @@ class VendorCreditServiceTest {
                 .satisfies(e -> assertThat(((BusinessRuleException) e).getCode())
                         .isEqualTo("BR-RET-003"));
 
-        // Кросс-валюта қўллаш рад. Arbitr-087 дан кейин бир контактда икки
+        // Кросс-валюта қўллаш рад. DEC-087 дан кейин бир контактда икки
         // валютали ҳужжат структуравий имконсиз (валюта контактдан) - USD
         // кредит энди usdVendor'ники, бошқа vendor'нинг UZS bill'ига
         // қўллашда контакт гарови (BR-RET-005) аввал ушлайди; BR-RET-004
@@ -366,7 +366,7 @@ class VendorCreditServiceTest {
     }
 
     /**
-     * Arbitr-052 (007): create сатр валидация чегаралари - EXPENSE сумма
+     * DEC-052 (007): create сатр валидация чегаралари - EXPENSE сумма
      * мусбат (BR-RET-001), INVENTORY сатрида омбор шарт (BR-RET-002).
      * Аввал VC create чегаралари умуман қопланмаган эди.
      */
@@ -390,7 +390,7 @@ class VendorCreditServiceTest {
     }
 
     /**
-     * Arbitr-050 (CM кўзгуси): эски (ёпилган) даврдаги таъминотчи кредитини
+     * DEC-050 (CM кўзгуси): эски (ёпилган) даврдаги таъминотчи кредитини
      * янги очиқ даврдаги bill'га қўллаш ЎТАДИ - realized FX JE ҳужжат санаси
      * эмас, ҚЎЛЛАШ (бугун) санасида. Акс ҳолда vcDate (ёпиқ давр) BR-LED-020
      * блокига урарди.

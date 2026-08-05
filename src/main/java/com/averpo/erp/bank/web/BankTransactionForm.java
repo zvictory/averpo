@@ -46,7 +46,7 @@ public class BankTransactionForm {
     /** Ихтиёрий контрагент (QBO payee). */
     private String contactId;
 
-    /** Ихтиёрий тўлов усули id'си (Arbitr-033, чиқим формаси). */
+    /** Ихтиёрий тўлов усули id'си (DEC-033, чиқим формаси). */
     private String paymentMethodId;
 
     /** Ихтиёрий ҳужжат/чек рақами (QBO Ref no, чиқим формаси). */

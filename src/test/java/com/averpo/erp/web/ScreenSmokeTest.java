@@ -21,11 +21,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Асосий экранлар smoke пакети (Arbitr-003): ҳар GET route 200 қайтариши
+ * Асосий экранлар smoke пакети (DEC-003): ҳар GET route 200 қайтариши
  * ва JTE шаблон саҳифага хос белги матни билан render бўлиши текширилади.
  * Мақсад - controller/шаблон қатламидаги хато қўлда очишни кутмасдан
  * тестда кўринсин; чуқур мазмун тестлари service қатламида қолади.
- * SUPER_ADMIN роли билан кирилади (Arbitr-092) - /settings саҳифалари
+ * SUPER_ADMIN роли билан кирилади (DEC-092) - /settings саҳифалари
  * ҳам фақат шу ролга очиқ.
  */
 @SpringBootTest
@@ -39,7 +39,7 @@ class ScreenSmokeTest {
     /** Тескари давр тестида кутилган default саналар компания зонасида. */
     @Autowired com.averpo.erp.shared.service.CompanySettingsService settingsService;
 
-    /** Arbitr-149: CoA badge тести default chart'ни қўлда юклайди - тест
+    /** DEC-149: CoA badge тести default chart'ни қўлда юклайди - тест
         профилида DefaultChartInitializer (@Profile("!test")) ишламайди. */
     @Autowired com.averpo.erp.ledger.service.AccountService accountService;
 
@@ -107,7 +107,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void expenseType_onGenericForm_redirectsToDedicatedScreen() throws Exception {
-        // Arbitr-033: эски ?type=EXPENSE линклари синмасин - янги экранга
+        // DEC-033: эски ?type=EXPENSE линклари синмасин - янги экранга
         mockMvc.perform(get("/bank-transactions/new").param("type", "EXPENSE"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -125,7 +125,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void settingsSetup_showsWelcomeBanner() throws Exception {
-        // Arbitr-056: setup=1 да онбординг banner кўринади (уз кирилл маркер;
+        // DEC-056: setup=1 да онбординг banner кўринади (уз кирилл маркер;
         // ADMIN роли синф даражасида - /settings ADMIN'га очиқ)
         mockMvc.perform(get("/settings").param("setup", "1"))
                 .andExpect(status().isOk())
@@ -166,7 +166,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void profitLoss_reversedPeriod_fallsBackToDefault() throws Exception {
-        // Alisa-005: from > to (бузилган URL) - default даврга қайтади
+        // UI-005: from > to (бузилган URL) - default даврга қайтади
         // (йил боши - бугун, компания timezone'ида), бўш P&L эмас
         java.time.LocalDate today = java.time.LocalDate.now(settingsService.zoneId());
         String yearStart = today.withDayOfYear(1).toString();
@@ -182,7 +182,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void dashboard_quickActions_visibleForAdmin_hiddenForViewer() throws Exception {
-        // Arbitr-036: Тез амаллар картаси фақат ёза оладиганларга -
+        // DEC-036: Тез амаллар картаси фақат ёза оладиганларга -
         // ADMIN (синф даражасидаги user) кўради
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -199,9 +199,9 @@ class ScreenSmokeTest {
     void createMegaPanel_visibleForAdmin_hiddenForViewer() throws Exception {
         // «+ Янги» QBO «+ New» услубидаги 3 устунли панел фақат ёза
         // оладиганларга - ADMIN кўради. Маркер `id="createPanel"`
-        // (Arbitr-117: панел Penguin/Tailwind'га кўчди - CSS класс маркер
+        // (DEC-117: панел Penguin/Tailwind'га кўчди - CSS класс маркер
         // ўрнига барқарор id) - панел perms.anyEdit() ичида render бўлади.
-        // Arbitr-139: QBO қолипида Payroll (иш ҳақи) ва Счёт яратиш панелда
+        // DEC-139: QBO қолипида Payroll (иш ҳақи) ва Счёт яратиш панелда
         // КЎРСАТИЛМАЙДИ (навигацияда қолади); Товар Бошқа устунида. Маркер -
         // панелга хос ҳужжат яратиш href'лари (навигация /accounts, дашборд
         // бошқа href'лар ишлатади; бу /new ёрлиқлар фақат шу панелда)
@@ -213,7 +213,7 @@ class ScreenSmokeTest {
                 .andExpect(content().string(
                         org.hamcrest.Matchers.not(containsString("href=\"/accounts/new\""))))
                 .andExpect(content().string(containsString("href=\"/items/new\"")));
-        // VIEWER'га панел умуман render бўлмайди (Arbitr-092: филтр энди
+        // VIEWER'га панел умуман render бўлмайди (DEC-092: филтр энди
         // perms.anyEdit() - view-only ролда бирорта EDIT йўқ)
         mockMvc.perform(get("/").with(
                         TestRoles.as("kuzatuvchi", UserRole.VIEWER_AUDITOR)))
@@ -224,7 +224,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void createPanel_columnsGatedByArea() throws Exception {
-        // Arbitr-139: QBO 3 устун (Мижозлар/Таъминотчилар/Бошқа) ҳар бири
+        // DEC-139: QBO 3 устун (Мижозлар/Таъминотчилар/Бошқа) ҳар бири
         // ЎЗ соҳаси EDIT'и бўйича гейтланади - тор роль фақат ўз устунини
         // кўради. Маркер панелга хос /new href'лари.
         // SALES_MANAGER (фақат SALES=E): фақат Мижозлар устуни
@@ -256,7 +256,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void accountsList_typeColumn_showsClassificationBadge() throws Exception {
-        // Arbitr-149: CoA Type устуни AccountType номи + classification badge.
+        // DEC-149: CoA Type устуни AccountType номи + classification badge.
         // Тест базаси бўш старт (DefaultChartInitializer @Profile("!test")) -
         // default chart'ни қўлда юклаймиз (51 счёт, ичида ASSET «Касса» бор).
         // ASSET → soft primary tone `bg-primary/15 text-primary` (badge'га хос;
@@ -271,7 +271,7 @@ class ScreenSmokeTest {
 
     @org.junit.jupiter.api.Test
     void missingStaticResource_returns404_not500() throws Exception {
-        // Arbitr-021: браузер сўраган йўқ favicon/эски bookmark
+        // DEC-021: браузер сўраган йўқ favicon/эски bookmark
         // NoResourceFoundException беради - махсус handler'сиз catch-all
         // уни 500 + ERROR log қиларди; энди 404 бўлиши шарт
         mockMvc.perform(get("/definitely-missing-xyz.ico"))

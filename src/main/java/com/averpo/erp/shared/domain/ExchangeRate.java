@@ -19,7 +19,7 @@ import java.time.LocalDate;
  * Валюта курси ёзуви (docs/modules/multi-currency.md, transfer.md Т3).
  * 1 currency = rate home.
  *
- * <p>Append-only ТАРИХ (Arbitr-022): бир (валюта, сана)га бир нечта
+ * <p>Append-only ТАРИХ (DEC-022): бир (валюта, сана)га бир нечта
  * ёзув бўлиши мумкин - ЦБ импорти ва қўлда/ўтказма ўзгартиришлар устига
  * ёзилмайди, ҳар бири сақланади. Амалдаги курс = энг охирги ёзув
  * ({@code rate_date <= сана}, кейин UUIDv7 {@code id} тартиби - бир

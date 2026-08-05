@@ -33,7 +33,7 @@
 @param Boolean isAdmin = false
 
 @template.layout.main(helpKey = "page.dashboard", title = msg.lookup("dash.title"), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
-    <%-- Arbitr-119: карталар Penguin card utility йиғимида (реф:
+    <%-- DEC-119: карталар Penguin card utility йиғимида (реф:
          docs/penguin-refs/card.html; каталог: ui-style-guide.md) -
          локал style блоки керак эмас. График SVG'лари ва inline
          ранглар (яшил/қизил кўрсаткичлар) эски ҳолида - ўз тўлқинида. --%>
@@ -76,7 +76,7 @@
             <a class="mt-2 inline-block text-primary underline dark:text-primary-dark" href="/reports/profit-loss">${msg.localize("dash.details")} →</a>
         </div>
 
-        <%-- Cash flow картаси (Arbitr-036): BANK счётлар пул оқими --%>
+        <%-- Cash flow картаси (DEC-036): BANK счётлар пул оқими --%>
         <div class="rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
             <h2 class="mb-3 text-sm font-semibold">${msg.localize("dash.cashFlow")}</h2>
             <div class="mb-3 flex flex-wrap gap-6">
@@ -121,7 +121,7 @@
                 <div class="grid gap-2">
                     @for(BankBalance bank : banks)
                         <div class="flex items-baseline justify-between gap-3">
-                            <%-- Drill-down (Arbitr-036): счёт регистрига --%>
+                            <%-- Drill-down (DEC-036): счёт регистрига --%>
                             <a href="/accounts/${bank.accountId().toString()}/transactions" class="text-current underline">${bank.name()}</a>
                             <span class="text-right">
                                 <b>${Fmt.money(bank.amount())} ${bank.currencyCode() == null ? homeCurrency : bank.currencyCode()}</b>
@@ -146,7 +146,7 @@
             <div class="text-[1.35rem] font-bold">${Fmt.money(arOpen)} ${homeCurrency}</div>
             <div class="mt-2 text-sm text-current/60">${msg.localize("dash.overdue")}</div>
             <div class="text-[1.35rem] font-bold ${arOverdue.signum() > 0 ? "text-danger" : "text-success"}">${Fmt.money(arOverdue)} ${homeCurrency}</div>
-            <%-- QBO Invoices widget паритети (Arbitr-036) --%>
+            <%-- QBO Invoices widget паритети (DEC-036) --%>
             <div class="mt-2 text-sm text-current/60">${msg.localize("dash.paidLast30")}</div>
             <div class="text-success text-[1.35rem] font-bold">${Fmt.money(arPaidLast30)} ${homeCurrency}</div>
             <a class="mt-3 inline-block text-primary underline dark:text-primary-dark" href="/reports/ar-aging">${msg.localize("dash.viewAging")} →</a>
@@ -185,7 +185,7 @@
             <a class="mt-3 inline-block text-primary underline dark:text-primary-dark" href="/reports/profit-loss">${msg.localize("dash.details")} →</a>
         </div>
 
-        <%-- Inventory картаси (Arbitr-036, multi-warehouse кенгайтмамиз):
+        <%-- Inventory картаси (DEC-036, multi-warehouse кенгайтмамиз):
              қиймат мавжуд valuation ҳисобидан - янги ҳисоб ёзилмаган --%>
         <div class="rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
             <h2 class="mb-3 text-sm font-semibold">${msg.localize("dash.inventoryCard")}</h2>
@@ -196,8 +196,8 @@
             <a class="mt-3 inline-block text-primary underline dark:text-primary-dark" href="/inventory/balances">${msg.localize("dash.details")} →</a>
         </div>
 
-        <%-- Тез амаллар картаси (Arbitr-036) - фақат ёза оладиганларга.
-             Arbitr-092: ҳар тугма ўз соҳаси EDIT'и бўйича (Perms статик
+        <%-- Тез амаллар картаси (DEC-036) - фақат ёза оладиганларга.
+             DEC-092: ҳар тугма ўз соҳаси EDIT'и бўйича (Perms статик
              ҳелпери, main.jte нақши) - роль 403 оладиган тугмани кўрмасин --%>
         !{var perms = Perms.current();}
         @if(perms.anyEdit())

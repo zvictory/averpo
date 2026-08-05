@@ -87,7 +87,7 @@ public class PayrollPaymentController {
     @GetMapping("/new")
     public String createForm(Model model) {
         PayrollPaymentForm form = PayrollPaymentForm.empty(2);
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setPaymentDate(LocalDate.now(settingsService.zoneId()));
         fillFormModel(model, form);
         return "payroll/payrollPaymentForm";
@@ -226,7 +226,7 @@ public class PayrollPaymentController {
         model.addAttribute("form", form);
         String home = settingsService.homeCurrency();
         // Тўлов счёти: BANK туридаги (банк/касса) фаол postable, HOME
-        // валютали счётлар (Arbitr-070/Nargiza-044: payroll home валютада
+        // валютали счётлар (DEC-070/BA-044: payroll home валютада
         // юритилади - BR-PYR-001; чет валюта счётини select'да кўрсатиш
         // фойдаланувчини кафолатли радга бошларди)
         model.addAttribute("bankAccounts", accountService.postableAccounts().stream()
@@ -293,7 +293,7 @@ public class PayrollPaymentController {
 
     /**
      * Тўлов сатрларидаги ходим номлари - фақат керакли id'лар byIds/IN
-     * сўровда (ARBITR-105б, Ulugbek-003 §1); нофаоллар ҳам келади -
+     * сўровда (DEC-105б, AUD-003 §1); нофаоллар ҳам келади -
      * тарихий тўловда ном кўриниши шарт.
      */
     private Map<UUID, String> employeeNames(PayrollPayment payment) {

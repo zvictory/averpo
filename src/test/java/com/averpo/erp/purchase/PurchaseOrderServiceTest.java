@@ -96,10 +96,10 @@ class PurchaseOrderServiceTest {
     }
 
     /**
-     * Arbitr-052 (043): BR-PO-001 валидация чегаралари - таъминотчисиз,
+     * DEC-052 (043): BR-PO-001 валидация чегаралари - таъминотчисиз,
      * сатрсиз, миқдор 0/манфий, нарх манфий. (Финдинг: код тестда йўқ эди.)
      */
-    /** Arbitr-087 (BR-PO-004): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-PO-004): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD контактдан ўзи олади
@@ -142,7 +142,7 @@ class PurchaseOrderServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort_statusFilter() {
-        // Beruniy-perf1 2-босқич retrofit: size+1 буюртма - 2-саҳифада
+        // PERF-perf1 2-босқич retrofit: size+1 буюртма - 2-саҳифада
         // биттагина қолади; саналар ҳар хил - тартиб детерминистик
         PurchaseOrder oldest = null;
         PurchaseOrder newest = null;

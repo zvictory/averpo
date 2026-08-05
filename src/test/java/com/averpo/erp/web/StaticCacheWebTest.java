@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-131 + 137: статикларга кэш ва asset версияси тестлари.
+ * DEC-131 + 137: статикларга кэш ва asset версияси тестлари.
  * <ol>
  *   <li>барча статик гуруҳ 30 кун + immutable (137 дан кейин ўз
  *       css/js'имиз ҳам) - Security'нинг no-store'и статикларда ЙЎҚ;</li>
@@ -136,7 +136,7 @@ class StaticCacheWebTest {
                 .andExpect(status().isNotModified());
     }
 
-    // ---- 2б. Шаблонлардаги ?v= (Arbitr-137) ----
+    // ---- 2б. Шаблонлардаги ?v= (DEC-137) ----
 
     /**
      * Саҳифадаги локал css/js референслари. Шрифт preload'лари

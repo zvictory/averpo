@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Ҳужжатли инвентаризация акти (Arbitr-093, docs/modules/inventory.md):
+ * Ҳужжатли инвентаризация акти (DEC-093, docs/modules/inventory.md):
  * кўп сатрли, БИТТА омбор бўйича, дарҳол POSTED (DRAFT йўқ - SalesReceipt
  * қолипи), тузатиш reverse (қарши-акт). Актнинг ҳамма сатри учун БИТТА
  * JE ёзилади (posting-rules «Ҳужжатли Adjustment»); ҳар сатр ўз
@@ -85,7 +85,7 @@ public class StockAdjustment extends BaseEntity {
     private String memo;
 
     /**
-     * Ташқи ҳужжат рақами (Arbitr-109, QBO «Reference no.»): қоғоз акт/
+     * Ташқи ҳужжат рақами (DEC-109, QBO «Reference no.»): қоғоз акт/
      * дафтар рақами - ихтиёрий, аудит учун. GL/movement'га тегмайди.
      */
     @Column(name = "external_ref", length = 50)

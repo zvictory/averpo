@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 /**
  * Сатр-циклдаги N+1 lookup'ларга қарши батч нақшининг умумий қисми
- * (Arbitr-045 findAllById, Sanjar-003).
+ * (DEC-045 findAllById, OPT-003).
  *
  * <p>Ҳужжат service'лари сатрлардан id'ларни олдиндан йиғиб битта IN
  * сўров билан Map тайёрлайди, циклда {@code Map.get()} ишлатади - ҳар

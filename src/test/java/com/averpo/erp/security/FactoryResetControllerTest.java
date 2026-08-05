@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Заводга қайтариш оқими web тести (factory-reset.md): роль гарови
  * (ACCOUNTANT 403), нотўғри пароль (BR-RST-001, ҳеч нарса ўчмайди),
- * тўғри пароль (2-босқичга ўтиш) ва якуний confirm занжири (Botir-050):
+ * тўғри пароль (2-босқичга ўтиш) ва якуний confirm занжири (TST-050):
  * session гарови, тасдиқ матни (BR-RST-002) ва тўлиқ занжирда ҳақиқий
  * reset'нинг controller сими орқали ишлаши. Reset'нинг тўлиқ тозалаш
  * кафолати {@link com.averpo.erp.shared.FactoryResetServiceTest}'да.
@@ -112,7 +112,7 @@ class FactoryResetControllerTest {
     @WithMockRole(username = "rstcnfadmin")
     void confirm_wrongName_showsBrRst002_andDeletesNothing() throws Exception {
         // Пароль босқичи ўтган, лекин тасдиқ матни компания номига мос эмас -
-        // BR-RST-002 билан 2-босқичда қоламиз, reset умуман бошланмайди (Botir-050)
+        // BR-RST-002 билан 2-босқичда қоламиз, reset умуман бошланмайди (TST-050)
         userService.create("rstcnfadmin", "Reset Admin", UserRole.SUPER_ADMIN, "CorrectPass123");
         jdbcClient.sql("INSERT INTO contact (id, type, display_name) "
                 + "VALUES (?, 'CUSTOMER', 'Нотўғри тасдиқда ўчмасин')")
@@ -135,7 +135,7 @@ class FactoryResetControllerTest {
     @WithMockRole(username = "rstcnfadmin")
     void confirm_withoutPasswordStep_redirectsBackToStep1_andDeletesNothing() throws Exception {
         // Session маркерисиз (пароль босқичи ўтилмаган) тўғридан-тўғри POST -
-        // ҳатто ТЎҒРИ компания номи билан ҳам 1-босқичга қайтарилади (Botir-050)
+        // ҳатто ТЎҒРИ компания номи билан ҳам 1-босқичга қайтарилади (TST-050)
         jdbcClient.sql("INSERT INTO contact (id, type, display_name) "
                 + "VALUES (?, 'CUSTOMER', 'Маркерсиз ўчмасин')")
                 .param(UUID.randomUUID()).update();

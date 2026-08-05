@@ -51,7 +51,7 @@ public class StatementService {
      *                       invoice), манфий - тўлов/кредит (Cr AR)
      * @param balance        шу сатрдан кейинги running қолдиқ (home)
      * @param entryId        JE id'си - рақам JE кўришига линк бўлади
-     *                       (Arbitr-063)
+     *                       (DEC-063)
      * @param documentId     манба ҳужжат id'си (source_document_id) -
      *                       documentNumber линки шу орқали ясалади
      */

@@ -63,7 +63,7 @@ public class BalanceSheetService {
      * Receivable»...) - жорий актив/мажбурият бўлимлари ичида.
      *
      * @param type     гуруҳ тури; detail type бўйича ажратилган псевдо
-     *                 гуруҳда (масалан ТМЗ - Komil-011) null - тестлар
+     *                 гуруҳда (масалан ТМЗ - IFRS-011) null - тестлар
      *                 тур бўйича излаганда псевдо гуруҳ аралашмайди
      * @param titleKey сарлавҳа i18n калити - тур гуруҳида type.titleKey(),
      *                 псевдо гуруҳда detail type калити
@@ -79,15 +79,15 @@ public class BalanceSheetService {
      * @param currentAssetGroups жорий активлар: BANK → AR → ТМЗ → OTHER_CURRENT_ASSET тартибида
      * @param vendorPrepayments таъминотчиларга тақсимланмаган аванслар (home'да) -
      *                          AP дебет қолдиғидан prepayment активга КЎРСАТИШДА
-     *                          reclass қилинган сумма (Komil-005, IAS 1.32); GL'га тегилмайди
+     *                          reclass қилинган сумма (IFRS-005, IAS 1.32); GL'га тегилмайди
      * @param employeeAdvances ходимларга берилган аванслар (home'да) - PAYROLL_CLEARING
      *                         ходим кесимидаги нетто дебет қолдиқлардан активга
-     *                         КЎРСАТИШДА reclass (Komil-020, IAS 1.32); GL'га тегилмайди
+     *                         КЎРСАТИШДА reclass (IFRS-020, IAS 1.32); GL'га тегилмайди
      * @param totalCurrentAssets жами жорий активлар (vendorPrepayments ва
      *                           employeeAdvances билан)
      * @param fixedAssets асосий воситалар сатрлари (FIXED_ASSET)
      * @param totalFixedAssets жами асосий воситалар
-     * @param goodwill гудвилл сатрлари (GOODWILL detail) - IAS 1.54(c) алоҳида модда (Komil-012)
+     * @param goodwill гудвилл сатрлари (GOODWILL detail) - IAS 1.54(c) алоҳида модда (IFRS-012)
      * @param totalGoodwill жами гудвилл
      * @param intangibleAssets номоддий актив сатрлари (INTANGIBLE_ASSETS detail) - IAS 1.54(c)
      * @param totalIntangibleAssets жами номоддий активлар
@@ -97,7 +97,7 @@ public class BalanceSheetService {
      * @param currentLiabilityGroups жорий мажбуриятлар: AP → CREDIT_CARD → OTHER_CURRENT_LIABILITY
      * @param customerAdvances мижозлардан тақсимланмаган аванслар (home'да) -
      *                         AR кредит қолдиғидан мажбуриятга КЎРСАТИШДА reclass
-     *                         қилинган сумма (Komil-005, IFRS 15.106); GL'га тегилмайди
+     *                         қилинган сумма (IFRS-005, IFRS 15.106); GL'га тегилмайди
      * @param totalCurrentLiabilities жами жорий мажбуриятлар (customerAdvances билан)
      * @param longTermLiabilities узоқ муддатли мажбурият сатрлари
      * @param totalLongTermLiabilities жами узоқ муддатли мажбуриятлар
@@ -150,16 +150,16 @@ public class BalanceSheetService {
         // 1. Balance-sheet счётларининг хом қолдиқлари (Dt-Cr) тур кесимида
         Map<AccountType, List<RawRow>> byType = new EnumMap<>(AccountType.class);
         BigDecimal[] retainedEarningsAccount = {BigDecimal.ZERO};
-        // IAS 1.54 алоҳида моддалар (Komil-011/012): detail type бўйича ўз
+        // IAS 1.54 алоҳида моддалар (IFRS-011/012): detail type бўйича ўз
         // рўйхатига ажратилади - GL ва тур ўзгармайди, фақат кўрсатиш
         List<RawRow> inventoryRaw = new ArrayList<>();
         List<RawRow> goodwillRaw = new ArrayList<>();
         List<RawRow> intangibleRaw = new ArrayList<>();
         // Аванс reclass'и учун AR/AP тизим счёти id'си (тўловлар айнан шу
-        // detail'даги счётга проводка қилинади - Komil-005)
+        // detail'даги счётга проводка қилинади - IFRS-005)
         UUID[] arAccount = {null};
         UUID[] apAccount = {null};
-        // Ходим аванси reclass'и учун PAYROLL_CLEARING счёти (Komil-020)
+        // Ходим аванси reclass'и учун PAYROLL_CLEARING счёти (IFRS-020)
         UUID[] payrollClearingAccount = {null};
         jdbc.sql("""
                 SELECT a.id, a.name, a.code, a.type, a.classification, a.detail_type,
@@ -211,17 +211,17 @@ public class BalanceSheetService {
                     }
                 });
 
-        // 1а. Тақсимланмаган аванслар (Komil-005): мижоз аванси AR кредит
+        // 1а. Тақсимланмаган аванслар (IFRS-005): мижоз аванси AR кредит
         // қолдиғидан мажбуриятга, таъминотчи аванси AP дебет қолдиғидан
         // prepayment активга фақат КЎРСАТИШДА reclass қилинади - GL'га
         // тегилмайди (IAS 1.32 / IFRS 15.106). Сумма GL'нинг ЎЗИДАН,
-        // contact кесимида as-of (Komil-015/016): домен жадвали жорий
+        // contact кесимида as-of (IFRS-015/016): домен жадвали жорий
         // ҳолати эмас - future reverse ва unapplied CM/VC автоматик тўғри.
         BigDecimal customerAdvances = reclass(byType, AccountType.ACCOUNTS_RECEIVABLE,
                 arAccount[0], customerAdvancesAsOf(asOf), true);
         BigDecimal vendorPrepayments = reclass(byType, AccountType.ACCOUNTS_PAYABLE,
                 apAccount[0], vendorPrepaymentsAsOf(asOf), false);
-        // 1б. Ходимларга берилган аванслар (Komil-020, IAS 1.32): аванс
+        // 1б. Ходимларга берилган аванслар (IFRS-020, IAS 1.32): аванс
         // тўлангач run ҳали POSTED бўлмаса PAYROLL_CLEARING ходим кесимида
         // нетто ДЕБЕТ қолади - мажбурият сатри камайиб (ҳатто манфий бўлиб)
         // кўринарди. AP prepayment кўзгуси: сумма фақат КЎРСАТИШДА
@@ -369,7 +369,7 @@ public class BalanceSheetService {
 
     /**
      * Мижозлардан тақсимланмаган аванслар home'да - GL'нинг ЎЗИДАН
-     * (Komil-015/016 тузатиши): AR детал счётларида ҳар мижоз (contact)
+     * (IFRS-015/016 тузатиши): AR детал счётларида ҳар мижоз (contact)
      * кесимида нетто КРЕДИТ қолдиғи (Cr &gt; Dt) = олинган аванс, барча
      * бундай қолдиқлар йиғиндиси. Ишора base'да (home) - JE'нинг ўзи
      * home валютада балансланган, курс allocation пайтида ёзилган.

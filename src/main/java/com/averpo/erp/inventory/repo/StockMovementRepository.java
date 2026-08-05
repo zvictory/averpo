@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * Омбор ҳаракатлари репозиторийси - фақат inventory модули ичида.
  * JpaSpecificationExecutor - Ҳаракатлар экрани мукаммал филтри учун
- * (Arbitr-093: тур/омбор/item/сана/ҳужжат; warehouse fetch spec ичида).
+ * (DEC-093: тур/омбор/item/сана/ҳужжат; warehouse fetch spec ичида).
  */
 public interface StockMovementRepository extends JpaRepository<StockMovement, UUID>,
         JpaSpecificationExecutor<StockMovement> {
@@ -28,7 +28,7 @@ public interface StockMovementRepository extends JpaRepository<StockMovement, UU
             String referenceType, UUID referenceId);
 
     /**
-     * Ҳаракатлар экрани - саҳифаланган, филтрсиз (Beruniy-perf1 2-босқич):
+     * Ҳаракатлар экрани - саҳифаланган, филтрсиз (PERF-perf1 2-босқич):
      * аввалги findTop100 функционал тешик эди (100-ёзувдан эскиси
      * УМУМАН кўринмасди). Тартиб Pageable sort'ида (InventoryService.
      * MOVEMENTS_SORT). Барча ёзувлар учун JpaRepository.findAll(Pageable).
@@ -49,19 +49,19 @@ public interface StockMovementRepository extends JpaRepository<StockMovement, UU
 
     /**
      * Танланган ҳаракатлар warehouse'и билан битта IN сўровда
-     * (Sanjar-007) - landed cost N receipt'ни биттадан
+     * (OPT-007) - landed cost N receipt'ни биттадан
      * {@link #findWithWarehouseById} қилмасин.
      */
     @EntityGraph(attributePaths = {"warehouse"}, type = EntityGraph.EntityGraphType.LOAD)
     List<StockMovement> findWithWarehouseByIdIn(Collection<UUID> ids);
 
-    // Ҳаракатлар экрани саҳифа методлари (Arbitr-049, Beruniy-037):
+    // Ҳаракатлар экрани саҳифа методлари (DEC-049, PERF-037):
     // warehouse/counterpartWarehouse LOAD граф билан - акс ҳолда
     // open-in-view=false'да шаблон lazy proxy'ни юклаб саҳифада 25×2
     // гача қўшимча SELECT қиларди (жадвал омбор ва «иккинчи омбор»
     // устунларини кўрсатади).
 
-    /** Ҳаракатлар экрани, омбор филтри билан - саҳифаланган (Beruniy-perf1). */
+    /** Ҳаракатлар экрани, омбор филтри билан - саҳифаланган (PERF-perf1). */
     @EntityGraph(attributePaths = {"warehouse", "counterpartWarehouse"}, type = EntityGraph.EntityGraphType.LOAD)
     Page<StockMovement> findByWarehouseId(UUID warehouseId, Pageable pageable);
 
@@ -77,7 +77,7 @@ public interface StockMovementRepository extends JpaRepository<StockMovement, UU
     /**
      * Ҳаракатлар экрани, филтрсиз - саҳифаланган (JpaRepository.findAll'ни
      * @EntityGraph билан override): warehouse/counterpartWarehouse битта
-     * сўровда, филтрли методлар билан бир хил (Beruniy-037).
+     * сўровда, филтрли методлар билан бир хил (PERF-037).
      */
     @Override
     @EntityGraph(attributePaths = {"warehouse", "counterpartWarehouse"}, type = EntityGraph.EntityGraphType.LOAD)

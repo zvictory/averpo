@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:033-01-exchange-rate-history
--- Курс тарихи (docs/modules/transfer.md Т3, Arbitr-022): бир (валюта,
+-- Курс тарихи (docs/modules/transfer.md Т3, DEC-022): бир (валюта,
 -- сана)га КЎП ёзув - ЦБ импорти ва қўлда/ўтказма ўзгартиришлар устига
 -- ёзилмайди, ҳар бири сақланади. uq_exchange_rate олиб ташланади,
 -- source (CBU/MANUAL) қўшилади. Амалдаги курс = энг охирги ёзув

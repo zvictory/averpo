@@ -15,7 +15,7 @@
 @param String error = null
 @param Boolean drawer = false
 
-<%-- Arbitr-024: форма таначаси - тўлиқ саҳифа (accountForm) ва drawer
+<%-- DEC-024: форма таначаси - тўлиқ саҳифа (accountForm) ва drawer
      (accountFormDrawer) иккиси ҳам шу partial'ни ишлатади. drawer=true
      бўлса форма HTMX орқали submit бўлади (#drawerBody'га қайта render
      ёки HX-Redirect); false'да оддий POST - JS'сиз fallback шарт. --%>
@@ -25,7 +25,7 @@
         window.obDetailTypes = [
             @for(String dt : obDetailTypes)"${dt}",@endfor
         ];
-        // Arbitr-161: валютага боғланган турлар (AccountType.isCurrencyDenominated
+        // DEC-161: валютага боғланган турлар (AccountType.isCurrencyDenominated
         // ягона манба) - валюта майдони x-show шу рўйхатдан ўқийди
         window.accountCurrencyTypes = [
             @for(AccountDetailType d : AccountDetailType.values())@if(d.getType().isCurrencyDenominated())"${d.name()}",@endif@endfor
@@ -39,7 +39,7 @@
           x-effect="if (!window.accountCurrencyTypes.includes(dt)) cur = ''"
           class="${drawer != null && drawer ? "grid gap-[.9rem]" : "grid max-w-[560px] gap-[.9rem] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark"}">
         @template.shared.csrf(csrf = csrf)
-        <%-- Arbitr-024: QBO'дек икки устунли жуфтлар (мобилда битта устун) --%>
+        <%-- DEC-024: QBO'дек икки устунли жуфтлар (мобилда битта устун) --%>
         <div class="grid grid-cols-1 gap-[.9rem] md:grid-cols-2">
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("accounts.form.name")}
@@ -73,7 +73,7 @@
             </label>
             <label x-show="window.accountCurrencyTypes.includes(dt)" x-cloak class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("accounts.form.currency")}
-                <%-- Валюта - фақат валютага боғланган турда (Arbitr-161 x-show).
+                <%-- Валюта - фақат валютага боғланган турда (DEC-161 x-show).
                      :disabled - валютага боғланмаган турда select ЎЧИРИЛАДИ:
                      disabled control submit ҚИЛИНМАЙДИ, шунга x-show яширин
                      select DOM қиймати stale қолса ҳам юборилмайди (Income'га
@@ -99,7 +99,7 @@
 
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
             ${msg.localize("accounts.form.parent")}
-            <%-- Arbitr-014: QBO tree. Ўзи рўйхатдан чиқарилади (авлодларини
+            <%-- DEC-014: QBO tree. Ўзи рўйхатдан чиқарилади (авлодларини
                  server BR-COA-003 ушлайди); ота сифатида группа счётлар ҳам
                  танланади - disableNonPostable=false --%>
             !{var parentOptions = parents.stream()

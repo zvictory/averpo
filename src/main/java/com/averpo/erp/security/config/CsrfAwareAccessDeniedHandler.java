@@ -13,7 +13,7 @@ import org.springframework.security.web.csrf.CsrfException;
 import java.io.IOException;
 
 /**
- * Рухсат рад этилиши (403)ни икки оқимга ажратади (Arbitr-096):
+ * Рухсат рад этилиши (403)ни икки оқимга ажратади (DEC-096):
  *
  * <ul>
  *   <li><b>CSRF хатоси</b> ({@link CsrfException} - Missing/Invalid) -
@@ -23,7 +23,7 @@ import java.io.IOException;
  *       «муддат тугади» хабарини кўрсатади (мавжуд ?error/?locked/
  *       ?logout нақши). Хавфсизликка зарар йўқ - CSRF ҳимояси ишлаяпти,
  *       фақат UX.</li>
- *   <li><b>Оддий рухсат рад</b> (соҳа-даража, Arbitr-092 модели) -
+ *   <li><b>Оддий рухсат рад</b> (соҳа-даража, DEC-092 модели) -
  *       default хулқ сақланади: {@link AccessDeniedHandlerImpl} 403
  *       статус қўяди, контейнер {@code /error} диспетчерига ўтади
  *       (ErrorController чиройли саҳифа беради). Роль тизимидаги 403

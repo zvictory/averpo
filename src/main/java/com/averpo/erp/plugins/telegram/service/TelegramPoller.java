@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * тоза старт/стоп, битта instance (тузоқ 1 - иккита poller бир вақтда
  * getUpdates қилса Telegram хабарни иккига бўлиб берарди).
  *
- * <p><b>Нега {@code @Profile("dev")}</b> (Arbitr-138): polling ФАҚАТ
+ * <p><b>Нега {@code @Profile("dev")}</b> (DEC-138): polling ФАҚАТ
  * локал дев'да - Telegram localhost'га ета олмайди, шунга дев webhook
  * қура олмайди. Профилсиз prod webhook ишлатади (TelegramWebhookRegistrar),
  * тест профилда эса фон thread'и умуман керак эмас (у ҳар айланишда

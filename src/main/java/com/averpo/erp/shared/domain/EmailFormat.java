@@ -3,7 +3,7 @@ package com.averpo.erp.shared.domain;
 import java.util.regex.Pattern;
 
 /**
- * Оддий email формат текшируви (Arbitr-101/112) - профиль (BR-USR-013)
+ * Оддий email формат текшируви (DEC-101/112) - профиль (BR-USR-013)
  * ва компания (BR-SET-007) email майдонлари учун умумий. Тўлиқ RFC
  * ЭМАС, қўпол хатоларни ушлайди: {@code local@domain.tld} - бўшлиқ ёки
  * иккинчи {@code @} йўқ, домен нуқтаси шарт (ContactService'даги EMAIL

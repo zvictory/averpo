@@ -71,7 +71,7 @@
             @for(AuditEvent event : events)
                 <tr>
                     <td class="whitespace-nowrap">${times.get(event.getId())}</td>
-                    <%-- Фон жараён (scheduler/bootstrap) «system» actor'ини «Тизим» кўрсатади (Arbitr-164) --%>
+                    <%-- Фон жараён (scheduler/bootstrap) «system» actor'ини «Тизим» кўрсатади (DEC-164) --%>
                     <td>@if(event.getUsername().equals("system"))${msg.localize("audit.system")}@else${event.getUsername()}@endif</td>
                     <td>${msg.localize(event.getEventType().titleKey())}</td>
                     <td>
@@ -83,7 +83,7 @@
                     </td>
                     <td>
                         ${event.getDetails()}
-                        <%-- IP ёнида қисқа client (Arbitr-062); тўлиқ UA - title'да --%>
+                        <%-- IP ёнида қисқа client (DEC-062); тўлиқ UA - title'да --%>
                         @if(clients.get(event.getId()) != null)
                             <span class="whitespace-nowrap text-[.85em] text-current/50" title="${event.getUserAgent()}">(${clients.get(event.getId())})</span>
                         @endif

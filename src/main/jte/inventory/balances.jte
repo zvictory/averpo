@@ -35,7 +35,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Мукаммал филтр (Arbitr-093): омбор, item қидирув, категория,
+    <%-- Мукаммал филтр (DEC-093): омбор, item қидирув, категория,
          нолни яшир (default ON - QBO услуби). --%>
     <form method="get" action="/inventory/balances" style="margin-bottom:1rem;display:flex;gap:.75rem;align-items:end;flex-wrap:wrap;">
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("inv.col.warehouse")}
@@ -103,7 +103,7 @@
                 </tbody>
         `)
     @endif
-    <%-- Саҳифалаш (ARBITR-105б): филтр (омбор/қидирув/категория/нол)
+    <%-- Саҳифалаш (DEC-105б): филтр (омбор/қидирув/категория/нол)
          линкларда сақланади --%>
     @template.shared.pagination(page = page, baseUrl = "/inventory/balances", filterQuery = filterQuery, msg = msg)
 `)

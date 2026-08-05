@@ -166,7 +166,7 @@ class InventoryServiceTest {
         assertThat(balance().getAvgCost()).isEqualByComparingTo("1750");
     }
 
-    // ---- reverseReceive: BR-INV-010 инварианти (Beruniy-003) ----
+    // ---- reverseReceive: BR-INV-010 инварианти (PERF-003) ----
 
     @Test
     void avco_reverseReceive_blockedWhenNotLastMovement() {

@@ -27,12 +27,12 @@
         <a href="/landed-costs" class="text-primary underline dark:text-primary-dark">${msg.localize("lc.view.back")}</a>
     </div>
     <%-- U3 услуби: LC home валютада ишлайди - катакларга код ёзилмайди,
-         тепада битта ёзув (Alisa-001) --%>
+         тепада битта ёзув (UI-001) --%>
     <p class="mb-4 text-current/60">${msg.localize("report.allAmountsIn", homeCurrency)}</p>
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("lc.col.date")}</span>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <%-- Arbitr-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
+    <%-- DEC-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
     @if(allocation.getStatus() == LandedCostAllocation.Status.POSTED || allocation.getStatus() == LandedCostAllocation.Status.REVERSED)
         @template.shared.jeLink(sourceType = "LANDED_COST", id = allocation.getId().toString(), msg = msg)
     @endif

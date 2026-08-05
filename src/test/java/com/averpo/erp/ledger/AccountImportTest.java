@@ -52,7 +52,7 @@ class AccountImportTest {
 
     @Test
     void importDefaultChart_existingActiveSystemAccount_warnsAndSkips() {
-        // Arbitr-060 жонли ҳодиса: chart'дан ОЛДИН қўлда AP счёти очилган.
+        // DEC-060 жонли ҳодиса: chart'дан ОЛДИН қўлда AP счёти очилган.
         // Импорт chart'нинг AP сатрини яратмай (дубликат тур!), натижага
         // «дубликат тур» огоҳлантириши қўшиши, лекин ЙИҚИЛМАСЛИГИ шарт
         accountService.create("Менинг кредиторларим",
@@ -85,7 +85,7 @@ class AccountImportTest {
 
     @Test
     void importDefaultChart_codeCollision_createsWithoutCode_doesNotFail() {
-        // Arbitr-126: фойдаланувчи счёти chart кодини банд қилган -
+        // DEC-126: фойдаланувчи счёти chart кодини банд қилган -
         // uq_account_code туфайли импорт flush'да йиқилмаслиги шарт
         accountService.create("Кодни банд қилган счёт",
                 AccountDetailType.SAVINGS, "1010", null, null, true, null);
@@ -109,7 +109,7 @@ class AccountImportTest {
 
     @Test
     void importDefaultChart_existingParentName_linksChildrenIdempotently() {
-        // Ярим ҳолат (Arbitr-126): «Пул маблағлари» номли счёт олдиндан
+        // Ярим ҳолат (DEC-126): «Пул маблағлари» номли счёт олдиндан
         // мавжуд - импорт ота сатрини skip қилади, болалар ном бўйича
         // айнан шу мавжуд счётга боғланади, импорт йиқилмайди
         Account existing = accountService.create("Пул маблағлари",
@@ -128,7 +128,7 @@ class AccountImportTest {
 
     @Test
     void systemAccountLookup_ignoresNonPostableGroupParent() {
-        // Arbitr-126 МУҲИМ текширув: chart'да «Пул маблағлари» гуруҳ отаси
+        // DEC-126 МУҲИМ текширув: chart'да «Пул маблағлари» гуруҳ отаси
         // ҳам CASH_ON_HAND - резолвер postable=false отани эмас, айнан
         // postable «Касса»ни танлаши шарт (акс ҳолда default cash BR йиқилади)
         accountService.importDefaultChart();

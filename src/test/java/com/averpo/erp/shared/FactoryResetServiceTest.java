@@ -74,11 +74,11 @@ class FactoryResetServiceTest {
         jdbcClient.sql("INSERT INTO warehouse (id, name, code) VALUES (?, 'Ортиқча омбор', 'EXTRA')")
                 .param(UUID.randomUUID()).update();
         jdbcClient.sql("UPDATE document_sequence SET next_number = 77").update();
-        // Плагин ёқилган (Arbitr-113) - reset'дан кейин default (ўчиқ = қатор йўқ)
+        // Плагин ёқилган (DEC-113) - reset'дан кейин default (ўчиқ = қатор йўқ)
         jdbcClient.sql("INSERT INTO plugin_state (plugin_key, enabled) VALUES ('TELEGRAM', true)")
                 .update();
 
-        // Seed IDENTITY бузилиши (Arbitr-072): QQS12 коди/фоизи таҳрирланган
+        // Seed IDENTITY бузилиши (DEC-072): QQS12 коди/фоизи таҳрирланган
         // (аввалги код-бўйича DELETE уни «фойдаланувчи ставкаси» деб ўчирарди),
         // фойдаланувчи ставкаси қўшилган, seed бирлик номи ўзгартирилган.
         jdbcClient.sql("UPDATE tax_rate SET code = 'QQS15', name = 'ҚҚС 15%', rate = 15 "
@@ -113,10 +113,10 @@ class FactoryResetServiceTest {
         assertThat(count("item")).isZero();
         assertThat(count("stock_movement")).isZero();
         assertThat(count("txn_class")).isZero();
-        // Плагинлар default ҳолатига: қатор йўқ = ўчиқ (Arbitr-113)
+        // Плагинлар default ҳолатига: қатор йўқ = ўчиқ (DEC-113)
         assertThat(count("plugin_state")).isZero();
 
-        // Аудит (Arbitr-062): эски ёзувлар TRUNCATE бўлди, тоза журналда
+        // Аудит (DEC-062): эски ёзувлар TRUNCATE бўлди, тоза журналда
         // ЯГОНА FACTORY_RESET - биринчи ёзув (UUIDv7 id тартиби), кейин
         // chart қайта ўрнатилиши CHART_IMPORTED бўлиб туради
         assertThat(jdbcClient.sql("SELECT event_type FROM audit_event ORDER BY id")
@@ -125,7 +125,7 @@ class FactoryResetServiceTest {
 
         // Seed каталоглар айнан seed сонида
         assertThat(count("currency")).isEqualTo(7);
-        // UOM (Arbitr-147): reset'дан кейин 6 стандарт гуруҳ тикланади, seed
+        // UOM (DEC-147): reset'дан кейин 6 стандарт гуруҳ тикланади, seed
         // бирликлар (дона/кг/литр/метр/соат) гуруҳга ютилиб 9 янги бирлик
         // қўшилади (г,тонна,см,мм,мл,м³,м²,см²,кун) = 6+9=15; хизмат гуруҳсиз
         assertThat(count("unit_group")).isEqualTo(6);
@@ -135,7 +135,7 @@ class FactoryResetServiceTest {
         assertThat(count("payment_method")).isEqualTo(3);
         assertThat(count("warehouse")).isEqualTo(1);
 
-        // Seed IDENTITY реставрацияси (Arbitr-072): таҳрирланган QQS12 айнан
+        // Seed IDENTITY реставрацияси (DEC-072): таҳрирланган QQS12 айнан
         // seed ҳолатига қайтди (код/фоиз/фаоллик), RST8 ўчди, бирлик номлари
         // ҳам seed'дагидек - import шаблони («дона»/«ҚҚС 12%») барқарор.
         assertThat(jdbcClient.sql("SELECT code FROM tax_rate ORDER BY code")
@@ -145,7 +145,7 @@ class FactoryResetServiceTest {
                 .query(Integer.class).single()).isEqualTo(12);
         assertThat(jdbcClient.sql("SELECT active FROM tax_rate WHERE code = 'QQS12'")
                 .query(Boolean.class).single()).isTrue();
-        // Бирликлар seed номлари + стандарт гуруҳ бирликлари (Arbitr-147);
+        // Бирликлар seed номлари + стандарт гуруҳ бирликлари (DEC-147);
         // «ўзгартирилган дона» seed'га қайтди ва «Дона» гуруҳига ютилди
         assertThat(jdbcClient.sql("SELECT name FROM unit").query(String.class).list())
                 .containsExactlyInAnyOrder("дона", "кг", "литр", "метр", "соат", "хизмат",
@@ -160,7 +160,7 @@ class FactoryResetServiceTest {
         assertThat(active("EUR")).isFalse();
         assertThat(active("UZS")).isTrue();
 
-        // Счётлар режаси қайта ўрнатилди (default-chart.csv, Arbitr-126:
+        // Счётлар режаси қайта ўрнатилди (default-chart.csv, DEC-126:
         // 42 postable + 9 гуруҳ ота = 51 счёт, дарахт + кодлар билан)
         assertThat(count("account")).isEqualTo(51);
         assertThat(jdbcClient.sql("SELECT count(*) FROM account WHERE postable").query(Long.class).single())

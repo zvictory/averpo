@@ -58,7 +58,7 @@ public class ContactController {
     }
 
     /**
-     * Рўйхат - стандарт каталог филтри (Arbitr-068): фаоллик (фаол/
+     * Рўйхат - стандарт каталог филтри (DEC-068): фаоллик (фаол/
      * нофаол/ҳаммаси, default фаол - QBO услуби) ва матн (ном/компания).
      * Эски showInactive=true линклари «ҳаммаси» деб тушунилади.
      */
@@ -108,7 +108,7 @@ public class ContactController {
         } catch (BusinessRuleException e) {
             fillFormModel(model, kind, form, null);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "contact/formDrawer" : "contact/form";
         }
@@ -124,7 +124,7 @@ public class ContactController {
     /**
      * Таҳрир формаси - HTMX'да drawer partial, оддийда тўлиқ саҳифа (fallback).
      *
-     * <p>Arbitr-100: {@code ?open=<section>} параметри мос accordion
+     * <p>DEC-100: {@code ?open=<section>} параметри мос accordion
      * бўлимини (addresses/persons/bank) очиқ render қилади - бўлим
      * қўшиш/ўчириш POST'и шу параметр билан қайтади, акс ҳолда default
      * ёпиқ accordion'да янгидан қўшилган ёзув кўринмай қоларди.
@@ -152,7 +152,7 @@ public class ContactController {
         } catch (BusinessRuleException e) {
             fillFormModel(model, kind, form, id);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "contact/formDrawer" : "contact/form";
         }
@@ -169,7 +169,7 @@ public class ContactController {
 
     /**
      * Таҳрир саҳифасига redirect - {@code ?open=<section>} билан, шунда
-     * бўлим POST'идан кейин ўша accordion очиқ қайтади (Arbitr-100 2-банд:
+     * бўлим POST'идан кейин ўша accordion очиқ қайтади (DEC-100 2-банд:
      * акс ҳолда redirect ҳамма блокни ёпиб, эндигина қўшилган/ўчирилган
      * ёзув кўринмай қоларди). Валидация хатоси оқими ҳам шу йўлдан ўтади.
      *
@@ -295,7 +295,7 @@ public class ContactController {
             model.addAttribute("addresses", contactService.addresses(editId));
             model.addAttribute("persons", contactService.persons(editId));
             model.addAttribute("bankAccounts", contactService.bankAccounts(editId));
-            // BR-CON-012 (Arbitr-087): POSTED тарихли контакт валютаси
+            // BR-CON-012 (DEC-087): POSTED тарихли контакт валютаси
             // формада қулф - select read-only + сабаб матни
             model.addAttribute("currencyLocked",
                     contactService.isCurrencyLocked(contactService.get(editId)));

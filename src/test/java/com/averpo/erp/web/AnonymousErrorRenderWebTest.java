@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Arbitr-127 жонли smoke топилмаси учун регресс тест: cookie'СИЗ аноним
+ * DEC-127 жонли smoke топилмаси учун регресс тест: cookie'СИЗ аноним
  * сўров /error'га тушганда саҳифа ТЎЛИҚ render бўлиши шарт. Аввал
  * deferred CSRF токен sidebar'даги logout формасида (csrf.jte) илк бор
  * ҳал бўлар эди - у пайтда жавоб аллақачон commit бўлган (chunked оқим

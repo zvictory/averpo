@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Invoice репозиторийси - фақат sales модули ичида ишлатилади.
- * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068): давр/
+ * JpaSpecificationExecutor - рўйхат филтри учун (DEC-068): давр/
  * статус/мижоз/матн комбинациялари битта Specification'да, аввалги
  * findByStatus/findByCustomerId derived методлари шунга алмашди.
  */

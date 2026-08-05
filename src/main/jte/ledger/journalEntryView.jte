@@ -29,7 +29,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("entries.view.date")}</span>
@@ -39,7 +39,7 @@
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("entries.view.status")}</span>
             <span class="text-base text-on-surface dark:text-on-surface-dark">@template.shared.badge(value = entry.getStatus().name(), msg = msg)</span>
         </div>
-        <%-- Arbitr-063: хом enum ўрнига тур номи (statement.type.* тўплами) +
+        <%-- DEC-063: хом enum ўрнига тур номи (statement.type.* тўплами) +
              манба ҳужжатга «очиш» линки (mapping SourceDocLinks, қоида 6) --%>
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("entries.view.source")}</span>
@@ -60,7 +60,7 @@
                 <span class="text-base text-on-surface dark:text-on-surface-dark">${postedAtText}</span>
             </div>
         @endif
-        <%-- Arbitr-063: сторно линклари иккала йўналишда --%>
+        <%-- DEC-063: сторно линклари иккала йўналишда --%>
         @if(reversedByNumber != null)
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("entries.view.reversedBy")}</span>
@@ -122,7 +122,7 @@
                     @endif
                 </td>
                 <%-- Сатр курси фақат чет валютада кўрсатилади - home сатрда 1 шовқин бўларди.
-                     Arbitr-065: йўналиши доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+                     DEC-065: йўналиши доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
                 <td class="text-right whitespace-nowrap">
                     @if(lineMoney != null && !lineMoney.getCurrency().equals(homeCurrency))
                         !{var rateOr = Fmt.orient(lineMoney.getCurrency(), homeCurrency, lineMoney.getExchangeRate());}

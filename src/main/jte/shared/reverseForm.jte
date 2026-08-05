@@ -6,7 +6,7 @@
 @param Msg msg
 @param String labelPrefix = "bt.view"
 
-<%-- ARBITR-098 (UI-LIB): сторно формаси (сана + сабаб + confirm) - 15
+<%-- DEC-098 (UI-LIB): сторно формаси (сана + сабаб + confirm) - 15
      view'да айнан бир хил эди. action - POST манзили; confirmKey -
      confirm() матни калити (оилага хос: sinv.view.reverseConfirm...);
      today - сана prefill (контроллер беради); labelPrefix - учта label

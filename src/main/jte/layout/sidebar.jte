@@ -10,17 +10,17 @@
 @param Boolean isAdmin = false
 @param String lang = "uz"
 
-<%-- Arbitr-117: сайдбар Penguin «Sidebar with collapsible menus» қолипида
+<%-- DEC-117: сайдбар Penguin «Sidebar with collapsible menus» қолипида
      (спец: docs/modules/ui-framework.md, Sidebar бўлими; реф:
      docs/penguin-refs/). Уч зона: бренд (white-label, 112 мантиғи айнан),
      навигация гуруҳлари (x-collapse, $persist), user-profile меню.
      МУҲИМ: x-data ҳолати (nav/rail/dark/grps/toggleGrp/railDesk/grpOpen)
      main.jte'даги ташқи div'да - бу <nav> уни Alpine иерархияси орқали
-     ўқийди (ЎЗ ўрами йўқ, Arbitr-111 қоидаси). Роль кўриниш шартлари
+     ўқийди (ЎЗ ўрами йўқ, DEC-111 қоидаси). Роль кўриниш шартлари
      (perms.view/edit) 092'дан АЙНАН кўчирилган - ўзгартирилмаган.
 
      Режимлар: desktop тўлиқ (lg:w-64 - СТАТИК рўйхатда, биринчи paint'да
-     кенглик тайёр бўлсин деб; Arbitr-129) ↔ иконка-рейл (sb-rail маркер
+     кенглик тайёр бўлсин деб; DEC-129) ↔ иконка-рейл (sb-rail маркер
      класси, in-[.sb-rail]:lg:* вариантлар орқали; группада hover flyout,
      якка пунктда tooltip) - рейл important'лари (lg:w-16! lg:p-2!) статик
      lg:w-64/p-3 дан ғолиб; мобил (<lg) drawer - overlay + x-trap + Escape.
@@ -63,7 +63,7 @@
             @template.icons.chevronsLeft(cls = "size-5 transition-transform in-[.sb-rail]:lg:rotate-180")
         </button>
     </div>
-    <%-- ======== Глобал қидирув ТРИГГЕРИ (Arbitr-117в): майдон эмас,
+    <%-- ======== Глобал қидирув ТРИГГЕРИ (DEC-117в): майдон эмас,
          Penguin услубидаги тугма-кўринишли триггер (лупа + «Қидирув...»
          + Ctrl+K ёрлиғи) - босилганда ёки Ctrl/Cmd+K'да марказдаги
          command-palette очилади (modal main.jte'да, pal ҳолати root
@@ -82,13 +82,13 @@
             <span class="pointer-events-none absolute left-full top-1/2 z-40 ml-2 hidden -translate-y-1/2 whitespace-nowrap rounded-radius border border-outline bg-surface px-2 py-1 text-xs text-on-surface shadow-lg dark:border-outline-dark dark:bg-surface-dark dark:text-on-surface-dark in-[.sb-rail]:lg:group-hover/tip:block">${msg.localize("search.title")}</span>
         </a>
     </div>
-    <%-- ======== «+ Янги» (Arbitr-119, фойдаланувчи 2026-07-17):
+    <%-- ======== «+ Янги» (DEC-119, фойдаланувчи 2026-07-17):
          қидирувдан ПАСТДА, «Бош саҳифа»дан ТЕПАДА - Penguin success
          (яшил) button кўринишида (buttons.html реф). Мазмун QBO «+ New»
          эталонида 3 устун (Мижозлар/Таъминотчилар/Бошқа) - навигация
          гуруҳлари эмас, ҳужжат яратиш ёрлиқлари. Payroll ва Счёт яратиш
          бу ерда КЎРСАТИЛМАЙДИ (QBO қолипи: payroll алоҳида, счёт Ҳисоблар
-         режаси саҳифасида) - улар навигацияда қолади. Arbitr-092: тугма
+         режаси саҳифасида) - улар навигацияда қолади. DEC-092: тугма
          камида битта соҳада EDIT борларга, устун/ҳаволалар ўз соҳаси
          EDIT'и бўйича. Панел desktop'да сайдбар ёнидан флайаут,
          мобилда bottom-sheet; backdrop босилса/Esc'да ёпилади. Рейлда
@@ -183,16 +183,16 @@
     <%-- ======== ЎРТА: навигация. Гуруҳлар Penguin collapsible (x-collapse):
          очиқлик grps массивида ($persist, sbGrps), жорий экран гуруҳи
          автоочиқ (шу файл охиридаги эрта FOUC скрипти data-active-group
-         қўяди - Arbitr-129, x-init пуш қилади). Фаол пункт: скрипт фақат
+         қўяди - DEC-129, x-init пуш қилади). Фаол пункт: скрипт фақат
          aria-current="page" қўяди - ажралиш aria-[current=page]:
          вариантлари билан. Очиқ гуруҳ сарлавҳаси ФОНСИЗ (фақат chevron +
-         text-strong; Arbitr-129 Қўшимча 2) - bg-primary/10 фақат фаол
+         text-strong; DEC-129 Қўшимча 2) - bg-primary/10 фақат фаол
          пунктники, чалғитмасин. Рейл-desktop'да гуруҳ рўйхати hover
          flyout бўлади (grpOpen/railDesk main.jte'да). --%>
-    <%-- Скролл темага мос (Arbitr-117в): ингичка + outline оҳанглари,
+    <%-- Скролл темага мос (DEC-117в): ингичка + outline оҳанглари,
          track шаффоф - Tailwind native scrollbar-* utility'лари
          (стандарт scrollbar-width/color хусусиятлари, янги CSS класс
-         йўқ). Drawer (мобил) ҳам шу контейнер. Arbitr-129:
+         йўқ). Drawer (мобил) ҳам шу контейнер. DEC-129:
          scrollbar-gutter:stable - scrollbar келиб-кетиши ички кенгликни
          силжитмасин (жой олдиндан банд; рейлда overflow visible бўлгани
          учун gutter умуман йўқ - таъсирсиз); id'дан пастдаги эрта скрипт
@@ -204,7 +204,7 @@
             <span class="in-[.sb-rail]:lg:hidden">${msg.localize("nav.home")}</span>
             <span class="pointer-events-none absolute left-full top-1/2 z-40 ml-2 hidden -translate-y-1/2 whitespace-nowrap rounded-radius border border-outline bg-surface px-2 py-1 text-xs text-on-surface shadow-lg dark:border-outline-dark dark:bg-surface-dark dark:text-on-surface-dark in-[.sb-rail]:lg:group-hover/tip:block">${msg.localize("nav.home")}</span>
         </a>
-        <%-- Arbitr-092: гуруҳлар соҳа рухсати бўйича (user-roles.md) -
+        <%-- DEC-092: гуруҳлар соҳа рухсати бўйича (user-roles.md) -
              кўра олмайдиган роль учун гуруҳ УМУМАН render бўлмайди.
              Ичкаридаги айрим ҳаволалар бошқа соҳага тегишли бўлса
              (масалан Товарлар - INVENTORY) алоҳида гейтланади. --%>
@@ -358,7 +358,7 @@
                 </ul>
             </div>
         @endif
-        <%-- Arbitr-106: «Даврни ёпиш» сайдбарда ЭМАС - journalEntries тепа
+        <%-- DEC-106: «Даврни ёпиш» сайдбарда ЭМАС - journalEntries тепа
              тугмаси ва /settings ичидаги ҳавола орқали (QBO қолипи). --%>
         @if(perms.view(Permission.GL))
             <div class="relative flex flex-col" data-g="accounting" x-data="{h: false}"
@@ -436,7 +436,7 @@
                     x-bind:class="railDesk() && h ? 'lg:absolute lg:left-full lg:top-0 lg:z-40 lg:ml-1 lg:w-56 lg:rounded-radius lg:border lg:border-outline lg:bg-surface lg:p-1.5 lg:shadow-lg lg:dark:border-outline-dark lg:dark:bg-surface-dark' : ''">
                     <li class="hidden px-2 pb-1 pt-1.5 text-xs font-semibold uppercase tracking-wide text-on-surface/70 dark:text-on-surface-dark/70" x-bind:class="railDesk() && h ? 'lg:block' : ''">${msg.localize("nav.reports")}</li>
                     <%-- QBO Favorites тартиби: аввал асосий молиявий ҳисоботлар.
-                         Arbitr-092: умумий молиявийлар FIN_REPORTS, соҳа
+                         DEC-092: умумий молиявийлар FIN_REPORTS, соҳа
                          ҳисоботлари ўз соҳаси орқали (user-roles.md) --%>
                     @if(perms.view(Permission.FIN_REPORTS))
                         <li class="px-1 py-0.5 first:mt-2">
@@ -458,7 +458,7 @@
                         </li>
                     @endif
                     <%-- QBO нақши: ҳамма ҳисоботлар марказий Reports бўлимида
-                         (Nargiza-002) --%>
+                         (BA-002) --%>
                     @if(perms.view(Permission.PURCHASE))
                         <li class="px-1 py-0.5 first:mt-2">
                             <a href="/reports/ap-aging" class="flex items-center gap-2 rounded-radius px-2 py-1.5 pl-9 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline aria-[current=page]:bg-primary/10 aria-[current=page]:font-medium aria-[current=page]:text-on-surface-strong aria-[current=page]:hover:bg-primary/10 dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:aria-[current=page]:bg-primary-dark/10 dark:aria-[current=page]:text-on-surface-dark-strong dark:aria-[current=page]:hover:bg-primary-dark/10 in-[.sb-rail]:lg:pl-2">${msg.localize("nav.apAging")}</a>
@@ -567,7 +567,7 @@
                 <a href="?lang=ru" class="${lang.equals("ru") ? "rounded-radius px-2 py-1 text-xs font-semibold text-primary dark:text-primary-dark" : "rounded-radius px-2 py-1 text-xs text-on-surface/70 hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark/70 dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong"}">РУ</a>
                 <a href="?lang=en" class="${lang.equals("en") ? "rounded-radius px-2 py-1 text-xs font-semibold text-primary dark:text-primary-dark" : "rounded-radius px-2 py-1 text-xs text-on-surface/70 hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark/70 dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong"}">EN</a>
             </div>
-            <%-- Кўриниш режими (Arbitr-117в): 3 ҳолатли танлов - Оч /
+            <%-- Кўриниш режими (DEC-117в): 3 ҳолатли танлов - Оч /
                  Тўқ / Аралаш (фақат sidebar тўқ). Penguin segmented
                  услуби (radiogroup); mode ҳолати root x-data'да,
                  $persist 'uiMode' (эски 'darkMode'дан FOUC скрипти
@@ -607,13 +607,13 @@
             </div>
         </div>
     </div>
-    <%-- Arbitr-143: вендор логоси (powered-by туйғуси) - user profile'дан
+    <%-- DEC-143: вендор логоси (powered-by туйғуси) - user profile'дан
          паст, nav охири. Икки <img> алмашуви (light `dark:hidden`, dark
          `hidden dark:block`) - тепа бренд (мижоз) билан аралашмайди, бу
          ВЕНДОР. Рейлда жой йўқ - яширин. Аралаш (sb-light) footer оч оила:
          light версия кўринади (sb-light маркери .dark қамровидан ташқари,
-         app.css @custom-variant). ?v= кэш-бузиш (Arbitr-137).
-         Arbitr-146: логотип averpo.com'га ҳавола (target=_blank + rel
+         app.css @custom-variant). ?v= кэш-бузиш (DEC-137).
+         DEC-146: логотип averpo.com'га ҳавола (target=_blank + rel
          noopener noreferrer - хавфсизлик шарти); opacity-60 <a>да, hover/
          focus'да тўлиқ (босилиши мумкинлигини билдиради). --%>
     <div class="mt-3 border-t border-outline pt-3 in-[.sb-rail]:lg:hidden dark:border-outline-dark">
@@ -624,7 +624,7 @@
         </a>
     </div>
 </nav>
-<%-- Arbitr-129: sidebar FOUC ҳимояси - head'даги uiMode скрипти услубида,
+<%-- DEC-129: sidebar FOUC ҳимояси - head'даги uiMode скрипти услубида,
      parser-blocking жойда (nav ёпилган заҳоти). Alpine defer билан кеч
      boot бўлгунча биринчи paint DEFAULT кўринишда қоларди (гуруҳлар
      ёпиқ, рейл ўрнига тўлиқ кенглик, скролл тепада) - бу скрипт

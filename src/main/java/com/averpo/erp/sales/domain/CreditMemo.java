@@ -145,7 +145,7 @@ public class CreditMemo extends BaseEntity {
 
     /**
      * Жамилар: total = gross йиғиндиси, totalBase = битта яхлитлаш
-     * (MoneyAllocation.targetBase - Asrorxoja-002 қолипи), очиқ қолдиқ
+     * (MoneyAllocation.targetBase - LOG-002 қолипи), очиқ қолдиқ
      * қайта ҳисобланади.
      */
     private void recalcTotals() {

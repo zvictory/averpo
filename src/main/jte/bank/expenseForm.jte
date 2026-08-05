@@ -19,7 +19,7 @@
 @param List<com.averpo.erp.shared.service.TxnClassService.ClassOption> classes = java.util.List.of()
 @param Boolean canEdit = false
 
-<%-- Чиқим (Expense) - QBO /app/expense тартиби (Arbitr-033): Payee |
+<%-- Чиқим (Expense) - QBO /app/expense тартиби (DEC-033): Payee |
      Тўлов счёти (жонли Balance) | катта жонли AMOUNT | курс | сана |
      тўлов усули | Ref no | сатрлар | Total (ҳужжат валютаси + home) |
      memo. Ёзувчи мантиқ ўша BankTransactionService.expense - проводка
@@ -90,7 +90,7 @@
 
         <%-- Иккинчи қатор: курс (чет валютада) | сана | тўлов усули | Ref no --%>
             <label x-show="fromCur !== '${homeCurrency}'" x-cloak>
-                <%-- Arbitr-065: киритиш йўналиши ёрлиқда аниқ - «1 USD = ? UZS» --%>
+                <%-- DEC-065: киритиш йўналиши ёрлиқда аниқ - «1 USD = ? UZS» --%>
                 <span class="inline-flex items-center gap-1 whitespace-nowrap">${msg.localize("bt.form.rate")} (1 <span x-text="fromCur"></span> = ? ${homeCurrency}) @template.shared.help(key = "field.exchangeRate", msg = msg)</span>
                 <input name="exchangeRate" size="10" inputmode="decimal" data-ratefor="bankAccountId"
                        value="${form.getExchangeRate() != null ? form.getExchangeRate() : ""}"
@@ -188,7 +188,7 @@
     </form>
 
     <script>
-        // Курс prefill (Arbitr-029 нақши - bankTransactionForm билан бир
+        // Курс prefill (DEC-029 нақши - bankTransactionForm билан бир
         // хил): счёт алмашса force=true, сана ўзгарса фақат автоматик
         // қиймат янгиланади; қўлда терилган курс устидан ёзилмайди.
         (function () {
@@ -229,7 +229,7 @@
             if (dateInput) dateInput.addEventListener('change', function () { prefillRate(false); });
         })();
 
-        // Жонли AMOUNT/Total (Nargiza-004 нақши): сатр суммалари йиғилади -
+        // Жонли AMOUNT/Total (BA-004 нақши): сатр суммалари йиғилади -
         // фақат кўрсатиш, server ҳисоби/BR'лар ўз жойида. Формат Fmt.money
         // кўзгуси: 2 хона, нуқта каср, NBSP минг ажратгич. Home жами =
         // жами × курс - фақат кўрсатиш учун тахмин (аниқ base server'да).

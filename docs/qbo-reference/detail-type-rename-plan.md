@@ -5,7 +5,7 @@
 enum'да умуман йўқ. Мақсад: DB'даги string'лар ва Java enum расмий
 CamelCase номларнинг SNAKE_CASE кўринишига 1:1 мос бўлсин.
 
-Ҳолат: ✅ БАЖАРИЛДИ (changeset 018-detail-type-rename).
+Ҳолат: БАЖАРИЛДИ (changeset 018-detail-type-rename).
 Хавфлар бўлимидаги «маълум бага» текширилди: AccountService.importCsv
 аллақачон valueOf IAE'сини BR-COA-004 га ўрайди, currency хатоси ҳам
 BR-COA-004 контексти билан қайта ўралади - тузатиш талаб қилинмади.
@@ -28,29 +28,29 @@ BR-COA-004 контексти билан қайта ўралади - тузат�
 ## Таъсирланадиган жойлар (grep билан аниқланган)
 
 1. **AccountDetailType.java** - 7 константа rename + 1 янги
- (PAYROLL_TAX_PAYABLE, OTHER_CURRENT_LIABILITY турига). JavaDoc
- изоҳлари янгиланади.
+   (PAYROLL_TAX_PAYABLE, OTHER_CURRENT_LIABILITY турига). JavaDoc
+   изоҳлари янгиланади.
 2. **ItemService.java** - 2 жой: default expense счёт қидируви
- (`AccountDetailType.SUPPLIES_AND_MATERIALS_COGS`) + JavaDoc.
+   (`AccountDetailType.SUPPLIES_AND_MATERIALS_COGS`) + JavaDoc.
 3. **default-chart.csv** - 5 қатор: Иш ҳақи мажбуриятлари, Олинган
- аванслар, Товар таннархи (COGS), Офис харажатлари, Сарф
- материаллари.
+   аванслар, Товар таннархи (COGS), Офис харажатлари, Сарф
+   материаллари.
 4. **messages.properties / _en / _ru** - `account.detail.*` калитлари:
- 7 та rename × 3 файл + 1 янги калит × 3 файл (PAYROLL_TAX_PAYABLE
- учун титул: «Иш ҳақи солиқлари» / Payroll Tax Payable / Налоги с
- зарплаты).
+   7 та rename × 3 файл + 1 янги калит × 3 файл (PAYROLL_TAX_PAYABLE
+   учун титул: «Иш ҳақи солиқлари» / Payroll Tax Payable / Налоги с
+   зарплаты).
 5. **Liquibase data changeset 018** (янги файл
- `018-detail-type-rename.sql`): ҳар мослик учун
- `UPDATE account SET detail_type='ЯНГИ' WHERE detail_type='ЭСКИ';`
- (7 та UPDATE). Мавжуд dev/prod базадаги қаторлар шу орқали ўтади;
- `type`/`classification` устунлари ЎЗГАРМАЙДИ (мослик жадвалида тур
- сақланиб қолади, фақат PAYROLL_LIABILITIES ва UNEARNED_REVENUE'да
- ҳам тур OTHER_CURRENT_LIABILITY лигича қолади - текширилди).
+   `018-detail-type-rename.sql`): ҳар мослик учун
+   `UPDATE account SET detail_type='ЯНГИ' WHERE detail_type='ЭСКИ';`
+   (7 та UPDATE). Мавжуд dev/prod базадаги қаторлар шу орқали ўтади;
+   `type`/`classification` устунлари ЎЗГАРМАЙДИ (мослик жадвалида тур
+   сақланиб қолади, фақат PAYROLL_LIABILITIES ва UNEARNED_REVENUE'да
+   ҳам тур OTHER_CURRENT_LIABILITY лигича қолади - текширилди).
 6. **docs/posting-rules.md** - 2 жой (SUPPLIES_AND_MATERIALS_COGS
- тизим счёти жадвали + Invoice COGS қоидаси).
+   тизим счёти жадвали + Invoice COGS қоидаси).
 7. **docs/modules/item.md** - 1 жой (default expense).
 8. **docs/qbo-reference/entities.md §1.2** - жадвал «бажарилди» деб
- янгиланади.
+   янгиланади.
 
 Тестларда эски номлар ишлатилмаган (grep тоза). Changelog'ларда seed
 йўқ (счётлар runtime'да CSV'дан импорт қилинади).
@@ -58,22 +58,22 @@ BR-COA-004 контексти билан қайта ўралади - тузат�
 ## Бажариш тартиби (битта сессия, ~10 файл)
 
 1. Changeset 018 ёзилади (Liquibase аввал data'ни ўтказади - илова
- кўтарилганда enum valueOf эски string учратмайди).
+   кўтарилганда enum valueOf эски string учратмайди).
 2. Enum + ItemService + CSV + messages бир туртки'да.
 3. Ҳужжатлар (posting-rules, item.md, entities.md) иккинчи туртки'да.
 4. Текширув: `grep -rn "SUPPLIES_AND_MATERIALS_COGS\|OFFICE_EXPENSES\|PAID_IN_CAPITAL\b\|TRUST_ACCOUNT\b\|PAYROLL_LIABILITIES\|UNEARNED_REVENUE"`
- бутун repo бўйича 0 натижа қайтариши шарт (қавс: PAID_IN_CAPITAL_OR_SURPLUS
- ичидаги prefix'ни ҳисобга олиб \b билан).
+   бутун repo бўйича 0 натижа қайтариши шарт (қавс: PAID_IN_CAPITAL_OR_SURPLUS
+   ичидаги prefix'ни ҳисобга олиб \b билан).
 5. `./gradlew test` тўлиқ ўтади; қўлда smoke: /accounts рўйхати ва
- счёт формаси dropdown титуллари тўғри чиқади.
+   счёт формаси dropdown титуллари тўғри чиқади.
 
 ## Хавфлар
 
 - Фойдаланувчининг ЭСКИ CSV файллари (эски detail type номлари билан)
- импортда ишламай қолади - бу қабул қилинади (хато хабари аниқ
- чиқади). Alias-мослаштириш атайлаб қилинмайди - soddalik.
+  импортда ишламай қолади - бу қабул қилинади (хато хабари аниқ
+  чиқади). Alias-мослаштириш атайлаб қилинмайди - soddalik.
 - AccountImportTest'даги маълум бага (importCsv'да `catch
- (BusinessRuleException)` ўрнига `IllegalArgumentException` тутилиши
- керак, AccountService.java:267) шу сессияда бирга тузатилиши мақсадга
- мувофиқ - нотўғри detail type киритилганда фойдаланувчи тартибли
- BR-COA-004 хабарини кўради.
+  (BusinessRuleException)` ўрнига `IllegalArgumentException` тутилиши
+  керак, AccountService.java:267) шу сессияда бирга тузатилиши мақсадга
+  мувофиқ - нотўғри detail type киритилганда фойдаланувчи тартибли
+  BR-COA-004 хабарини кўради.

@@ -1,7 +1,7 @@
 package com.averpo.erp.shared.service;
 
 /**
- * Стандарт UOM гуруҳларини (default units) ўрнатиш порти (Arbitr-147) -
+ * Стандарт UOM гуруҳларини (default units) ўрнатиш порти (DEC-147) -
  * {@link DefaultChartInstaller} кўзгуси.
  *
  * <p>Боғлиқлик йўналиши item -> shared бўлгани учун shared item'нинг

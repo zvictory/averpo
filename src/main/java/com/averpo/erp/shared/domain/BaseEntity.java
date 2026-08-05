@@ -48,7 +48,7 @@ public abstract class BaseEntity implements Persistable<UUID> {
     private Instant createdAt;
 
     /**
-     * Ёзувни киритган фойдаланувчи id'си (user-management.md, Eldor-004
+     * Ёзувни киритган фойдаланувчи id'си (user-management.md, SEC-004
      * §7) - SecurityAuditorAware тўлдиради. Auth контекстисиз ёзувларда
      * (scheduler, bootstrap, миграциядан олдинги ёзувлар) NULL қолади -
      * сохта атрибуция қилинмайди. FK атайлаб йўқ - dimension паттерни:

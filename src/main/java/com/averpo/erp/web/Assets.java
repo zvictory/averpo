@@ -8,7 +8,7 @@ import java.time.Instant;
 
 /**
  * Статик asset'лар версияси - css/js линкларидаги {@code ?v=...}
- * (Arbitr-137, cache busting).
+ * (DEC-137, cache busting).
  *
  * <p>Нега керак: 131 дан кейин css/js узоқ кэшда юради - deploy'дан
  * кейин браузерда (ва Cloudflare'да) эски нусха туриб қолмаслиги учун

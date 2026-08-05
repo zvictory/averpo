@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * Пул қайтариш чеклари репозиторийси - фақат sales модули ичида.
- * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
+ * JpaSpecificationExecutor - рўйхат филтри учун (DEC-068).
  */
 public interface RefundReceiptRepository extends JpaRepository<RefundReceipt, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<RefundReceipt> {

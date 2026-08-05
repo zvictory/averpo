@@ -139,7 +139,7 @@ public class RefundReceipt extends BaseEntity {
 
     /**
      * Жамилар: total = gross йиғиндиси, totalBase = битта яхлитлаш
-     * (MoneyAllocation.targetBase - Asrorxoja-002 қолипи).
+     * (MoneyAllocation.targetBase - LOG-002 қолипи).
      */
     private void recalcTotals() {
         BigDecimal sum = BigDecimal.ZERO;

@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Профиль web оқими интеграцион тести (Arbitr-101, user-profile.md
+ * Профиль web оқими интеграцион тести (DEC-101, user-profile.md
  * «Тестлар»): ҳар роль (жумладан VIEWER_AUDITOR) ЎЗ профилини очади ва
  * сақлайди, эски /profile/password redirect, аватар inline+nosniff.
  *
@@ -92,7 +92,7 @@ class ProfileWebTest {
     }
 
     /**
-     * Arbitr-148: фойдаланувчи ЎЗ профилида кўрсатиладиган номини «Маълумотлар»
+     * DEC-148: фойдаланувчи ЎЗ профилида кўрсатиладиган номини «Маълумотлар»
      * формасидан ўзгартиради - POST 302 /profile, кейин янги ном саҳифада
      * (аватар виджет ва форма value'сида) render бўлади.
      */
@@ -108,7 +108,7 @@ class ProfileWebTest {
     }
 
     /**
-     * Arbitr-148: бўш ном (BR-USR-004) рад - профил формаси required, лекин
+     * DEC-148: бўш ном (BR-USR-004) рад - профил формаси required, лекин
      * tampered бўш POST сервер гаровида ушланиб, flash error билан /profile'га
      * қайтади (ном ўзгармай қолади - ярим-ёзилиш йўқ).
      */
@@ -125,7 +125,7 @@ class ProfileWebTest {
     }
 
     /**
-     * Arbitr-096 CSRF UX (профил POST'и): CSRF токенисиз ёзувчи сўров
+     * DEC-096 CSRF UX (профил POST'и): CSRF токенисиз ёзувчи сўров
      * эскирган сессия деб қаралиб, хом 403 Whitelabel эмас, {@code
      * /login?expired} га redirect бўлади (SessionCsrfUxWebTest семантикаси).
      */

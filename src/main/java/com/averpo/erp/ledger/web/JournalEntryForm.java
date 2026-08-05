@@ -21,7 +21,7 @@ public class JournalEntryForm {
     /**
      * Проводка санаси - формада date input, ISO форматда боғланади.
      * Default'ни controller компания zoneId «бугун»и билан беради
-     * (JVM tz эмас, қоида 12/Arbitr-044).
+     * (JVM tz эмас, қоида 12/DEC-044).
      */
     private LocalDate entryDate;
 
@@ -29,7 +29,7 @@ public class JournalEntryForm {
     private String description;
 
     /**
-     * Ҳужжат валютаси ISO коди (QBO parity, Arbitr-107) - бўш бўлса home
+     * Ҳужжат валютаси ISO коди (QBO parity, DEC-107) - бўш бўлса home
      * currency. QBO'да JournalEntry битта валютада (CurrencyRef header'да):
      * бу қиймат ҲАММА сатрга тарқатилади, шунда бутун проводка ягона
      * валютада бўлади (entities.md:97-98 эталони).
@@ -39,7 +39,7 @@ public class JournalEntryForm {
     /**
      * Курс (1 currency = rate home) - КАНОНИК, home валютада 1. rateBlock
      * компонентининг hidden name="exchangeRate" каноник қиймати; ҳамма
-     * сатрга тарқатилади (курс энди сатрда эмас, header'да - Arbitr-107).
+     * сатрга тарқатилади (курс энди сатрда эмас, header'да - DEC-107).
      */
     private String exchangeRate;
 
@@ -67,7 +67,7 @@ public class JournalEntryForm {
         /** Танланган счёт id'си (UUID матн кўринишида). */
         private String accountId;
 
-        // Arbitr-107: валюта/курс энди сатрда ЭМАС - header'да (QBO parity).
+        // DEC-107: валюта/курс энди сатрда ЭМАС - header'да (QBO parity).
         // Controller header currency/exchangeRate'ни ҳар сатрга тарқатади.
 
         /** Дебет суммаси - кредит билан бирга тўлдирилмайди (XOR). */

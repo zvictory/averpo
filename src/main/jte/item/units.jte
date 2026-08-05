@@ -14,7 +14,7 @@
     <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("unit.title")}</h1>
         <div class="flex items-center gap-3">
-            <%-- Стандарт гуруҳларни юклаш (Arbitr-147б): chart importDefault
+            <%-- Стандарт гуруҳларни юклаш (DEC-147б): chart importDefault
                  нақши - POST форма + CSRF, secondary тугма. Idempotent, шунга
                  доим кўринади (бор гуруҳга тегмайди). --%>
             <form method="post" action="/settings/units/import-default">

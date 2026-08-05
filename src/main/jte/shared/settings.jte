@@ -16,7 +16,7 @@
 @param boolean setup = false
 @param String error = null
 @param String message = null
-<%-- Arbitr-104: build диагностика маълумоти (controller BuildProperties'дан
+<%-- DEC-104: build диагностика маълумоти (controller BuildProperties'дан
      тайёрлайди - тест/build-info'сиз контекстда null, қатор чиқмайди) --%>
 @param String buildVersion = null
 @param String buildTime = null
@@ -25,7 +25,7 @@
 @template.layout.main(helpKey = "page.settings", title = msg.lookup("settings.title"), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
     <h1 class="mb-4 text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("settings.heading")}</h1>
 
-    <%-- Онбординг banner (Arbitr-056): setup=1 да - янги ўрнатишда ADMIN
+    <%-- Онбординг banner (DEC-056): setup=1 да - янги ўрнатишда ADMIN
          бу ерга login'дан келади, аввал асосий созламаларни тўлдиради --%>
     @if(setup)
         <div class="mb-4 rounded-radius border border-info/40 bg-info/10 px-4 py-3.5 text-on-surface dark:text-on-surface-dark">
@@ -48,7 +48,7 @@
             <input name="name" value="${settings.getName()}" required
                    class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
         </label>
-        <%-- Arbitr-112: компаниянинг тўлиқ реквизитлари (юридик ном, банк,
+        <%-- DEC-112: компаниянинг тўлиқ реквизитлари (юридик ном, банк,
              директор, лого) алоҳида саҳифада - чоп сарлавҳаси шундан ўқийди --%>
         <p style="font-size:.85rem;margin-top:-.5rem;">
             <a href="/settings/company" class="text-primary underline dark:text-primary-dark">${msg.localize("company.title")} →</a>
@@ -114,7 +114,7 @@
                    class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
         </label>
         <p class="-mt-2 text-[.85rem] text-current/60">${msg.localize("settings.closingDateHint")}</p>
-        <%-- Arbitr-106: даврни алоҳида саҳифада бошқариш ҳаволаси (QBO
+        <%-- DEC-106: даврни алоҳида саҳифада бошқариш ҳаволаси (QBO
              Settings→Advanced қолипи). journalEntries тепасидаги тугма ҳам
              айнан шу саҳифага олади - PERIOD_CLOSE-only CHIEF /settings'га
              кира олмагани учун унинг ягона йўли ўша тугма. --%>
@@ -160,7 +160,7 @@
         <a href="/settings/currencies" class="text-primary underline dark:text-primary-dark">${msg.localize("currency.title")}</a>
         <a href="/settings/warehouses" class="text-primary underline dark:text-primary-dark">${msg.localize("warehouse.title")}</a>
         <a href="/settings/import" class="text-primary underline dark:text-primary-dark">${msg.localize("import.heading")}</a>
-        <%-- Плагинлар реестри (Arbitr-113): ихтиёрий фичаларни SUPER_ADMIN
+        <%-- Плагинлар реестри (DEC-113): ихтиёрий фичаларни SUPER_ADMIN
              шу ердан ёқади/ўчиради - спец «Асосий Созламадан ҳавола» талаби --%>
         <a href="/settings/plugins" class="text-primary underline dark:text-primary-dark">${msg.localize("plugin.title")} →</a>
     </div>
@@ -179,7 +179,7 @@
         </div>
     @endif
 
-    <%-- Arbitr-104: build диагностика қатори (энг тагда, хира) - жонлида
+    <%-- DEC-104: build диагностика қатори (энг тагда, хира) - жонлида
          қайси версия/код турганини бир қарашда билиш. Вақт компания
          timezone'ида (Fmt.dt, темир қоида №12). Фақат /settings
          (SUPER_ADMIN) - маълумот ошкорлиги гигиенаси, login'га чиқмайди.

@@ -52,7 +52,7 @@ public class GlobalSearchService {
      *
      * @param table      жадвал номи
      * @param numberCol  ҳужжат рақами устуни (ILIKE қилинади)
-     * @param extraSearchCol қўшимча қидирув устуни ёки null (Ulugbek-016:
+     * @param extraSearchCol қўшимча қидирув устуни ёки null (AUD-016:
      *                   bank_transaction ref_no - банк ҳужжат ҳаваласи ҳам
      *                   рақамдек қидирилади)
      * @param contactFk  контакт FK устуни ёки null (JE/payroll - сарлавҳада йўқ)
@@ -60,7 +60,7 @@ public class GlobalSearchService {
      * @param hasCurrency currency_id FK борми (сумма валютаси коди учун)
      * @param totalCol   сумма устуни ёки null (JE/payroll_run - йўқ):
      *                   ҳужжатларда {@code total}, тўлов/LC оиласида
-     *                   {@code total_amount} (Arbitr-074 - жадвалдан аниқланди)
+     *                   {@code total_amount} (DEC-074 - жадвалдан аниқланди)
      * @param urlPrefix  кўриш экрани префикси, кетига {@code id} қўшилади
      */
     private record DocSource(String table, String numberCol, String extraSearchCol,
@@ -69,7 +69,7 @@ public class GlobalSearchService {
     }
 
     /**
-     * Қидириладиган ҳужжат жадваллари (spec «Ҳужжатлар» кўлами, Arbitr-074
+     * Қидириладиган ҳужжат жадваллари (spec «Ҳужжатлар» кўлами, DEC-074
      * билан тўлдирилган: тўловлар RCPT-/PAY-, банк txn BT- + ref_no, landed
      * cost LC- - QBO Navigate паритети). Тартиб муҳим эмас - натижа сана
      * бўйича сараланади. Route'лар айнан тегишли view controller'ларнинг
@@ -199,7 +199,7 @@ public class GlobalSearchService {
 
     /**
      * Контакт типидан URL қуради. Мижоз/таъминотчи → КОНТАКТ КАРТОЧКАСИ
-     * (кўриш саҳифаси, Arbitr-002): {@code /customers/{id}} ёки
+     * (кўриш саҳифаси, DEC-002): {@code /customers/{id}} ёки
      * {@code /vendors/{id}}. Ходим → эски таҳрир формаси
      * ({@code /employees/{id}/edit}) - ходим картаси 2-босқич
      * (contact-card.md), карточка саҳифаси йўқ.

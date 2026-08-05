@@ -101,7 +101,7 @@ class PostingServiceTest {
 
     @Test
     void journalList_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 1-босқич: JE рўйхат оқими саҳифаланган - size+1
+        // PERF-perf1 1-босқич: JE рўйхат оқими саҳифаланган - size+1
         // ёзувда 2-саҳифада биттагина қолади; тартиб аввалги ORDER BY'га
         // мос (сана, кейин рақам камайиши - рақамлар padded, string
         // тартиб сон тартибига тенг)
@@ -114,7 +114,7 @@ class PostingServiceTest {
                 org.springframework.data.domain.Sort.Order.desc("entryDate"),
                 org.springframework.data.domain.Sort.Order.desc("entryNumber"));
 
-        // Arbitr-068: рўйхат филтри Specification'га ўтди - тест ҳам шу
+        // DEC-068: рўйхат филтри Specification'га ўтди - тест ҳам шу
         // йўл билан (ListSpecs бўлаклари, эски derived query ўчирилган)
         var betweenSpec = org.springframework.data.jpa.domain.Specification.allOf(
                 com.averpo.erp.shared.repo.ListSpecs.<JournalEntry>dateFrom("entryDate", DATE),

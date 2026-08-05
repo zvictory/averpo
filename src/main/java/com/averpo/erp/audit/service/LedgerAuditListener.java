@@ -47,7 +47,7 @@ public class LedgerAuditListener {
     }
 
     /**
-     * Default chart импорти (Arbitr-062): details «яратилди N, ўтказилди M»
+     * Default chart импорти (DEC-062): details «яратилди N, ўтказилди M»
      * - қўлда тугма, авто-init ва factory reset учаласи шу ҳодисага киради.
      */
     @EventListener
@@ -59,7 +59,7 @@ public class LedgerAuditListener {
     }
 
     /**
-     * Счёт create/update/deactivate (Arbitr-062): details = «ном»
+     * Счёт create/update/deactivate (DEC-062): details = «ном»
      * (detail type), таҳрирда ундан кейин ўзгарган майдонлар диффи.
      */
     @EventListener

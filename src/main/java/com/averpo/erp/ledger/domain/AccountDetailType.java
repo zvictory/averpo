@@ -96,7 +96,7 @@ public enum AccountDetailType {
     /**
      * Жамғарилган амортизация - номоддий активлар (контра-актив):
      * AMORTIZATION харажатининг актив томони, ACCUMULATED_DEPRECIATION
-     * жуфти (Arbitr-016 - жуфти чала тур тўлдирилди).
+     * жуфти (DEC-016 - жуфти чала тур тўлдирилди).
      */
     ACCUMULATED_AMORTIZATION(AccountType.FIXED_ASSET),
 
@@ -111,7 +111,7 @@ public enum AccountDetailType {
     /**
      * Номоддий активлар (GOODWILL'дан бошқа: патент, лицензия, товар
      * белгиси) - шусиз AMORTIZATION бошланган сиёсатни жойлаштирадиган
-     * актив тури йўқ эди (Arbitr-016).
+     * актив тури йўқ эди (DEC-016).
      */
     INTANGIBLE_ASSETS(AccountType.OTHER_ASSET),
 
@@ -252,7 +252,7 @@ public enum AccountDetailType {
     /**
      * Умидсиз (шубҳали) қарзлар харажати - ALLOWANCE_FOR_BAD_DEBTS
      * захираси билан жуфт: захира проводкаси Дт шу счёт / Кт захира
-     * (Arbitr-016 - жуфти чала тур тўлдирилди).
+     * (DEC-016 - жуфти чала тур тўлдирилди).
      */
     BAD_DEBTS(AccountType.EXPENSE),
 
@@ -304,7 +304,7 @@ public enum AccountDetailType {
     /**
      * Ҳужжатга боғланмаган vendor тўловлари учун QBO тизим счёти -
      * UNAPPLIED_CASH_PAYMENT_INCOME'нинг AP томондаги жуфти
-     * (Arbitr-016). Оқими кейинги босқич иши - ҳозирча фақат каталогда.
+     * (DEC-016). Оқими кейинги босқич иши - ҳозирча фақат каталогда.
      */
     UNAPPLIED_CASH_BILL_PAYMENT_EXPENSE(AccountType.EXPENSE),
 
@@ -351,7 +351,7 @@ public enum AccountDetailType {
      * бундай счётга рухсат этилса GL қолдиғи subledger'дан (AR/AP aging,
      * StockMovement valuation) ажралиб кетади - шунинг учун транзфер
      * гарови (BR-TXF-002) ва счёт select'лари шу белгига таянади
-     * (Komil-008; QBO Transfer UI ҳам тизим счётларини кўрсатмайди).
+     * (IFRS-008; QBO Transfer UI ҳам тизим счётларини кўрсатмайди).
      *
      * <p>{@code SALES_TAX_PAYABLE} атайлаб КИРМАЙДИ: алоҳида tax payment
      * оқими ҳали йўқ, ҚҚС тўлови ҳозирча айнан transfer/expense орқали

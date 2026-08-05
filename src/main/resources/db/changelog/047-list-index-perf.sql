@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:047-01-jel-contact-index
--- Statement/register мижоз кесими (Arbitr-049, Beruniy-026/029): AR
+-- Statement/register мижоз кесими (DEC-049, PERF-026/029): AR
 -- контрол счётининг contact_id бўйича филтри аввал бутун
 -- journal_entry_line'ни сканирларди. (account_id, contact_id) композит
 -- partial индекс - contact_id тўлдирилган (AR/AP subledger) сатрларгагина,
@@ -11,7 +11,7 @@ CREATE INDEX idx_jel_contact ON journal_entry_line(account_id, contact_id)
 --rollback DROP INDEX idx_jel_contact;
 
 --changeset averpo:047-02-returns-lookup-indexes
--- Returns reverse-lookup (Arbitr-049, Beruniy-034): invoice/bill кўришлари
+-- Returns reverse-lookup (DEC-049, PERF-034): invoice/bill кўришлари
 -- findByInvoiceId/findByBillId қилади, лекин composite unique'нинг
 -- иккинчи устуни (invoice_id/bill_id) prefix эмас - тўлиқ скан. Тўрт
 -- нишонли индекс: application жадвалларида тўлиқ, ихтиёрий FK устунларда

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 /**
- * ProdDatasourceGuard тестлари (Eldor-001): prod профилда заиф/йўқ DB
+ * ProdDatasourceGuard тестлари (SEC-001): prod профилда заиф/йўқ DB
  * пароли билан boot тўхташи, dev оқими эса тегилмагани текширилади.
  * Тўлиқ boot тести @SpringBootTest эмас - guard контекст кўтарилишини
  * атайлаб йиқитади, кэшланадиган контекст йўқ.

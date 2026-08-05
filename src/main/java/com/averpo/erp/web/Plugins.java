@@ -7,7 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.Set;
 
 /**
- * JTE шаблонлар учун плагин гейти (Arbitr-113): меню бандлари ва созлама
+ * JTE шаблонлар учун плагин гейти (DEC-113): меню бандлари ва созлама
  * бўлимлари плагин ёқиқлигини СТАТИК {@link #current()} орқали сўрайди -
  * {@link Perms}/{@link LayoutInfo} нақши (layout'га параметр қўшиш юзлаб
  * шаблонни ўзгартирарди). Ҳозир консумент йўқ - биринчи плагин менюси/

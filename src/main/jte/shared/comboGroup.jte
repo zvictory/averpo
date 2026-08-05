@@ -1,6 +1,6 @@
 @param String label
 
-<%-- Combobox гуруҳ сарлавҳаси (Arbitr-123): native optgroup твини -
+<%-- Combobox гуруҳ сарлавҳаси (DEC-123): native optgroup твини -
      танланмайдиган банд. Матн strong оилада (лойиҳа канони, жадвал
      сарлавҳалари каби) - оддий банддан аниқ фарқлансин; bg-surface-alt
      фон ажралиши + uppercase/font-bold қолади. --%>

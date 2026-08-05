@@ -220,7 +220,7 @@ class BillTaxTest {
     void foreignCurrency_withTax_moneyInvariantAndBalanced() {
         // USD bill, курс 12345.6789 - ҳар GL сатр BR-LED-003 ичида,
         // йиғинди BR-LED-006 (MoneyAllocation ҚҚС легларини ҳам қамрайди).
-        // Arbitr-087: чет валюта ҳужжати USD валютали контактга ёзилади
+        // DEC-087: чет валюта ҳужжати USD валютали контактга ёзилади
         Contact usdVendor = contactService.create(ContactType.VENDOR, new ContactData(
                 "Солиқ USD vendor", null, null, null, null, null,
                 "USD", null, null, null, null));

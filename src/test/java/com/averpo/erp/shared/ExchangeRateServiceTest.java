@@ -51,7 +51,7 @@ class ExchangeRateServiceTest {
 
     @Test
     void record_sameDateDifferentRates_appendsHistory_latestWins() {
-        // Append-only тарих (Arbitr-022): устига ёзилмайди
+        // Append-only тарих (DEC-022): устига ёзилмайди
         service.upsert("USD", DATE, new BigDecimal("12600"));
         service.upsert("USD", DATE, new BigDecimal("12650"));
 
@@ -83,7 +83,7 @@ class ExchangeRateServiceTest {
 
     @Test
     void latestForEachCurrency_singleQuery_newestPerCurrency() {
-        // Beruniy-023: Currencies экрани N+1 ўрнига битта window сўрови.
+        // PERF-023: Currencies экрани N+1 ўрнига битта window сўрови.
         // EUR seed'да нофаол - аввал фаоллаштирилади (upsert талаби)
         currencyService.setActive("EUR", true);
         service.upsert("USD", DATE, new BigDecimal("12600"));
@@ -161,7 +161,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Arbitr-067: home≠UZS энди импортни ТЎСМАЙДИ - кросс-курс UZS орқали
+     * DEC-067: home≠UZS энди импортни ТЎСМАЙДИ - кросс-курс UZS орқали
      * pivot қилинади (фойдаланувчи талаби 2026-07-10). home=USD, ЦБ:
      * USD 12600.47, EUR 13800.12. Кутилма (scale 12, HALF_UP - аниқ
      * қиймат, хом бўлиниш 1.0952067660968.. / 0.000079362119032..):
@@ -195,7 +195,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Arbitr-067: BR-FX-003 нинг ЯНГИ маъноси - home валюта ЦБ рўйхатида
+     * DEC-067: BR-FX-003 нинг ЯНГИ маъноси - home валюта ЦБ рўйхатида
      * бўлмаса pivot махражи йўқ, импорт аниқ хато билан рад этилади
      * (аввал «home UZS эмас» тақиқи эди - у олиб ташланди).
      */
@@ -213,7 +213,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Arbitr-067 (карта 4-банд): scheduler home≠UZS билан ҳам йиқилмайди -
+     * DEC-067 (карта 4-банд): scheduler home≠UZS билан ҳам йиқилмайди -
      * муваффақиятли pivot импорти ҳам, home ЦБ рўйхатида йўқ ҳолат
      * (BR-FX-003) ҳам warn log билан ютилади.
      */
@@ -232,7 +232,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Sanjar-011: импортнинг ички batch йўли - аввал ҳар чет валютага
+     * OPT-011: импортнинг ички batch йўли - аввал ҳар чет валютага
      * учтадан SELECT (require + homeCurrency + current) кетарди (2+3F),
      * энди импорт давомида учта умумий сўров: settings + active рўйхати +
      * шу сананинг current map'и. Хулқ айнан: 7 фаол валюта, home UZS -
@@ -280,7 +280,7 @@ class ExchangeRateServiceTest {
         // Такрор импорт (крон куни икки марта уради): қийматлар ўзгармаган -
         // append-only тарихга дубль ёзилмайди, натижа сони ўзгармайди
         ExchangeRateService.ImportResult second = service.importFromCbu(DATE);
-        // Такрор импорт: айнан шу қийматлар - текширилди, лекин ЎЗГАРМАДИ (Arbitr-168)
+        // Такрор импорт: айнан шу қийматлар - текширилди, лекин ЎЗГАРМАДИ (DEC-168)
         assertThat(second.checked()).isEqualTo(6);
         assertThat(second.changed()).isZero();
         assertThat(second.skipped()).isZero();
@@ -292,7 +292,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Sanjar-011: бир санада олдин MANUAL ёзув турса, фарқли ЦБ қиймати
+     * OPT-011: бир санада олдин MANUAL ёзув турса, фарқли ЦБ қиймати
      * ЯНГИ ёзув бўлиб қўшилади ва id (UUIDv7) тартиби бўйича амалдаги
      * курс бўлади - batch current map якка record() йўлидаги
      * findFirst...OrderByIdDesc қоидасини айнан сақлайди.
@@ -327,7 +327,7 @@ class ExchangeRateServiceTest {
     }
 
     /**
-     * Arbitr-168 (санагич ҳалоллиги): дам олишда ЦБ жума курсини қайтаради -
+     * DEC-168 (санагич ҳалоллиги): дам олишда ЦБ жума курсини қайтаради -
      * олдинги effective билан ТЕНГ, валюта текширилади, лекин changed ЭМАС.
      * A1: per-date ёзув САҚЛАНАДИ (Currencies экрани бугунги санани кўрсатади,
      * тизим ишлаяпти далили), фақат санагич «ўзгарди» демайди.
@@ -353,7 +353,7 @@ class ExchangeRateServiceTest {
         assertThat(service.rateFor("USD", sunday)).contains(new BigDecimal("12600"));
     }
 
-    /** Arbitr-168: ЦБ янги курс берса - текширилди ҲАМ, ўзгарди ҲАМ (changed=1). */
+    /** DEC-168: ЦБ янги курс берса - текширилди ҲАМ, ўзгарди ҲАМ (changed=1). */
     @Test
     void importFromCbu_rateDiffersFromPrevious_changedCounted() {
         LocalDate day1 = LocalDate.of(2026, 7, 17);

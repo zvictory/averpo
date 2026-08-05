@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.UUID;
 
 /**
- * Тўлов усуллари каталог экрани (Arbitr-033, TaxRate экрани нақшида):
+ * Тўлов усуллари каталог экрани (DEC-033, TaxRate экрани нақшида):
  * рўйхат + inline қўшиш/таҳрир. Йўл /settings остида - SETTINGS (SUPER_ADMIN) чекловига
  * автоматик тушади (SecurityConfig).
  *

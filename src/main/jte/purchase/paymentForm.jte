@@ -53,7 +53,7 @@
             </label>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("pay.form.bankAccount")}
-                <%-- Arbitr-014: QBO tree - банк счёти валютаси кўринади;
+                <%-- DEC-014: QBO tree - банк счёти валютаси кўринади;
                      id payBank - қуйидаги валюта филтри JS'и учун --%>
                 @template.shared.combobox(name = "bankAccountId", msg = msg,
                         value = form.getBankAccountId(),
@@ -69,7 +69,7 @@
                                     selected = form.getBankAccountId())
                         `)
             </label>
-            <%-- Arbitr-097: валюта select + курс майдони - shared.rateBlock
+            <%-- DEC-097: валюта select + курс майдони - shared.rateBlock
                  (prefill + ориентация). Тўлов формасида жадвал жамиси йўқ -
                  home жами қисми ишламайди (rate-block.js graceful). --%>
             @template.shared.rateBlock(currencies = currencies, selected = form.getCurrency(),
@@ -112,11 +112,11 @@
     </form>
 
     <script>
-        <%-- Arbitr-097: курс prefill + ориентация - rate-block.js
+        <%-- DEC-097: курс prefill + ориентация - rate-block.js
              компонентида (эски IIFE ЎЧИРИЛДИ; банк филтр ва курс-view
              қуйида, банк филтр payCurrency id билан ишлайверади). --%>
 
-        // Банк счёти валюта филтри (Arbitr-070/Nargiza-044): combobox тўлов
+        // Банк счёти валюта филтри (DEC-070/BA-044): combobox тўлов
         // валютасига мос BANK счётларгагина рухсат беради - мос эмас счёт
         // танлаб тўлиқ форма тўлдиргач рад олиш олдини олади. Фақат UX -
         // ҳақиқат манбаи server гарови (BR-PAY-002). invoicePaymentForm
@@ -163,8 +163,8 @@
             applyFilter();
         })();
 
-        <%-- Arbitr-097: курс майдони кўрсат/яшир - rate-block.js
-             компонентида (эски Arbitr-088 view IIFE ЎЧИРИЛДИ). --%>
+        <%-- DEC-097: курс майдони кўрсат/яшир - rate-block.js
+             компонентида (эски DEC-088 view IIFE ЎЧИРИЛДИ). --%>
     </script>
 `, actions = @`
     <a href="/payments" class="inline-block no-underline cursor-pointer whitespace-nowrap rounded-radius border border-outline-dark bg-transparent px-4 py-2 text-center text-sm font-medium tracking-wide text-on-surface-dark transition hover:border-outline-dark-strong hover:text-on-surface-dark-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark active:outline-offset-0">${msg.localize("common.cancel")}</a>

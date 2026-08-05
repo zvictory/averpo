@@ -36,7 +36,7 @@ public enum AuditEventType {
     PASSWORD_CHANGED,
 
     /** Компания созламалари ўзгартирилди - details'да фақат ЎЗГАРГАН
-     * майдонлар «эски → янги» кўринишида (Arbitr-062 кенгайиши). */
+     * майдонлар «эски → янги» кўринишида (DEC-062 кенгайиши). */
     SETTINGS_CHANGED,
 
     /** Заводга қайтариш - reset транзакцияси ичида TRUNCATE'дан КЕЙИН
@@ -64,11 +64,11 @@ public enum AuditEventType {
     /** Счёт нофаол қилинди (update'да active true → false). */
     ACCOUNT_DEACTIVATED,
 
-    /** Плагин ёқилди/ўчирилди (Arbitr-113) - details'да калит ва янги
+    /** Плагин ёқилди/ўчирилди (DEC-113) - details'да калит ва янги
      * ҳолат; ёзув PluginToggledEvent орқали (shared → audit цикл йўқ). */
     PLUGIN_TOGGLED,
 
-    /** Telegram bot токени янгиланди/ўчирилди (Arbitr-103) - details'да
+    /** Telegram bot токени янгиланди/ўчирилди (DEC-103) - details'да
      * фақат ФАКТ ва бот номи; токеннинг ўзи (маскаланган ҳолда ҳам)
      * ЁЗИЛМАЙДИ (logging.md сир қоидаси). */
     TELEGRAM_TOKEN_CHANGED,
@@ -76,7 +76,7 @@ public enum AuditEventType {
     /** ЦБ авто-курс импорти (ExchangeRateScheduler, cron 10:00/16:00
      * Тошкент) якунланди: муваффақият (N янгиланди / M ўтказилди) ёки
      * хато (сабаб details'да) - фойдаланувчи /audit-log'дан авто
-     * янгиланишни кўрсин (Arbitr-164). Actor «Тизим» (фон жараён, auth
+     * янгиланишни кўрсин (DEC-164). Actor «Тизим» (фон жараён, auth
      * контексти йўқ). Ёзув ExchangeRateImportedEvent орқали (shared →
      * audit цикл йўқ, PLUGIN_TOGGLED нақши). */
     EXCHANGE_RATE_IMPORTED;

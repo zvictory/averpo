@@ -34,7 +34,7 @@ CREATE TABLE vendor_credit (
 -- Сатрлар bill_line кўзгуси (ITEM/EXPENSE; net/tax snapshot - tax.md
 -- механизми айнан) + class_id (class-tracking.md). ITEM'да item/омбор,
 -- EXPENSE'да account_id тўлдирилади. (owner, line_no) UNIQUE -
--- Beruniy-010 қолипи.
+-- PERF-010 қолипи.
 CREATE TABLE vendor_credit_line (
     id                UUID PRIMARY KEY,
     version           INT NOT NULL DEFAULT 0,

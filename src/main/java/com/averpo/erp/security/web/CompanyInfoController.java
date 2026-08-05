@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 /**
- * Компания маълумотлари экрани (Arbitr-112, docs/modules/company-info.md):
+ * Компания маълумотлари экрани (DEC-112, docs/modules/company-info.md):
  * реквизитлар (юридик ном/манзил/алоқа/СТИР/банк/директор) ва лого.
  * SUPER_ADMIN - компаниянинг ўзлигини бошқаради; чоп сарлавҳаси ва
  * document-print (29) шундан ўқийди.
@@ -63,7 +63,7 @@ public class CompanyInfoController {
     }
 
     /**
-     * Реквизитларни сақлайди (Arbitr-112): email тўлдирилса формат
+     * Реквизитларни сақлайди (DEC-112): email тўлдирилса формат
      * текширилади (BR-SET-007). `name` бу формада эмас - у /settings
      * асосий формасида (компания асосий номи).
      */
@@ -92,7 +92,7 @@ public class CompanyInfoController {
     }
 
     /**
-     * Логони браузерда inline кўрсатади (Arbitr-112, 094 нақши): inline +
+     * Логони браузерда inline кўрсатади (DEC-112, 094 нақши): inline +
      * nosniff. Лого доим png/jpeg/webp (upload'да BR-ATT-005 текширилган -
      * SVG сақланмайди), шунинг учун inline хавфсиз. Лого йўқ бўлса 404
      * (саҳифа placeholder кўрсатади).
@@ -136,7 +136,7 @@ public class CompanyInfoController {
     }
 
     /**
-     * Бренд логоси юклаш (Arbitr-112 рефайнмент, топбар WHITE-LABEL) -
+     * Бренд логоси юклаш (DEC-112 рефайнмент, топбар WHITE-LABEL) -
      * SUPER_ADMIN. Ҳужжат логосидан ФАРҚли иккинчи расм (png/jpeg/webp,
      * 2MB, ўлчов диапазони - BR-ATT-005/006/007). Топбарда ҳар роль
      * кўради (view /company/brand-logo соҳасиз).

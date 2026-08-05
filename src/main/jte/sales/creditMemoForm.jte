@@ -66,7 +66,7 @@
                        value="${form.getCmDate() != null ? form.getCmDate().toString() : ""}"
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
-            <%-- Arbitr-097: валюта select + курс майдони - shared.rateBlock
+            <%-- DEC-097: валюта select + курс майдони - shared.rateBlock
                  компонентида (prefill + кўриниш + КУЧЛИ-ВАЛЮТА ОРИЕНТАЦИЯ
                  rate-block.js'да). currencyId="cmCurrency" - 087
                  contact-currency.js customer select'дан шу id'ни топади. --%>
@@ -130,7 +130,7 @@
                 hx-vals='js:{index: Math.max(0, ...[...document.querySelectorAll("#lineRows tr")].map(r => 1 + Number(r.dataset.index || 0)))}'
                 hx-target="#lineRows" hx-swap="beforeend">${msg.localize("bt.form.addRow")}</button>
 
-        <%-- Arbitr-088 1-банд: жамилар жадвал скролл ўрамидан ТАШҚАРИДА -
+        <%-- DEC-088 1-банд: жамилар жадвал скролл ўрамидан ТАШҚАРИДА -
              кенг жадвалда қийматлар кесилмайди, доим кўз олдида (QBO Total
              қолипи; expenseForm намунаси). Recompute скрипти id бўйича ёзади -
              id'лар айнан сақланган, скрипт ўзгармаган. --%>
@@ -149,9 +149,9 @@
                     <span style="white-space:nowrap;font-variant-numeric:tabular-nums;"><span id="cmTotalLive" data-rate-total>0.00</span>
                         <span data-curtag class="font-normal">${form.getCurrency() != null ? form.getCurrency() : homeCurrency}</span></span>
                 </div>
-                <%-- Arbitr-088 4-банд: home жамиси (QBO Total жуфти) - жами × КАНОНИК
+                <%-- DEC-088 4-банд: home жамиси (QBO Total жуфти) - жами × КАНОНИК
                      курс, фақат кўрсатиш (server ҳисоби/penny rounding ўз жойида).
-                     Arbitr-097: кўрсат/яшир ва ҳисоб rate-block.js'да (data-rate-*). --%>
+                     DEC-097: кўрсат/яшир ва ҳисоб rate-block.js'да (data-rate-*). --%>
                 <div id="cmTotalHomeRow" data-rate-home-row style="display:${form.getCurrency() != null && !form.getCurrency().equals(homeCurrency) ? "flex" : "none"}" class="justify-between gap-6 text-sm text-current/60">
                     <span>${msg.localize("tax.totalHome", homeCurrency)}</span>
                     <span id="cmTotalHomeLive" data-rate-home style="white-space:nowrap;font-variant-numeric:tabular-nums;">0.00</span>
@@ -165,7 +165,7 @@
     </form>
 
     <script>
-        // Жонли net/ҚҚС/gross (invoiceForm кўзгуси, Arbitr-053 банд 1) - фақат
+        // Жонли net/ҚҚС/gross (invoiceForm кўзгуси, DEC-053 банд 1) - фақат
         // кўрсатиш; ҳақиқий ҳисоб server'да (returns.md 113-116 талаби).
         (function () {
             var body = document.getElementById('lineRows');
@@ -214,8 +214,8 @@
             recompute();
         })();
 
-        <%-- Arbitr-097: курс prefill (Arbitr-029) + кўриниш/home жами
-             (Arbitr-088) + кучли-валюта ориентация - ҳаммаси rate-block.js
+        <%-- DEC-097: курс prefill (DEC-029) + кўриниш/home жами
+             (DEC-088) + кучли-валюта ориентация - ҳаммаси rate-block.js
              компонентида (form.jte layout'да улаган). Иккала эски IIFE
              шу ерда ЎЧИРИЛДИ; recompute (юқорида) ҳужжат-хос, қолди. --%>
     </script>

@@ -23,7 +23,7 @@
 @param String error = null
 @param Boolean canEdit = false
 
-<%-- Arbitr-024: асосий йўл - drawer (HTMX, formDrawer); бу тўлиқ саҳифа
+<%-- DEC-024: асосий йўл - drawer (HTMX, formDrawer); бу тўлиқ саҳифа
      JS'сиз fallback ва тўғридан-тўғри URL учун сақланади. --%>
 @template.layout.form(title = editId == null ? msg.lookup("item.form.titleNew") : msg.lookup("item.form.titleEdit"), closeHref = "/items", lang = lang, content = @`
     @template.item.formFields(form = form, categories = categories, units = units,

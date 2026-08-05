@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:030-01-created-by
--- createdBy аудит майдони (Eldor-004 §7, user-management.md): BaseEntity
+-- createdBy аудит майдони (SEC-004 §7, user-management.md): BaseEntity
 -- @CreatedBy бўлгани учун БАРЧА жадвалларга бир хил устун керак
 -- (ddl-auto=validate). FK атайлаб ЙЎҚ - dimension паттерни (модул
 -- мустақиллиги); app_user ўчирилмагани (фақат active=false) учун из

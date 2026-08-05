@@ -67,7 +67,7 @@ public class PayrollRunService {
     /** Иш берувчи солиқ харажати счётининг seed номи (043/CSV). */
     public static final String TAX_EXPENSE_NAME = "Иш ҳақи солиқ харажати";
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 қолипи - рўйхат саҳифаланган туғилади). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 қолипи - рўйхат саҳифаланган туғилади). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /** BR-PYR-004: period қатъий YYYY-MM (ой 01..12). */
@@ -91,7 +91,7 @@ public class PayrollRunService {
                            String memo) { }
 
     /**
-     * Рўйхат экрани учун битта run кесимидаги жами (home валютада, Arbitr-054):
+     * Рўйхат экрани учун битта run кесимидаги жами (home валютада, DEC-054):
      * gross ва net сатрлар йиғиндиси. Сатрсиз/агрегатда йўқ run учун
      * {@link #ZERO}.
      */
@@ -133,7 +133,7 @@ public class PayrollRunService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); давр run санаси бўйича; q -
      * рақам/изоҳ contains (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -143,7 +143,7 @@ public class PayrollRunService {
 
     /**
      * Рўйхат экрани - саҳифаланган (period DESC), тўлиқ филтр
-     * (Arbitr-068): давр/статус/матн битта Specification'да (audit
+     * (DEC-068): давр/статус/матн битта Specification'да (audit
      * услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -157,14 +157,14 @@ public class PayrollRunService {
                 PageRequest.of(Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public Page<PayrollRun> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
     }
 
     /**
-     * Рўйхат экрани учун run кесими жами суммалари (Arbitr-054):
+     * Рўйхат экрани учун run кесими жами суммалари (DEC-054):
      * {@code runId → (gross, net)}. JPQL агрегат орқали - lazy {@code lines}
      * коллекцияси айланмайди (open-in-view=false да render'да
      * LazyInitializationException бўларди). Сатрсиз/топилмаган run харитада
@@ -262,7 +262,7 @@ public class PayrollRunService {
     /**
      * Reverse: стандарт GL сторноси (фақат POSTED - domain guard).
      * Сторно санаси period ойи ичида бўлиши шарт (BR-PYR-004 кенгайтмаси,
-     * Arbitr-071/Asrorxoja-016): кейинги ойдаги сторно ведомость
+     * DEC-071/LOG-016): кейинги ойдаги сторно ведомость
      * accrual'ини (status-асосли) ретроактив йўқотиб, инвариантни
      * (давр_охири = давр_боши + net − тўланган) бузарди - GL эса тўғри
      * қоларди. run_date чекловининг айнан кўзгуси.
@@ -300,7 +300,7 @@ public class PayrollRunService {
                     "Run санаси киритилиши шарт");
         }
         // Run санаси ЎША period ойи ИЧИДА бўлиши шарт (икки томонлама -
-        // Arbitr-047). Кейинги ой: ёпилган ойни кечроқ (очиқ) сана билан
+        // DEC-047). Кейинги ой: ёпилган ойни кечроқ (очиқ) сана билан
         // киритиб бўларди (closing BR-LED-020 run_date бўйича). Олдинги ой:
         // ведомостда net икки марта кўринарди (net - period матни,
         // opening/closing - run_date=entry_date бўйича).
@@ -345,7 +345,7 @@ public class PayrollRunService {
             BigDecimal pension = percentOf(line.gross(), settings.getPensionRate());
             BigDecimal socialTax = percentOf(line.gross(), settings.getSocialTaxRate());
             BigDecimal net = line.gross().subtract(incomeTax).subtract(pension);
-            // BR-PYR-003 кенгайтмаси (Arbitr-071/Asrorxoja-014): ушланмалар
+            // BR-PYR-003 кенгайтмаси (DEC-071/LOG-014): ушланмалар
             // gross'дан ошмасин - ставкалар йиғиндиси 100% дан ошган
             // созламада манфий net post'да хом BR-LED-006 бўлиб отиларди,
             // энди сабаб аниқ айтилади

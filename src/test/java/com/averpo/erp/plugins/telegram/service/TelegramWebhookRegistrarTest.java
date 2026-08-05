@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 /**
- * Webhook registrar «қачон» мантиғининг unit тести (Arbitr-138) -
+ * Webhook registrar «қачон» мантиғининг unit тести (DEC-138) -
  * Spring контекстисиз, мок {@link TelegramService} билан: старт ва
  * event'лар тўғри service методига уланадими. Ишлов мантиғи
  * (registerWebhookIfReady/remove) TelegramServiceTest'да.

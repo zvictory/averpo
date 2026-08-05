@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:061-01-list-filter-indexes
--- Ҳужжат рўйхати филтрлари учун иккиламчи индекслар (Arbitr-110 индекс
+-- Ҳужжат рўйхати филтрлари учун иккиламчи индекслар (DEC-110 индекс
 -- аудити). 041/046 (sales_receipt/refund_receipt/vendor_credit) битта ҳам
 -- иккиламчи индекссиз чиққан; credit_memo/payroll_run/bank_transaction'да
 -- ҳам рўйхат филтрлари қопланмаган. Ҳар рўйхат service'и (068 ListSpecs

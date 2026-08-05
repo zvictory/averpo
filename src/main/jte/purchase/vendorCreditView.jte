@@ -33,7 +33,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bill.col.vendor")}</span>
@@ -48,7 +48,7 @@
             <span class="text-base text-on-surface dark:text-on-surface-dark">@template.shared.badge(value = credit.getStatus().name(), msg = msg)</span>
         </div>
         @if(!credit.getCurrency().getCode().equals(homeCurrency))
-            <%-- Arbitr-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+            <%-- DEC-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
             !{var rateOr = Fmt.orient(credit.getCurrency().getCode(), homeCurrency, credit.getExchangeRate());}
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bill.form.rate")}</span>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <%-- Arbitr-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
+    <%-- DEC-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
     @if(credit.getStatus() == VendorCredit.Status.POSTED || credit.getStatus() == VendorCredit.Status.REVERSED)
         @template.shared.jeLink(sourceType = "VENDOR_CREDIT", id = credit.getId().toString(), msg = msg)
     @endif
@@ -190,7 +190,7 @@
                 <button class="cursor-pointer whitespace-nowrap rounded-radius border border-primary bg-primary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-primary-dark dark:bg-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark" type="submit">${msg.localize("cm.view.apply")}</button>
             </form>
             <script>
-                // Nargiza-046: bill танланганда сумма prefill -
+                // BA-046: bill танланганда сумма prefill -
                 // min(кредит очиқ қолдиғи, bill қарзи). Қўлда терилган
                 // қиймат устидан ёзилмайди (srRate data-autofill нақши);
                 // string қиймат айнан кўчирилади - float яхлитлаш йўқ.

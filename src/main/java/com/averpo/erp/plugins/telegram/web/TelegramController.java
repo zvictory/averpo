@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Telegram бот созламаси (SUPER_ADMIN) ва профил улаш амаллари
- * (docs/modules/user-profile.md 3-бўлим, Arbitr-103).
+ * (docs/modules/user-profile.md 3-бўлим, DEC-103).
  *
  * <p><b>Икки хил ҳимоя</b>:
  * <ul>
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *       олмасди).</li>
  * </ul>
  *
- * <p><b>Плагин гейти</b> (Arbitr-113): плагин ўчиқ бўлса ҳар қандай
+ * <p><b>Плагин гейти</b> (DEC-113): плагин ўчиқ бўлса ҳар қандай
  * route 404 беради - UI яшириш кифоя эмас (092 сабоғи), plugins.md:
  * «ўчиқ плагиннинг ҳеч бир route/фичаси ишламайди». 404 (403 эмас)
  * атайлаб: фича уланмаган - демак саҳифа МАВЖУД ЭМАС.

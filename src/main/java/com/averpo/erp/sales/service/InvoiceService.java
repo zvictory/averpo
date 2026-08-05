@@ -207,13 +207,13 @@ public class InvoiceService {
                 .orElseThrow(() -> new NotFoundException("Invoice топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 1-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 1-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экрандаги
-     * тартиб ўзгармасин (Beruniy-perf1 3-банд).
+     * тартиб ўзгармасин (PERF-perf1 3-банд).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -222,7 +222,7 @@ public class InvoiceService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Устун саралаш WHITELIST'и (ARBITR-105б): th калити → entity
+     * Устун саралаш WHITELIST'и (DEC-105б): th калити → entity
      * property. Хом параметр Sort'га тушмайди - фақат шу харита
      * орқали ({@link com.averpo.erp.shared.web.TableSort}).
      * Сумма/қолдиқ home қийматлар (totalBase/balanceDue) бўйича -
@@ -249,7 +249,7 @@ public class InvoiceService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган). from/to - ҳужжат санаси бўйича
      * инклюзив оралиқ; q - рақам/изоҳ contains (катта-кичик фарқсиз,
      * кирилл ҳам).
@@ -259,8 +259,8 @@ public class InvoiceService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари) - derived query'ларнинг
      * комбинацион портлашисиз.
      */
@@ -270,7 +270,7 @@ public class InvoiceService {
     }
 
     /**
-     * Устун саралашли рўйхат (ARBITR-105б): sort {@link #sortOf}
+     * Устун саралашли рўйхат (DEC-105б): sort {@link #sortOf}
      * орқали ечиб берилади - хом параметр бу ерга етиб келмайди.
      */
     @Transactional(readOnly = true)
@@ -289,7 +289,7 @@ public class InvoiceService {
 
     /**
      * Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар ва
-     * тестлар учун (ARBITR-105: ҳажм танлаш controller'да
+     * тестлар учун (DEC-105: ҳажм танлаш controller'да
      * {@code PageSizeResolver} орқали, шу overload'га size берилади).
      */
     @Transactional(readOnly = true)
@@ -318,7 +318,7 @@ public class InvoiceService {
      * (қолдиқ × ҳужжат курси) мижоз бўйича йиғилади. Мижозлар жами
      * қарзи бўйича камайиш тартибида.
      *
-     * <p>ФАҚАТ ЖОРИЙ ҲОЛАТ (BR-RPT-001, Komil-004): қолдиқлар жорий
+     * <p>ФАҚАТ ЖОРИЙ ҲОЛАТ (BR-RPT-001, IFRS-004): қолдиқлар жорий
      * balance_due'дан ўқилади - ўтган санага сўралса ундан кейинги
      * тўловлар «ортга қайтарилмас» ва ҳисобот TB'га мос келмас эди.
      * Шунинг учун asOf фақат бугун (компания вақт минтақасида)
@@ -364,7 +364,7 @@ public class InvoiceService {
     /**
      * Даврдаги POSTED тушумлар жамиси home валютада (сумма × курс) -
      * dashboard'даги «охирги 30 кунда тўланган» картаси учун
-     * (Arbitr-036, QBO Invoices widget паритети). REVERSED тўловлар
+     * (DEC-036, QBO Invoices widget паритети). REVERSED тўловлар
      * кирмайди - улар қайтарилган пул.
      */
     @Transactional(readOnly = true)
@@ -422,7 +422,7 @@ public class InvoiceService {
                 normalized.dueDate(), normalized.currency(), normalized.rate(),
                 data.amountsInclusive(), Strings.blankToNull(data.memo()));
         invoice.clearLines();
-        // ux_invoice_line_no (Beruniy-010) билан: Hibernate flush'да INSERT
+        // ux_invoice_line_no (PERF-010) билан: Hibernate flush'да INSERT
         // DELETE'дан олдин бажарилади - эски сатрлар аввал ўчирилиши шарт,
         // акс ҳолда янги 1-сатр эски (invoice_id, line_no=1) билан тўқнашади
         repository.flush();
@@ -471,10 +471,10 @@ public class InvoiceService {
         // ҚҚС (docs/modules/tax.md): даромад Cr = net (ставр кесими),
         // ҚҚС Cr = ставка кесимида жамланган, AR Dt = gross. Кредит
         // леглар (net'лар + ҚҚС'лар) largest-remainder билан AR gross
-        // target'га тақсимланади (Beruniy-007 паттерни бузилмайди).
+        // target'га тақсимланади (PERF-007 паттерни бузилмайди).
         // COGS/INVENTORY - home таннарх, алоҳида балансланади (аллокацияга кирмайди).
         List<CreditLeg> credits = new ArrayList<>();
-        // Батч (Sanjar-003): ITEM сатрлар asset счёти учун item'лар олдиндан
+        // Батч (OPT-003): ITEM сатрлар asset счёти учун item'лар олдиндан
         // битта IN сўровда - сатр циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(invoice.getLines(),
@@ -595,7 +595,7 @@ public class InvoiceService {
      * Тўлиқ валидация (BR-SINV-001..005, 008..011) + нормализация:
      * сатр тури item ItemType'идан, сумма qty × нархдан, даромад счёти
      * item default'идан, due date мижоз тўлов шартидан (берилмаса).
-     * Валюта - мижоз контактидан (BR-SINV-011, Arbitr-087).
+     * Валюта - мижоз контактидан (BR-SINV-011, DEC-087).
      */
     private Normalized validate(InvoiceData data) {
         if (data.customerId() == null) {
@@ -612,11 +612,11 @@ public class InvoiceService {
             throw new BusinessRuleException(BusinessRule.BR_SINV_009,
                     "Invoice санаси киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - мижоз контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(customer, data.currency(), BusinessRule.BR_SINV_011));
-        // Курс инварианти умумий helper'да (Xorazmiy-005: policy бир жойда),
+        // Курс инварианти умумий helper'да (QA-005: policy бир жойда),
         // ҳужжатга хос BR код бу ердан берилади
         BigDecimal rate = currencyService.requireDocumentRate(
                 currency, data.exchangeRate(), BusinessRule.BR_SINV_008);
@@ -625,7 +625,7 @@ public class InvoiceService {
             throw new BusinessRuleException(BusinessRule.BR_SINV_002,
                     "Invoice'да камида битта сатр бўлиши шарт");
         }
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003 - SalesReceipt
+        // Батч lookup (DEC-045 findAllById, OPT-003 - SalesReceipt
         // эталони): сатр-циклда item/омбор/счёт биттадан ўқилмасин,
         // id'лар олдиндан йиғилиб учта IN сўров билан Map'га олинади
         Map<UUID, Item> items = BatchLookup.byId(
@@ -674,7 +674,7 @@ public class InvoiceService {
      * Сатр валидацияси: item фаоллиги, тур, омбор, сонлар, даромад счёти.
      * ҚҚС бўлиниши (docs/modules/tax.md): raw = qty × price ставка+режим
      * бўйича net/tax'га ажратилади; {@code amount} - НЕТТО. item/омбор/
-     * счёт олдиндан юкланган батч Map'лардан ўқилади (Sanjar-003) -
+     * счёт олдиндан юкланган батч Map'лардан ўқилади (OPT-003) -
      * топилмаса {@link NotFoundException} (аввалги get() хулқи айнан).
      */
     private NormalizedLine validateLine(int no, LineData line, boolean inclusive,

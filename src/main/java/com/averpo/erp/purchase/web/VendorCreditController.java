@@ -88,7 +88,7 @@ public class VendorCreditController {
 
     /**
      * Рўйхат - саҳифаланган, янгидан эскига; тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/vendor/матн, саҳифа линклари филтрни
+     * (DEC-068): давр/статус/vendor/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -107,7 +107,7 @@ public class VendorCreditController {
                 from, to, parseStatusSafe(status), vendorId, q), page, size);
         model.addAttribute("credits", creditPage.getContent());
         model.addAttribute("page", creditPage);
-        // Beruniy-032: бутун каталог эмас - саҳифадаги vendor id'лари бўйича IN
+        // PERF-032: бутун каталог эмас - саҳифадаги vendor id'лари бўйича IN
         Map<UUID, String> vendorNames = new HashMap<>();
         for (var ref : contactService.refsByIds(creditPage.getContent().stream()
                 .map(c -> c.getVendorId()).distinct().toList())) {
@@ -145,10 +145,10 @@ public class VendorCreditController {
         VendorCreditForm form = billId == null
                 ? VendorCreditForm.empty(3)
                 : VendorCreditForm.from(billService.getWithLines(billId));
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setVcDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "purchase/vendorCreditForm";
@@ -166,7 +166,7 @@ public class VendorCreditController {
     @PostMapping
     public String create(@ModelAttribute VendorCreditForm form,
                          Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             VendorCredit credit = vendorCreditService.create(toData(form, settings));
@@ -188,7 +188,7 @@ public class VendorCreditController {
         model.addAttribute("vendorName",
                 contactService.get(credit.getVendorId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар byIds/IN
-        // сўровда (ARBITR-105б, Ulugbek-003 §1); EXPENSE сатрда itemId
+        // сўровда (DEC-105б, AUD-003 §1); EXPENSE сатрда itemId
         // null - филтрланади
         model.addAttribute("itemNames", itemService.namesByIds(
                 credit.getLines().stream().map(l -> l.getItemId())
@@ -203,7 +203,7 @@ public class VendorCreditController {
                         .filter(bill -> bill.getCurrency().getCode()
                                 .equals(credit.getCurrency().getCode()))
                         .toList());
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today",
@@ -258,7 +258,7 @@ public class VendorCreditController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'и (bill формаси қолипи) - settings оқим бошидаги
-     * snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, VendorCreditForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);
@@ -275,7 +275,7 @@ public class VendorCreditController {
         model.addAttribute("taxRates", taxRateService.activeRates());
         model.addAttribute("warehouses", warehouseService.all().stream()
                 .filter(Warehouse::isActive).toList());
-        // Arbitr-014: all() - EXPENSE группа счётлари ҳам киради, select'да
+        // DEC-014: all() - EXPENSE группа счётлари ҳам киради, select'да
         // disabled жилд бўлади (нофаолларни accountOptions ташлайди)
         model.addAttribute("expenseAccounts", accountService.all().stream()
                 .filter(a -> a.getClassification() == AccountClassification.EXPENSE)

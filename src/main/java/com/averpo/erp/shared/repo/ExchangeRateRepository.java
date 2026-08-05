@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * Валюта курслари репозиторийси - ташқарига фақат ExchangeRateService
  * орқали. Append-only тарих: тартиб доим (rate_date, кейин UUIDv7 id)
- * бўйича - бир кунда кўп ёзув бўлса энг охиргиси олинади (Arbitr-022).
+ * бўйича - бир кунда кўп ёзув бўлса энг охиргиси олинади (DEC-022).
  */
 public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, UUID> {
 
@@ -37,7 +37,7 @@ public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, UUID
     /**
      * ҲАР валютанинг амалдаги (энг охирги) ёзуви битта сўровда -
      * Currencies экранидаги ҳар валютага алоҳида latest() N+1'и ўрнига
-     * (Beruniy-023). Window function: ҳар currency_id ичида (rate_date,
+     * (PERF-023). Window function: ҳар currency_id ичида (rate_date,
      * кейин UUIDv7 id) бўйича энг янгиси - append-only тарихда бир кунда
      * бир нечта ёзув бўлади, id тартиби ҳал қилади.
      */
@@ -54,7 +54,7 @@ public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, UUID
     /**
      * ҲАР валютанинг импорт кунигача (шу кунни ҲАМ қўшиб) АМАЛДАГИ
      * (effective) курси битта сўровда - ЦБ импортининг ИККИ мақсади учун
-     * (Arbitr-168, аввал Sanjar-011 skip-if-same): (1) «ўзгарди»ни
+     * (DEC-168, аввал OPT-011 skip-if-same): (1) «ўзгарди»ни
      * аниқлаш - fetched курс шу effective'дан фарқлими; (2) skip-if-same
      * дубль текшируви - effective айнан шу санадан (rate_date = импорт
      * куни) бўлсагина append current'и. Ҳар currency_id ичида (rate_date

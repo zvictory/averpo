@@ -4,7 +4,7 @@ import com.averpo.erp.ledger.domain.Account;
 
 /**
  * Счёт яратилди/таҳрирланди/нофаол қилинди - {@code AccountService}
- * create/update нуқталаридан эълон қилинади (Arbitr-062, ACCOUNT_*).
+ * create/update нуқталаридан эълон қилинади (DEC-062, ACCOUNT_*).
  * CSV импорт йўли (importCsv) АТАЙЛАБ event бермайди - default chart'даги
  * ~40 счёт журнални тошириб юборарди, у {@link ChartImportedEvent} билан
  * жамланган ҳолда қамралади.

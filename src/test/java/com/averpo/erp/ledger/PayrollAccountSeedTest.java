@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * топилиши - spec: docs/modules/payroll.md. Инвариант 6: тизим счётлари
  * detail type орқали resolve қилинади (findSystemAccount), шунинг учун
  * PAYROLL_CLEARING/PAYROLL_TAX_PAYABLE ягона, PAYROLL_EXPENSES иккита
- * postable (+ Arbitr-126 дан «Иш ҳақи харажатлари» гуруҳ отаси).
+ * postable (+ DEC-126 дан «Иш ҳақи харажатлари» гуруҳ отаси).
  */
 @SpringBootTest
 @ActiveProfiles("test")
@@ -32,7 +32,7 @@ class PayrollAccountSeedTest {
         accountService.importDefaultChart();
 
         // PAYROLL_EXPENSES - иккита postable seed (харажат + иш берувчи
-        // солиқ харажати); Arbitr-126 дан бери турда учинчи ёзув ҳам бор -
+        // солиқ харажати); DEC-126 дан бери турда учинчи ёзув ҳам бор -
         // «Иш ҳақи харажатлари» гуруҳ отаси (postable=false), payroll
         // ном+postable бўйича топгани учун у ҳисобга кирмайди
         assertThat(accountRepository.findByDetailType(AccountDetailType.PAYROLL_EXPENSES)

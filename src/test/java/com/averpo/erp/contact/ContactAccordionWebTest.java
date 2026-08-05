@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-100 (контакт пастки блоклари accordion) web render + redirect
+ * DEC-100 (контакт пастки блоклари accordion) web render + redirect
  * тестлари.
  *
  * <p>Нима гарантияланади:
@@ -49,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>JTE {@code open="${boolean}"} қолипи: false'да атрибут умуман
  * чиқмайди - шунга ёпиқ details очилиш теги class ёпилиши билан ({@code
  * dark:bg-surface-dark">}), очиғи {@code dark:bg-surface-dark" open>}
- * билан тугайди (Arbitr-121: details Penguin card утилиталарида,
+ * билан тугайди (DEC-121: details Penguin card утилиталарида,
  * охирги утилита dark:bg-surface-dark); тест шу икки маркерни фарқлайди.
  */
 @SpringBootTest

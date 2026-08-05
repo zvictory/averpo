@@ -27,13 +27,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Контекстли ёрдам (?) тизими тестлари (Arbitr-079, help-system.md
+ * Контекстли ёрдам (?) тизими тестлари (DEC-079, help-system.md
  * «Тестлар» рўйхати): render (helpKey берилган саҳифада (?) бор,
  * берилмаганда йўқ) ва help.* калитлари уч тил паритети.
  *
  * <p>ДИҚҚАТ: оддий «helpbtn» substring майдон (?) тугмаларида ҳам
  * учрайди - саҳифа тугмаси фақат унга хос барқарор префикс
- * («helpbtn float-right», Arbitr-122 утилита канони) бўйича assert
+ * («helpbtn float-right», DEC-122 утилита канони) бўйича assert
  * қилинади.
  */
 @SpringBootTest
@@ -71,7 +71,7 @@ class HelpSystemWebTest {
     /**
      * helpKey берилмаган саҳифада саҳифа (?) йўқ, глобал диалог эса бор.
      * {@code /users/new} (userForm) - helpKey'сиз саҳифа. (Эски
-     * {@code /profile/password} Arbitr-101'да helpKey'ли {@code /profile}'га
+     * {@code /profile/password} DEC-101'да helpKey'ли {@code /profile}'га
      * redirect бўлди - энди helpKey'сиз саҳифа сифатида ишлатиб бўлмайди.)
      */
     @Test

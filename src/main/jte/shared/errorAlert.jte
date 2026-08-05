@@ -1,6 +1,6 @@
 @param String errorMessage
 
-<%-- Arbitr-127: HTMX partial сўровида (hx-get/hx-post) server хатоси
+<%-- DEC-127: HTMX partial сўровида (hx-get/hx-post) server хатоси
      учун ихчам жавоб - тўлиқ error саҳифа фрагмент ичига swap бўлиб
      хунук чиқмаслиги учун. Кўриниш - shared/alert канони (danger).
      data-hx-error белгиси money-input.js даги htmx:beforeSwap

@@ -68,7 +68,7 @@
                                     <span class="ml-1 rounded bg-success/15 px-1.5 py-0.5 text-xs text-success">${msg.localize("rate.current")}</span>
                                 @endif
                             </td>
-                            <%-- Arbitr-065: тарих қатори ҳам йўналтирилган кўринишда -
+                            <%-- DEC-065: тарих қатори ҳам йўналтирилган кўринишда -
                                  сақланадиган қиймат каталог конвенциясида қолади --%>
                             !{var rateOr = Fmt.orient(currency.getCode(), homeCurrency, rate.getRate());}
                             <td class="text-right whitespace-nowrap">${msg.localize("rate.oriented", rateOr.base(), Fmt.rate(rateOr.value()), rateOr.quote())}</td>

@@ -26,7 +26,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * asset'лар ва error очиқ. CSRF токени ҳар POST формада hidden input
  * сифатида юборилади (GlobalModelAttributes -> шаблонлар).
  *
- * <p>Роль модели (docs/modules/user-roles.md, Arbitr-092): рухсат
+ * <p>Роль модели (docs/modules/user-roles.md, DEC-092): рухсат
  * РОЛГА эмас, СОҲАга текширилади - URL'лар {@link UrlPermissionMap}
  * орқали соҳаларга мапланади, ҳар соҳада GET={@code <СОҲА>_VIEW},
  * ёзувчи метод (POST)={@code <СОҲА>_EDIT} authority талаб қилинади.
@@ -38,7 +38,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * сезгир амаллар (@PreAuthorize: PERIOD_CLOSE, factory reset) ва
  * service гаровлари (BR-USR-011/012) учун.
  *
- * <p>Arbitr-096: {@code exceptionHandling.accessDeniedHandler} -
+ * <p>DEC-096: {@code exceptionHandling.accessDeniedHandler} -
  * {@link CsrfAwareAccessDeniedHandler} CSRF радини (эскирган сессия)
  * {@code /login?expired} га буради, қолган 403'лар default'да қолади
  * (CsrfConfigurer шу handler'ни CsrfFilter'га ҳам улайди).
@@ -49,7 +49,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     /**
-     * Remember-me hash калити манбаи (Arbitr-141): restart'да token
+     * Remember-me hash калити манбаи (DEC-141): restart'да token
      * сақланиши учун БАРҚАРОР сир - prod'да {@code AVERPO_SECRET_KEY}
      * (deploy env, SecretCrypto билан бир хил сир). Тасодифий бўлса
      * restart token'ни бекор қиларди, hardcode prod сирини ошкор қиларди
@@ -75,12 +75,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> {
                     // Static ресурслар очиқ: login саҳифаси ҳам CSS/шрифт/JS
-                    // ишлатади (аноним ҳолат) - уларда маълумот йўқ (Arbitr-116:
+                    // ишлатади (аноним ҳолат) - уларда маълумот йўқ (DEC-116:
                     // /css ва /fonts Tailwind пайплайн + Inter вендоринги учун;
-                    // Arbitr-143: /img - login вендор логоси, аноним юкланади)
+                    // DEC-143: /img - login вендор логоси, аноним юкланади)
                     auth.requestMatchers("/login", "/vendor/**", "/js/**", "/css/**",
                             "/fonts/**", "/img/**", "/favicon.svg", "/error").permitAll();
-                    // Telegram webhook (Arbitr-138): Telegram аутентификация
+                    // Telegram webhook (DEC-138): Telegram аутентификация
                     // қилмайди - permitAll шарт. Ҳимоя X-Telegram-Bot-Api-Secret-
                     // Token header'ида (registrar яратган сир, constant-time
                     // таққос TelegramService'да). POST-catchall'дан ОЛДИН туриши
@@ -89,12 +89,12 @@ public class SecurityConfig {
                     // Ҳар роль logout қила олиши шарт - соҳа қоидаларидан олдин
                     auth.requestMatchers(HttpMethod.POST, "/logout").authenticated();
                     // Ҳар роль (VIEWER_AUDITOR ҳам) ЎЗ профилини бошқаради:
-                    // парол, шахсий майдонлар, аватар (Arbitr-101). Бу POST'лар
+                    // парол, шахсий майдонлар, аватар (DEC-101). Бу POST'лар
                     // UrlPermissionMap'га КИРМАЙДИ (соҳасиз /profile) - шунинг
                     // учун АНИҚ authenticated (092 ТУЗОҚИ: акс ҳолда пастдаги
                     // POST-catchall уларни соҳа EDIT талабига ташлаб, view-only
                     // роль ўз профилини сақлай олмасди)
-                    // Arbitr-103: Telegram улаш/узиш ҳам ЎЗ профили амали -
+                    // DEC-103: Telegram улаш/узиш ҳам ЎЗ профили амали -
                     // ўша рўйхатда (плагин гейти контроллерда: ўчиқда 404)
                     auth.requestMatchers(HttpMethod.POST, "/profile/password",
                             "/profile", "/profile/image", "/profile/image/delete",
@@ -123,22 +123,22 @@ public class SecurityConfig {
                             .hasAnyAuthority(RolePermissions.allEditAuthorities());
                     auth.anyRequest().authenticated();
                 })
-                // Telegram webhook (Arbitr-138): Telegram CSRF токен юбормайди -
+                // Telegram webhook (DEC-138): Telegram CSRF токен юбормайди -
                 // ФАҚАТ шу битта йўлга CSRF ўчади (ҳимоя secret_token header'ида,
                 // constant-time). Бошқа ҳамма POST CSRF ҳимоясида қолади.
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/telegram/webhook"))
-                // CSRF 403 UX (Arbitr-096): сессия муддати тугаб токен эскирса
+                // CSRF 403 UX (DEC-096): сессия муддати тугаб токен эскирса
                 // Whitelabel 403 ўрнига /login?expired. Соҳа-даража радлари
                 // (092) default 403 → /error (ErrorController) сақланади.
                 .exceptionHandling(ex -> ex.accessDeniedHandler(new CsrfAwareAccessDeniedHandler()))
-                // PDF preview (Arbitr-128): default X-Frame-Options: DENY ЎЗ
+                // PDF preview (DEC-128): default X-Frame-Options: DENY ЎЗ
                 // саҳифамиздаги иловалар модали <iframe>'ини ҳам блоклар эди.
                 // sameOrigin - фақат ўз доменимиз frame қила олади: PDF модали
                 // ишлайди, ташқи сайт clickjacking'и аввалгидек тўсилади.
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .formLogin(form -> form
                         .loginPage("/login")
-                        // Онбординг (Arbitr-056): SUPER_ADMIN янги ўрнатишда
+                        // Онбординг (DEC-056): SUPER_ADMIN янги ўрнатишда
                         // /settings?setup=1 га - қолган ҳолда saved request сақланади
                         .successHandler(setupRedirectSuccessHandler)
                         // Lockout (BR-USR-009) алоҳида хабар олади - ?error
@@ -148,7 +148,7 @@ public class SecurityConfig {
                                         + (exception instanceof org.springframework.security.authentication.LockedException
                                                 ? "/login?locked" : "/login?error")))
                         .permitAll())
-                // Remember-me (Arbitr-141): 14 кун, hash-based
+                // Remember-me (DEC-141): 14 кун, hash-based
                 // (TokenBasedRememberMeServices, Spring default) - token
                 // парол hash'ига боғлиқ, шунга logout ёки парол ўзгаришида
                 // авто бекор бўлади (алоҳида changeset/DB шарт эмас). Key
@@ -160,9 +160,9 @@ public class SecurityConfig {
                         .tokenValiditySeconds(14 * 24 * 60 * 60))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        // Аудит LOGOUT ёзуви (Arbitr-062): security → audit
+                        // Аудит LOGOUT ёзуви (DEC-062): security → audit
                         // боғлиқлик рухсатли (LoginAttemptListener прецеденти).
-                        // IP/UA ва CF header'лари (Arbitr-091) request'дан аниқ
+                        // IP/UA ва CF header'лари (DEC-091) request'дан аниқ
                         // узатилади - handler RequestContextHolder'га таянмайди
                         .logoutSuccessHandler((request, response, authentication) -> {
                             if (authentication != null) {
@@ -179,7 +179,7 @@ public class SecurityConfig {
     }
 
     /**
-     * Онбординг йўналтириши (Arbitr-056): янги ўрнатишда SUPER_ADMIN'ни
+     * Онбординг йўналтириши (DEC-056): янги ўрнатишда SUPER_ADMIN'ни
      * компания созламаларига олиб боради. Shared service олинади (security ->
      * shared рухсат этилган йўналиш - shared ҳеч кимга боғлиқ эмас).
      */
@@ -211,7 +211,7 @@ public class SecurityConfig {
     }
 
     /**
-     * Remember-me hash калити (Arbitr-141) - restart'да token сақланиши
+     * Remember-me hash калити (DEC-141) - restart'да token сақланиши
      * учун барқарор бўлиши ШАРТ.
      *
      * <p>Prod'да {@link #secretKey} ({@code AVERPO_SECRET_KEY}, deploy

@@ -98,7 +98,7 @@ public class AccountTransactionsService {
     private final JournalEntryLineRepository lineRepository;
 
     /**
-     * Контакт номларини хом SQL name-map билан ечиш учун (Arbitr-044).
+     * Контакт номларини хом SQL name-map билан ечиш учун (DEC-044).
      * Ledger contact модулига боғлана олмайди (ТЕМИР ҚОИДА №6 - «ledger
      * ҳеч кимга боғлиқ эмас»): ContactService import'и ўрнига {@code contact}
      * жадвалини бевосита ўқиймиз (BalanceSheet/LedgerDashboard прецеденти -
@@ -107,7 +107,7 @@ public class AccountTransactionsService {
     private final JdbcClient jdbc;
 
     /**
-     * Register'нинг битта саҳифаси (ARBITR-105б): {@link Register}
+     * Register'нинг битта саҳифаси (DEC-105б): {@link Register}
      * семантикаси ўзгармаган (opening/closing - ДАВР қийматлари, ҳар
      * саҳифада бир хил), {@code rows} эса фақат жорий саҳифа сатрлари.
      * {@code page} - саҳифалаш метадатаси (shared/pagination.jte учун);
@@ -132,7 +132,7 @@ public class AccountTransactionsService {
     }
 
     /**
-     * Register'нинг {@code page}-саҳифаси (ARBITR-105б). Жорий қолдиқ
+     * Register'нинг {@code page}-саҳифаси (DEC-105б). Жорий қолдиқ
      * узлуксизлиги учун саҳифа бошидаги қолдиқ «саҳифагача йиғинди»
      * aggregate'идан олинади ({@code sumBaseFirstRegisterRows} - олдинги
      * саҳифалар сатрлари Java'га юкланмайди): кейинги саҳифа биринчи
@@ -192,7 +192,7 @@ public class AccountTransactionsService {
 
     /**
      * Берилган контакт id'лари учун {@code id → displayName} харитаси -
-     * register экрани контрагент устуни учун (Arbitr-044). ФАҚАТ саҳифада
+     * register экрани контрагент устуни учун (DEC-044). ФАҚАТ саҳифада
      * кўринган сатрлардаги id'лар узатилади (IN query, бутун каталог эмас);
      * бўш рўйхатда SQL умуман юрмайди. Ном {@code contact} жадвалидан хом
      * SQL билан - ledger contact модулига боғланмайди (ТЕМИР ҚОИДА №6).
@@ -268,7 +268,7 @@ public class AccountTransactionsService {
      *
      * <p>{@link #reconcilableLines} бутун тарихни ўқийди; ҳар
      * белгилашда уни чақириш банк тарихи ўсганда сессияни
-     * секинлаштиради (Beruniy-perf2). Бу метод фақат сўралган сатрни
+     * секинлаштиради (PERF-perf2). Бу метод фақат сўралган сатрни
      * текширади: шу счётники, GL статусда (POSTED/REVERSED) ва санаси
      * {@code toDate}'дан ошмаган бўлиши шарт - худди рўйхат методи
      * қайтарадиган мезонлар, лекин биттагина ўқиш билан.

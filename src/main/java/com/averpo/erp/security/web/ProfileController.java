@@ -31,7 +31,7 @@ import java.util.UUID;
 
 /**
  * Фойдаланувчи профили (docs/modules/user-profile.md 1-бўлим,
- * Arbitr-101): ҳамма роллар (VIEWER_AUDITOR ҳам) ЎЗ профилини кўради ва
+ * DEC-101): ҳамма роллар (VIEWER_AUDITOR ҳам) ЎЗ профилини кўради ва
  * бошқаради - user id сессиядан олинади ({id} йўқ). {@code /profile}
  * тўлақонли бўлимга айланди: шахсий майдонлар (email/gender/birthdate/
  * phone), аватар (png/jpeg/webp, 2MB), парол алмаштириш блоки. 2FA/
@@ -59,7 +59,7 @@ public class ProfileController {
     private final CompanySettingsService settingsService;
 
     /**
-     * Telegram блоки (Arbitr-103): гейт ҳолати ва бот созланганлиги.
+     * Telegram блоки (DEC-103): гейт ҳолати ва бот созланганлиги.
      * Плагиннинг PUBLIC service'и - repo'сига тегилмайди (темир қоида 6);
      * контроллер юпқа (иккита boolean ўқийди), боғланиш йўналиши
      * {@code security.web → plugins.telegram.service → security.service} -
@@ -73,8 +73,8 @@ public class ProfileController {
     /**
      * Профиль саҳифаси: шахсий майдонлар + аватар + парол + Telegram блоки.
      *
-     * <p>Telegram (Arbitr-103): блок ФАҚАТ плагин ёқиқ бўлса чиқади
-     * (Arbitr-113 гейти - ўчиқда route'лар ҳам 404); ичида бот
+     * <p>Telegram (DEC-103): блок ФАҚАТ плагин ёқиқ бўлса чиқади
+     * (DEC-113 гейти - ўчиқда route'лар ҳам 404); ичида бот
      * созланмаган бўлса огоҳлантириш, созланган бўлса улаш/узиш.
      * Улаш коди flash'дан келади (POST /profile/telegram/link).
      */
@@ -94,7 +94,7 @@ public class ProfileController {
     }
 
     /**
-     * Маълумотларни сақлайди (Arbitr-101 + Arbitr-148): кўрсатиладиган
+     * Маълумотларни сақлайди (DEC-101 + DEC-148): кўрсатиладиган
      * ном + email/gender/birthdate/phone битта форма, битта транзакция.
      * Валидация UserService'да (BR-USR-004 ном, BR-USR-013 email,
      * BR-USR-014 сана); хато бўлса flash билан ўша саҳифага қайтади
@@ -140,7 +140,7 @@ public class ProfileController {
     }
 
     /**
-     * Жорий фойдаланувчи аватарини браузерда inline кўрсатади (Arbitr-101,
+     * Жорий фойдаланувчи аватарини браузерда inline кўрсатади (DEC-101,
      * 094 view нақши): Content-Disposition inline + X-Content-Type-Options
      * nosniff. Расм доим png/jpeg/webp (upload'да BR-ATT-005 текширилган -
      * SVG умуман сақланмайди), шунинг учун inline хавфсиз. Аватар йўқ бўлса
@@ -164,7 +164,7 @@ public class ProfileController {
     }
 
     /**
-     * Компания бренд логоси (Arbitr-112 рефайнмент, топбар WHITE-LABEL) -
+     * Компания бренд логоси (DEC-112 рефайнмент, топбар WHITE-LABEL) -
      * СОҲАСИЗ view: ҳар authenticated роль login'дан кейин топбарда кўради
      * (SecurityConfig anyRequest().authenticated() қамрайди - SETTINGS
      * соҳаси эмас, чунки VIEWER ҳам топбарни кўради). Inline+nosniff (094

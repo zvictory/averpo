@@ -1,4 +1,4 @@
-# Attachments - Ҳужжатга файл бириктириш (Arbitr-013) - SPEC
+# Attachments - Ҳужжатга файл бириктириш (DEC-013) - SPEC
 
 ҲОЛАТ: БАЖАРИЛГАН (changeset 042).
 
@@ -11,25 +11,25 @@ QBO Attachments паритети: ҳар транзакция ҳужжатига
 ## Қатъий қарорлар
 
 - **Сақлаш: локал диск, базада фақат метамаълумот.** Базага bytea
- ЁЗИЛМАЙДИ (backup/қувват оғирлашади). Каталог application.yml'да:
- `app.attachments.dir` (default `./attachments`, .gitignore'га
- киради; серверда конфиг билан алоҳида йўлга қўйилади).
+  ЁЗИЛМАЙДИ (backup/қувват оғирлашади). Каталог application.yml'да:
+  `app.attachments.dir` (default `./attachments`, .gitignore'га
+  киради; серверда конфиг билан алоҳида йўлга қўйилади).
 - **Диск номи сервер яратади**: `йил/ой/UUID.кенгайтма`
- (масалан `2026/07/0197...f3.pdf`) - фойдаланувчи киритган ном
- диск йўлига ҲЕЧ ҚАЧОН кирмайди (path traversal ҳимояси). Асл ном
- фақат базада, юклаб олишда қайтарилади.
+  (масалан `2026/07/0197...f3.pdf`) - фойдаланувчи киритган ном
+  диск йўлига ҲЕЧ ҚАЧОН кирмайди (path traversal ҳимояси). Асл ном
+  фақат базада, юклаб олишда қайтарилади.
 - **Чеклов**: 20MB (QBO паритети); кенгайтма allowlist: pdf, png,
- jpg, jpeg, webp, gif, xlsx, xls, docx, doc, csv, txt, zip.
+  jpg, jpeg, webp, gif, xlsx, xls, docx, doc, csv, txt, zip.
 - **Полиморф боғланиш**: `document_type` (DocumentType enum номи) +
- `document_id`. FK йўқ (полиморф) - сервис target ҳужжат
- мавжудлигини ўзи текширади (BR-ATT-003).
+  `document_id`. FK йўқ (полиморф) - сервис target ҳужжат
+  мавжудлигини ўзи текширади (BR-ATT-003).
 - **POSTED ҳужжатга ҳам бириктириш/ўчириш мумкин** - illova GL эмас,
- темир қоида 3 бузилмайди (QBO ҳам рухсат беради).
+  темир қоида 3 бузилмайди (QBO ҳам рухсат беради).
 - **Роллар**: соҳада EDIT рухсати бор роллар юклайди ва ўчиради;
- view-only роллар (VIEWER_AUDITOR) фақат рўйхатни кўради ва юклаб
- олади.
+  view-only роллар (VIEWER_AUDITOR) фақат рўйхатни кўради ва юклаб
+  олади.
 - **Ўчириш қатъий** (диск + база бирга). Илова тарихи талаб
- қилинмайди - versioning ҲАЛИ ЙЎҚ.
+  қилинмайди - versioning ҲАЛИ ЙЎҚ.
 
 ## Модел (changeset 042 - рақам банд қилинган)
 
@@ -55,7 +55,7 @@ QBO Attachments паритети: ҳар транзакция ҳужжатига
 
 - `list(DocumentType, UUID)` - ҳужжат иловалари (сана DESC).
 - `upload(DocumentType, UUID, MultipartFile)` - валидация (BR-ATT-001/
- 002/003) + дискка ёзиш + метамаълумот сақлаш.
+  002/003) + дискка ёзиш + метамаълумот сақлаш.
 - `download(UUID)` - Resource + асл ном (Content-Disposition).
 - `delete(UUID)` - база ёзуви + диск файли бирга ўчади.
 
@@ -87,9 +87,9 @@ GL'га тегилмайди. PostingService УМУМАН import қилинма�
 deposit кўриши), transfer, JE + Returns/Estimate/PO кўришлари (14-16
 турткилари тугагач мавжуд бўлади).
 
-- Кўриш UX (Arbitr-094, DEPLOY 4): расм иловалар inline кўринади,
- PDF модал ичида очилади; clipboard'дан paste билан юклаш ишлайди;
- SVG юклаш ТАҚИҚ (XSS хавфи - allowlist'га атайлаб киритилмаган).
+- Кўриш UX (DEC-094, DEPLOY 4): расм иловалар inline кўринади,
+  PDF модал ичида очилади; clipboard'дан paste билан юклаш ишлайди;
+  SVG юклаш ТАҚИҚ (XSS хавфи - allowlist'га атайлаб киритилмаган).
 - `POST /attachments/{type}/{id}` - юклаш (redirect ортга).
 - `GET /attachments/{id}/download` - юклаб олиш.
 - `POST /attachments/{id}/delete` - ўчириш.
@@ -99,7 +99,7 @@ deposit кўриши), transfer, JE + Returns/Estimate/PO кўришлари (14
 ## Тестлар (мажбурий рўйхат)
 
 1. Upload → дискда файл бор + база ёзуви тўғри; download асл ном
- билан қайтади.
+   билан қайтади.
 2. 20MB дан катта файл рад (BR-ATT-001).
 3. exe/рухсатсиз кенгайтма рад (BR-ATT-002).
 4. Мавжуд бўлмаган target рад (BR-ATT-003).
@@ -107,6 +107,6 @@ deposit кўриши), transfer, JE + Returns/Estimate/PO кўришлари (14
 6. Delete базадан ҲАМ дискдан ҲАМ ўчиради.
 7. Upload/delete'да journal_entry сони ўзгармайди (GL'сизлик assert).
 8. Path traversal: original_name'да `../` бўлса ҳам stored_path
- сервер UUID қолипида (assert).
+   сервер UUID қолипида (assert).
 9. Тестда каталог: test профилида `app.attachments.dir` build/ ости
- вақтинчалик папкага йўналтирилади (лойиҳа папкаси ифлосланмайди).
+   вақтинчалик папкага йўналтирилади (лойиҳа папкаси ифлосланмайди).

@@ -57,6 +57,6 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш - рўйхат саҳифаланган туғилади (Beruniy-perf1 қолипи) --%>
+    <%-- Саҳифалаш - рўйхат саҳифаланган туғилади (PERF-perf1 қолипи) --%>
     @template.shared.pagination(page = page, baseUrl = "/payroll/payments", msg = msg)
 `)

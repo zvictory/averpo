@@ -33,7 +33,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * saveGuarded таржималарининг ҲАҚИҚИЙ икки-транзакцияли пойга тестлари
- * (Arbitr-030 1/3-бандлар). Битта транзакция/сессия ичида бу пойгани
+ * (DEC-030 1/3-бандлар). Битта транзакция/сессия ичида бу пойгани
  * қайта тиклаб бўлмайди: service'нинг олдиндан текшируви DB ҳақиқатини
  * кўради ва auto-flush ҳамма нарсани фош қилади - шунинг учун бу синф
  * АТАЙЛАБ rollback'сиз: 1-транзакция ёзиб туриб commit'ни ушлаб туради,
@@ -91,7 +91,7 @@ class PriceListRaceTest {
                         loser.set(t);
                     }
                 }));
-                // Arbitr-052 (004): ютқазган оқим хизматга КИРГАНИНИ кутамиз -
+                // DEC-052 (004): ютқазган оқим хизматга КИРГАНИНИ кутамиз -
                 // thread startup jitter таймбюджетдан чиқади; кейин hold() фақат
                 // pre-check + INSERT unique блокига етиши учун (детерминистикроқ)
                 awaitEntered(loserEntered);
@@ -142,7 +142,7 @@ class PriceListRaceTest {
                         loser.set(t);
                     }
                 }));
-                // Arbitr-052 (004): ютқазган оқим хизматга КИРГАНИНИ кутамиз
+                // DEC-052 (004): ютқазган оқим хизматга КИРГАНИНИ кутамиз
                 // (thread startup jitter'сиз), кейин hold() блокка етиши учун
                 awaitEntered(loserEntered);
                 hold();
@@ -175,7 +175,7 @@ class PriceListRaceTest {
     /**
      * Ютқазган оқим хизмат чақирувига кирганини (countDown) кутади -
      * thread startup jitter'ни ғолибнинг hold() таймбюджетидан чиқаради
-     * (Arbitr-052/004: fixed sleep детерминизмсизлигини камайтириш).
+     * (DEC-052/004: fixed sleep детерминизмсизлигини камайтириш).
      */
     private static void awaitEntered(CountDownLatch latch) {
         try {

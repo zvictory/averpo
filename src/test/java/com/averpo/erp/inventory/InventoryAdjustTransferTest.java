@@ -98,7 +98,7 @@ class InventoryAdjustTransferTest {
                 InventoryService.SOURCE_MODULE, movement.getId()).orElseThrow();
     }
 
-    // ---- Ҳаракатлар рўйхати (саҳифалаш, Beruniy-perf1 2-босқич) ----
+    // ---- Ҳаракатлар рўйхати (саҳифалаш, PERF-perf1 2-босқич) ----
 
     @Test
     void movements_pagination_secondPageSlice_allFilterCombos() {
@@ -145,7 +145,7 @@ class InventoryAdjustTransferTest {
     }
 
     /**
-     * Arbitr-049 (Beruniy-037): ҳаракатлар саҳифаси warehouse'ни битта
+     * DEC-049 (PERF-037): ҳаракатлар саҳифаси warehouse'ни битта
      * сўровда юклайди (@EntityGraph) - N+1 йўқ. Ҳар қаторнинг
      * getWarehouse()'и қўшимча SELECT қилмаслигини Hibernate Statistics
      * билан ўлчаймиз (PriceListServiceTest услуби).

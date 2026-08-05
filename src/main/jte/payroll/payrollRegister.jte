@@ -12,10 +12,10 @@
 @param String error = null
 
 @template.layout.main(helpKey = "page.payrollRegister", title = msg.lookup("preg.title"), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
-    <%-- Print полиши (Nargiza-047, statement.jte нақши): жадвал
+    <%-- Print полиши (BA-047, statement.jte нақши): жадвал
          min-width:920px A4 (≈688px)га сиғмайди - чоп этишда 0 +
          компакт padding (қатор чекланмайди). Локал <style> ўрнига
-         print: утилиталар фрагмент cls/wrap'ида (Arbitr-120). --%>
+         print: утилиталар фрагмент cls/wrap'ида (DEC-120). --%>
     <%-- Сарлавҳа/форма/изоҳ - чоп этишда яширин (print:hidden) --%>
     <div class="print:hidden">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-2">

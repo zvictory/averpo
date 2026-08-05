@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 
 /**
  * Тест учун mock фойдаланувчи - authority'лари РОЛЬ НОМИДАН ЭМАС,
- * продакшндаги {@code RolePermissions} матрицасидан олинади (Arbitr-092).
+ * продакшндаги {@code RolePermissions} матрицасидан олинади (DEC-092).
  *
  * <p>Нега {@code @WithMockUser(roles=...)} эмас: у фақат ROLE_X
  * authority беради, SecurityConfig эса соҳа authority'ларини

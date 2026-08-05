@@ -34,7 +34,7 @@ import java.util.UUID;
 class PostingServiceImpl implements PostingService {
 
     /**
-     * Проводка изи логгери (docs/modules/logging.md, Arbitr-099): молия
+     * Проводка изи логгери (docs/modules/logging.md, DEC-099): молия
      * юраги - ҳар post/reverse INFO'да манба тури, ҳужжат рақами ва home
      * жами билан изли қолади (муаммо ташхисида «қайси ҳужжат» дарҳол
      * кўринади). GL суммаларига таъсир йўқ - фақат кузатув.
@@ -150,7 +150,7 @@ class PostingServiceImpl implements PostingService {
         revalidateLines(entry, true);
         validateBalance(entry);
         entry.markPosted(Instant.now());
-        // Техник log (Arbitr-099): манба тури + рақам + home жами. Аудит
+        // Техник log (DEC-099): манба тури + рақам + home жами. Аудит
         // ҳодисасидан алоҳида - developer файл изи (audit UI'да эмас).
         log.info("JE POSTED: {} {} home жами {}", sourceLabel(entry),
                 entry.getEntryNumber(), homeTotal(entry));
@@ -251,7 +251,7 @@ class PostingServiceImpl implements PostingService {
         entryRepository.save(storno);
 
         original.markReversed(storno);
-        // Техник log (Arbitr-099): сторно ҳам изли - қайси асл ҳужжат
+        // Техник log (DEC-099): сторно ҳам изли - қайси асл ҳужжат
         // қайси сторно билан бекор қилинди
         log.info("JE REVERSED: {} {} -> сторно {} home жами {}", sourceLabel(original),
                 original.getEntryNumber(), storno.getEntryNumber(), homeTotal(storno));
@@ -264,7 +264,7 @@ class PostingServiceImpl implements PostingService {
     @Override
     public JournalEntry reverseBySource(String sourceModule, UUID sourceDocumentId,
                                         LocalDate reversalDate, String reason) {
-        // Arbitr-080: findFirst + тартиб (энг охирги асл ёзув). Оддий
+        // DEC-080: findFirst + тартиб (энг охирги асл ёзув). Оддий
         // Optional lookup репост оқимида (REVERSED асл + POSTED репост
         // иккови reversalOf=null) NonUniqueResultException билан 500 берарди -
         // энди детерминистик равишда энг охирги (фаол POSTED) ёзувни олади.

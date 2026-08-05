@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Sanjar-009 регрессияси: уч банк экрани бир render'да каталогни қайта
+ * OPT-009 регрессияси: уч банк экрани бир render'да каталогни қайта
  * сўрамайди - счёт рўйхати БИР марта олиниб барча subset/map'лар шундан
  * ясалади (TransferController.accountViewMaps нақши).
  *
@@ -122,7 +122,7 @@ class BankCatalogQueryCountTest {
         assertThat(SqlCaptureInspector.selectCount(captured, "account")).isEqualTo(1);
 
         // Ном/валюта хариталари бутун каталогни қоплайди; валютасиз счёт
-        // home кодини олади (Alisa-005 хулқи сақланган)
+        // home кодини олади (UI-005 хулқи сақланган)
         List<Account> all = accountService.all();
         Map<?, ?> names = (Map<?, ?>) result.getModelAndView().getModel().get("accountNames");
         Map<?, ?> currencies = (Map<?, ?>)

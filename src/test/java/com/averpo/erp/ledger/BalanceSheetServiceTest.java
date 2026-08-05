@@ -196,7 +196,7 @@ class BalanceSheetServiceTest {
 
     @Test
     void build_ias1SeparateLines_totalsPreserved() {
-        // Komil-011/012: ТМЗ, гудвилл, номоддий - алоҳида моддалар (IAS 1.54)
+        // IFRS-011/012: ТМЗ, гудвилл, номоддий - алоҳида моддалар (IAS 1.54)
         Account inventory = ensure("Товар захиралари BS", AccountDetailType.INVENTORY);
         Account goodwill = ensure("Гудвилл BS", AccountDetailType.GOODWILL);
         Account intangible = ensure("Номоддий актив BS", AccountDetailType.INTANGIBLE_ASSETS);
@@ -240,7 +240,7 @@ class BalanceSheetServiceTest {
 
     @Test
     void build_unallocatedAdvances_reclassedForDisplay_equationHolds() {
-        // Komil-005: тақсимланмаган аванслар кўрсатишда reclass - GL ўзгармайди.
+        // IFRS-005: тақсимланмаган аванслар кўрсатишда reclass - GL ўзгармайди.
         // Тизим счёти қидируви «ягона AR/AP detail» талаб қилади - default
         // chart юкланмайди (у @BeforeEach'даги AP билан дубль берарди),
         // фақат етишмаётган AR яратилади.
@@ -284,7 +284,7 @@ class BalanceSheetServiceTest {
 
     @Test
     void build_customerAdvance_fromGl_futureReverseRespectsAsOf() {
-        // Komil-016: тўлов КЕЛАЖАКДА reverse қилинса, reverse'дан ОЛДИНги
+        // IFRS-016: тўлов КЕЛАЖАКДА reverse қилинса, reverse'дан ОЛДИНги
         // as-of да аванс ҳали кўринади (GL as-of тарихий), reverse'дан
         // КЕЙИНги as-of да йўқолади. Домен unallocated (жорий ҳолат)
         // ёндашуви буни билмас эди - тўлов REVERSED бўлса дарҳол 0 берар,
@@ -311,7 +311,7 @@ class BalanceSheetServiceTest {
 
     @Test
     void build_unappliedCreditBalances_shownAsAdvances_fromGl() {
-        // Komil-015: тақсимланмаган CreditMemo (Cr AR) ва VendorCredit (Dt AP)
+        // IFRS-015: тақсимланмаган CreditMemo (Cr AR) ва VendorCredit (Dt AP)
         // қолдиқлари ҳам аванс netting яратади - GL contact кесимида
         // автоматик киради (домен unallocated'да умуман кўринмас эди). Бу
         // ерда уларнинг GL таъсири қўлда post қилинади: манба ҳужжат тури
@@ -350,7 +350,7 @@ class BalanceSheetServiceTest {
 
     @Test
     void build_payrollAdvance_reclassedToAssets_creditStaysInLiability() {
-        // Komil-020 (Arbitr-071): аванс тўланган, run ҳали POSTED эмас -
+        // IFRS-020 (DEC-071): аванс тўланган, run ҳали POSTED эмас -
         // PAYROLL_CLEARING ходим кесимида нетто ДЕБЕТ. Аввал BS уни
         // мажбурият қаторини камайтириб (соф авансда МАНФИЙ қилиб)
         // кўрсатарди; энди актив томонда «Берилган аванслар (ходимларга)»

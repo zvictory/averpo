@@ -3,8 +3,8 @@
 @param String id
 @param Msg msg
 
-<%-- ARBITR-098: ҳужжат view'идан GL ёзувига (JE) ҳавола блоки
-     (Arbitr-080 қолипи, 14 view'да айнан бир хил эди). Чақирувчи POSTED/
+<%-- DEC-098: ҳужжат view'идан GL ёзувига (JE) ҳавола блоки
+     (DEC-080 қолипи, 14 view'да айнан бир хил эди). Чақирувчи POSTED/
      REVERSED шартини ўзи текширади - DRAFT'да проводка йўқ, блок чиқмайди.
      sourceType - JournalEntry.sourceType қиймати (INVOICE, BILL...),
      id - ҳужжат UUID матни (чақирувчи .toString() беради - фрагмент

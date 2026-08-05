@@ -24,7 +24,7 @@
 @param Boolean drawer = false
 @param Boolean canEdit = false
 
-<%-- Arbitr-024: форма таначаси - тўлиқ саҳифа (form.jte) ва drawer
+<%-- DEC-024: форма таначаси - тўлиқ саҳифа (form.jte) ва drawer
      (formDrawer.jte) иккиси ҳам шу partial'ни ишлатади. drawer=true
      бўлса форма HTMX орқали submit бўлади (#drawerBody'га қайта render
      ёки HX-Redirect); false'да оддий POST - JS'сиз fallback шарт. --%>
@@ -129,7 +129,7 @@
           hx-swap="${drawer != null && drawer ? "innerHTML" : null}"
           x-data="{dt: '${form.getType()}'}"
           class="${drawer != null && drawer ? "grid gap-[.9rem]" : "grid max-w-[720px] gap-[.9rem] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark"}">
-        <%-- Arbitr-053 банд 6: майдон гридлари 375px да бир устунга йиғилади --%>
+        <%-- DEC-053 банд 6: майдон гридлари 375px да бир устунга йиғилади --%>
         @template.shared.csrf(csrf = csrf)
 
         @if(editId == null)
@@ -221,7 +221,7 @@
                 </label>
                 <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark min-[521px]:col-span-2">
                     ${msg.localize("item.form.incomeAccount")}
-                    <%-- Arbitr-014: QBO tree --%>
+                    <%-- DEC-014: QBO tree --%>
                     @template.shared.combobox(name = "incomeAccountId", msg = msg,
                             value = form.getIncomeAccountId(),
                             placeholder = msg.lookup("accounts.form.select"),
@@ -281,7 +281,7 @@
                 </label>
                 <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark min-[521px]:col-span-2">
                     ${msg.localize("item.form.expenseAccount")}
-                    <%-- Arbitr-014: QBO tree --%>
+                    <%-- DEC-014: QBO tree --%>
                     @template.shared.combobox(name = "expenseAccountId", msg = msg,
                             value = form.getExpenseAccountId(),
                             placeholder = msg.lookup("accounts.form.select"),
@@ -321,7 +321,7 @@
             <b>${msg.localize("item.form.inventorySection")}</b>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("item.form.assetAccount")}
-                <%-- Arbitr-014: QBO tree --%>
+                <%-- DEC-014: QBO tree --%>
                 @template.shared.combobox(name = "inventoryAssetAccountId", msg = msg,
                         value = form.getInventoryAssetAccountId(),
                         placeholder = msg.lookup("accounts.form.select"),

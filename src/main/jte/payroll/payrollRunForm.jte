@@ -38,7 +38,7 @@
                 ${msg.localize("prun.col.runDate")}
                 <%-- data-autofill фақат ЯНГИ формада: controller қўйган
                      default сана period'га эргашади; edit'да сақланган
-                     сана фойдаланувчиники - тегилмайди (Arbitr-071) --%>
+                     сана фойдаланувчиники - тегилмайди (DEC-071) --%>
                 <input type="date" name="runDate" required
                        data-autofill="${form.getId() == null || form.getId().isBlank() ? "1" : null}"
                        value="${form.getRunDate() != null ? form.getRunDate().toString() : ""}"
@@ -178,7 +178,7 @@
             recalc();
         })();
 
-        // period ↔ run_date синхрони (Arbitr-071/Nargiza-042, srRate
+        // period ↔ run_date синхрони (DEC-071/BA-042, srRate
         // data-autofill нақши): period ўзгарса, фойдаланувчи run_date'га
         // қўлда тегмаган бўлса, сана period ойига мосланади - жорий ойда
         // бугунга (формага server қўйган default), бошқа ойда ой охирига.

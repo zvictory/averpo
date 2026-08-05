@@ -61,7 +61,7 @@ public interface TelegramBotClient {
     void sendMessage(String token, long chatId, String text);
 
     /**
-     * Webhook'ни рўйхатдан ўтказади (Arbitr-138, prod режим): Telegram
+     * Webhook'ни рўйхатдан ўтказади (DEC-138, prod режим): Telegram
      * шу {@code url}'га POST қила бошлайди ва ҳар сўровга {@code secret}
      * ни {@code X-Telegram-Bot-Api-Secret-Token} header'ида қўшади.
      * Фақат {@code message} янгиликлари сўралади (қолгани трафик

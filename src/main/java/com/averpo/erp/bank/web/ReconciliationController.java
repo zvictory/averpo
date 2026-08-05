@@ -51,13 +51,13 @@ public class ReconciliationController {
                        jakarta.servlet.http.HttpServletRequest request,
                        jakarta.servlet.http.HttpServletResponse response,
                        Model model) {
-        // ARBITR-105 3-босқич: саҳифаланган + ҳажм ?size=/cookie'дан
+        // DEC-105 3-босқич: саҳифаланган + ҳажм ?size=/cookie'дан
         int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                 request, response, "reconciliation");
         var reconPage = reconciliationService.list(page, size);
         model.addAttribute("reconciliations", reconPage.getContent());
         model.addAttribute("page", reconPage);
-        // Sanjar-009: счёт каталоги БИР марта олиниб ном/валюта хариталари
+        // OPT-009: счёт каталоги БИР марта олиниб ном/валюта хариталари
         // ва банк select'и шундан ясалади (TransferController нақши) -
         // аввал all() икки марта + postableAccounts() алоҳида кетарди
         java.util.List<Account> accounts = accountService.all();
@@ -66,7 +66,7 @@ public class ReconciliationController {
                 TransferController.accountViewMaps(accounts, home);
         model.addAttribute("accountNames", maps.names());
         // Қолдиқлар счёт валютасида сақланади (banking.md) - экранда ҳам
-        // шу валюта коди билан чиқади (Alisa-002), акс ҳолда UZS/USD
+        // шу валюта коди билан чиқади (UI-002), акс ҳолда UZS/USD
         // счётлар аралаш рўйхатда рақамлар адаштиради
         model.addAttribute("accountCurrencies", maps.currencies());
         model.addAttribute("homeCurrency", home);
@@ -102,13 +102,13 @@ public class ReconciliationController {
     /** Ишчи экран: номзод сатрлар + жонли фарқ. */
     @GetMapping("/{id}")
     public String view(@PathVariable UUID id, Model model) {
-        // Sanjar-006: бутун экран битта read-only транзакцияда йиғилади -
+        // OPT-006: бутун экран битта read-only транзакцияда йиғилади -
         // аввал get/candidates/difference алоҳида чақирилиб, reconciliation
         // уч, счёт икки, match рўйхати икки марта қайта ўқиларди
         ReconciliationService.ReconciliationView view = reconciliationService.view(id);
         model.addAttribute("recon", view.reconciliation());
         model.addAttribute("accountName", view.accountName());
-        // Қолдиқ/фарқ/кирим-чиқим суммалари счёт валютасида (Alisa-002);
+        // Қолдиқ/фарқ/кирим-чиқим суммалари счёт валютасида (UI-002);
         // валютасиз счёт home валютада юритилади
         model.addAttribute("accountCurrency", view.accountCurrency() != null
                 ? view.accountCurrency() : settingsService.homeCurrency());

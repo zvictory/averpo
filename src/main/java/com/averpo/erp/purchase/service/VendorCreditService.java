@@ -80,7 +80,7 @@ public class VendorCreditService {
     /** FX фарқи JE'ларининг манба белгиси - docId = application id. */
     public static final String APPLICATION_SOURCE_MODULE = "VENDOR_CREDIT_APPLICATION";
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 қолипи - рўйхат саҳифаланган туғилади). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 қолипи - рўйхат саҳифаланган туғилади). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /** Рўйхат тартиби: янгидан эскига, тенг санада яратилиш вақти. */
@@ -165,7 +165,7 @@ public class VendorCreditService {
     }
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -175,7 +175,7 @@ public class VendorCreditService {
 
     /**
      * Рўйхат экрани - саҳифаланган (янгидан эскига), тўлиқ филтр
-     * (Arbitr-068): давр/статус/vendor/матн битта Specification'да
+     * (DEC-068): давр/статус/vendor/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -190,7 +190,7 @@ public class VendorCreditService {
                 PageRequest.of(Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public Page<VendorCredit> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -370,7 +370,7 @@ public class VendorCreditService {
                                   UUID taxRateId, BigDecimal taxRateValue,
                                   BigDecimal taxAmount, UUID classId) { }
 
-    /** Сарлавҳа + сатрлар валидацияси (BR-RET-001/002/006/008 - валюта vendor'дан, Arbitr-087). */
+    /** Сарлавҳа + сатрлар валидацияси (BR-RET-001/002/006/008 - валюта vendor'дан, DEC-087). */
     private Normalized validate(VendorCreditData data) {
         if (data.vendorId() == null) {
             throw new BusinessRuleException(BusinessRule.BR_RET_001,
@@ -390,7 +390,7 @@ public class VendorCreditService {
             throw new BusinessRuleException(BusinessRule.BR_RET_001,
                     "Камида битта сатр киритилиши шарт");
         }
-        // Валюта ҳақиқат манбаи - таъминотчи контакти (QBO қатъий, Arbitr-087):
+        // Валюта ҳақиқат манбаи - таъминотчи контакти (QBO қатъий, DEC-087):
         // client қиймати фақат мосликка текширилади, ҳужжатга контактники ёзилади
         Currency currency = currencyService.require(contactService
                 .requireDocumentCurrency(vendor, data.currency(), BusinessRule.BR_RET_008));
@@ -416,7 +416,7 @@ public class VendorCreditService {
             }
         }
 
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-003 - SalesReceipt
+        // Батч lookup (DEC-045 findAllById, OPT-003 - SalesReceipt
         // эталони): сатр-циклда item/омбор/счёт биттадан ўқилмасин,
         // id'лар олдиндан йиғилиб учта IN сўров билан Map'га олинади
         Map<UUID, Item> items = BatchLookup.byId(
@@ -444,7 +444,7 @@ public class VendorCreditService {
      * EXPENSE - фаол postable EXPENSE счёти + мусбат сумма.
      * LANDED_COST қайтарилмайди (bill'нинг ўз механизми).
      * item/омбор/счёт олдиндан юкланган батч Map'лардан ўқилади
-     * (Sanjar-003) - топилмаса {@link NotFoundException} (get() хулқи айнан).
+     * (OPT-003) - топилмаса {@link NotFoundException} (get() хулқи айнан).
      */
     private NormalizedLine validateLine(int no, LineData line, boolean inclusive,
                                         Bill original, Map<UUID, Item> items,
@@ -626,7 +626,7 @@ public class VendorCreditService {
     /**
      * GL (posting-rules «Қайтариш» VendorCredit жадвали) + омбор чиқими.
      *
-     * <p>Penny rounding (Beruniy-001/Asrorxoja-002 қолипи): AP дебети
+     * <p>Penny rounding (PERF-001/LOG-002 қолипи): AP дебети
      * (назорат) base'и gross'нинг БИТТА яхлитлаши (targetBase); кредит
      * леглар base'лари largest-remainder билан айнан шу target'га
      * тақсимланади. ITEM сатрнинг тақсимланган net base'и иккига
@@ -684,7 +684,7 @@ public class VendorCreditService {
 
         // 4) Кредит леглар: EXPENSE/ҚҚС - ҳужжат валютасида; ITEM -
         //    омбор чиқими + INVENTORY/фарқ жуфти (home).
-        // Батч (Sanjar-003): asset счёти учун item'лар олдиндан битта IN
+        // Батч (OPT-003): asset счёти учун item'лар олдиндан битта IN
         // сўровда - сатр циклида биттадан get() қилинмайди
         Map<UUID, Item> itemsById = BatchLookup.byId(itemService.findAllById(
                 BatchLookup.ids(credit.getLines(),
@@ -765,7 +765,7 @@ public class VendorCreditService {
      * gain Cr; манфий - тескари; нол - JE ёзилмайди.
      *
      * <p>JE санаси = ҚЎЛЛАШ куни (компания timezone'идаги бугун), кредит
-     * санаси ЭМАС (Arbitr-050): CM кўзгуси - realized FX қўллаш пайтида
+     * санаси ЭМАС (DEC-050): CM кўзгуси - realized FX қўллаш пайтида
      * тан олинади (BillPayment payment_date прецеденти), ёпиқ давр блоки
      * бартараф.
      */

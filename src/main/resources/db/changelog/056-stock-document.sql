@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:056-01-stock-adjustment
--- Ҳужжатли инвентаризация акти (Arbitr-093, docs/modules/inventory.md):
+-- Ҳужжатли инвентаризация акти (DEC-093, docs/modules/inventory.md):
 -- кўп сатрли, БИТТА омбор, дарҳол POSTED (DRAFT йўқ - sales_receipt
 -- қолипи), актга БИТТА JE. Сатр StockMovement (ADJUST_IN/OUT,
 -- reference_type=STOCK_ADJUSTMENT, reference_id=акт id) билан боғланади.
@@ -50,7 +50,7 @@ CREATE INDEX idx_stock_adjustment_date ON stock_adjustment(adj_date);
 --rollback DROP TABLE stock_adjustment_line;
 
 --changeset averpo:056-03-stock-transfer
--- Ҳужжатли омборлараро кўчириш акти (Arbitr-093): кўп сатрли, манба/
+-- Ҳужжатли омборлараро кўчириш акти (DEC-093): кўп сатрли, манба/
 -- манзил омбор (BR-INV-005 акт даражасида), GL'сиз. Сатр ҳар бири
 -- TRANSFER_OUT+IN жуфти (reference акт id). total_cost - кўчган
 -- умумий қиймат (аудит учун, home).

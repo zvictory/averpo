@@ -7,7 +7,7 @@ import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * HTMX сўровлари учун web-қатлам ёрдамчилари (Arbitr-024 drawer оқими).
+ * HTMX сўровлари учун web-қатлам ёрдамчилари (DEC-024 drawer оқими).
  * Соф кўрсатиш/навигация воситаси - бизнес мантиқ эмас.
  *
  * <p>Қолип: controller HX-Request header'ига қараб drawer partial ёки

@@ -178,7 +178,7 @@ class PayrollRegisterServiceTest {
 
     @Test
     void paymentReverse_registerInvariantHolds_bothPeriods() {
-        // Komil-017/Arbitr-047: аванс июлда, августда reverse. Домен status'га
+        // IFRS-017/DEC-047: аванс июлда, августда reverse. Домен status'га
         // таянган paid синарди (REVERSED → paid 0, GL асл тўлов таъсирида);
         // GL асосида (source=PAYROLL_PAYMENT, Dt-Cr) инвариант ИККИ ойда ҳам.
         PayrollPayment advance = pay(
@@ -210,7 +210,7 @@ class PayrollRegisterServiceTest {
 
     @Test
     void runDateBeforePeriodMonth_rejectedPyr004() {
-        // Arbitr-047 банд 2: run_date period ойидан ОЛДИН - рад (икки томонлама)
+        // DEC-047 банд 2: run_date period ойидан ОЛДИН - рад (икки томонлама)
         assertThatThrownBy(() -> payrollRunService.saveDraft(null, new RunData(
                 "2026-07", LocalDate.of(2026, 6, 30), null,
                 List.of(new PayrollRunService.LineData(employeeA.getId(),

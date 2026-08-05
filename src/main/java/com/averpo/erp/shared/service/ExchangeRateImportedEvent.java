@@ -1,7 +1,7 @@
 package com.averpo.erp.shared.service;
 
 /**
- * ЦБ авто-курс импорти якунланди (Arbitr-164) - {@link ExchangeRateScheduler}
+ * ЦБ авто-курс импорти якунланди (DEC-164) - {@link ExchangeRateScheduler}
  * ҳар fetch'дан кейин эълон қилади: муваффақият ҲАМ, хато ҲАМ. Тингловчи
  * audit модулида (SharedAuditListener -> EXCHANGE_RATE_IMPORTED): shared
  * audit'ни import қила олмайди (қоида №6 - audit ўзи BaseEntity орқали
@@ -14,7 +14,7 @@ package com.averpo.erp.shared.service;
  * ва {@link #isFailure()} шу контрактни ўқилувчи қилади - чақирувчи
  * майдонларни қўлда null билан тўлдирмайди.
  *
- * <p>Arbitr-168: {@code checked} (текширилган валюта) {@code changed}
+ * <p>DEC-168: {@code checked} (текширилган валюта) {@code changed}
  * (қиймати ўзгарган)дан алоҳида - дам олишда ЦБ курсни ўзгартирмайди,
  * аудит/хабар шуни ҳалол акс эттириши учун.
  *

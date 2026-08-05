@@ -3,7 +3,7 @@ package com.averpo.erp.shared.service;
 /**
  * Компания созламалари ўзгартирилди - {@code CompanySettingsService.update}
  * якунида, фақат камида битта майдон ростдан ўзгарганда эълон қилинади
- * (Arbitr-062, SETTINGS_CHANGED). Ўзгаришсиз сақлаш event бермайди -
+ * (DEC-062, SETTINGS_CHANGED). Ўзгаришсиз сақлаш event бермайди -
  * журнал шовқинланмайди.
  *
  * <p>Event shared ичида туради, тингловчи audit модулида - ledger

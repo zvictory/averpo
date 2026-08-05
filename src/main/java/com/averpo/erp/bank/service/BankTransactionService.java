@@ -68,7 +68,7 @@ public class BankTransactionService {
 
     /**
      * DEPOSIT/EXPENSE формаси маълумотлари. paymentMethodId/refNo -
-     * Arbitr-033 (QBO PaymentMethodRef/DocNumber), иккиси ихтиёрий;
+     * DEC-033 (QBO PaymentMethodRef/DocNumber), иккиси ихтиёрий;
      * deposit ҳам қабул қилади (формасида ҳозирча кўрсатилмайди).
      */
     public record TxnData(UUID bankAccountId, LocalDate date,
@@ -115,7 +115,7 @@ public class BankTransactionService {
     /** Ўтказмада ишлатилган ҳақиқий курсни каталогга ёзиш учун (Т3). */
     private final ExchangeRateService exchangeRateService;
 
-    /** Тўлов усули мавжудлигини текшириш учун (Arbitr-033, қоида №6). */
+    /** Тўлов усули мавжудлигини текшириш учун (DEC-033, қоида №6). */
     private final com.averpo.erp.shared.service.PaymentMethodService paymentMethodService;
 
     /** Home currency - курс валидацияси учун. */
@@ -135,13 +135,13 @@ public class BankTransactionService {
                 .orElseThrow(() -> new NotFoundException("Транзакция топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экрандаги тартиб
-     * ўзгармасин. list() ва expenses() учун битта манба (Beruniy-perf1).
+     * ўзгармасин. list() ва expenses() учун битта манба (PERF-perf1).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -150,7 +150,7 @@ public class BankTransactionService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - txn рақами/банк ҳужжат ҳаваласи
      * (ref_no)/изоҳ contains (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -159,8 +159,8 @@ public class BankTransactionService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/контакт/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/контакт/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари). Банк журнали энг тез ўсувчи
      * рўйхат - LIMIT/OFFSET SQL'да қолади.
      */
@@ -175,14 +175,14 @@ public class BankTransactionService {
                         "txnNumber", "refNo", "memo")), pageRequest(page, size));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankTransaction> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
     }
 
     /**
-     * Ўтказмалар рўйхати (Beruniy-020): фақат TRANSFER; Arbitr-068 билан
+     * Ўтказмалар рўйхати (PERF-020): фақат TRANSFER; DEC-068 билан
      * давр/статус/матн филтри қўшилди - Specification'да, валюта fetch
      * сақланган (N+1 йўқ; List йўли - count сўрови йўқ, to-one fetch
      * хавфсиз). Ўтказма камроқ ёзилади - саҳифалаш 3-босқичда (perf1).
@@ -190,7 +190,7 @@ public class BankTransactionService {
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankTransaction> transfers(
             ListFilter filter, int page, int size) {
-        // Валюта JOIN FETCH (Beruniy-020 N+1 сабоғи) - лекин ARBITR-105:
+        // Валюта JOIN FETCH (PERF-020 N+1 сабоғи) - лекин DEC-105:
         // Page count сўровида fetch ЙЎҚ (count'да JOIN FETCH хато беради;
         // to-one fetch фақат DATA сўровида, pagination'ни бузмайди)
         org.springframework.data.jpa.domain.Specification<BankTransaction> withCurrency =
@@ -213,19 +213,19 @@ public class BankTransactionService {
                 pageRequest(page, size));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankTransaction> transfers(ListFilter filter, int page) {
         return transfers(filter, page, LIST_PAGE_SIZE);
     }
 
     /**
-     * Чиқимлар рўйхати (Arbitr-033) - саҳифаланган (Beruniy-perf1); Arbitr-068
+     * Чиқимлар рўйхати (DEC-033) - саҳифаланган (PERF-perf1); DEC-068
      * билан давр/статус/payee/матн филтри уланди: {@link #transfers} қолипи,
      * фарқи фақат {@code type=EXPENSE} ва payee (contactId) бўлаги - чиқимда
      * Олувчи бор ({@link #list} даги eq("contactId") кўзгуси), ўтказма
-     * контактсиз. Валюта fetch сақланган (Beruniy-020 N+1 йўқ; count сўровида
-     * fetch ЙЎҚ - ARBITR-105).
+     * контактсиз. Валюта fetch сақланган (PERF-020 N+1 йўқ; count сўровида
+     * fetch ЙЎҚ - DEC-105).
      */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankTransaction> expenses(
@@ -251,13 +251,13 @@ public class BankTransactionService {
                 pageRequest(page, size));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankTransaction> expenses(ListFilter filter, int page) {
         return expenses(filter, page, LIST_PAGE_SIZE);
     }
 
-    /** Саҳифа сўрови (LIST_SORT билан) - манфий саҳифа рақами 0'га қисилади; size - ARBITR-105. */
+    /** Саҳифа сўрови (LIST_SORT билан) - манфий саҳифа рақами 0'га қисилади; size - DEC-105. */
     private static org.springframework.data.domain.PageRequest pageRequest(int page, int size) {
         return org.springframework.data.domain.PageRequest.of(
                 Math.max(0, page), size, LIST_SORT);
@@ -344,7 +344,7 @@ public class BankTransactionService {
                         + " → " + to.getName(),
                 SOURCE_MODULE, txn.getId(), glLines));
 
-        // Т3 (docs/modules/transfer.md, Arbitr-022): айнан битта ноёб чет
+        // Т3 (docs/modules/transfer.md, DEC-022): айнан битта ноёб чет
         // валюта иштирок этса, ўтказмада ишлатилган курс каталогга ҳужжат
         // санаси билан upsert қилинади - фойдаланувчи ҳақиқий курсни қайд
         // этади (қўлда киритилган курс устун). Икки хил чет валюта -
@@ -390,14 +390,14 @@ public class BankTransactionService {
                     type + " транзакциясида камида битта сатр бўлиши шарт");
         }
         Currency currency = accountCurrency(bank);
-        // Курс инварианти умумий helper'да (Xorazmiy-005: policy бир жойда)
+        // Курс инварианти умумий helper'да (QA-005: policy бир жойда)
         BigDecimal rate = currencyService.requireDocumentRate(
                 currency, data.exchangeRate(), BusinessRule.BR_BT_008);
         if (data.contactId() != null) {
             contactService.get(data.contactId()); // мавжудлик (NotFound)
         }
         if (data.paymentMethodId() != null) {
-            // Мавжудлик NotFound билан - янги BR кодисиз (Arbitr-033);
+            // Мавжудлик NotFound билан - янги BR кодисиз (DEC-033);
             // нофаоллик select даражасида (формада кўринмайди)
             paymentMethodService.get(data.paymentMethodId());
         }
@@ -408,7 +408,7 @@ public class BankTransactionService {
                 null, null, data.contactId(), Strings.blankToNull(data.memo()));
         txn.applyPaymentDetails(data.paymentMethodId(),
                 Strings.blankToNull(data.refNo()));
-        // Батч lookup (Arbitr-045 findAllById, Sanjar-008): сатр-циклда
+        // Батч lookup (DEC-045 findAllById, OPT-008): сатр-циклда
         // счёт/контакт биттадан ўқилмасин - id'лар олдиндан йиғилиб
         // иккита IN сўров билан Map'га олинади, циклда Map.get()
         Map<UUID, Account> accounts = BatchLookup.byId(
@@ -433,7 +433,7 @@ public class BankTransactionService {
                         no + "-сатр: счёт фаол, postable ва банкнинг ўзи эмаслиги "
                         + "шарт: " + account.getName());
             }
-            // BR-BT-010 (Xorazmiy-012, BR-TXF-002 кўзгуси): тизим назорат
+            // BR-BT-010 (QA-012, BR-TXF-002 кўзгуси): тизим назорат
             // счётига қўлда кирим/чиқим сатри GL'ни subledger'сиз
             // ўзгартиради (StockMovement/aging четда қолади). Истисно -
             // UNDEPOSITED_FUNDS: кирим/чиқим айнан унинг ўз оқими (QBO
@@ -460,7 +460,7 @@ public class BankTransactionService {
         boolean isHome = currency.getCode().equals(home);
         boolean depositType = type == BankTransactionType.DEPOSIT;
         List<JournalEntryRequest.Line> glLines = new ArrayList<>();
-        // Penny rounding (Beruniy-009 + Asrorxoja-002): банк томони
+        // Penny rounding (PERF-009 + LOG-002): банк томони
         // (назорат сатри) base'и total × rate'нинг БИТТА яхлитлаши
         // (MoneyAllocation.targetBase - BR-LED-003 аниқ сақланади),
         // сатр base'лари эса largest-remainder билан айнан шу target'га
@@ -528,7 +528,7 @@ public class BankTransactionService {
      * банкдан кассага, заёмни ёпиш ёки капитал киритиш
      * (docs/modules/transfer.md).
      *
-     * <p>BR-TXF-002 (Komil-008): тизим-бошқарув назорат счёти
+     * <p>BR-TXF-002 (IFRS-008): тизим-бошқарув назорат счёти
      * ({@link AccountDetailType#systemManaged()}) манба ҳам, манзил ҳам
      * бўлолмайди - қўлда ўтказма GL қолдиғини ўзгартиради, subledger'ни
      * (AR/AP aging, StockMovement valuation) эмас, мувофиқлик бузилади.

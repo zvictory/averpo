@@ -27,7 +27,7 @@ public interface ItemRepository extends JpaRepository<Item, UUID>,
     Optional<Item> findBySku(String sku);
 
     /**
-     * Енгил ссылкалар фақат сўралган id'лар учун (Beruniy-018) - номлар
+     * Енгил ссылкалар фақат сўралган id'лар учун (PERF-018) - номлар
      * entity ва унинг EAGER боғларисиз, битта IN сўровда.
      */
     @Query("""
@@ -39,7 +39,7 @@ public interface ItemRepository extends JpaRepository<Item, UUID>,
             """)
     List<ItemRef> findRefsByIdIn(@Param("ids") Collection<UUID> ids);
 
-    /** Фаол item'ларнинг енгил рўйхати - select учун (Beruniy-018). */
+    /** Фаол item'ларнинг енгил рўйхати - select учун (PERF-018). */
     @Query("""
             select new com.averpo.erp.item.service.ItemService$ItemRef(
                 i.id, i.name, u.name)

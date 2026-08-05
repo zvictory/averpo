@@ -164,7 +164,7 @@ class AccountTransactionsServiceTest {
     }
 
     /**
-     * ARBITR-105б: register саҳифаланганда жорий қолдиқ саҳифалараро
+     * DEC-105б: register саҳифаланганда жорий қолдиқ саҳифалараро
      * УЗЛУКСИЗ - кейинги саҳифа биринчи сатри олдинги саҳифа охирги
      * сатрининг айнан давоми («саҳифагача йиғинди» aggregate'и opening
      * билан қўшилади). Давр opening/closing ҳар саҳифада бир хил ДАВР
@@ -227,7 +227,7 @@ class AccountTransactionsServiceTest {
     }
 
     /**
-     * Arbitr-044: контакт номи ContactService'сиз, хом SQL name-map билан
+     * DEC-044: контакт номи ContactService'сиз, хом SQL name-map билан
      * ечилади (ledger contact модулига боғланмайди - ТЕМИР ҚОИДА №6). Контакт
      * dimension'ли JE post қилинади → register сатрида contactId → ном
      * {@code contactNames} орқали ечилиб «кўринишда сақланади».

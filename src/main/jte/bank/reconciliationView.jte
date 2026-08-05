@@ -29,7 +29,7 @@
     @template.shared.alert(message = message, error = error)
 
     <%-- QBO Reconcile сарлавҳаси: қолдиқлар ва ЖОНЛИ ФАРҚ. Ҳамма сумма
-         счёт валютасида (banking.md) - код ёнида кўрсатилади (Alisa-002) --%>
+         счёт валютасида (banking.md) - код ёнида кўрсатилади (UI-002) --%>
     <div class="mb-4 grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(170px,1fr))] rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark p-4">
         <div><b>${msg.localize("rcn.col.statementDate")}:</b> ${recon.getStatementDate().toString()}</div>
         <div><b>${msg.localize("rcn.col.opening")}:</b> ${Fmt.money(recon.getOpeningBalance())} ${accountCurrency}</div>
@@ -61,7 +61,7 @@
                 <th>${msg.localize("rcn.col.date")}</th>
                 <th>${msg.localize("rcn.col.description")}</th>
                 <%-- Валюта коди сарлавҳада - ҳар қаторда такрорлаш шарт эмас,
-                     жадвал бир счётники (Alisa-002 арбитр кўлами) --%>
+                     жадвал бир счётники (UI-002 арбитр кўлами) --%>
                 <th class="text-right">${msg.localize("rcn.col.inflow")} (${accountCurrency})</th>
                 <th class="text-right">${msg.localize("rcn.col.outflow")} (${accountCurrency})</th>
             </tr>

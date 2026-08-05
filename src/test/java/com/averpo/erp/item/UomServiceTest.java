@@ -250,7 +250,7 @@ class UomServiceTest {
     }
 
     /**
-     * Xorazmiy-041: UnitService.lineFactor ягона helper'нинг ҳар тармоғи
+     * QA-041: UnitService.lineFactor ягона helper'нинг ҳар тармоғи
      * (6 нусха ўрнига). null бирлик/base/конверсия/BR-UOM-006/нол baseQty/
      * requireBaseQty гейти айнан эски unitFactorSnapshot'лар хулқи.
      */

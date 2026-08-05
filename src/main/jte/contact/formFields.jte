@@ -23,14 +23,14 @@
 @param String error = null
 @param String message = null
 @param Boolean drawer = false
-<%-- Arbitr-100: POST redirect'дан кейин очиқ келадиган бўлим
+<%-- DEC-100: POST redirect'дан кейин очиқ келадиган бўлим
      (addresses/persons/bank) - controller ?open= параметридан узатади.
      null бўлса учаласи ҳам ёпиқ (default). --%>
 @param String openSection = null
-<%-- BR-CON-012 (Arbitr-087): POSTED тарихли контакт валютаси қулф --%>
+<%-- BR-CON-012 (DEC-087): POSTED тарихли контакт валютаси қулф --%>
 @param Boolean currencyLocked = false
 
-<%-- Arbitr-024: форма таначаси - тўлиқ саҳифа (form.jte) ва drawer
+<%-- DEC-024: форма таначаси - тўлиқ саҳифа (form.jte) ва drawer
      (formDrawer.jte) иккиси ҳам шу partial'ни ишлатади. drawer=true
      бўлса АСОСИЙ форма HTMX орқали submit бўлади; манзил/шахс/банк
      бўлимларининг ўз формалари оддий POST'лигича қолади (улар тўлиқ
@@ -43,7 +43,7 @@
           hx-target="${drawer != null && drawer ? "#drawerBody" : null}"
           hx-swap="${drawer != null && drawer ? "innerHTML" : null}"
           class="${drawer != null && drawer ? "grid gap-[.9rem]" : "grid max-w-[720px] gap-[.9rem] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark"}">
-        <%-- Arbitr-053 банд 6: майдон grid'лари 375px'да сиқилмасин - мобилда бир устун
+        <%-- DEC-053 банд 6: майдон grid'лари 375px'да сиқилмасин - мобилда бир устун
              синфи мобилда бир устунга stack (mobile-first қоидаси). --%>
         @template.shared.csrf(csrf = csrf)
 
@@ -93,13 +93,13 @@
                 <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                     ${msg.localize("contact.form.currency")}
                 <%-- Валюта - native select (сурув қарори: 3-10 ёзув) --%>
-                <%-- Arbitr-158: «Home валюта» мета-опция ЙЎҚ (QBO паритет -
+                <%-- DEC-158: «Home валюта» мета-опция ЙЎҚ (QBO паритет -
                      мижоз/таъминотчи конкрет CurrencyRef). Бўш currency →
                      home валюта конкрет default танланади (selCur). nullable
                      модел ва server бўш→home fallback (087) ЎЗГАРМАЙДИ. --%>
                 !{var selCur = (form.getCurrency() == null || form.getCurrency().isBlank()) ? homeCurrency : form.getCurrency();}
                 @if(currencyLocked != null && currencyLocked)
-                    <%-- BR-CON-012 (Arbitr-087): қиймат hidden орқали round-trip
+                    <%-- BR-CON-012 (DEC-087): қиймат hidden орқали round-trip
                          бўлади - disabled select submit қилмайди, бўш келса
                          server қиймат→null ўзгариш деб рад этарди; select
                          фақат кўриниш --%>
@@ -199,7 +199,7 @@
     @if(editId == null)
         <p class="mt-4 max-w-[720px] text-sm text-current/60">${msg.localize("contact.section.saveFirst")}</p>
     @else
-        <%-- Манзиллар бўлими (Arbitr-100: native accordion, default ёпиқ).
+        <%-- Манзиллар бўлими (DEC-100: native accordion, default ёпиқ).
              open атрибути server render'да ?open=addresses'дан келади -
              қўшиш/ўчириш POST'идан кейин шу бўлим очиқ қайтади (JS йўқ). --%>
         <details class="mt-5 max-w-[720px] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark" open="${"addresses".equals(openSection)}">
@@ -286,7 +286,7 @@
             </div>
         </details>
 
-        <%-- Масъул шахслар бўлими (Arbitr-100: native accordion, default ёпиқ) --%>
+        <%-- Масъул шахслар бўлими (DEC-100: native accordion, default ёпиқ) --%>
         <details class="mt-5 max-w-[720px] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark" open="${"persons".equals(openSection)}">
             <summary style="font-weight:600;cursor:pointer;user-select:none;padding:.35rem 0;min-height:1.5rem;">${msg.localize("contact.section.persons")} (${persons.size()})</summary>
             <div style="display:grid;gap:.9rem;margin-top:.9rem;">
@@ -355,7 +355,7 @@
             </div>
         </details>
 
-        <%-- Банк реквизитлари бўлими (Arbitr-100: native accordion, default ёпиқ) --%>
+        <%-- Банк реквизитлари бўлими (DEC-100: native accordion, default ёпиқ) --%>
         <details class="mt-5 max-w-[720px] rounded-radius border border-outline bg-surface p-5 dark:border-outline-dark dark:bg-surface-dark" open="${"bank".equals(openSection)}">
             <summary style="font-weight:600;cursor:pointer;user-select:none;padding:.35rem 0;min-height:1.5rem;">${msg.localize("contact.section.bank")} (${bankAccounts.size()})</summary>
             <div style="display:grid;gap:.9rem;margin-top:.9rem;">

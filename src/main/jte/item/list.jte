@@ -21,7 +21,7 @@
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("item.title")}</h1>
         @if(canEdit != null && canEdit)
             <div style="display:flex;gap:.5rem;align-items:center;">
-                <%-- Arbitr-024: drawer'да очилади; JS'сиз href fallback --%>
+                <%-- DEC-024: drawer'да очилади; JS'сиз href fallback --%>
                 @template.shared.createButton(msg = msg, href = "/items/new", hxGet = "/items/new")
                 <a class="inline-block no-underline cursor-pointer whitespace-nowrap rounded-radius border border-secondary bg-secondary px-4 py-2 text-center text-sm font-medium tracking-wide text-on-secondary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:border-secondary-dark dark:bg-secondary-dark dark:text-on-secondary-dark dark:focus-visible:outline-secondary-dark" href="/item-categories">${msg.localize("cat.title")}</a>
             </div>
@@ -30,7 +30,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт каталог филтр қатори (Arbitr-068): тур + фаоллик + матн --%>
+    <%-- Стандарт каталог филтр қатори (DEC-068): тур + фаоллик + матн --%>
     @template.shared.listFilter(action = "/items", q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.type")}
             <select name="type" class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
@@ -87,7 +87,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @if(canEdit != null && canEdit)
                             @template.shared.rowMenu(msg = msg, items = @`
                                 <a href="/items/${item.getId().toString()}/edit"

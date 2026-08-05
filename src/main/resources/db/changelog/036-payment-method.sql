@@ -1,9 +1,9 @@
 --liquibase formatted sql
 
 --changeset averpo:036-01-payment-method
--- Тўлов усуллари каталоги (Arbitr-033, QBO PaymentMethod 9107): фақат
+-- Тўлов усуллари каталоги (DEC-033, QBO PaymentMethod 9107): фақат
 -- name + active - QBO'даги Type (CREDIT_CARD/NON_CREDIT_CARD) атайлаб
--- ОЛИНМАЙДИ (credit card кўлами рад этилган, Otabek-001). Усул
+-- ОЛИНМАЙДИ (credit card кўлами рад этилган, QBO-001). Усул
 -- ЎЧИРИЛМАЙДИ - active=false (каталог қолипи, тарихий ҳужжат изи
 -- сақланади).
 CREATE TABLE payment_method (
@@ -37,7 +37,7 @@ ALTER TABLE bank_transaction ADD COLUMN ref_no VARCHAR(30);
 --rollback ALTER TABLE bank_transaction DROP COLUMN payment_method_id; ALTER TABLE bank_transaction DROP COLUMN ref_no;
 
 --changeset averpo:036-04-audit-event-entry-index
--- Beruniy-025: audit_event.entry_id FK устуни индекссиз - DRAFT JE
+-- PERF-025: audit_event.entry_id FK устуни индекссиз - DRAFT JE
 -- ўчирилганда referential integrity текшируви audit жадвалини тўлиқ
 -- scan қиларди (жадвал append-only, фақат ўсади). Partial - entry_id
 -- аксарият ҳолда NULL (auth/user ҳодисалари).

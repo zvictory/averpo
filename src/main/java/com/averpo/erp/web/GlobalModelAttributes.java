@@ -27,7 +27,7 @@ public class GlobalModelAttributes {
     /** Sidebar аватар/ном ва mustChange banner учун жорий user (public service). */
     private final UserService userService;
 
-    /** Плагин гейти (Arbitr-113) - request бошида ёқиқ тўплам бир марта ўқилади. */
+    /** Плагин гейти (DEC-113) - request бошида ёқиқ тўплам бир марта ўқилади. */
     private final com.averpo.erp.plugins.core.service.PluginService pluginService;
 
     /** Ҳамма шаблонга i18n ёрдамчиси. */
@@ -55,7 +55,7 @@ public class GlobalModelAttributes {
     }
 
     /**
-     * Фойдаланувчи ЖОРИЙ САҲИФА соҳасида ёза оладими (Arbitr-092:
+     * Фойдаланувчи ЖОРИЙ САҲИФА соҳасида ёза оладими (DEC-092:
      * соҳага-сезгир) - request path {@link UrlPermissionMap} орқали
      * соҳага айланади (SecurityConfig билан ЯГОНА харита - UI тугмаси
      * билан server ҳақиқати ажралмайди), кейин фойдаланувчининг ўша
@@ -92,7 +92,7 @@ public class GlobalModelAttributes {
     }
 
     /**
-     * Layout контексти (Arbitr-101/112 рефайнмент) - {@link LayoutInfo}
+     * Layout контексти (DEC-101/112 рефайнмент) - {@link LayoutInfo}
      * request attribute'га: main.jte топбар бренди (company name + brand
      * logo), sidebar аватар/ном, mustChange banner. main.jte/sidebar.jte
      * СТАТИК {@code LayoutInfo.current()} орқали ўқийди (Perms нақши - JTE
@@ -107,7 +107,7 @@ public class GlobalModelAttributes {
         CompanySettings settings = settingsService.get();
         String companyName = settings.getName();
         java.util.UUID brandLogoId = settings.getBrandLogoAttachmentId();
-        // Онбординг тугаганми (Arbitr-142): sidebar тепа company name'ни
+        // Онбординг тугаганми (DEC-142): sidebar тепа company name'ни
         // фақат setup'дан кейин кўрсатади - тугамаган ҳолда default
         // «Компания» placeholder ўрнига AVERPO fallback чиқади
         boolean setupDone = settings.isSetupDone();
@@ -125,7 +125,7 @@ public class GlobalModelAttributes {
     }
 
     /**
-     * Плагин гейти (Arbitr-113) - {@link Plugins} request attribute'га:
+     * Плагин гейти (DEC-113) - {@link Plugins} request attribute'га:
      * JTE меню/созлама бандлари СТАТИК {@code Plugins.current()} орқали
      * ўқийди (LayoutInfo нақши - layout параметрини кўпайтирмасдан).
      * Битта request = битта {@code enabledKeys()} сўрови; server ҳимояси

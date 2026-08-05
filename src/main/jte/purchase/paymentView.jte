@@ -27,7 +27,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("pay.col.vendor")}</span>
@@ -47,7 +47,7 @@
         </div>
         <%-- U2: чет валютали тўловда валюта ва курс кўрсатилади (billView услуби) --%>
         @if(!payment.getCurrency().getCode().equals(homeCurrency))
-            <%-- Arbitr-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+            <%-- DEC-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
             !{var rateOr = Fmt.orient(payment.getCurrency().getCode(), homeCurrency, payment.getExchangeRate());}
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bill.form.currency")}</span>
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <%-- Arbitr-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
+    <%-- DEC-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
     @if(payment.getStatus() == BillPayment.Status.POSTED || payment.getStatus() == BillPayment.Status.REVERSED)
         @template.shared.jeLink(sourceType = "BILL_PAYMENT", id = payment.getId().toString(), msg = msg)
     @endif

@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:029-01-app-user-lockout
--- BR-USR-009 (Eldor-002): login lockout ҳолати user'нинг ўзида туради -
+-- BR-USR-009 (SEC-002): login lockout ҳолати user'нинг ўзида туради -
 -- 5 кетма-кет хато уриниш failed_attempts'да саналади, locked_until'гача
 -- login тақиқ (UTC, темир қоида №12). Муваффақиятли киришда иккаласи
 -- нолланади (LoginAttemptListener).

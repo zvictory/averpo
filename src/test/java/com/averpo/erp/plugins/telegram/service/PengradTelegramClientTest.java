@@ -267,7 +267,7 @@ class PengradTelegramClientTest {
         assertThat(seenPaths).containsExactly("/bot" + TOKEN + "/sendMessage");
     }
 
-    // ---- Webhook (Arbitr-138) ----
+    // ---- Webhook (DEC-138) ----
 
     /** registerWebhook: тўғри йўл (setWebhook) чақирилади, isOk true. */
     @Test

@@ -65,8 +65,8 @@ public class AccountService implements DefaultChartInstaller {
      *                 турида фаол дубликат (warnings'да изоҳланади)
      * @param warnings импорт йиқилмайдиган, лекин фойдаланувчи билиши
      *                 керак ҳолатлар: BR-COA-010 «дубликат тур: ...»
-     *                 (Arbitr-060) ва «код банд: ...» - код тўқнашганда
-     *                 счёт кодсиз яратилади (Arbitr-126)
+     *                 (DEC-060) ва «код банд: ...» - код тўқнашганда
+     *                 счёт кодсиз яратилади (DEC-126)
      */
     public record ImportResult(int created, int skipped, List<String> warnings) { }
 
@@ -76,13 +76,13 @@ public class AccountService implements DefaultChartInstaller {
     /**
      * Тизим счёти резолвери ({@link #requireSystemAccount}) «ягона» талаб
      * қиладиган detail type'лар: шуларда иккинчи ФАОЛ счёт BR-COA-010 билан
-     * рад этилади (Arbitr-060 - жонли серверда дубликат AP резолверни
+     * рад этилади (DEC-060 - жонли серверда дубликат AP резолверни
      * BR-LED-021 га йиқитиб Bill оқимини синдирган эди). Манба - резолвер
      * чақириқлари grep'и (posting service'лар + OpeningBalanceService).
      *
      * <p>PAYROLL_EXPENSES атайлаб КИРМАЙДИ: бу турда атайлаб бир нечта
      * счёт бор (иккита postable харажат + «Иш ҳақи харажатлари» гуруҳ
-     * отаси, Arbitr-126), payroll НОМ бўйича топади
+     * отаси, DEC-126), payroll НОМ бўйича топади
      * ({@code PayrollRunService}). CHECKING/CASH_ON_HAND каби фойдаланувчи
      * хоҳлаганча очадиган турлар ҳам кирмайди - улар резолвер орқали
      * эмас, формада танланади.
@@ -111,7 +111,7 @@ public class AccountService implements DefaultChartInstaller {
     private final CurrencyService currencyService;
 
     /**
-     * Аудит event'лари учун (Arbitr-062): ledger audit'ни import қила
+     * Аудит event'лари учун (DEC-062): ledger audit'ни import қила
      * олмагани учун (қоида №6) create/update/importDefaultChart ўз
      * ҳодисаларини эълон қилади - JournalEntryPostedEvent нақши.
      */
@@ -127,7 +127,7 @@ public class AccountService implements DefaultChartInstaller {
 
     /**
      * Счётлар режаси БУТУНЛАЙ бўшми (count==0). Янги ўрнатиш bootstrap'и
-     * ({@code DefaultChartInitializer}, Arbitr-059) default chart'ни ФАҚАТ
+     * ({@code DefaultChartInitializer}, DEC-059) default chart'ни ФАҚАТ
      * шу ҳолда автоматик юклайди - бўш-эмас база (қисман ўчирилган chart
      * ҳам) тегилмайди. {@code all()}'дан фарқли: бутун жадвални юкламай
      * енгил {@code count(*)} қилади (bootstrap ҳар кўтарилишда чақиради).
@@ -153,9 +153,9 @@ public class AccountService implements DefaultChartInstaller {
     }
 
     /**
-     * Сўралган id'лар бўйича счётлар битта IN сўровда (Arbitr-045
+     * Сўралган id'лар бўйича счётлар битта IN сўровда (DEC-045
      * findAllById нақши) - ҳужжат service'лари сатр-циклда счётни
-     * қайта-қайта {@link #get} билан юкламасин (Sanjar-003/008).
+     * қайта-қайта {@link #get} билан юкламасин (OPT-003/008).
      * Топилмаганлар рўйхатда бўлмайди; мавжудликни чақирувчи ўз сатр
      * хатоси билан текширади.
      */
@@ -185,7 +185,7 @@ public class AccountService implements DefaultChartInstaller {
      * матни posting service'лар бўйлаб такрорланмайди (ҳар янги
      * автоматик проводка шу методни чақиради, ўзи orElseThrow ёзмайди).
      *
-     * <p>Хабар ҳолатга қараб иккига ажралган (Arbitr-060): «топилмади»
+     * <p>Хабар ҳолатга қараб иккига ажралган (DEC-060): «топилмади»
      * (chart юкланмаган) ва «бир нечта топилди: номлар» (legacy дубликат -
      * фойдаланувчи қайсиларини деактив қилишни кўради). Умумий хабар
      * жонли серверда сабабни тушунтира олмаган эди; дубликатнинг ўзи энди
@@ -228,7 +228,7 @@ public class AccountService implements DefaultChartInstaller {
     /**
      * {@link #requireSystemAccount} нинг id варианти - posting
      * service'ларга айнан id керак; аввал ҳар бири ўз хусусий
-     * «.getId() wrapper»ини тутарди (Beruniy-backlog2), энди BR-LED-021
+     * «.getId() wrapper»ини тутарди (PERF-backlog2), энди BR-LED-021
      * стек изи ҳам тўғридан-тўғри AccountService'ни кўрсатади.
      *
      * @throws BusinessRuleException BR-LED-021 - тизим счёти топилмаса
@@ -307,7 +307,7 @@ public class AccountService implements DefaultChartInstaller {
         Account account = repository.save(new Account(normalizedName, detailType,
                 normalizedCode, Strings.blankToNull(description), parent, postable,
                 resolvedCurrency));
-        // Аудит (Arbitr-062): форма ва Excel import йўли иккиси шу ердан ўтади
+        // Аудит (DEC-062): форма ва Excel import йўли иккиси шу ердан ўтади
         eventPublisher.publishEvent(new AccountChangedEvent(account,
                 AccountChangedEvent.Action.CREATED, null));
         return account;
@@ -364,7 +364,7 @@ public class AccountService implements DefaultChartInstaller {
             requireNoActiveSystemDuplicate(detailType, id);
         }
         // Аудит диффи учун эски қийматлар snapshot'и - update'дан ОЛДИН
-        // (Arbitr-062: details'да фақат ЎЗГАРГАН майдонлар «эски → янги»)
+        // (DEC-062: details'да фақат ЎЗГАРГАН майдонлар «эски → янги»)
         List<String> changes = new ArrayList<>();
         boolean wasActive = account.isActive();
         diff(changes, "name", account.getName(), normalizedName);
@@ -428,7 +428,7 @@ public class AccountService implements DefaultChartInstaller {
     }
 
     /**
-     * BR-COA-010 (Arbitr-060): резолвер «ягона» кутадиган тизим detail
+     * BR-COA-010 (DEC-060): резолвер «ягона» кутадиган тизим detail
      * type'ида иккита фаол счёт бўлса {@link #requireSystemAccount}
      * BR-LED-021 билан бутун ҳужжат оқимини (Bill, Invoice, тўлов...)
      * тўхтатади - шунинг учун дубликат ишлатиш пайтида эмас, айнан
@@ -491,7 +491,7 @@ public class AccountService implements DefaultChartInstaller {
 
     /**
      * Bundled QBO услуб default chart'ни импорт қилади. Аудит
-     * (Arbitr-062): ҳар чақириқ CHART_IMPORTED event'и билан из қолдиради
+     * (DEC-062): ҳар чақириқ CHART_IMPORTED event'и билан из қолдиради
      * - қўлда тугма, авто-init ва factory reset учаласи шу ердан ўтади
      * (идемпотент қайта чақириқда created=0 бўлади, из барибир фойдали:
      * КИМ импортга уринганини кўрсатади).
@@ -513,14 +513,14 @@ public class AccountService implements DefaultChartInstaller {
      * Икки босқичли импорт: аввал ҳамма счёт ота'сиз яратилади, кейин
      * иерархия боғланади - файлдаги тартибга боғлиқ қолмаслик учун.
      *
-     * <p>Тизим тури ҳимояси (Arbitr-060): тизим турида БОШҚА номли фаол
+     * <p>Тизим тури ҳимояси (DEC-060): тизим турида БОШҚА номли фаол
      * счёт турган бўлса ўша сатр яратилмайди, лекин импорт ҳам йиқилмайди -
      * натижага «дубликат тур: ...» огоҳлантириши қўшилади (BR-COA-010 нинг
      * импорт кўриниши: жонли серверда қўлда очилган AP chart'даги AP билан
      * дубль бериб Bill оқимини синдирган эди). Ном бўйича idempotent skip
      * бундан олдин, индамай ишлайверади.
      *
-     * <p>Код ҳимояси (Arbitr-126): CSV'даги код мавжуд счётда (ёки шу
+     * <p>Код ҳимояси (DEC-126): CSV'даги код мавжуд счётда (ёки шу
      * импортда аввалроқ яратилганда) банд бўлса счёт КОДСИЗ яратилади ва
      * warnings'га ёзилади - акс ҳолда {@code uq_account_code} unique
      * index flush пайтида бутун импортни йиқитарди. Ном бўйича
@@ -575,7 +575,7 @@ public class AccountService implements DefaultChartInstaller {
         // учун; findAll бир айланишда учала тўпламни тўлдиради
         Map<AccountDetailType, Account> activeSystemByType = new HashMap<>();
         // Банд кодлар - uq_account_code unique index'ига flush'да урилиб
-        // бутун импортни йиқитмаслик учун олдиндан тўпланади (Arbitr-126)
+        // бутун импортни йиқитмаслик учун олдиндан тўпланади (DEC-126)
         Set<String> occupiedCodes = new HashSet<>();
         for (Account existing : repository.findAll()) {
             byName.put(existing.getName(), existing);

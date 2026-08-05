@@ -103,13 +103,13 @@ public class InvoicePaymentService {
                 .orElseThrow(() -> new NotFoundException("Тушум топилмади: " + id));
     }
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 2-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 2-босқич). */
     public static final int LIST_PAGE_SIZE = 25;
 
     /**
      * Рўйхат тартиби - аввалги ORDER BY'га айнан мос (янгидан эскига,
      * тенг санада яратилиш вақти) - саҳифалашга ўтишда экран тартиби
-     * ўзгармасин (Beruniy-perf1, BillPaymentService кўзгуси).
+     * ўзгармасин (PERF-perf1, BillPaymentService кўзгуси).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -118,7 +118,7 @@ public class InvoicePaymentService {
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
     /**
-     * Рўйхат филтри (Arbitr-068, list-filters.md): барча майдонлар
+     * Рўйхат филтри (DEC-068, list-filters.md): барча майдонлар
      * ихтиёрий (null - чекланмаган); q - рақам/изоҳ contains
      * (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -127,8 +127,8 @@ public class InvoicePaymentService {
     }
 
     /**
-     * Рўйхат экрани - саҳифаланган (Beruniy-perf1), тўлиқ филтр
-     * (Arbitr-068): давр/статус/мижоз/матн битта Specification'да
+     * Рўйхат экрани - саҳифаланган (PERF-perf1), тўлиқ филтр
+     * (DEC-068): давр/статус/мижоз/матн битта Specification'да
      * (audit услуби, ListSpecs бўлаклари).
      */
     @Transactional(readOnly = true)
@@ -144,7 +144,7 @@ public class InvoicePaymentService {
                         Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<InvoicePayment> list(ListFilter filter, int page) {
         return list(filter, page, LIST_PAGE_SIZE);
@@ -243,8 +243,8 @@ public class InvoicePaymentService {
         }
         postingService.reverseBySource(SOURCE_MODULE, payment.getId(),
                 reversalDate, storno);
-        // Тўловнинг ўз денормализацияси ҳам тикланади (Beruniy-008,
-        // BillPayment'даги Beruniy-002 тузатишининг кўзгуси) - акс
+        // Тўловнинг ўз денормализацияси ҳам тикланади (PERF-008,
+        // BillPayment'даги PERF-002 тузатишининг кўзгуси) - акс
         // ҳолда REVERSED тушумда allocated эски қийматда қолар эди
         payment.applyAllocated(BigDecimal.ZERO);
         payment.markReversed();
@@ -291,11 +291,11 @@ public class InvoicePaymentService {
         Currency currency = currencyService.require(
                 data.currency() == null || data.currency().isBlank()
                         ? settingsService.homeCurrency() : data.currency());
-        // Курс инварианти умумий helper'да (Xorazmiy-005: policy бир жойда),
+        // Курс инварианти умумий helper'да (QA-005: policy бир жойда),
         // ҳужжатга хос BR код бу ердан берилади
         BigDecimal rate = currencyService.requireDocumentRate(
                 currency, data.exchangeRate(), BusinessRule.BR_RCPT_012);
-        // BR-RCPT-002 (Arbitr-070/Nargiza-001): BANK счёт ўз валютасидан
+        // BR-RCPT-002 (DEC-070/BA-001): BANK счёт ўз валютасидан
         // бошқа валютадаги тўловни қабул қилмайди (SR BR-SR-002 нақши) -
         // акс ҳолда bankBalances() валюта кесими бузилади. UNDEPOSITED_FUNDS
         // клиринг чўнтагига гаров ҚЎЛЛАНМАЙДИ - чет валюта тўлов QBO'дагидек

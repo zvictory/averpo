@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
- * Инвентаризация акти сатри (Arbitr-093): item, ЯНГИ qty (QBO «New
+ * Инвентаризация акти сатри (DEC-093): item, ЯНГИ qty (QBO «New
  * quantity» услуби - фойдаланувчи янги қолдиқни киритади) → delta авто
  * (new − жорий). unit_cost ихтиёрий (фақат кўпайишда, BR-INV-007 сатрга).
  * delta_qty ва line_cost - актни сақлаш пайтидаги snapshot (жорий qty

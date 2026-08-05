@@ -46,7 +46,7 @@ public class SettingsController {
 
     /**
      * Build версия маълумоти - settings саҳифаси тагидаги диагностика
-     * қатори учун (Arbitr-104). {@link ObjectProvider} чунки {@link
+     * қатори учун (DEC-104). {@link ObjectProvider} чунки {@link
      * BuildProperties} bean тест ва оддий classpath'да БЎЛМАЙДИ
      * (bootBuildInfo фақат bootJar/bootRun'да build-info.properties
      * яратади) - bean йўқлигида саҳифа синмаслиги шарт.
@@ -55,7 +55,7 @@ public class SettingsController {
 
     /**
      * Созламалар формасини кўрсатади. {@code setup=1} - онбординг ҳолати
-     * (Arbitr-056): login success handler янги ўрнатишда ADMIN'ни шу манзилга
+     * (DEC-056): login success handler янги ўрнатишда ADMIN'ни шу манзилга
      * олиб келади, экранда хуш келибсиз banner'и чиқади.
      */
     @GetMapping
@@ -69,7 +69,7 @@ public class SettingsController {
      * Форма сақлаш - хато бўлса ўша экранда кўрсатилади.
      *
      * <p>Давр ёпилиш санаси ва payroll ставкалари String сифатида олиниб
-     * {@link FormParsers} орқали парсланади (Xorazmiy-021/Arbitr-045 банд 5):
+     * {@link FormParsers} орқали парсланади (QA-021/DEC-045 банд 5):
      * хом {@code @RequestParam LocalDate/BigDecimal} байндинги бузуқ форматда
      * (пробел, вергул, бузуқ сана) фойдаланувчига хом 400 саҳифа берарди -
      * лойиҳа сиёсати эса кириллча BR хабари + форма қиймати сақланиши.
@@ -155,14 +155,14 @@ public class SettingsController {
             timezones.add(0, settings.getTimezone());
         }
         model.addAttribute("settings", settings);
-        // Arbitr-056 банд 6: home currency ТЎЛИҚ каталогдан танланади
+        // DEC-056 банд 6: home currency ТЎЛИҚ каталогдан танланади
         // (нофаоллар ҳам) - танланса CompanySettingsService.update() уни
         // автоматик активлаштиради. Ҳужжат формалари эса active()'дагина қолади.
         model.addAttribute("currencies", currencyService.all());
         model.addAttribute("timezones", timezones);
         model.addAttribute("currencyLocked", settingsService.homeCurrencyLocked());
         model.addAttribute("valuationLocked", settingsService.valuationLocked());
-        // Arbitr-104: build диагностикаси - bean мавжуд бўлса (jar/bootRun)
+        // DEC-104: build диагностикаси - bean мавжуд бўлса (jar/bootRun)
         // версия/вақт/hash саҳифа тагидаги хира қаторга чиқади; тест ва
         // build-info'сиз classpath'да bean йўқ - атрибутлар қўшилмайди,
         // шаблон @if(buildVersion != null) билан ўтказиб юборади. Вақт

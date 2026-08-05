@@ -22,7 +22,7 @@
 @param String error = null
 @param Boolean canEdit = false
 
-<%-- Arbitr-024: drawer жавоби (HX-Request) - #drawerBody ичига тушади. --%>
+<%-- DEC-024: drawer жавоби (HX-Request) - #drawerBody ичига тушади. --%>
 <div class="flex items-center justify-between gap-3 bg-surface-dark px-5 py-3.5 font-semibold text-on-surface-dark-strong">
     <b>${editId == null ? msg.localize("item.form.titleNew") : msg.localize("item.form.titleEdit")}</b>
     <button type="button" class="cursor-pointer rounded-radius border-0 bg-transparent px-2 py-1 text-xl leading-none text-on-surface-dark transition hover:bg-surface-dark-alt hover:text-on-surface-dark-strong" onclick="drawerClose()" aria-label="${msg.lookup("common.cancel")}">✕</button>

@@ -1,4 +1,4 @@
-/* AVERPO - Tailwind 4 кирувчи CSS (Arbitr-116, спец:
+/* AVERPO - Tailwind 4 кирувчи CSS (DEC-116, спец:
    docs/modules/ui-framework.md). Чиқиш: build/generated/tailwind/
    static/css/app.css (минифи, jar ичида /css/app.css бўлиб хизмат
    қилади). ДИҚҚАТ: бу файл ҳали бирорта саҳифага уланмаган -
@@ -13,7 +13,7 @@
    ҳам қўшилади. */
 @source "../jte";
 
-/* Режимлар (Arbitr-117в): dark variant class-based.
+/* Режимлар (DEC-117в): dark variant class-based.
    - <html class="dark"> - тўлиқ тун режими (ҳамма dark: жуфтлари);
    - <html class="sb-dark"> - АРАЛАШ режим: dark: жуфтлари ФАҚАТ sidebar
      оиласида ишлайди - #sbnav дарахти ва .sb-zone маркерли қисмлар

@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Login lockout тестлари (BR-USR-009/010, Eldor-002): оқим тўлиқ
+ * Login lockout тестлари (BR-USR-009/010, SEC-002): оқим тўлиқ
  * Spring Security орқали - AuthenticationManager хато уринишларда
  * event чиқаради (LoginAttemptListener санайди),
  * JpaUserDetailsService қулф/нофаолликни accountNonLocked/disabled
@@ -116,7 +116,7 @@ class LoginLockoutTest {
         assertThat(repository.findByUsername("qaytadi").orElseThrow()
                 .getFailedAttempts()).isEqualTo(4);
 
-        // Муваффақиятли кириш счётчикни нолга туширади (Eldor-002 кутилмаси)
+        // Муваффақиятли кириш счётчикни нолга туширади (SEC-002 кутилмаси)
         attempt("qaytadi", PASSWORD);
         assertThat(repository.findByUsername("qaytadi").orElseThrow()
                 .getFailedAttempts()).isZero();
@@ -124,7 +124,7 @@ class LoginLockoutTest {
 
     @Test
     void failureAfterExpiredLock_restartsCounterAtOne() throws Exception {
-        // Beruniy-014: счётчик энди атомар SQL'да - муддати ўтган қулф
+        // PERF-014: счётчик энди атомар SQL'да - муддати ўтган қулф
         // тозаланиб янги серия 1 дан бошланиши ўша UPDATE ичида
         userService.create("muddati", "Муддат тест", UserRole.VIEWER_AUDITOR, PASSWORD);
         for (int i = 0; i < 5; i++) {

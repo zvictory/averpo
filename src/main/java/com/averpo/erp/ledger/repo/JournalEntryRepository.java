@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * GL ёзувлари репозиторийси - фақат ledger модули ичида (қоида 6:
  * ledger ҳеч кимга боғлиқ эмас, бошқалар бунга тегмайди).
- * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
+ * JpaSpecificationExecutor - рўйхат филтри учун (DEC-068).
  */
 public interface JournalEntryRepository extends JpaRepository<JournalEntry, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<JournalEntry> {
@@ -45,7 +45,7 @@ public interface JournalEntryRepository extends JpaRepository<JournalEntry, UUID
             String sourceModule, UUID sourceDocumentId);
 
     /**
-     * Манбанинг ЭНГ ОХИРГИ асл (reversalOf IS NULL) GL ёзуви (Arbitr-080).
+     * Манбанинг ЭНГ ОХИРГИ асл (reversalOf IS NULL) GL ёзуви (DEC-080).
      * Юқоридаги {@code findBy...}'дан фарқи: {@code findFirst} + тартиб,
      * шунда битта манбага бирдан кўп reversalOf=null ёзув тўпланганда ҳам
      * NonUniqueResultException (хом 500) отилмайди.

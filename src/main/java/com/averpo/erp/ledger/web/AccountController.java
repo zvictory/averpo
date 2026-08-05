@@ -69,7 +69,7 @@ public class AccountController {
 
     /**
      * Счётлар рўйхати - QBO услубидаги йиғма дарахт; стандарт каталог
-     * филтри (Arbitr-068): матн (ном/код), фаоллик, classification.
+     * филтри (DEC-068): матн (ном/код), фаоллик, classification.
      * Филтрсиз default - ТЎЛИҚ дарахт (мавжуд хатти-ҳаракат, иерархия
      * бузилмасин); филтр танланса натижа ТЕКИС рўйхат бўлиб чиқади
      * (мос келган счётнинг ота-жилди мос келмаса дарахт узилиб қоларди).
@@ -110,12 +110,12 @@ public class AccountController {
         model.addAttribute("q", q == null ? "" : q);
         model.addAttribute("activity", act);
         model.addAttribute("classification", cls == null ? "" : cls.name());
-        // Arbitr-023: Balance қиймати home'да (GL base) - код ҳам home'ники
+        // DEC-023: Balance қиймати home'да (GL base) - код ҳам home'ники
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         return "ledger/accounts";
     }
 
-    /** Битта счёт филтрга мос келадими (Arbitr-068 текис режими). */
+    /** Битта счёт филтрга мос келадими (DEC-068 текис режими). */
     private static boolean matches(Account account, String needle,
                                    String activity, AccountClassification cls) {
         if ("ACTIVE".equals(activity) && !account.isActive()) {
@@ -231,7 +231,7 @@ public class AccountController {
         } catch (com.averpo.erp.shared.exception.BusinessRuleException e) {
             fillFormModel(model, form, null);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "ledger/accountFormDrawer" : "ledger/accountForm";
         }
@@ -269,7 +269,7 @@ public class AccountController {
         } catch (com.averpo.erp.shared.exception.BusinessRuleException e) {
             fillFormModel(model, form, id);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "ledger/accountFormDrawer" : "ledger/accountForm";
         }
@@ -308,7 +308,7 @@ public class AccountController {
 
     /**
      * Импорт натижаси flash хабари. «Дубликат тур» огоҳлантиришлари
-     * (Arbitr-060, BR-COA-010 импорт кўриниши) бўлса охирига қўшилади -
+     * (DEC-060, BR-COA-010 импорт кўриниши) бўлса охирига қўшилади -
      * фойдаланувчи қайси сатр нега яратилмаганини шу ерда кўради.
      */
     private String importMessage(AccountService.ImportResult result) {

@@ -122,7 +122,7 @@ public class ExcelImportService {
     private final CurrencyService currencyService;
 
     /**
-     * Аудит event'и учун (Arbitr-062): shared audit'ни import қила олмайди
+     * Аудит event'и учун (DEC-062): shared audit'ни import қила олмайди
      * (цикл), шунга apply ўз event'ини эълон қилади - синхрон listener
      * IMPORT_EXCEL ёзувини apply транзакциясида киритади.
      */
@@ -354,7 +354,7 @@ public class ExcelImportService {
         ImportResult result = new ImportResult(contactsCreated, contactsSkipped,
                 employeesCreated, employeesSkipped, itemsCreated, itemsSkipped,
                 warehousesCreated, warehousesSkipped, accountsCreated, accountsSkipped);
-        // Аудит (Arbitr-062): синхрон listener - rollback'да ёзув ҳам йўқолади
+        // Аудит (DEC-062): синхрон listener - rollback'да ёзув ҳам йўқолади
         eventPublisher.publishEvent(new ExcelImportedEvent(result));
         return result;
     }
@@ -448,7 +448,7 @@ public class ExcelImportService {
                 cSales = h.get(COL_SALES_PRICE), cCost = h.get(COL_PURCHASE_COST),
                 cTax = h.get(COL_TAX);
         // Каталог бир марта харитага олинади (ном бўйича) - ҳар сатрда
-        // қайта сўров бўлмасин. Калит lowercase (Arbitr-073): «Дона» ≠
+        // қайта сўров бўлмасин. Калит lowercase (DEC-073): «Дона» ≠
         // «дона» деб BR-IMP-005 отилмасин - Java String.toLowerCase()
         // кириллни тўғри folds (grep -i'дан фарқли).
         Map<String, Unit> unitsByName = new HashMap<>();
@@ -495,7 +495,7 @@ public class ExcelImportService {
             return;
         }
         Integer cCode = h.get(COL_CODE);
-        // Тизимдаги банд кодлар parse'да (Arbitr-073): apply бу ҳолда
+        // Тизимдаги банд кодлар parse'да (DEC-073): apply бу ҳолда
         // BR-WH-002 билан бутун import'ни rollback қиларди - энди preview
         // аниқ сатр билан кўрсатади. Номлар ҳам керак: номи мавжуд сатр
         // apply'да ЎТКАЗИЛади (идемпотент) - унинг коди хато эмас.
@@ -541,7 +541,7 @@ public class ExcelImportService {
             return;
         }
         Integer cCurrency = h.get(COL_CURRENCY), cCode = h.get(COL_CODE);
-        // Тизимдаги банд счёт кодлари parse'да (Arbitr-073) - BR-COA-002
+        // Тизимдаги банд счёт кодлари parse'да (DEC-073) - BR-COA-002
         // apply'га етмасин (тафсилот parseWarehouses'даги изоҳда).
         Set<String> existingNames = new HashSet<>();
         Set<String> existingCodes = new HashSet<>();
@@ -670,7 +670,7 @@ public class ExcelImportService {
     }
 
     /**
-     * Сон майдонни парслаб МАНФИЙ эмаслигини ҳам текширади (Arbitr-073):
+     * Сон майдонни парслаб МАНФИЙ эмаслигини ҳам текширади (DEC-073):
      * манфий Ойлик/нарх apply'даги BR-CON-011/BR-ITM-009'га етиб биттадан,
      * варақ/сатрсиз йиқиларди - энди parse тўлиқ рўйхатда, контекст билан
      * ушлайди (спец ваъдаси import-excel.md:117-118). Бўш → null.
@@ -685,7 +685,7 @@ public class ExcelImportService {
     }
 
     /**
-     * Тизимда банд кодни parse'да ушлайди (Arbitr-073) - apply бу ҳолда
+     * Тизимда банд кодни parse'да ушлайди (DEC-073) - apply бу ҳолда
      * BR-COA-002/BR-WH-002 билан бутун import'ни rollback қиларди. Хато
      * apply семантикасини АЙНАН такрорлайди: номи мавжуд сатр apply'да
      * ўтказилади (идемпотентлик) - унинг коди текширилмайди; кодлар

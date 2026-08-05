@@ -25,7 +25,7 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 25MB
-    # Сессия муддати (Arbitr-096): QBO'да idle муддати ~1 соат. Tomcat default
+    # Сессия муддати (DEC-096): QBO'да idle муддати ~1 соат. Tomcat default
     # 30 дақиқа эди - жонлида бир оз турса logout қилиб, эски CSRF токенли
     # формадан POST'да 403 берарди (энди accessDeniedHandler /login?expired).
     session:
@@ -44,7 +44,7 @@ spring:
 
 # Home currency энди CompanySettings жадвалида - конфигда эмас
 
-# Техник логгинг даражалари (Arbitr-099, docs/modules/logging.md).
+# Техник логгинг даражалари (DEC-099, docs/modules/logging.md).
 # Appender'лар/rotation - logback-spring.xml'да; бу ерда фақат даражалар.
 # Серверда env билан ошириш: LOGGING_LEVEL_COM_AVERPO_ERP=DEBUG
 # (Spring стандарт override, рестарт билан).
@@ -60,7 +60,7 @@ logging:
 # header'ида (у CF-Connecting-IP'дан олади). RemoteIpValve шу header'ни ФАҚАТ
 # ички proxy'дан (default internal-proxies 127.0.0.1 ни қамрайди) келганда
 # ишонади - спуфинг ҳимояси; локал dev'да header йўқ, хулқ ўзгармайди. Шусиз
-# аудит журнали ҳамма кириш IP'сини 127.0.0.1 деб ёзиб қоларди (Arbitr-058).
+# аудит журнали ҳамма кириш IP'сини 127.0.0.1 деб ёзиб қоларди (DEC-058).
 server:
   tomcat:
     remoteip:

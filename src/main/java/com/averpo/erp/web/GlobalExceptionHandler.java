@@ -25,7 +25,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  * қўллаб-қувватлашга мурожаатда айнан шу код айтилади
  * (ягона каталог: shared.exception.BusinessRule enum).
  *
- * <p>Arbitr-127: ҳар handler статусни ҳам узатади - error.jte катта
+ * <p>DEC-127: ҳар handler статусни ҳам узатади - error.jte катта
  * код ва статусга мос иконка кўрсатади; HTMX partial сўровида эса
  * тўлиқ саҳифа ўрнига ихчам alert қайтади (errorView изоҳи).
  */
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Йўқ статик ресурс/йўл - 404, stacktrace'сиз (Arbitr-021). Браузер
+     * Йўқ статик ресурс/йўл - 404, stacktrace'сиз (DEC-021). Браузер
      * ҳар ташрифда /favicon.ico сўрайди, эски bookmark ёки хато URL ҳам
      * шу ерга тушади: махсус handler бўлмаса catch-all уни 500 + ERROR
      * log қиларди - ҳар ташрифда сохта хато log'да ҳақиқий хатоларни
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
     public String businessRule(BusinessRuleException e, Model model,
                                HttpServletRequest request,
                                HttpServletResponse response) {
-        // Arbitr-099: БР ради айнан «warn» синфи (logging.md) - код + йўл
+        // DEC-099: БР ради айнан «warn» синфи (logging.md) - код + йўл
         // билан WARN (аввал DEBUG эди, default INFO'да умуман кўринмасди).
         // Стектрейс эмас - бу кутилган бизнес рад, кутилмаган хато эмас.
         log.warn("Бизнес қоида ради [{}] {}: {}", e.getCode(),
@@ -90,7 +90,7 @@ public class GlobalExceptionHandler {
         // Хом e.getMessage() экранга чиқарилмайди: IAE хабарлари кўпинча
         // фойдаланувчи юборган қийматни такрорлайди (масалан UUID.fromString
         // «Invalid UUID string: ...») - reflected гигиена, typeMismatch қолипи.
-        // Тўлиқ хабар юқоридаги log'да қолади. Матн i18n'да (Arbitr-127).
+        // Тўлиқ хабар юқоридаги log'да қолади. Матн i18n'да (DEC-127).
         return errorView(model, request, response, 400,
                 modelAttributes.msg().lookup("error.badRequest"));
     }
@@ -110,7 +110,7 @@ public class GlobalExceptionHandler {
 
     /**
      * Сўров усули мос эмас (масалан POST'га мўлжалланган манзилга GET) -
-     * 405. Arbitr-127: аввал catch-all'га тушиб 500 + ERROR log + умумий
+     * 405. DEC-127: аввал catch-all'га тушиб 500 + ERROR log + умумий
      * матн берарди - бу кутилган client хатоси учун сохта тревога эди;
      * энди ўз статуси ва уч тилли матни билан қайтади.
      */
@@ -126,7 +126,7 @@ public class GlobalExceptionHandler {
     /**
      * Catch-all: кутилмаган хато фойдаланувчига stacktrace'сиз, умумий
      * хабар билан 500 қайтади; тўлиқ stacktrace фақат log'да - молия
-     * тизимида ички тафсилот экранга чиқмайди. Хабар i18n'да (Arbitr-127).
+     * тизимида ички тафсилот экранга чиқмайди. Хабар i18n'да (DEC-127).
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -144,7 +144,7 @@ public class GlobalExceptionHandler {
      * error.jte'даги msg null бўлиб NPE билан йиқилар ва фойдаланувчи
      * тушунарли хато ўрнига хом 500 кўрар эди.
      *
-     * <p>Arbitr-127: HTMX partial сўровида (HX-Request) тўлиқ саҳифа
+     * <p>DEC-127: HTMX partial сўровида (HX-Request) тўлиқ саҳифа
      * ўрнига ихчам alert фрагмент қайтади - htmx 2 default'да 4xx/5xx
      * жавобни swap қилмагани учун X-Averpo-Error белгиси қўйилади:
      * client тингловчиси (money-input.js) фақат шу белгили жавобга swap
@@ -158,7 +158,7 @@ public class GlobalExceptionHandler {
         Msg msg = modelAttributes.msg();
         var csrfToken = modelAttributes.csrf(request);
         if (csrfToken != null) {
-            // Deferred токен ЖАВОБ COMMIT БЎЛМАСИДАН ҳал қилинади (Arbitr-127
+            // Deferred токен ЖАВОБ COMMIT БЎЛМАСИДАН ҳал қилинади (DEC-127
             // жонли smoke топилмаси): cookie'сиз аноним сўровда saveToken
             // сессия яратади - шаблон оқими бошлангандан кейин бу
             // IllegalStateException бўлиб саҳифани ярмида узарди (sidebar
@@ -169,7 +169,7 @@ public class GlobalExceptionHandler {
         model.addAttribute("msg", msg);
         model.addAttribute("lang", modelAttributes.lang());
         model.addAttribute("csrf", csrfToken);
-        // canEdit энди соҳага-сезгир (Arbitr-092) - хато берган URL'нинг
+        // canEdit энди соҳага-сезгир (DEC-092) - хато берган URL'нинг
         // соҳаси бўйича ҳисобланади, request шунга узатилади
         model.addAttribute("canEdit", modelAttributes.canEdit(auth, request));
         model.addAttribute("isAdmin", modelAttributes.isAdmin(auth));

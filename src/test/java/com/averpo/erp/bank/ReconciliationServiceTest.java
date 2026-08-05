@@ -134,7 +134,7 @@ class ReconciliationServiceTest {
 
     @Test
     void start_backdated_afterCompletedPeriods_rejected() {
-        // Zumrad-003 сценарийси: Фев/Март COMPLETED, Январь орқага
+        // CHK-003 сценарийси: Фев/Март COMPLETED, Январь орқага
         // бошланса opening Мартнинг closing'ини «ўғирлаб» келар эди -
         // энди BR-RCN-008 очиқ рад этади
         depositToBank("100000");
@@ -286,7 +286,7 @@ class ReconciliationServiceTest {
     }
 
     /**
-     * Sanjar-006: view() бутун экранни битта read-only транзакцияда
+     * OPT-006: view() бутун экранни битта read-only транзакцияда
      * йиғади - аввал controller get/candidates/difference'ни алоҳида
      * чақириб жами 9 SELECT берарди (reconciliation ×3, счёт ×2, match
      * рўйхати ×2, бутун тарих matched-ids, GL сатрлари). Энди:

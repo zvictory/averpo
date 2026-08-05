@@ -3,7 +3,7 @@
 @param String href = null
 @param String hxGet = null
 
-<%-- Arbitr-133: entity рўйхат саҳифаларининг ЯГОНА яратиш тугмаси -
+<%-- DEC-133: entity рўйхат саҳифаларининг ЯГОНА яратиш тугмаси -
      тепа ўнгда, plus иконка + бир сўзли лабел (common.create, «+ Янги»
      бўлиб кўринади). Кўриниш ва матн ҳамма рўйхат саҳифасида бир хил.
      Penguin primary канони + иконка учун inline-flex/gap.

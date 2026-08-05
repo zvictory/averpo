@@ -38,18 +38,18 @@ import java.util.UUID;
 public class AuditLogService {
 
     /**
-     * Cloudflare Pseudo IPv4 header номи (Arbitr-091): IPv6 уланишларда
+     * Cloudflare Pseudo IPv4 header номи (DEC-091): IPv6 уланишларда
      * CF қўшадиган синтетик барқарор IPv4 (240.0.0.0/4). Public - logout
      * handler (SecurityConfig) header'ни request'дан ўзи ўқийди, ном бир
      * жойда турсин. getHeader номга case-insensitive.
      */
     public static final String CF_PSEUDO_IPV4 = "Cf-Pseudo-IPv4";
 
-    /** Cloudflare IP Geolocation давлат коди header номи (Arbitr-091). */
+    /** Cloudflare IP Geolocation давлат коди header номи (DEC-091). */
     public static final String CF_IP_COUNTRY = "CF-IPCountry";
 
     /**
-     * Фон жараёнлари (scheduler/bootstrap) actor маркери (Arbitr-164):
+     * Фон жараёнлари (scheduler/bootstrap) actor маркери (DEC-164):
      * SecurityContext бўш ёки pool thread'да эски request қолдиғи бўлгани
      * учун {@link #currentUsername()} ноаниқ - контекстсиз жараён «биз
      * тизиммиз»ни ТАСОДИФСИЗ шу константа билан билдиради. Қиймат
@@ -63,11 +63,11 @@ public class AuditLogService {
 
     /**
      * Ҳодиса ёзади - барча ёзиш нуқталари (ledger/shared listener'лар,
-     * auth listener, UserService) фақат шуни чақиради. Arbitr-062: web
+     * auth listener, UserService) фақат шуни чақиради. DEC-062: web
      * контекстда IP (параметр null бўлса) ва User-Agent ҲАММА ҳодисага
      * жорий request'дан автоматик олинади - чақирувчилар ўзгармайди;
      * фон жараёнларда (scheduler/bootstrap) иккиси null қолади.
-     * Arbitr-091: CF header'ларидан Pseudo IPv4 ва давлат коди ҳам шу
+     * DEC-091: CF header'ларидан Pseudo IPv4 ва давлат коди ҳам шу
      * йўлда олинади - login ҳодисаларида ҳам ишлайди, чунки
      * RequestContextFilter security filter chain'дан олдин туради.
      *
@@ -102,7 +102,7 @@ public class AuditLogService {
     /**
      * Жорий web request'даги клиент IP'си ёки null (фон жараён).
      * RemoteIpValve туфайли proxy ортида ҳам ҳақиқий клиент манзили
-     * (Arbitr-058 - AuthAuditListener изоҳига қаранг).
+     * (DEC-058 - AuthAuditListener изоҳига қаранг).
      */
     private static String requestIp() {
         return RequestContextHolder.getRequestAttributes()

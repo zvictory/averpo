@@ -24,7 +24,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 /**
- * Arbitr-056: биринчи киришда онбординг йўналтириши.
+ * DEC-056: биринчи киришда онбординг йўналтириши.
  *
  * <p>Success handler'ни тўғридан-тўғри юритамиз (ҳақиқий bean + service +
  * test база) - seed фойдаланувчисиз, чунки текширилаётган ягона мантиқ
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * ўқилади. Онбординг тугаган/ADMIN эмас ҳолда одатий Saved Request оқими
  * ("/") сақланиши шарт.
  *
- * <p>Botir-053: тўғридан чақирувли тестлар SecurityConfig'даги
+ * <p>TST-053: тўғридан чақирувли тестлар SecurityConfig'даги
  * {@code .successHandler} УЛАНИШИни босмайди - уланиш тушиб қолса handler
  * bean тирик, тестлар яшил, лекин онбординг ўлик бўларди. Шунга пастда
  * битта тест ҳақиқий filter chain орқали (MockMvc formLogin) киради.
@@ -48,7 +48,7 @@ class SetupRedirectTest {
     /** Онбординг ҳолатини (setupDone) созлаш/ўқиш учун. */
     @Autowired CompanySettingsService settingsService;
 
-    /** Filter chain'ли MockMvc қуриш учун (Botir-053 тести). */
+    /** Filter chain'ли MockMvc қуриш учун (TST-053 тести). */
     @Autowired WebApplicationContext context;
 
     /** Ҳақиқий bcrypt паролли admin яратиш - formLogin занжири учун. */
@@ -60,7 +60,7 @@ class SetupRedirectTest {
     /**
      * Берилган роль билан кириш симуляцияси - handler қайси манзилга
      * redirect қилганини қайтаради (session/saved request йўқ).
-     * Authority'лар продакшн матрицасидан (Arbitr-092) - handler энди
+     * Authority'лар продакшн матрицасидан (DEC-092) - handler энди
      * роль номини эмас, SETTINGS_EDIT authority'сини текширади.
      */
     private String redirectFor(UserRole role) throws Exception {
@@ -96,7 +96,7 @@ class SetupRedirectTest {
 
     @Test
     void formLogin_viaFilterChain_redirectsBySetupState() throws Exception {
-        // Botir-053: handler мантиғи эмас, УЛАНИШ синови - ҳақиқий POST /login
+        // TST-053: handler мантиғи эмас, УЛАНИШ синови - ҳақиқий POST /login
         // DaoAuthenticationProvider (bcrypt) + SecurityConfig'даги successHandler
         // занжиридан тўлиқ ўтади; уланиш узилса айнан шу тест қизаради
         MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(context)

@@ -39,7 +39,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Стандарт филтр қатори (Arbitr-068): давр + статус + мижоз + матн --%>
+    <%-- Стандарт филтр қатори (DEC-068): давр + статус + мижоз + матн --%>
     @template.shared.listFilter(action = "/invoices", from = from, to = to, q = q, msg = msg, extra = @`
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">${msg.localize("filter.status")}
             <select name="status" class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
@@ -82,7 +82,7 @@
         <p class="text-current/60">${msg.localize("sinv.empty")}</p>
     @else
         @template.shared.table(cls = "min-w-[860px]", c = @`
-            <%-- Устун саралаш (ARBITR-105б): whitelist'даги устунлар
+            <%-- Устун саралаш (DEC-105б): whitelist'даги устунлар
                  sortth линк, қолганлари оддий th (customer - ном бошқа
                  модулда, payStatus/actions - маъносиз). --%>
             <thead>
@@ -117,7 +117,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <%-- Nargiza-007 P1a: Action менюси --%>
+                        <%-- BA-007 P1a: Action менюси --%>
                         @template.shared.rowMenu(msg = msg, items = @`
                             <a href="/invoices/${invoice.getId().toString()}">${msg.localize("common.view")}</a>
                             @if(canEdit != null && canEdit && invoice.getStatus() == InvoiceStatus.DRAFT)
@@ -130,7 +130,7 @@
             </tbody>
         `)
     @endif
-    <%-- Саҳифалаш (Beruniy-perf1); open drill-down'да page=null - чиқмайди.
+    <%-- Саҳифалаш (PERF-perf1); open drill-down'да page=null - чиқмайди.
          pageQuery = филтр + жорий sort (105б) - варақлаганда тартиб сақланади --%>
     @template.shared.pagination(page = page, baseUrl = "/invoices", filterQuery = pageQuery, msg = msg)
 `)

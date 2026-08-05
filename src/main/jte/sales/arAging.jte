@@ -21,7 +21,7 @@
         <h1 class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">${msg.localize("araging.title")}</h1>
     </div>
 
-    <%-- BR-RPT-001 (Komil-004): сана танлаш йўқ - ҳисобот фақат жорий
+    <%-- BR-RPT-001 (IFRS-004): сана танлаш йўқ - ҳисобот фақат жорий
          ҳолатни кўрсатади, тарихий as-of реконструкцияси 9-босқичда --%>
     <p style="margin-bottom:.5rem;">${msg.localize("araging.asOf")}: <b>${asOf.toString()}</b> - ${msg.localize("report.currentOnly")}</p>
 

@@ -59,7 +59,7 @@ class UserServiceTest {
 
     /**
      * Жорий сессияни берилган роль билан симуляция қилади - authority'лар
-     * продакшн матрицасидан (Arbitr-092: BR-USR-011 гарови USERS EDIT
+     * продакшн матрицасидан (DEC-092: BR-USR-011 гарови USERS EDIT
      * authority'сига қарайди, шунчаки ROLE_* етмайди).
      */
     private void authenticateAs(String username, UserRole role) {
@@ -235,7 +235,7 @@ class UserServiceTest {
     }
 
     /**
-     * Arbitr-148: жорий фойдаланувчи (VIEWER_AUDITOR ҳам) ЎЗ
+     * DEC-148: жорий фойдаланувчи (VIEWER_AUDITOR ҳам) ЎЗ
      * кўрсатиладиган номини профил формасидан ўзгартиради - фақат ЎЗИ
      * (роль/username/парол тегилмайди); бўш ном BR-USR-004. Ном
      * updateOwnProfile'нинг биринчи майдони (битта форма, битта тx).
@@ -329,7 +329,7 @@ class UserServiceTest {
     }
 
     /**
-     * Arbitr-101 + Arbitr-148: жорий фойдаланувчи (VIEWER_AUDITOR ҳам) ЎЗ
+     * DEC-101 + DEC-148: жорий фойдаланувчи (VIEWER_AUDITOR ҳам) ЎЗ
      * маълумотларини сақлайди - round-trip (ном ҳам); email формати
      * (BR-USR-013) ва келажак сана (BR-USR-014) рад этилади. Ном ҳар
      * чақирувда валид узатилади (BR-USR-004 биринчи гаров) - қолган
@@ -361,7 +361,7 @@ class UserServiceTest {
     }
 
     /**
-     * Arbitr-101: аватар юклаш FK'ни ўрнатади; янги расм эски orphan'ни
+     * DEC-101: аватар юклаш FK'ни ўрнатади; янги расм эски orphan'ни
      * ўчириб алмаштиради; removeOwnProfileImage placeholder'га (null) қайтаради.
      */
     @Test
@@ -384,7 +384,7 @@ class UserServiceTest {
     }
 
     /**
-     * Arbitr-101 4-бўлим: super-admin app_user'ни EMPLOYEE контактга
+     * DEC-101 4-бўлим: super-admin app_user'ни EMPLOYEE контактга
      * улайди; BR-USR-015 - битта ходим иккинчи фаол user'га уланмайди ва
      * EMPLOYEE эмас контакт уланмайди.
      */

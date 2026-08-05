@@ -33,7 +33,7 @@ CREATE TABLE credit_memo (
 --changeset averpo:038-02-credit-memo-line
 -- Сатрлар invoice_line кўзгуси (net/tax snapshot - tax.md механизми
 -- айнан) + class_id (class-tracking.md - даромад/COGS легига кўчади).
--- (owner, line_no) UNIQUE - Beruniy-010 қолипи.
+-- (owner, line_no) UNIQUE - PERF-010 қолипи.
 CREATE TABLE credit_memo_line (
     id                UUID PRIMARY KEY,
     version           INT NOT NULL DEFAULT 0,

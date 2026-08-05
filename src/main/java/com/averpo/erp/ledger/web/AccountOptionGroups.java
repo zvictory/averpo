@@ -14,7 +14,7 @@ import java.util.UUID;
 
 /**
  * Счёт танлаш select'лари учун QBO услубидаги иерархик option рўйхатини
- * тайёрлайди (Arbitr-014): тур бўйича optgroup, ота-бола бўғинлари
+ * тайёрлайди (DEC-014): тур бўйича optgroup, ота-бола бўғинлари
  * чуқурлик бўйича NBSP жилд билан, option матни «код ном (валюта)».
  * Шаблон томони: shared/accountOptions.jte.
  *
@@ -46,7 +46,7 @@ public final class AccountOptionGroups {
      * @param label       жилд + код + ном + (валюта коди, счётда валюта бўлса)
      * @param disabled    танлаб бўлмайди (postable=false ота счёт)
      * @param currency    счёт валютаси коди ёки {@code null} - home
-     *                    (шаблонда data-cur; Arbitr-070 валюта филтри
+     *                    (шаблонда data-cur; DEC-070 валюта филтри
      *                    JS'и шундан ўқийди)
      * @param undeposited {@code true} - UNDEPOSITED_FUNDS клиринг чўнтаги:
      *                    валюта филтри уни яширмайди (чет валюта тўлов

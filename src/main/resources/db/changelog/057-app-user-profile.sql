@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:057-app-user-profile
--- Профиль шахсий майдонлари (Arbitr-101, docs/modules/user-profile.md
+-- Профиль шахсий майдонлари (DEC-101, docs/modules/user-profile.md
 -- 1 ва 4 бўлимлар): ҳаммаси nullable/ихтиёрий - login username ва парол
 -- ўзгармайди, булар фақат маълумот. profile_image_id → attachment
 -- (аватар: мавжуд Attachment инфраси, disk storage қайта ишлатилади);

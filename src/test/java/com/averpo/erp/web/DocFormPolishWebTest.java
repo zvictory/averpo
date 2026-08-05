@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-088 (ҳужжат формалари полиши) render тестлари.
+ * DEC-088 (ҳужжат формалари полиши) render тестлари.
  *
  * <p>Нима гарантияланади:
  * <ul>
@@ -128,7 +128,7 @@ class DocFormPolishWebTest {
                     .isGreaterThan(tableEnd);
         }
 
-        // Arbitr-097: курс блоки shared.rateBlock компонентида (эски
+        // DEC-097: курс блоки shared.rateBlock компонентида (эски
         // ${prefix}RateWrap/${prefix}Rate id'лар ЙЎҚ - data-атрибутлар)
         assertThat(body).as("rateBlock компоненти уланган")
                 .contains("data-rate-block")
@@ -145,7 +145,7 @@ class DocFormPolishWebTest {
     /**
      * JE формасида Дт/Кт жамилари ва баланс фарқи ҳам жадвалдан
      * ташқарига кўчган - jeDtLive/jeCtLive/jeDiffLive id'лари айнан
-     * сақланган (Nargiza-005 жонли баланс скрипти контракти).
+     * сақланган (BA-005 жонли баланс скрипти контракти).
      */
     @Test
     void journalEntryForm_totalsOutsideTable_idsPreserved() throws Exception {
@@ -172,7 +172,7 @@ class DocFormPolishWebTest {
             """)
     void paymentForms_rateHidden_onHomeCurrency(String route, String prefix)
             throws Exception {
-        // Arbitr-097: тўлов формалари ҳам shared.rateBlock компонентида
+        // DEC-097: тўлов формалари ҳам shared.rateBlock компонентида
         // (prefill + ориентация); эски ${prefix}RateWrap id'си ЙЎҚ. Home
         // валютада курс блоки яширин (data-rate-flipped=0 + display:none).
         String body = html(route);
@@ -193,7 +193,7 @@ class DocFormPolishWebTest {
     @Test
     void billEditForm_foreignCurrency_rateVisible_homeRowShown() throws Exception {
         accountService.importDefaultChart();
-        // Arbitr-087: USD ҳужжат учун контакт валютаси ҳам USD бўлиши шарт
+        // DEC-087: USD ҳужжат учун контакт валютаси ҳам USD бўлиши шарт
         Contact vendor = contactService.create(ContactType.VENDOR, new ContactData(
                 "Арбитр-088 USD таъминотчи", null, null, null, null, null,
                 "USD", null, null, null, null));
@@ -205,7 +205,7 @@ class DocFormPolishWebTest {
 
         String body = html("/bills/" + draft.getId() + "/edit");
 
-        // Arbitr-097: home=UZS + USD ҳужжат - USD аллақачон кучли (базис),
+        // DEC-097: home=UZS + USD ҳужжат - USD аллақачон кучли (базис),
         // ФЛИП ЙЎҚ: ёрлиқ «1 USD = ? UZS», каноник 12600 ЎЗГАРМАГАН
         assertThat(body).as("курс ориентация: 1 USD = ? UZS (кучли базис)")
                 .contains("data-rate-base>USD</span>")
@@ -217,7 +217,7 @@ class DocFormPolishWebTest {
     }
 
     /**
-     * ЖОНЛИ BUG тузатуви (Arbitr-097, SABOQLAR иккала home қоидаси):
+     * ЖОНЛИ BUG тузатуви (DEC-097, SABOQLAR иккала home қоидаси):
      * home=USD, UZS ҳужжат - аввал «1 UZS = 0.000083 USD» кўринарди
      * (ўқилмас). Энди ФЛИП: базис USD (кучли), ёрлиқ «1 USD = ? UZS»;
      * лекин САҚЛАНАДИГАН каноник (1 UZS = x USD) ЎЗГАРМАЙДИ (server/servis
@@ -228,7 +228,7 @@ class DocFormPolishWebTest {
         accountService.importDefaultChart();
         // home валютани USD га (POSTED йўқ - қулф йўқ; @Transactional rollback)
         settingsService.update("Тест USD home", "USD", "Asia/Tashkent", null, null);
-        // UZS ҳужжат учун контакт валютаси ҳам UZS (Arbitr-087)
+        // UZS ҳужжат учун контакт валютаси ҳам UZS (DEC-087)
         Contact vendor = contactService.create(ContactType.VENDOR, new ContactData(
                 "Арбитр-097 UZS таъминотчи", null, null, null, null, null,
                 "UZS", null, null, null, null));

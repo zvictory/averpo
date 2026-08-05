@@ -9,7 +9,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        # Query-count тестлари (Sanjar-005) SQL матнларини шу инспектор
+        # Query-count тестлари (OPT-005) SQL матнларини шу инспектор
         # орқали ушлайди; start() чақирилмагунча ҳеч нарса йиғмайди
         session_factory.statement_inspector: com.averpo.erp.testsupport.SqlCaptureInspector
 
@@ -19,7 +19,7 @@ app:
   attachments:
     dir: build/test-attachments
 
-# Тестларда JTE ПРЕКОМПИЛЯЦИЯ қилинган шаблонлардан ишлайди (Arbitr-092
+# Тестларда JTE ПРЕКОМПИЛЯЦИЯ қилинган шаблонлардан ишлайди (DEC-092
 # прогонида топилган флейк): development-mode лойиҳа илдизидаги умумий
 # jte-classes/ каталогига ёзади - бир прогонда бир нечта Spring контекст
 # бўлса кейингиси аввалгисининг ondemand классларини алмаштириб, ҳали

@@ -1,7 +1,0 @@
-2026-08-05 15:32:37.641 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 15:48:43.498 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 15:53:53.537 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 16:17:36.641 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 16:21:35.745 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 16:23:58.956 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
-2026-08-05 16:27:57.753 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!

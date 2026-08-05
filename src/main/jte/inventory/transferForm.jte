@@ -13,7 +13,7 @@
 @param org.springframework.security.web.csrf.CsrfToken csrf = null
 @param String error = null
 
-<%-- Ҳужжатли омборлараро кўчириш акти формаси (Arbitr-093): манба/манзил
+<%-- Ҳужжатли омборлараро кўчириш акти формаси (DEC-093): манба/манзил
      омбор, кўп сатр (item + qty). Дарҳол POSTED, GL'сиз (posting-rules). --%>
 @template.layout.form(title = msg.lookup("inv.transfer.formTitle"), closeHref = "/inventory/transfers", lang = lang, content = @`
     @template.shared.alert(error = error)
@@ -61,7 +61,7 @@
                        value="${form.getDate() != null ? form.getDate().toString() : today}"
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
-            <%-- Arbitr-109: ташқи (қоғоз) ҳужжат рақами - QBO Reference no. --%>
+            <%-- DEC-109: ташқи (қоғоз) ҳужжат рақами - QBO Reference no. --%>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 ${msg.localize("inv.col.externalRef")}
                 <input name="externalRef" maxlength="50"
@@ -81,7 +81,7 @@
             <tr>
                 <th class="w-10">#</th>
                 <th class="min-w-[220px]">${msg.localize("inv.col.item")}</th>
-                <%-- Arbitr-109: манба омбордаги қолдиқ (бирлик билан) --%>
+                <%-- DEC-109: манба омбордаги қолдиқ (бирлик билан) --%>
                 <th class="text-right">${msg.localize("inv.transfer.available")}</th>
                 <th class="text-right">${msg.localize("inv.col.qty")}</th>
                 <th>${msg.localize("inv.col.memo")}</th>
@@ -161,7 +161,7 @@
 `)
 
 <script>
-    // Кўчириш формаси (Arbitr-109): манба омбор қолдиғи + бирлик ҳар
+    // Кўчириш формаси (DEC-109): манба омбор қолдиғи + бирлик ҳар
     // сатрда (adjustmentForm on-hand нақши, лекин МАНБА омборга кўра);
     // миқдор қолдиқдан ошса қизил ҳинт (server BR-INV-003 ҳақиқат манбаи);
     // сатр қўшиш/ўчириш (JS clone).

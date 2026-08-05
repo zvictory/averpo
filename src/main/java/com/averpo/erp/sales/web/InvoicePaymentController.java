@@ -69,8 +69,8 @@ public class InvoicePaymentController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - саҳифаланган (Beruniy-perf1); тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
+     * Рўйхат - саҳифаланган (PERF-perf1); тўлиқ филтр қатори
+     * (DEC-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -90,7 +90,7 @@ public class InvoicePaymentController {
         model.addAttribute("payments", paymentPage.getContent());
         model.addAttribute("page", paymentPage);
         // Мижоз номлари - фақат саҳифа қаторларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("customerNames", contactService.namesByIds(
                 paymentPage.getContent().stream().map(p -> p.getCustomerId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -123,7 +123,7 @@ public class InvoicePaymentController {
     @GetMapping("/new")
     public String createForm(@RequestParam(required = false) UUID customerId, Model model) {
         InvoicePaymentForm form = new InvoicePaymentForm();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setPaymentDate(LocalDate.now(settingsService.zoneId()));
         if (customerId != null) {
             form.setCustomerId(customerId.toString());
@@ -227,7 +227,7 @@ public class InvoicePaymentController {
         model.addAttribute("form", form);
         model.addAttribute("customers", contactService.byType(ContactType.CUSTOMER, false));
         // Қабул счётлари: BANK тури (банк/касса) + UNDEPOSITED_FUNDS
-        // Xorazmiy-007: all() - ота счётлар ҳам киради, accountOptions
+        // QA-007: all() - ота счётлар ҳам киради, accountOptions
         // уларни disabled жилд қилади; нофаолларни partial ўзи ташлайди
         model.addAttribute("depositAccounts", accountService.all().stream()
                 .filter(a -> a.getType() == AccountType.BANK

@@ -72,7 +72,7 @@ public class DashboardController {
     /** Dashboard'ни йиғади - барча карталар бир саҳифада. */
     @GetMapping("/")
     public String index(Model model) {
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId ×2 + homeCurrency) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
         YearMonth current = YearMonth.now(settings.zoneId());
@@ -88,7 +88,7 @@ public class DashboardController {
         model.addAttribute("chartBars", chartBars(months,
                 MonthPl::month, MonthPl::income, MonthPl::expense));
 
-        // Cash flow картаси (Arbitr-036): BANK счётлар оқими - жорий ой
+        // Cash flow картаси (DEC-036): BANK счётлар оқими - жорий ой
         // рақамлари + P&L графиги нақшидаги қўш-устун SVG
         List<MonthCashFlow> cashMonths = ledgerDashboard.monthlyCashFlow(
                 current.minusMonths(CHART_MONTHS - 1), current);
@@ -115,11 +115,11 @@ public class DashboardController {
         model.addAttribute("arOverdue", ar[1]);
         model.addAttribute("apOpen", ap[0]);
         model.addAttribute("apOverdue", ap[1]);
-        // AR кенгайтмаси (Arbitr-036): охирги 30 кунда тўланган тушумлар
+        // AR кенгайтмаси (DEC-036): охирги 30 кунда тўланган тушумлар
         model.addAttribute("arPaidLast30",
                 invoiceService.paidTotal(today.minusDays(30), today));
 
-        // Inventory картаси (Arbitr-036): мавжуд valuation ҳисоби ҚАЙТА
+        // Inventory картаси (DEC-036): мавжуд valuation ҳисоби ҚАЙТА
         // ишлатилади (янги ҳисоб ёзилмайди), омборлар сони фаоллари
         model.addAttribute("inventoryValue",
                 valuationService.build(today, null).companyValue());
@@ -138,7 +138,7 @@ public class DashboardController {
     /**
      * Ой устунлари: энг катта қийматга нисбатан 0..100 px масштаб.
      * Умумий - P&L (даромад/харажат) ҳам, cash flow (кирим/чиқим) ҳам
-     * шу қолипдан ўтади (Arbitr-036), extractor'лар қатор турига қараб
+     * шу қолипдан ўтади (DEC-036), extractor'лар қатор турига қараб
      * берилади.
      */
     private <T> List<ChartBar> chartBars(List<T> rows,

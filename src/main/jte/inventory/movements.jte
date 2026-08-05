@@ -30,7 +30,7 @@
 
     @template.shared.alert(message = message)
 
-    <%-- Мукаммал филтр (Arbitr-093): тур/омбор/item/сана оралиғи/ҳужжат.
+    <%-- Мукаммал филтр (DEC-093): тур/омбор/item/сана оралиғи/ҳужжат.
          Item филтри (T9) hidden orqali сақланади (қолдиқлардан drill-down). --%>
     <form method="get" action="/inventory/movements" style="margin-bottom:1rem;display:flex;gap:.75rem;align-items:end;flex-wrap:wrap;">
         @if(!selectedItemId.isEmpty())

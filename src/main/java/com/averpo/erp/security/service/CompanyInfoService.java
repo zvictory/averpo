@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 /**
- * Компания логоси оркестрацияси (Arbitr-112): CompanySettings (shared)
+ * Компания логоси оркестрацияси (DEC-112): CompanySettings (shared)
  * ни лого attachment (attachment модул) билан улайди.
  *
  * <p>НЕГА security модулда: shared модул attachment'га боғланмайди
@@ -66,7 +66,7 @@ public class CompanyInfoService {
     }
 
     /**
-     * Бренд логоси (топбар WHITE-LABEL, Arbitr-112 рефайнмент) юклаш -
+     * Бренд логоси (топбар WHITE-LABEL, DEC-112 рефайнмент) юклаш -
      * {@link #uploadLogo} нақшининг айнан ўзи, лекин FK
      * brand_logo_attachment_id (ҳужжат логосидан ФАРҚли иккинчи расм).
      * COMPANY target (company_settings singleton); эски бренд логоси

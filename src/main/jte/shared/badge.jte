@@ -4,7 +4,7 @@
 @param String family = "status"
 @param String label = null
 
-<%-- Arbitr-119 (Penguin badge, реф: docs/penguin-refs/badge.html):
+<%-- DEC-119 (Penguin badge, реф: docs/penguin-refs/badge.html):
      статус чипи. РАНГ ХАРИТАСИ БИР ЖОЙДА - шу ерда; экранлар ўз ранг
      танламайди. value - статус/тур enum номи (POSTED, PAID, OPEN...),
      family - i18n калит префикси ва оила: status / paystatus /
@@ -15,7 +15,7 @@
        danger (қизил)    UNPAID, REJECTED
        нейтрал (кулранг) REVERSED, CLOSED, DISABLED + номаълум қиймат
                          (хавфсиз default)
-     classification оиласи (Arbitr-149, CoA тур badge'и) family бўйича
+     classification оиласи (DEC-149, CoA тур badge'и) family бўйича
      АЛОҲИДА, ЮМШОҚ (soft) харита - status'нинг тўлиқ рангидан фарқли
      (фойдаланувчи 2026-07-18: жадвалда юмшоқроқ): фон /15, матн тўлиқ
      ранг, чегара /30:

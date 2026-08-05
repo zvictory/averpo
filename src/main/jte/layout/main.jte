@@ -11,11 +11,11 @@
 @param org.springframework.security.web.csrf.CsrfToken csrf = null
 @param Boolean canEdit = false
 @param Boolean isAdmin = false
-<%-- Arbitr-079: контекстли ёрдам - ихтиёрий саҳифа калити (help.<калит>.*
+<%-- DEC-079: контекстли ёрдам - ихтиёрий саҳифа калити (help.<калит>.*
      i18n жуфтига ишора). null (default) - саҳифада (?) чиқмайди, мавжуд
      чақирувчилар ўзгармайди; опт-ин экранлар "page.x" беради. --%>
 @param String helpKey = null
-<%-- Arbitr-092: сайдбар/панел филтри учун соҳа рухсатлари. Параметр
+<%-- DEC-092: сайдбар/панел филтри учун соҳа рухсатлари. Параметр
      ЭМАС, статик ҳелпер: layout'га параметр қўшиш 102 саҳифа шаблонини
      ўзгартиришни талаб қиларди; render request thread'ида бўлгани учун
      SecurityContext'дан тўғридан-тўғри олинади. Server ҳақиқати
@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} - AVERPO</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <%-- Arbitr-131: асосий шрифт вазнлари preload - CSS парсини кутмай
+    <%-- DEC-131: асосий шрифт вазнлари preload - CSS парсини кутмай
          йўлга чиқади, биринчи ташрифда ҳам FOUT ойнаси минимал бўлади.
          crossorigin шрифт preload'ида same-origin'да ҳам МАЖБУРИЙ
          (font fetch'и CORS режимида - белгисиз браузер иккита алоҳида
@@ -37,7 +37,7 @@
     <link rel="preload" href="/fonts/inter-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-cyrillic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <%-- Arbitr-117в: кўриниш режими биринчи paint'дан ОЛДИН қўлланади
+    <%-- DEC-117в: кўриниш режими биринчи paint'дан ОЛДИН қўлланади
          (FOUC ҳимояси) - Alpine defer, кеч юкланади; калит Alpine Persist
          билан умумий ('uiMode', JSON сатр: "light"/"dark"/"mix").
          Миграция: эски boolean 'darkMode' калити бир марта шу ерда
@@ -56,13 +56,13 @@
             if (m === 'mix') document.documentElement.classList.add('sb-dark');
         })();
     </script>
-    <%-- Arbitr-137: ҳар локал css/js линкида ?v=<build вақти> - узоқ
+    <%-- DEC-137: ҳар локал css/js линкида ?v=<build вақти> - узоқ
          кэшдаги (30 кун) эски нусха deploy'дан кейин ишлатилмасин.
          Шрифт preload'лари бустланмайди - шрифт файллари ўзгармайди. --%>
     <link rel="stylesheet" href="/css/app.css?v=${Assets.version()}">
     <%-- Локал asset'лар - ERP ички тармоқ/офлайнда ҳам ишлайди --%>
     <script src="/vendor/htmx.min.js?v=${Assets.version()}"></script>
-    <%-- Alpine 3 + расмий плагинлар (Arbitr-116): ҳаммаси defer, плагин
+    <%-- Alpine 3 + расмий плагинлар (DEC-116): ҳаммаси defer, плагин
          файллари Alpine ядросидан ОЛДИН туради - Alpine ҳужжати шуни
          талаб қилади (плагин alpine:init'га ядро юкланишидан аввал уланади) --%>
     <script defer src="/js/vendor/alpine-mask.min.js?v=${Assets.version()}"></script>
@@ -71,13 +71,13 @@
     <script defer src="/js/vendor/alpine-persist.min.js?v=${Assets.version()}"></script>
     <script defer src="/js/vendor/alpine.min.js?v=${Assets.version()}"></script>
     <style>
-        /* Arbitr-122'дан кейинги ЯГОНА техник қолдиқ: экран услублари
+        /* DEC-122'дан кейинги ЯГОНА техник қолдиқ: экран услублари
            тўлиқ Penguin утилиталарда (каталог: docs/ui-style-guide.md). */
         /* Alpine юклангунча x-cloak'ли қисмлар кўринмасин - FOUC ҳимояси */
         [x-cloak] { display:none !important; }
         @media (max-width: 768px) {
-            /* iOS фокусда zoom'нинг олдини олади (Arbitr-121 7-банд).
-               button РЎЙХАТДА ЙЎҚ (Arbitr-118): тугмалар zoom қилмайди,
+            /* iOS фокусда zoom'нинг олдини олади (DEC-121 7-банд).
+               button РЎЙХАТДА ЙЎҚ (DEC-118): тугмалар zoom қилмайди,
                қатламсиз элемент қоидаси Penguin text-sm'ни босиб қўярди */
             input, select { font-size:16px; }
         }
@@ -95,21 +95,21 @@
         }
     </style>
 </head>
-<%-- Контент зонаси Penguin токенларида (Arbitr-122): body бутун саҳифа
+<%-- Контент зонаси Penguin токенларида (DEC-122): body бутун саҳифа
      фонини беради - тўқ режимда БУТУН саҳифа тўқ. Аралашда контент ОЧ
      қолади: dark: жуфтлар фақат html.dark'да ёнади (app.css
      @custom-variant - sb-dark қамрови фақат #sbnav/.sb-zone).
-     Оқ канвас (Arbitr-123 қўшимча, фойдаланувчи қарори): light'да
+     Оқ канвас (DEC-123 қўшимча, фойдаланувчи қарори): light'да
      bg-surface - ажралиш бордер/thead/alt фонларда. --%>
 <body class="bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark print:bg-white print:text-black">
-<%-- Arbitr-117 ҳолат маркази: nav - мобил drawer; rail - иконка режими;
-     mode - кўриниш режими ('light'/'dark'/'mix', Arbitr-117в); pal -
+<%-- DEC-117 ҳолат маркази: nav - мобил drawer; rail - иконка режими;
+     mode - кўриниш режими ('light'/'dark'/'mix', DEC-117в); pal -
      қидирув палитраси очиқлиги; grps - очиқ гуруҳлар рўйхати.
      rail/mode/grps Alpine Persist'да (спец талаби - сервер render'ида
      ҳолат йўқолмайди). grpOpen/railDesk: рейл-desktop'да гуруҳ рўйхати
      hover flyout, акс ҳолда grps бўйича collapse. x-init: жорий саҳифа
      гуруҳини автоочади (sidebar.jte охиридаги эрта FOUC скрипти
-     data-active-group қўяди - Arbitr-129, биринчи paint'дан олдин) ва
+     data-active-group қўяди - DEC-129, биринчи paint'дан олдин) ва
      mode танловини <html> class'ларига боғлайди (биринчи қўллаш
      head'даги эрта скриптда - FOUC йўқ). applyMode эски 'darkMode'
      калитини ҳам синхрон ёзади - form.jte/login.jte FOUC скриптлари
@@ -130,7 +130,7 @@
           let/const/if бошланғичли ифодани статмент-блокка ўрайди
           (`var` билан SyntaxError бўлиб x-init жим ишламай қоларди) --%>
      x-init="let ag = document.documentElement.getAttribute('data-active-group'); if (ag && !grps.includes(ag)) grps.push(ag); applyMode(mode); $watch('mode', function(v) { applyMode(v); })">
-    <%-- Arbitr-112: WHITE-LABEL бренд - логотип созланса ўша, бўлмаса
+    <%-- DEC-112: WHITE-LABEL бренд - логотип созланса ўша, бўлмаса
          fallback «AVERPO». LayoutInfo СТАТИК (Perms нақши,
          GlobalModelAttributes қўяди). --%>
     !{var lay = LayoutInfo.current();}
@@ -141,11 +141,11 @@
     <div class="flex min-h-screen print:block">
         @template.layout.sidebar(msg = msg, perms = perms, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, lang = lang)
         <div class="flex min-w-0 flex-1 flex-col">
-            <%-- Минимал мобил бар (Arbitr-117б): ФАҚАТ hamburger + white-label
+            <%-- Минимал мобил бар (DEC-117б): ФАҚАТ hamburger + white-label
                  бренд - drawer очиш учун (Penguin мобил қолипи). Desktop'да
                  топбар ЙЎҚ - контент тепадан бошланади (фойдаланувчи талаби 1).
                  «+ Янги» ва dark toggle sidebar'да (талаблар 2-3). --%>
-            <%-- sb-zone - sidebar ОИЛАСИ маркери (Arbitr-117в): Аралаш
+            <%-- sb-zone - sidebar ОИЛАСИ маркери (DEC-117в): Аралаш
                  режимда nav ташқарисидаги бу бар ҳам тўқ бўлади
                  (@custom-variant dark қамрови, app.css изоҳи). --%>
             <header class="sb-zone sticky top-0 z-30 flex items-center gap-2 border-b border-outline bg-surface-alt px-3 py-2 lg:hidden dark:border-outline-dark dark:bg-surface-dark-alt print:hidden">
@@ -165,7 +165,7 @@
             <%-- main класси УСЛУБСИЗ зона маркери (смок/тест мосламалари
                  унга таянади) - услуб фақат утилиталарда --%>
             <main class="main min-w-0 flex-1 p-4 md:px-8 md:py-6 print:p-0">
-                <%-- Arbitr-101 рефайнмент: паролни алмаштириш banner (066
+                <%-- DEC-101 рефайнмент: паролни алмаштириш banner (066
                      must_change_password) - admin қўйган/reset'лаган паролдан
                      кейин ҳар саҳифада эслатади; user ЎЗ паролини алмаштиргач
                      (changeOwnPassword → флаг тушади) йўқолади. --%>
@@ -176,7 +176,7 @@
                     </div>
                 @endif
                 @if(helpKey != null)
-                    <%-- Arbitr-079: саҳифа даражасидаги (?) - ягона интеграция
+                    <%-- DEC-079: саҳифа даражасидаги (?) - ягона интеграция
                          нуқтаси: чақирувчи фақат helpKey беради, тугма layout'дан
                          render бўлади. float:right - сарлавҳа қатори ўнг четида. --%>
                     <button type="button" class="helpbtn float-right mb-2 ml-3 mt-1 inline-flex size-[26px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-current/40 bg-transparent p-0 align-middle text-[.9rem] font-semibold leading-none text-current/60 transition hover:border-primary hover:bg-primary hover:text-on-primary print:hidden dark:hover:border-primary-dark dark:hover:bg-primary-dark dark:hover:text-on-primary-dark"
@@ -188,7 +188,7 @@
             </main>
         </div>
     </div>
-    <%-- ======== Arbitr-117в: қидирув command-palette (реф:
+    <%-- ======== DEC-117в: қидирув command-palette (реф:
          docs/penguin-refs/modal.html - Penguin modal + Averpo палитра
          мослашуви). Триггер sidebar'да, Ctrl/Cmd+K ва «/» ҳам очади
          (handleKey) - ФАҚАТ шу layout'да (form.jte'да атайлаб йўқ).
@@ -233,14 +233,14 @@
         </div>
     </div>
 </div>
-<%-- Arbitr-024: каталог формалари учун drawer - ҳар саҳифада тайёр туради --%>
+<%-- DEC-024: каталог формалари учун drawer - ҳар саҳифада тайёр туради --%>
 @template.shared.drawer()
-<%-- Arbitr-079: контекстли ёрдам диалоги + delegation - умумий partial
+<%-- DEC-079: контекстли ёрдам диалоги + delegation - умумий partial
      (form.jte ҳам улайди - ҳужжат формаларидаги майдон (?) лари учун) --%>
 @template.shared.helpDialog(msg = msg)
 <script>
     // Фаол пункт (aria-current + data-active-group) sidebar.jte охиридаги
-    // эрта FOUC скриптида (Arbitr-129) - биринчи paint'дан олдин ишлаши
+    // эрта FOUC скриптида (DEC-129) - биринчи paint'дан олдин ишлаши
     // шарт, шу боис бу ерда эмас.
 
     // T0: глобал row-click - data-href'ли қатор босилса ўша манзилга
@@ -252,11 +252,11 @@
         var row = e.target.closest('tr[data-href]');
         if (!row) return;
         // [data-rowmenu] - қатор ичидаги ⋮ dropdown: panel'нинг бўш жойи
-        // босилганда ҳам навигация бўлмасин (Nargiza-007 P1a; Penguin
-        // кўчишида .menu класси ўрнига белги - Arbitr-120)
+        // босилганда ҳам навигация бўлмасин (BA-007 P1a; Penguin
+        // кўчишида .menu класси ўрнига белги - DEC-120)
         if (e.target.closest('a, button, input, select, label, textarea, [data-rowmenu]')) return;
         var href = row.getAttribute('data-href');
-        // Arbitr-037: drawer каталогларда (contact/item) қатор ⋮ Таҳрир
+        // DEC-037: drawer каталогларда (contact/item) қатор ⋮ Таҳрир
         // билан бир хил - ўнг drawer'да очилади. data-drawer белгиси +
         // htmx бор бўлса #drawerBody'га юкланади (afterSwap drawer'ни
         // очади); акс ҳолда тўлиқ саҳифа (JS/htmx'сиз fallback).
@@ -268,7 +268,7 @@
     });
 </script>
 <script>
-    // Arbitr-117в: қидирув палитраси Alpine компоненти (эски сайдбар
+    // DEC-117в: қидирув палитраси Alpine компоненти (эски сайдбар
     // searchBox ўрнида - inline dropdown хулқи олиб ташланди). HTMX
     // инпут натижаларни #searchResults'га юклайди; бу компонент фақат
     // кўриниш/клавиатура ҳолатини бошқаради (навигация - оддий <a>).
@@ -362,9 +362,9 @@
 <script src="/js/money-input.js?v=${Assets.version()}"></script>
 <script src="/js/penguin-combobox.js?v=${Assets.version()}"></script>
 <script src="/js/contact-currency.js?v=${Assets.version()}"></script>
-<%-- Arbitr-097: курс блоки компоненти (prefill + кўриниш + ориентация) --%>
+<%-- DEC-097: курс блоки компоненти (prefill + кўриниш + ориентация) --%>
 <script src="/js/rate-block.js?v=${Assets.version()}"></script>
-<%-- Arbitr-144: сана майдонлари учун QBO ёрлиқлари (t/+/-/w/k/m/h/y/r) --%>
+<%-- DEC-144: сана майдонлари учун QBO ёрлиқлари (t/+/-/w/k/m/h/y/r) --%>
 <script src="/js/date-hotkey.js?v=${Assets.version()}"></script>
 </body>
 </html>

@@ -43,7 +43,7 @@ public class CompanySettingsService {
     private final ObjectProvider<InventoryValuationLock> valuationLocks;
 
     /**
-     * Аудит event'и учун (Arbitr-062): shared audit'ни import қила
+     * Аудит event'и учун (DEC-062): shared audit'ни import қила
      * олмайди (audit BaseEntity орқали shared'га боғлиқ - цикл чиқарди),
      * шунга update ўз event'ини эълон қилади - ledger нақши.
      */
@@ -68,7 +68,7 @@ public class CompanySettingsService {
 
     /**
      * Company_settings қаторини DB'га flush қилиб id'сини қайтаради
-     * (Arbitr-112 лого оқими): AttachmentService.targetExists ХОМ jdbc
+     * (DEC-112 лого оқими): AttachmentService.targetExists ХОМ jdbc
      * EXISTS билан текширгани учун қатор DB'да кўринмаса BR-ATT-003
      * отиларди. ФАҚАТ ёзувчи транзакциядан (CompanyInfoService.uploadLogo)
      * чақирилади - {@code get()}'нинг read-only тузоғи бу ерда йўқ.
@@ -100,7 +100,7 @@ public class CompanySettingsService {
     }
 
     /**
-     * Онбординг тугаганми (Arbitr-056) - login success handler ADMIN'ни
+     * Онбординг тугаганми (DEC-056) - login success handler ADMIN'ни
      * false бўлса /settings?setup=1 га йўналтиради. Қатор йўқ бўлса get()
      * default билан яратади (setupDone=false) - янги ўрнатиш setup'дан ўтади.
      */
@@ -166,7 +166,7 @@ public class CompanySettingsService {
                                   java.time.LocalDate closingDate,
                                   Integer fiscalYearStartMonth) {
         CompanySettings settings = get();
-        // Аудит диффи учун эски қийматлар snapshot'и (Arbitr-062,
+        // Аудит диффи учун эски қийматлар snapshot'и (DEC-062,
         // SETTINGS_CHANGED): мутациялардан кейин солиштирилиб фақат
         // ростдан ўзгарган майдонлар event'га киради
         String oldName = settings.getName();
@@ -184,7 +184,7 @@ public class CompanySettingsService {
                 throw new BusinessRuleException(BusinessRule.BR_SET_001,
                         "Home currency ўзгартирилмайди: тизимда POSTED проводкалар бор");
             }
-            // Arbitr-056 банд 6: онбординг формаси ТЎЛИҚ каталогни кўрсатади -
+            // DEC-056 банд 6: онбординг формаси ТЎЛИҚ каталогни кўрсатади -
             // танланган валюта деактив бўлса activateForHome уни автоматик
             // активлаштиради (home валюта нофаол бўла олмайди - BR-CUR-002).
             // Қулф текшируви аввал: қулфланганда каталогга умуман тегмаймиз.
@@ -216,11 +216,11 @@ public class CompanySettingsService {
             }
             settings.changeFiscalYearStartMonth(fiscalYearStartMonth);
         }
-        // Онбординг (Arbitr-056): исталган йўл билан муваффақиятли сақлангач
+        // Онбординг (DEC-056): исталган йўл билан муваффақиятли сақлангач
         // флаг ёқилади - иккала update() overload'и ва контроллер шу ягона
         // нуқтага делегация қилади, шунинг учун бир жойда белгилаш кифоя.
         settings.markSetupDone();
-        // Аудит (Arbitr-062): фақат ЎЗГАРГАН майдонлар; ўзгаришсиз сақлаш
+        // Аудит (DEC-062): фақат ЎЗГАРГАН майдонлар; ўзгаришсиз сақлаш
         // event бермайди. setupDone диффга кирмайди - ички онбординг флаги,
         // фойдаланувчи «ўзгартирган» созлама эмас.
         List<String> changes = new ArrayList<>();
@@ -294,7 +294,7 @@ public class CompanySettingsService {
     }
 
     /**
-     * Компания реквизитларини янгилайди (Arbitr-112, /settings/company
+     * Компания реквизитларини янгилайди (DEC-112, /settings/company
      * формаси): юридик ном/манзил/алоқа/банк/директор. Ҳаммаси ихтиёрий -
      * бўш қиймат тозалайди (null). email тўлдирилса формати текширилади
      * (BR-SET-007). Реквизитлар GL/posting'га таъсирсиз (қулф йўқ).
@@ -345,7 +345,7 @@ public class CompanySettingsService {
     }
 
     /**
-     * Бренд логоси (топбар, Arbitr-112 рефайнмент) FK'сини ўрнатади ва
+     * Бренд логоси (топбар, DEC-112 рефайнмент) FK'сини ўрнатади ва
      * flush қилади - {@link #setLogoAttachmentId} нақши (ҳужжат
      * логосидан ФАРҚли иккинчи attachment). Файлни чақирувчи
      * (CompanyInfoService) бошқаради; бу метод фақат UUID FK.

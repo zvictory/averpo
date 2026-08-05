@@ -158,7 +158,7 @@ class PriceListServiceTest {
                 .isInstanceOfSatisfying(BusinessRuleException.class,
                         e -> assertThat(e.getCode()).isEqualTo("BR-PL-008"));
 
-        // Scope (Arbitr-030): бегона рўйхат id'си билан бириктирув ўчмайди
+        // Scope (DEC-030): бегона рўйхат id'си билан бириктирув ўчмайди
         assertThatThrownBy(() -> priceListService.unassignCustomer(
                 first.getId(), customer.getId()))
                 .isInstanceOf(NotFoundException.class);
@@ -197,13 +197,13 @@ class PriceListServiceTest {
                 .isEqualByComparingTo("12000");
 
         // Сана берилмаса - NPE эмас, компания зонасида бугун деб олинади
-        // (Arbitr-030 5-банд; даврсиз рўйхатлар ҳар қандай санага мос)
+        // (DEC-030 5-банд; даврсиз рўйхатлар ҳар қандай санага мос)
         assertThat(priceListService.resolvePrice(customer.getId(), item.getId(),
                 BigDecimal.ONE, "UZS", null).orElseThrow())
                 .isEqualByComparingTo("10000");
 
         // Валюта коди кичик ҳарф/бўшлиқ билан келса ҳам натижа бир хил
-        // (Arbitr-030 6-банд, defensive normalize)
+        // (DEC-030 6-банд, defensive normalize)
         assertThat(priceListService.resolvePrice(customer.getId(), item.getId(),
                 BigDecimal.ONE, " uzs ", DATE).orElseThrow())
                 .isEqualByComparingTo("10000");
@@ -233,7 +233,7 @@ class PriceListServiceTest {
 
     @Test
     void resolvePrice_queryCount_bounded() {
-        // Beruniy-018: битта lookup'даги SQL сони чегараланади - мижоз
+        // PERF-018: битта lookup'даги SQL сони чегараланади - мижоз
         // рўйхати (валютаси билан JOIN FETCH) 1 + default (валютаси
         // билан) 1 + поғоналар 1 = кўпи билан 3. Аввал бириктирув, lazy
         // рўйхат ва EAGER валюта алоҳида SELECT'ларда келарди.
@@ -265,7 +265,7 @@ class PriceListServiceTest {
 
     @Test
     void create_alwaysActive_catalogPattern() {
-        // Arbitr-030 7-банд: create'даги active тармоғи ўлик эди - энди
+        // DEC-030 7-банд: create'даги active тармоғи ўлик эди - энди
         // каталог қолипи очиқ: янги рўйхат ҲАМИША фаол, data.active
         // фақат update'да ишлайди
         PriceList created = priceListService.create(new PriceListData(
@@ -279,7 +279,7 @@ class PriceListServiceTest {
 
     @Test
     void removePrice_scopedToOwnList() {
-        // Arbitr-030 4-банд: бегона рўйхат id'си билан поғона ўчмайди
+        // DEC-030 4-банд: бегона рўйхат id'си билан поғона ўчмайди
         PriceList mine = list("Scope A (тест)", false);
         PriceList other = list("Scope B (тест)", false);
         PriceListItem tier = priceListService.addPrice(mine.getId(), item.getId(),

@@ -6,7 +6,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.UUID;
 
 /**
- * Layout контексти (Arbitr-101/112 рефайнмент): main.jte топбар бренди,
+ * Layout контексти (DEC-101/112 рефайнмент): main.jte топбар бренди,
  * sidebar тепа 3 поғонали бренди (логотип → онбординг тугагач company
  * name → AVERPO fallback), mustChange banner ва sidebar аватар/ном учун.
  *

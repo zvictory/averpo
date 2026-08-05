@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Ҳужжатли омборлараро кўчириш акти (Arbitr-093, docs/modules/inventory.md):
+ * Ҳужжатли омборлараро кўчириш акти (DEC-093, docs/modules/inventory.md):
  * кўп сатрли, манба ва манзил омбор, дарҳол POSTED, GL'СИЗ (posting-rules
  * «Омбор»: transfer GL проводкасиз). Ҳар сатр TRANSFER_OUT+TRANSFER_IN
  * жуфти билан амалга ошади (reference=акт id). Тузатиш reverse (қарши-акт).
@@ -83,7 +83,7 @@ public class StockTransfer extends BaseEntity {
     private String memo;
 
     /**
-     * Ташқи ҳужжат рақами (Arbitr-109, QBO «Reference no.»): қоғоз акт/
+     * Ташқи ҳужжат рақами (DEC-109, QBO «Reference no.»): қоғоз акт/
      * дафтар рақами - ихтиёрий, аудит учун. GL/movement'га тегмайди.
      */
     @Column(name = "external_ref", length = 50)

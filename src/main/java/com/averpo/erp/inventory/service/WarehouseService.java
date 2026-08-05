@@ -34,9 +34,9 @@ public class WarehouseService {
     }
 
     /**
-     * Сўралган id'лар бўйича омборлар битта IN сўровда (Arbitr-045
+     * Сўралган id'лар бўйича омборлар битта IN сўровда (DEC-045
      * findAllById нақши) - ҳужжат service'лари сатр-циклда {@link #get}'сиз
-     * мавжудликни текшириши учун (SalesReceipt Beruniy-035). Топилмаганлар
+     * мавжудликни текшириши учун (SalesReceipt PERF-035). Топилмаганлар
      * рўйхатда бўлмайди; мавжудликни чақирувчи текширади.
      */
     @Transactional(readOnly = true)
@@ -51,7 +51,7 @@ public class WarehouseService {
     }
 
     /**
-     * Каталог рўйхати филтри (Arbitr-068, list-filters.md): active -
+     * Каталог рўйхати филтри (DEC-068, list-filters.md): active -
      * TRUE фақат фаол / FALSE фақат нофаол / null ҳаммаси; q - ном/код
      * contains (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -59,7 +59,7 @@ public class WarehouseService {
     }
 
     /**
-     * Рўйхат экрани - тўлиқ филтр (Arbitr-068): фаоллик/матн битта
+     * Рўйхат экрани - тўлиқ филтр (DEC-068): фаоллик/матн битта
      * Specification'да (audit услуби, ListSpecs бўлаклари), ном тартибида.
      */
     @Transactional(readOnly = true)

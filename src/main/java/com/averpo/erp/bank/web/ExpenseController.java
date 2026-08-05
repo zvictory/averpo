@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Чиқим (Expense) экрани - QBO /app/expense паритети (Arbitr-033):
+ * Чиқим (Expense) экрани - QBO /app/expense паритети (DEC-033):
  * рўйхат + QBO тартибидаги алоҳида форма + кўриш/сторно, transfers
  * нақшида. Умумий «Банк транзакцияси» формасида фақат Кирим қолди.
  *
@@ -65,7 +65,7 @@ public class ExpenseController {
     /** Payee select'и ва номлари учун. */
     private final ContactService contactService;
 
-    /** Тўлов усули select'и (Arbitr-033 каталоги). */
+    /** Тўлов усули select'и (DEC-033 каталоги). */
     private final PaymentMethodService paymentMethodService;
 
     /** Home currency - курс майдонлари ва Total (home) учун. */
@@ -78,7 +78,7 @@ public class ExpenseController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - фақат EXPENSE, саҳифаланган (Beruniy-perf1); Arbitr-068
+     * Рўйхат - фақат EXPENSE, саҳифаланган (PERF-perf1); DEC-068
      * стандарт филтр қатори: давр/статус/payee/матн (GET форма - bookmark,
      * list-filters.md). Кесиш service Specification'ида (SQL LIMIT/OFFSET).
      */
@@ -102,7 +102,7 @@ public class ExpenseController {
         model.addAttribute("filterQuery", new com.averpo.erp.shared.web.FilterQuery()
                 .add("from", from).add("to", to).add("status", status)
                 .add("contactId", contactId).add("q", q).toString());
-        // Счётлар ҳам, контактлар ҳам биттадан сўров (Beruniy-020 сабоғи)
+        // Счётлар ҳам, контактлар ҳам биттадан сўров (PERF-020 сабоғи)
         Map<UUID, String> accountNames = new HashMap<>();
         for (Account account : accountService.all()) {
             accountNames.put(account.getId(), account.getName());
@@ -145,10 +145,10 @@ public class ExpenseController {
     public String createForm(Model model) {
         BankTransactionForm form = BankTransactionForm.empty(2);
         form.setType(BankTransactionType.EXPENSE.name());
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setTxnDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "bank/expenseForm";
@@ -158,7 +158,7 @@ public class ExpenseController {
     @PostMapping
     public String create(@ModelAttribute BankTransactionForm form,
                          Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toTxnData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toTxnData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             BankTransaction txn = bankService.expense(toTxnData(form, settings));
@@ -172,7 +172,7 @@ public class ExpenseController {
     }
 
     /**
-     * Чиқимни кўриш - transfers нақши (Otabek-003): EXPENSE бўлмаган id
+     * Чиқимни кўриш - transfers нақши (QBO-003): EXPENSE бўлмаган id
      * умумий банк view'ига йўналтирилади, маълумот йўқолмайди.
      */
     @GetMapping("/{id}")
@@ -190,7 +190,7 @@ public class ExpenseController {
         model.addAttribute("contactNames", contactNames(txn));
         model.addAttribute("paymentMethodName", txn.getPaymentMethodId() == null
                 ? null : paymentMethodService.get(txn.getPaymentMethodId()).getName());
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today", LocalDate.now(settings.zoneId()).toString());
@@ -216,11 +216,11 @@ public class ExpenseController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'и: тўлов счётлари + жонли қолдиқ + сатр счётлари -
-     * settings оқим бошидаги snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * settings оқим бошидаги snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, BankTransactionForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);
-        // Sanjar-009: счёт каталоги БИР марта олинади - аввал
+        // OPT-009: счёт каталоги БИР марта олинади - аввал
         // postableAccounts() + қуйидаги all() иккита SELECT эди
         List<Account> accounts = accountService.all();
         // Тўлов счёти: BANK туридаги фаол postable счётлар (QBO Payment
@@ -241,7 +241,7 @@ public class ExpenseController {
         }
         model.addAttribute("bankBalances", balances);
         // Сатр счётлари: банкдан бошқа, тизим назорат счётларисиз
-        // (BR-BT-010, Xorazmiy-012) - UNDEPOSITED_FUNDS истисноси билан
+        // (BR-BT-010, QA-012) - UNDEPOSITED_FUNDS истисноси билан
         model.addAttribute("lineAccounts", accounts.stream()
                 .filter(a -> a.getType() != AccountType.BANK
                         && (!a.getDetailType().systemManaged()
@@ -304,7 +304,7 @@ public class ExpenseController {
 
     /**
      * Саҳифа қаторларидаги контакт номлари - фақат керакли id'лар
-     * byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1); нофаоллар ҳам
+     * byIds/IN сўровда (DEC-105б, AUD-003 §1); нофаоллар ҳам
      * келади - тарихий ҳужжатда ном кўриниши шарт.
      */
     private Map<UUID, String> contactNames(List<BankTransaction> rows) {
@@ -319,7 +319,7 @@ public class ExpenseController {
 
     /**
      * Ҳужжатдаги (сарлавҳа + сатрлар) контакт номлари - фақат керакли
-     * id'лар byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1).
+     * id'лар byIds/IN сўровда (DEC-105б, AUD-003 §1).
      */
     private Map<UUID, String> contactNames(BankTransaction txn) {
         List<UUID> ids = new ArrayList<>();

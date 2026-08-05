@@ -14,7 +14,7 @@ import java.util.UUID;
 
 /**
  * Контактлар репозиторийси - фақат contact модули ичида ишлатилади.
- * JpaSpecificationExecutor - каталог рўйхати филтри учун (Arbitr-068).
+ * JpaSpecificationExecutor - каталог рўйхати филтри учун (DEC-068).
  */
 public interface ContactRepository extends JpaRepository<Contact, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Contact> {
@@ -31,7 +31,7 @@ public interface ContactRepository extends JpaRepository<Contact, UUID>,
     /** ИНН uniqueness текшируви учун (BR-CON-005). */
     Optional<Contact> findByTaxId(String taxId);
 
-    /** Енгил ссылкалар фақат сўралган id'лар учун (Beruniy-018). */
+    /** Енгил ссылкалар фақат сўралган id'лар учун (PERF-018). */
     @Query("""
             select new com.averpo.erp.contact.service.ContactService$ContactRef(
                 c.id, c.displayName)
@@ -40,7 +40,7 @@ public interface ContactRepository extends JpaRepository<Contact, UUID>,
             """)
     List<ContactRef> findRefsByIdIn(@Param("ids") Collection<UUID> ids);
 
-    /** Тур бўйича фаол контактларнинг енгил рўйхати (Beruniy-018). */
+    /** Тур бўйича фаол контактларнинг енгил рўйхати (PERF-018). */
     @Query("""
             select new com.averpo.erp.contact.service.ContactService$ContactRef(
                 c.id, c.displayName)

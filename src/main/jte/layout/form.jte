@@ -14,18 +14,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} - AVERPO</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <%-- Arbitr-117: Tailwind app.css (Inter + preflight). Dark танлови
+    <%-- DEC-117: Tailwind app.css (Inter + preflight). Dark танлови
          биринчи paint'дан олдин - main.jte билан бир калит ('darkMode');
-         контент Penguin токенларида (Arbitr-122) - тўқда бутун
+         контент Penguin токенларида (DEC-122) - тўқда бутун
          саҳифа тўқ. --%>
     <script>
         if (localStorage.getItem('darkMode') === 'true') document.documentElement.classList.add('dark');
     </script>
-    <%-- Arbitr-137: ?v=<build вақти> - main.jte билан бир хил жуфт --%>
+    <%-- DEC-137: ?v=<build вақти> - main.jte билан бир хил жуфт --%>
     <link rel="stylesheet" href="/css/app.css?v=${Assets.version()}">
     <%-- Локал asset'лар - ERP ички тармоқ/офлайнда ҳам ишлайди --%>
     <script src="/vendor/htmx.min.js?v=${Assets.version()}"></script>
-    <%-- Alpine 3 + расмий плагинлар (Arbitr-116): ҳаммаси defer, плагин
+    <%-- Alpine 3 + расмий плагинлар (DEC-116): ҳаммаси defer, плагин
          файллари Alpine ядросидан ОЛДИН туради - Alpine ҳужжати шуни
          талаб қилади (плагин alpine:init'га ядро юкланишидан аввал уланади) --%>
     <script defer src="/js/vendor/alpine-mask.min.js?v=${Assets.version()}"></script>
@@ -34,23 +34,23 @@
     <script defer src="/js/vendor/alpine-persist.min.js?v=${Assets.version()}"></script>
     <script defer src="/js/vendor/alpine.min.js?v=${Assets.version()}"></script>
     <style>
-        /* Arbitr-122'дан кейинги ЯГОНА техник қолдиқ (main.jte билан
+        /* DEC-122'дан кейинги ЯГОНА техник қолдиқ (main.jte билан
            бир хил жуфт): экран услублари тўлиқ Penguin утилиталарда. */
         /* Alpine юклангунча x-cloak'ли panel/майдонлар кўринмасин - FOUC
-           ҳимояси (main.jte билан бир хил, Alisa-008) */
+           ҳимояси (main.jte билан бир хил, UI-008) */
         [x-cloak] { display:none !important; }
         @media (max-width: 768px) {
-            /* iOS фокусда zoom ҳимояси (Arbitr-121 7-банд);
-               button рўйхатда йўқ (Arbitr-118) */
+            /* iOS фокусда zoom ҳимояси (DEC-121 7-банд);
+               button рўйхатда йўқ (DEC-118) */
             input, select { font-size:16px; }
         }
     </style>
 </head>
-<%-- Оқ канвас (Arbitr-123 қўшимча, фойдаланувчи қарори): light'да
+<%-- Оқ канвас (DEC-123 қўшимча, фойдаланувчи қарори): light'да
      body bg-surface - ажралиш бордер/thead/alt фонларда --%>
 <body class="flex min-h-screen flex-col bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark">
 <%-- QBO transaction form паттерни: юқорида тўқ бар + ✕, пастда sticky
-     actions бари - Penguin утилиталарда (Arbitr-121). formmain класси
+     actions бари - Penguin утилиталарда (DEC-121). formmain класси
      услубсиз зона МАРКЕРИ (смок/тест мосламалари учун). --%>
 <div class="sticky top-0 z-40 flex items-center justify-between gap-3 bg-surface-dark px-5 py-3 text-on-surface-dark-strong">
     <b class="text-[1.05rem]">${title}</b>
@@ -64,16 +64,16 @@
 <footer class="sticky bottom-0 z-40 flex flex-wrap items-center justify-between gap-3 bg-surface-dark px-5 py-3">
     ${actions}
 </footer>
-<%-- Arbitr-079: ҳужжат формаларидаги майдон (?) тугмалари учун ёрдам
+<%-- DEC-079: ҳужжат формаларидаги майдон (?) тугмалари учун ёрдам
      диалоги + delegation - main.jte билан умумий partial (msg бу
      layout'да null бўлиши мумкин - partial ўзи ҳимояланган) --%>
 @template.shared.helpDialog(msg = msg)
 <script src="/js/money-input.js?v=${Assets.version()}"></script>
 <script src="/js/penguin-combobox.js?v=${Assets.version()}"></script>
 <script src="/js/contact-currency.js?v=${Assets.version()}"></script>
-<%-- Arbitr-097: курс блоки компоненти (prefill + кўриниш + ориентация) --%>
+<%-- DEC-097: курс блоки компоненти (prefill + кўриниш + ориентация) --%>
 <script src="/js/rate-block.js?v=${Assets.version()}"></script>
-<%-- Arbitr-144: сана майдонлари учун QBO ёрлиқлари (t/+/-/w/k/m/h/y/r) --%>
+<%-- DEC-144: сана майдонлари учун QBO ёрлиқлари (t/+/-/w/k/m/h/y/r) --%>
 <script src="/js/date-hotkey.js?v=${Assets.version()}"></script>
 </body>
 </html>

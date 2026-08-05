@@ -109,7 +109,7 @@ class LedgerDashboardServiceTest {
 
     @Test
     void monthlyCashFlow_inflowOutflowSides_emptyMonthZero() {
-        // Arbitr-036: BANK счёт Dt - кирим, Cr - чиқим; бўш ой нол билан
+        // DEC-036: BANK счёт Dt - кирим, Cr - чиқим; бўш ой нол билан
         post(LocalDate.of(2026, 5, 10), bank, sales, "250000");   // май: кирим
         post(LocalDate.of(2026, 7, 5), bank, sales, "1000000");   // июль: кирим
         post(LocalDate.of(2026, 7, 6), rent, bank, "400000");     // июль: чиқим

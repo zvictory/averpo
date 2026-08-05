@@ -70,7 +70,7 @@ class SalesReceiptServiceTest {
 
     private Contact customer;
 
-    /** USD валютали мижоз (Arbitr-087): чет валюта чеклари шунга ёзилади. */
+    /** USD валютали мижоз (DEC-087): чет валюта чеклари шунга ёзилади. */
     private Contact usdCustomer;
 
     private Item invItem;
@@ -176,7 +176,7 @@ class SalesReceiptServiceTest {
 
     /**
      * Spec 3-банд: тўлов счёти валютаси ҳужжат валютасига тенг бўлиши шарт
-     * (BR-SR-002). Arbitr-087 дан кейин ҳужжат валютаси мижозники - қоида
+     * (BR-SR-002). DEC-087 дан кейин ҳужжат валютаси мижозники - қоида
      * энди «мижоз валютасига мос тўлов счёти» маъносини беради: USD мижоз
      * чеки UZS (home) банк счётига ёзилмайди.
      */
@@ -192,7 +192,7 @@ class SalesReceiptServiceTest {
                         .isEqualTo("BR-SR-002"));
     }
 
-    /** Arbitr-087 (BR-SR-004): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-SR-004): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // home мижозга USD чек - валюта мижозники бўлиши шарт
@@ -271,7 +271,7 @@ class SalesReceiptServiceTest {
     }
 
     /**
-     * Arbitr-052 (008): сатр чегаралари - qty 0/манфий, нарх манфий,
+     * DEC-052 (008): сатр чегаралари - qty 0/манфий, нарх манфий,
      * INVENTORY item warehouse'сиз - ҳаммаси BR-SR-001.
      */
     @Test
@@ -293,7 +293,7 @@ class SalesReceiptServiceTest {
     }
 
     /**
-     * Arbitr-052 (044): ҚҚС леги - Cr SALES_TAX_PAYABLE ставка кесимида
+     * DEC-052 (044): ҚҚС леги - Cr SALES_TAX_PAYABLE ставка кесимида
      * жамланган, entry balanced (солиқсиз happy-path'дан ташқари тармоқ).
      */
     @Test
@@ -320,7 +320,7 @@ class SalesReceiptServiceTest {
     }
 
     /**
-     * Arbitr-052 (044): чет валюта (USD-doc + USD-bank) - MoneyAllocation
+     * DEC-052 (044): чет валюта (USD-doc + USD-bank) - MoneyAllocation
      * penny rounding тармоғи, home base'да balanced (BR-LED-006).
      */
     @Test
@@ -347,7 +347,7 @@ class SalesReceiptServiceTest {
     }
 
     /**
-     * Arbitr-076 (Dilnoza-003): unit_price NUMERIC(24,12) - invoice_line
+     * DEC-076 (DB-003): unit_price NUMERIC(24,12) - invoice_line
      * кўзгуси. 5+ хона касрли нарх тўлиқ аниқликда сақланади (яхлитлаш
      * фақат кўрсатишда - Fmt; сақланадиган қиймат тўлиқ).
      */
@@ -371,7 +371,7 @@ class SalesReceiptServiceTest {
     }
 
     /**
-     * Beruniy-035: сатр-циклда item/даромад счёти/омбор ва postGl'даги asset
+     * PERF-035: сатр-циклда item/даромад счёти/омбор ва postGl'даги asset
      * счёти қайта-қайта ўқилмайди (батч Map). N+1 бўлса ҳар қўшимча сатр
      * item+account+warehouse+asset = 4 та қўшимча SELECT берарди; батчда
      * қўшимча сатр фақат inventory issue + JE легини қўшади. Шунинг учун

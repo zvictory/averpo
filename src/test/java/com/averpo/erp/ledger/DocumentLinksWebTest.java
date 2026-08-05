@@ -46,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Ҳужжатлараро линклар (Arbitr-063): кўриш экранларида рақамлар оддий
+ * Ҳужжатлараро линклар (DEC-063): кўриш экранларида рақамлар оддий
  * матн эмас, href бўлиши. Банд-ба-банд href assert'лари: 1 - JE кўришида
  * манба ҳужжат линки, 2 - сторно линклари иккала йўналишда, 3 - аудитда
  * Ҳужжат устуни JE'га, 5 - омбор ҳаракатларида тўлиқ тур қамрови,

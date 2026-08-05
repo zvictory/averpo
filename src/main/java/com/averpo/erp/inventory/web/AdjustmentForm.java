@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Ҳужжатли инвентаризация акти формаси (Arbitr-093): битта омбор, кўп
+ * Ҳужжатли инвентаризация акти формаси (DEC-093): битта омбор, кўп
  * сатр. Ҳар сатрда ЯНГИ qty киритилади (QBO «New quantity») - delta
  * server'да ҳисобланади. Ҳамма сон String - бузуқ киритишда тушунарли BR
  * хабари билан қийматлар сақланиб қайтади (SalesReceiptForm қолипи).
@@ -28,7 +28,7 @@ public class AdjustmentForm {
     /** Эркин изоҳ. */
     private String memo;
 
-    /** Ташқи ҳужжат рақами (Arbitr-109, ихтиёрий - қоғоз акт №). */
+    /** Ташқи ҳужжат рақами (DEC-109, ихтиёрий - қоғоз акт №). */
     private String externalRef;
 
     /** Сатрлар - Spring indexed binding (auto-grow). */

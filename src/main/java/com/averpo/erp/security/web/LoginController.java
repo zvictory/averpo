@@ -28,7 +28,7 @@ public class LoginController {
 
     /**
      * Login формаси; error/locked/logout/expired query параметрлари ҳолат
-     * хабарини белгилайди. {@code ?expired} - Arbitr-096: сессия муддати
+     * хабарини белгилайди. {@code ?expired} - DEC-096: сессия муддати
      * тугаб CSRF токени эскирганда accessDeniedHandler шу манзилга буради.
      */
     @GetMapping("/login")

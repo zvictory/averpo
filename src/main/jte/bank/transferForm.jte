@@ -16,7 +16,7 @@
 
 
     <%-- init() методини Alpine ЎЗИ чақиради (auto-init) - x-init ёзилмайди.
-         Счёт танлагичлари shared/combobox (Arbitr-123): танлов value
+         Счёт танлагичлари shared/combobox (DEC-123): танлов value
          input'да, валюта/қолдиқ унинг data-cur/data-bal'ида - onPick
          change'ни тинглаб ҳолатни (from/to/cur/bal) янгилайди. --%>
     <form id="transferForm" method="post" action="/transfers"
@@ -91,7 +91,7 @@
         <div class="mb-3 flex flex-wrap items-end gap-4">
             <%-- 1-майдон: манба сумма. Каптион битта nowrap span'да -
                  flex-col label болакларни алоҳида flex item қилиб вертикал
-                 синдирарди (Arbitr-134 Rate қолипи) --%>
+                 синдирарди (DEC-134 Rate қолипи) --%>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 <span class="inline-flex items-center gap-1 whitespace-nowrap">${msg.localize("bt.form.fromAmount")} (<span x-text="fromCur"></span>)</span>
                 <input name="fromAmount" size="14" class="money mt-1 block text-right rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark" inputmode="decimal" required
@@ -100,16 +100,16 @@
             </label>
             <%-- 2-майдон: курс (битта чет валюта бўлганда - линкли) --%>
             <label x-show="distinctForeign === 1" x-cloak class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
-                <%-- Arbitr-097б: кучли-валюта ориентация (base/quote динамик) -
-                     «1 UZS = 0.000083 USD» эмас, «1 USD = ? UZS». Arbitr-108:
+                <%-- DEC-097б: кучли-валюта ориентация (base/quote динамик) -
+                     «1 UZS = 0.000083 USD» эмас, «1 USD = ? UZS». DEC-108:
                      кўринадиган input оддий буфер (rateBuf) + class="money"
                      (калькулятор) + onRateInput (буфер→каноник); каноник rate
                      ва recalc ЎЗГАРМАЙДИ. --%>
                 <span class="inline-flex items-center gap-1 whitespace-nowrap">${msg.localize("bt.form.rate")} (1 <span x-text="rateBase"></span> = ? <span x-text="rateQuote"></span>) @template.shared.help(key = "field.exchangeRate", msg = msg)</span>
-                <%-- Arbitr-108: class="money" (мини-калькулятор) + оддий буфер
+                <%-- DEC-108: class="money" (мини-калькулятор) + оддий буфер
                      x-model="rateBuf" + x-on:input (буфер→каноник). fromAmount/
                      toAmount айнан шу нақш - курсор сакрамайди. data-rate-field
-                     (Arbitr-135): калькулятор натижаси курс кўрсатиш форматида. --%>
+                     (DEC-135): калькулятор натижаси курс кўрсатиш форматида. --%>
                 <input size="12" inputmode="decimal" data-rate-field class="money mt-1 block text-right rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark" x-model="rateBuf"
                        x-on:input="onRateInput()" x-ref="rateInput"
                       >
@@ -133,8 +133,8 @@
         <%-- Икки хил чет валюта (USD→EUR): кросс-курс home-нисбий эмас,
              ҳозирча иккита алоҳида курс қўлда (курс жадвалга ёзилмайди) --%>
         <div x-show="distinctForeign === 2" x-cloak class="mb-3 flex flex-wrap gap-4">
-            <%-- Arbitr-097б: икки чет валюта - ҳар курс ўз жуфтига қараб
-                 ориентацияли (base/quote динамик). Arbitr-108: кўринадиган input
+            <%-- DEC-097б: икки чет валюта - ҳар курс ўз жуфтига қараб
+                 ориентацияли (base/quote динамик). DEC-108: кўринадиган input
                  оддий буфер (from2Buf/to2Buf) + class="money" + onFrom2/To2Input;
                  name'СИЗ - submit каноник fromRate2/toRate2 hidden орқали (пастда). --%>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
@@ -156,14 +156,14 @@
 
         <%-- Курснинг ягона ҳақиқат манбаи - ориентацияли курс input'и
              (лабелида «1 USD = ? UZS»); бу ерда фақат conversionNote
-             ҳинти (Arbitr-136) --%>
+             ҳинти (DEC-136) --%>
         <p x-show="cross" x-cloak class="mb-4 text-sm text-current/60">
             ${msg.localize("bt.form.conversionNote")}
         </p>
 
         <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark max-w-[520px]">
             ${msg.localize("bt.form.memo")}
-            <%-- Otabek-004: кўп қаторли изоҳ (QBO/spec transfer.md) -
+            <%-- QBO-004: кўп қаторли изоҳ (QBO/spec transfer.md) -
                  inventory формалари қолипи --%>
             <textarea name="memo" rows="3" maxlength="500"
                       class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">${form.getMemo() != null ? form.getMemo() : ""}</textarea>
@@ -172,7 +172,7 @@
         <%-- Счёт қийматлари combobox value input'ларида (bankAccountId/
              toBankAccountId) - service мавжуд TransferData ўзгармаган --%>
         <%-- Курс POST майдонлари - ҲАР ДОИМ КАНОНИК («1 чет = ? home»),
-             Arbitr-097б: кўринадиган input ориентацияли бўлса ҳам server
+             DEC-097б: кўринадиган input ориентацияли бўлса ҳам server
              айнан шу каноникни олади (submit ЎЗГАРМАЙДИ). Битта чет
              валютада курс ўша (чет) томонга; икки чет валютада ҳар икки
              канониик fromRate2/toRate2. home тарафи бўш (service курс=1). --%>
@@ -194,7 +194,7 @@
                 rate: '${form.getExchangeRate() != null ? form.getExchangeRate() : (form.getToRate() != null ? form.getToRate() : "")}',
                 fromRate2: '${form.getExchangeRate() != null ? form.getExchangeRate() : ""}',
                 toRate2: '${form.getToRate() != null ? form.getToRate() : ""}',
-                <%-- Arbitr-108: кўринадиган курс буферлари (ориентацияли, оддий
+                <%-- DEC-108: кўринадиган курс буферлари (ориентацияли, оддий
                      string - computed ЭМАС). Ёзаётганда буфер қайта ёзилмайди
                      (курсор жойида); onRateInput каноникни синхронлайди,
                      syncRateBuffers фақат ташқи ўзгаришда буферни янгилайди. --%>
@@ -207,7 +207,7 @@
                     this.syncSide('bankAccountId');
                     this.syncSide('toBankAccountId');
                     var self = this;
-                    // Arbitr-108: бошланғич буферлар (round-trip каноникдан
+                    // DEC-108: бошланғич буферлар (round-trip каноникдан
                     // ориентацияли) - $nextTick: x-ref'лар шу пайтга тайёр
                     this.$nextTick(function () { self.syncRateBuffers(); });
                 },
@@ -265,7 +265,7 @@
                     return parseFloat(String(v).replace(/[\s ]/g, '').replace(',', '.'));
                 },
 
-                // Arbitr-097б: кучли-валюта ориентация (Fmt.orient JS кўзгуси,
+                // DEC-097б: кучли-валюта ориентация (Fmt.orient JS кўзгуси,
                 // 097 rate-block.js нақши). ФАҚАТ кўрсатиш қатлами - каноник
                 // моделлар (rate/fromRate2/toRate2 = «1 чет = ? home») ва
                 // recalc/submit ЎЗГАРМАЙДИ.
@@ -295,7 +295,7 @@
                 },
                 // Курс ёрлиғи base/quote - фақат КОД (кучли валюта ориентацияси,
                 // 097б). Кўринадиган ҚИЙМАТ энди computed ЭМАС - оддий буфер
-                // (rateBuf/from2Buf/to2Buf), Arbitr-108: computed getter флипда
+                // (rateBuf/from2Buf/to2Buf), DEC-108: computed getter флипда
                 // invert(invert(v)) float шовқини билан инпутни қайта ёзиб
                 // курсорни охирига сакратар эди. Буфер↔каноник синхрони
                 // onRateInput (ёзишда) + syncRateBuffers (ташқи ўзгаришда).
@@ -306,7 +306,7 @@
                 get to2Base() { return this.orient(this.toCur, this.home, this.toRate2).base; },
                 get to2Quote() { return this.orient(this.toCur, this.home, this.toRate2).quote; },
 
-                // Кўрсатиш формати - Fmt.rate/averpoRateFmt кўзгуси (Arbitr-135):
+                // Кўрсатиш формати - Fmt.rate/averpoRateFmt кўзгуси (DEC-135):
                 // >= 1 → қатъий 2 хона NBSP гуруҳ билан, < 1 → макс 8 хона
                 // trailing нолсиз. Кўзгуга СТРИНГ узатилади (cleanNum) - каноник
                 // аниқлиги float думига йўқолмасин. ФАҚАТ ташқи буфер
@@ -341,7 +341,7 @@
                 },
                 // Каноникдан кўринадиган буферни (ориентацияли, курс кўрсатиш
                 // форматида) қайта тиклайди - счёт/валюта алмашганда, prefill
-                // келганда, init'да, тескари ҳисобда (recalc 'to', Arbitr-136).
+                // келганда, init'да, тескари ҳисобда (recalc 'to', DEC-136).
                 // ФАҚАТ майдон ФОКУСДА БЎЛМАСА ($refs vs activeElement) -
                 // фойдаланувчи ёзаётган буфер ҲЕЧ ҚАЧОН қайта ёзилмайди.
                 syncRateBuffers() {
@@ -374,7 +374,7 @@
                             + '&date=' + encodeURIComponent(date))
                         .then(function (r) { return r.ok ? r.text() : ''; })
                         .then(function (rate) {
-                            // Arbitr-097 guard: фақат мусбат сон қабул (сессия
+                            // DEC-097 guard: фақат мусбат сон қабул (сессия
                             // эскириб /login HTML қайтарса каноникка ёзилмасин)
                             var t = (rate || '').trim();
                             if (t && /^[0-9]+([.,][0-9]+)?$/.test(t)) {
@@ -394,7 +394,7 @@
                             var nr = fromIsHome ? (fa / ta) : (ta / fa);
                             this.rate = nr.toFixed(6).replace(/\.?0+$/, '');
                             // Кўринадиган курс буфери ҳам янги каноникдан
-                            // тикланади (Arbitr-136) - фойдаланувчи сумма
+                            // тикланади (DEC-136) - фойдаланувчи сумма
                             // майдонида ёзяпти, курс input фокусда эмас,
                             // шунга activeElement ҳимояси (108) уни ёзади
                             this.syncRateBuffers();

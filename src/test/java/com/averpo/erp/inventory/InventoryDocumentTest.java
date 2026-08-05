@@ -39,7 +39,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Ҳужжатли Adjustment/Transfer тестлари (Arbitr-093, docs/modules/
+ * Ҳужжатли Adjustment/Transfer тестлари (DEC-093, docs/modules/
  * inventory.md «Тестлар»): кўп сатрли актга БИТТА JE (аралаш акт -
  * иккала жуфт бир JE'да, debit==credit ТЕМИР ҚОИДА №7); ҳар сатр
  * StockMovement (reference=акт id); transfer балансларни ўзгартиради
@@ -273,7 +273,7 @@ class InventoryDocumentTest {
     }
 
     /**
-     * Arbitr-109: ташқи ҳужжат рақами (external_ref) иккала актда
+     * DEC-109: ташқи ҳужжат рақами (external_ref) иккала актда
      * сақланади; бўш/бланк қиймат null (blankToNull). GL/movement
      * мантиғига тегмайди - фақат аудит майдони.
      */

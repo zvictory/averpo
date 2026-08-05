@@ -26,7 +26,7 @@
 @param String dataCur = null
 @param String dataUnit = null
 
-<%-- Penguin Combobox (Arbitr-123; реф: docs/penguin-refs/combobox.html
+<%-- Penguin Combobox (DEC-123; реф: docs/penguin-refs/combobox.html
      «with search», мослашувлар реф изоҳида; мантиқ: static/js/
      penguin-combobox.js Alpine.data('pgCombo')). Қиймат value input'да
      (name айнан эски select name - POST шакли ўзгармас); танланган

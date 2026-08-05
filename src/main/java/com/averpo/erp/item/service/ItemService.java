@@ -105,9 +105,9 @@ public class ItemService {
     }
 
     /**
-     * Сўралган id'лар бўйича тўлиқ item'лар битта IN сўровда (Arbitr-045
+     * Сўралган id'лар бўйича тўлиқ item'лар битта IN сўровда (DEC-045
      * findAllById нақши) - ҳужжат service'лари сатр-циклда item'ни
-     * қайта-қайта {@link #get} билан юкламасин (SalesReceipt Beruniy-035:
+     * қайта-қайта {@link #get} билан юкламасин (SalesReceipt PERF-035:
      * бир хил item такрорланса ҳам битта round-trip). Топилмаганлар
      * рўйхатда бўлмайди; мавжудликни чақирувчи ўз сатр хатоси билан текширади.
      */
@@ -117,7 +117,7 @@ public class ItemService {
     }
 
     /**
-     * Каталог рўйхати филтри (Arbitr-068, list-filters.md): тур ихтиёрий;
+     * Каталог рўйхати филтри (DEC-068, list-filters.md): тур ихтиёрий;
      * active - TRUE фақат фаол / FALSE фақат нофаол / null ҳаммаси;
      * q - ном/SKU contains (катта-кичик фарқсиз, кирилл ҳам).
      */
@@ -125,7 +125,7 @@ public class ItemService {
     }
 
     /**
-     * Рўйхат экрани - тўлиқ филтр (Arbitr-068): тур/фаоллик/матн битта
+     * Рўйхат экрани - тўлиқ филтр (DEC-068): тур/фаоллик/матн битта
      * Specification'да (audit услуби, ListSpecs бўлаклари), ном тартибида.
      * category (LAZY) ва unit LEFT fetch - шаблонда lazy хатоси ва N+1
      * бўлмасин (аввалги @EntityGraph нақшига тенг; List йўли - count
@@ -160,7 +160,7 @@ public class ItemService {
     /**
      * Енгил item ссылкаси (id + ном + бирлик номи) - ном хариталари ва
      * select'лар учун; entity ва унинг EAGER боғлари хотирага
-     * юкланмайди (Beruniy-018 overfetch'га қарши).
+     * юкланмайди (PERF-018 overfetch'га қарши).
      */
     public record ItemRef(UUID id, String name, String unitName) { }
 
@@ -175,7 +175,7 @@ public class ItemService {
     }
 
     /**
-     * id → ном харитаси битта IN сўровда (ARBITR-105б, Ulugbek-003 §1):
+     * id → ном харитаси битта IN сўровда (DEC-105б, AUD-003 §1):
      * view/рўйхат name-map'лари бутун каталогни юкламасин. Топилмаган id
      * харитада бўлмайди - чақирувчи {@code getOrDefault} билан ўқийди.
      */

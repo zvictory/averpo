@@ -8,7 +8,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * {@link PageSizeResolver} тестлари (ARBITR-105): ?size= / cookie /
+ * {@link PageSizeResolver} тестлари (DEC-105): ?size= / cookie /
  * default устуворлиги, whitelist ҳимояси ва cookie ёзилиши. Static
  * метод - Spring контекст керак эмас, {@code MockHttpServlet*} билан
  * тез unit тест.

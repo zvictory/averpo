@@ -29,7 +29,7 @@ class ContactServiceTest {
     /** Legacy (валютасиз) контактни apply'дан ўтмасдан яратиш учун. */
     @Autowired ContactRepository contactRepository;
 
-    /** Home валюта кодини қаттиқ кодламай олиш учун (Arbitr-159 тестлари). */
+    /** Home валюта кодини қаттиқ кодламай олиш учун (DEC-159 тестлари). */
     @Autowired CompanySettingsService settingsService;
 
     /** POSTED ҳужжат яратиш учун (BR-CON-012 қулф тести). */
@@ -116,7 +116,7 @@ class ContactServiceTest {
         assertThat(updated.getDisplayName()).isEqualTo("Ўз номи");
     }
 
-    // ---- Arbitr-159: контакт валютаси server'да ҳеч қачон null (coalesce) ----
+    // ---- DEC-159: контакт валютаси server'да ҳеч қачон null (coalesce) ----
 
     /**
      * create бўш валюта → home сақланади (null ЭМАС). Server гарови:
@@ -214,7 +214,7 @@ class ContactServiceTest {
     }
 
     /**
-     * BR-CON-012 (Arbitr-087) қулф семантикаси Arbitr-159 coalesce билан
+     * BR-CON-012 (DEC-087) қулф семантикаси DEC-159 coalesce билан
      * САҚЛАНАДИ: POSTED ҳужжат йўқ - валюта эркин; POSTED бор -
      * қиймат→бошқа қиймат РАД. Coalesce нозиклиги: бўш input мавжудни
      * сақлайди (ресет ЙЎҚ) - POSTED бўлса ҳам «ўзгармаган» деб ўтади,

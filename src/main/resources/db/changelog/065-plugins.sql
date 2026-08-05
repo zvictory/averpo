@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:065-01-plugin-state
--- Plugins реестри ҳолати (docs/modules/plugins.md, Arbitr-113): ҳар
+-- Plugins реестри ҳолати (docs/modules/plugins.md, DEC-113): ҳар
 -- built-in ихтиёрий фича (PluginKey enum) учун битта қатор - ёқилганми.
 -- PK табиий калит (enum номи): плагин учун кўпи билан битта қатор,
 -- UUID id/version'га эҳтиёж йўқ (key-value ҳолат қатори). Қатор ЙЎҚ

@@ -47,7 +47,7 @@
                                 selected = line != null && item.getId().toString().equals(line.getItemId()))
                     @endfor
                 `)
-        <%-- Arbitr-014: QBO tree (EXPENSE кесими) --%>
+        <%-- DEC-014: QBO tree (EXPENSE кесими) --%>
         @template.shared.combobox(name = "lines[" + index + "].accountId", msg = msg,
                 value = line != null ? line.getAccountId() : null,
                 placeholder = msg.lookup("bill.row.selectAccount"),
@@ -109,7 +109,7 @@
     <td><input name="lines[${index}].amount" size="11" class="money text-right rounded-radius border border-outline bg-surface-alt px-2 py-1.5 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark" inputmode="decimal" x-show="t !== 'ITEM'" x-cloak
                value="${line != null && line.getAmount() != null ? line.getAmount() : ""}"
               >
-        <%-- Nargiza-004: ITEM сатрида миқдор × нарх жонли кўрсатилади
+        <%-- BA-004: ITEM сатрида миқдор × нарх жонли кўрсатилади
              (billForm скрипти тўлдиради); server ҳисоби ўзгармайди --%>
         <span data-lineamount x-show="t === 'ITEM'" title="${msg.lookup("bill.row.autoAmount")}"
               class="block whitespace-nowrap text-right tabular-nums text-on-surface-strong dark:text-on-surface-dark-strong"></span>

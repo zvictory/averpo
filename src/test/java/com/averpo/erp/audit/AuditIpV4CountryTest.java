@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Arbitr-091: CF header'ларидан Pseudo IPv4 ва давлат коди аудитга
+ * DEC-091: CF header'ларидан Pseudo IPv4 ва давлат коди аудитга
  * ёзилиши + экранда IPv4-биринчи формат.
  *
  * <p>Айнан LOGIN йўли синалади (карта 4-тузоғи): AuthAuditListener IP'ни

@@ -35,7 +35,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада (flex-col), боғлиқ майдонлар
+    <%-- DEC-163: header metadata - ёрлиқ тепада (flex-col), боғлиқ майдонлар
          жуфт-жуфт (Таъминотчи+Фактура, Сана+Муддат, PO+Валюта, Ҳолат+Тўлов,
          Тўланган+Қолдиқ); responsive грид auto-fit ўрнида барқарор 1/2/4 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
@@ -67,7 +67,7 @@
             </div>
         @endif
         @if(!bill.getCurrency().getCode().equals(homeCurrency))
-            <%-- Arbitr-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+            <%-- DEC-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
             !{var rateOr = Fmt.orient(bill.getCurrency().getCode(), homeCurrency, bill.getExchangeRate());}
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bill.form.currency")}</span>
@@ -94,7 +94,7 @@
         @endif
     </div>
 
-    <%-- Arbitr-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да
+    <%-- DEC-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да
          (DRAFT'да яширин, ҳали проводкаси йўқ) --%>
     @if(bill.getStatus() == BillStatus.POSTED || bill.getStatus() == BillStatus.REVERSED)
         @template.shared.jeLink(sourceType = "BILL", id = bill.getId().toString(), msg = msg)

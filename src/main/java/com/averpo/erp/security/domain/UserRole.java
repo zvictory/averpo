@@ -2,7 +2,7 @@ package com.averpo.erp.security.domain;
 
 /**
  * Фойдаланувчи роли - соҳага асосланган 8 роллик тизим
- * (docs/modules/user-roles.md, Arbitr-092). Ҳар роль ортида қатъий
+ * (docs/modules/user-roles.md, DEC-092). Ҳар роль ортида қатъий
  * permission тўплами туради ({@link RolePermissions} матрицаси) -
  * рухсат рольга эмас, СОҲАга текширилади, шунинг учун янги роль қўшиш
  * SecurityConfig'ни ўзгартирмайди.

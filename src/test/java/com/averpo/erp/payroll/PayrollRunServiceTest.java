@@ -111,7 +111,7 @@ class PayrollRunServiceTest {
     }
 
     /**
-     * Arbitr-071 (Asrorxoja-014): ушланмалар ставкаси йиғиндиси (99% + 2%)
+     * DEC-071 (LOG-014): ушланмалар ставкаси йиғиндиси (99% + 2%)
      * gross'дан ошса saveDraft АНИҚ BR-PYR-003 билан рад - аввал манфий
      * net post'гача етиб, хом BR-LED-006 (ledger баланс хатоси) бўлиб
      * отиларди, сабаб фойдаланувчига тушунарсиз эди.
@@ -128,7 +128,7 @@ class PayrollRunServiceTest {
     }
 
     /**
-     * Arbitr-071 (Asrorxoja-016): POSTED run'ни period ойидан ТАШҚАРИ сана
+     * DEC-071 (LOG-016): POSTED run'ни period ойидан ТАШҚАРИ сана
      * билан reverse қилиш рад (BR-PYR-004 кенгайтмаси) - кросс-ой сторно
      * ведомость инвариантини (давр_охири = давр_боши + net − тўланган)
      * ретроактив бузарди. Period ичидаги сана билан ўтади.
@@ -265,7 +265,7 @@ class PayrollRunServiceTest {
     }
 
     /**
-     * Arbitr-045 (BR-PYR-005/006): lifecycle гаровлари period уникаллигидан
+     * DEC-045 (BR-PYR-005/006): lifecycle гаровлари period уникаллигидан
      * (002) алоҳида код билан - фақат DRAFT post қилинади, фақат POSTED
      * reverse қилинади.
      */
@@ -312,7 +312,7 @@ class PayrollRunServiceTest {
     }
 
     /**
-     * Arbitr-052 (006): BR-PYR-003 сатр чегаралари - бўш рўйхат ва gross
+     * DEC-052 (006): BR-PYR-003 сатр чегаралари - бўш рўйхат ва gross
      * null/0/манфий. Аввалги гаровлар фақат ёт-контакт + такрор ходимни
      * қоплаган эди; сумма чегараси текширилмаган эди.
      */
@@ -335,7 +335,7 @@ class PayrollRunServiceTest {
     }
 
     /**
-     * Arbitr-054: рўйхат экрани жами gross/net энди JPQL агрегатдан ўқилади
+     * DEC-054: рўйхат экрани жами gross/net энди JPQL агрегатдан ўқилади
      * ({@link PayrollRunService#totalsByRun}) - сатр {@code run.totalGross()}
      * lazy {@code lines}ни айланарди, render open-in-view=false да
      * LazyInitializationException берарди (жонли демо блокери). Бу тест

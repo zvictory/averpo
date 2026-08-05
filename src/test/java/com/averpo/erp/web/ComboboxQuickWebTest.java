@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Combobox quick-add endpoint'лари (Arbitr-066) - spec docs/modules/
+ * Combobox quick-add endpoint'лари (DEC-066) - spec docs/modules/
  * combobox.md «Тестлар» рўйхати:
  * <ol>
  *   <li>муваффақиятли create - жавобда {id, label};</li>
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * <p>Ном танловлари seed билан тўқнашмайдиган бетакрор сатрлар
  * (умумий тест DB, seed номлари: Касса счёти/Асосий омбор/UZS...).
- * Роллар Arbitr-092 матрицасига мос: contact quick'лар ACCOUNTANT
+ * Роллар DEC-092 матрицасига мос: contact quick'лар ACCOUNTANT
  * (SALES/PURCHASE EDIT), account quick - CHIEF_ACCOUNTANT (GL EDIT,
  * янги ACCOUNTANT'да GL йўқ), warehouse quick create -
  * WAREHOUSE_MANAGER (INVENTORY EDIT; ACCOUNTANT фақат кўради) -
@@ -181,7 +181,7 @@ class ComboboxQuickWebTest {
     @Test
     @WithMockRole(value = UserRole.CHIEF_ACCOUNTANT, username = "chief")
     void accountQuickFormRendersWithCsrfAndGroupedDetailTypes() throws Exception {
-        // GL соҳаси: /accounts/** янги ACCOUNTANT'га ёпиқ (Arbitr-092)
+        // GL соҳаси: /accounts/** янги ACCOUNTANT'га ёпиқ (DEC-092)
         mockMvc.perform(get("/accounts/quick-form"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("action=\"/accounts/quick\"")))
@@ -200,7 +200,7 @@ class ComboboxQuickWebTest {
                 .andExpect(content().string(containsString("name=\"code\"")));
     }
 
-    // ---- Combobox render маркерлари (Arbitr-123, shared/combobox.jte):
+    // ---- Combobox render маркерлари (DEC-123, shared/combobox.jte):
     //      value input эски select name'ини кўтаради (POST шакли ўзгармас),
     //      quick-add банди openAdd('<url>') билан фақат canEdit'га чиқади ----
 
@@ -223,7 +223,7 @@ class ComboboxQuickWebTest {
                 .andExpect(content().string(not(containsString("openAdd("))));
     }
 
-    // ---- Arbitr-161: quick-add валюта ----
+    // ---- DEC-161: quick-add валюта ----
 
     @Test
     void customerQuickWithCurrencyStoresAndReturnsChosen() throws Exception {

@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Плагин гейтининг ЯГОНА манбаси (docs/modules/plugins.md, Arbitr-113):
+ * Плагин гейтининг ЯГОНА манбаси (docs/modules/plugins.md, DEC-113):
  * меню кўриниши, созлама бўлими ва фича коди (масалан Telegram poller,
  * 103) ҳаммаси {@link #isEnabled} дан сўрайди - Perms.current() нақши,
  * UI яшириш билан server ҳақиқати ажралмайди (092 сабоғи: backend route

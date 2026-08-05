@@ -78,8 +78,8 @@ public class CreditMemoController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - саҳифаланган (Beruniy-perf1); тўлиқ филтр қатори
-     * (Arbitr-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
+     * Рўйхат - саҳифаланган (PERF-perf1); тўлиқ филтр қатори
+     * (DEC-068): давр/статус/мижоз/матн, саҳифа линклари филтрни
      * сақлайди (audit қолипи).
      */
     @GetMapping
@@ -98,7 +98,7 @@ public class CreditMemoController {
                 from, to, parseStatusSafe(status), customerId, q), page, size);
         model.addAttribute("memos", memoPage.getContent());
         model.addAttribute("page", memoPage);
-        // Beruniy-032: бутун каталог эмас - саҳифадаги мижоз id'лари бўйича IN
+        // PERF-032: бутун каталог эмас - саҳифадаги мижоз id'лари бўйича IN
         Map<UUID, String> customerNames = new HashMap<>();
         for (var ref : contactService.refsByIds(memoPage.getContent().stream()
                 .map(m -> m.getCustomerId()).distinct().toList())) {
@@ -136,10 +136,10 @@ public class CreditMemoController {
         CreditMemoForm form = invoiceId == null
                 ? CreditMemoForm.empty(3)
                 : CreditMemoForm.from(invoiceService.getWithLines(invoiceId));
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setCmDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "sales/creditMemoForm";
@@ -157,7 +157,7 @@ public class CreditMemoController {
     @PostMapping
     public String create(@ModelAttribute CreditMemoForm form,
                          Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             CreditMemo memo = creditMemoService.create(toData(form, settings));
@@ -179,7 +179,7 @@ public class CreditMemoController {
         model.addAttribute("customerName",
                 contactService.get(memo.getCustomerId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         model.addAttribute("itemNames", itemService.namesByIds(
                 memo.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -193,7 +193,7 @@ public class CreditMemoController {
                         .filter(inv -> inv.getCurrency().getCode()
                                 .equals(memo.getCurrency().getCode()))
                         .toList());
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today",
@@ -248,7 +248,7 @@ public class CreditMemoController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'и (invoice формаси қолипи) - settings оқим бошидаги
-     * snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, CreditMemoForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);

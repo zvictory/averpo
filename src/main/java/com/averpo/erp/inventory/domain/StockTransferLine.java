@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
- * Кўчириш акти сатри (Arbitr-093): item, qty. line_cost - кўчган
+ * Кўчириш акти сатри (DEC-093): item, qty. line_cost - кўчган
  * қиймат snapshot (аудит; манба ўртачасида ёки FIFO партияларида).
  *
  * <p>item_id - dimension (DB'да FK, StockMovement қолипи). (акт, item)

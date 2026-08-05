@@ -52,7 +52,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <%-- Nargiza-007 P1a: Action менюси --%>
+                    <%-- BA-007 P1a: Action менюси --%>
                     @template.shared.rowMenu(msg = msg, items = @`
                         <a href="/users/${user.getId().toString()}/edit">${msg.localize("accounts.edit")}</a>
                     `)

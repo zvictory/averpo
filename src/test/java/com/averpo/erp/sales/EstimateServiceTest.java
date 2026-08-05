@@ -92,10 +92,10 @@ class EstimateServiceTest {
     }
 
     /**
-     * Arbitr-052 (043): BR-EST-001 валидация чегаралари - мижозсиз,
+     * DEC-052 (043): BR-EST-001 валидация чегаралари - мижозсиз,
      * сатрсиз, миқдор 0/манфий, нарх манфий. (Финдинг: код тестда йўқ эди.)
      */
-    /** Arbitr-087 (BR-EST-004): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-EST-004): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD контактдан ўзи олади
@@ -137,7 +137,7 @@ class EstimateServiceTest {
     }
 
     /**
-     * Arbitr-052 (042): бир ХИЛ санали size+1 ҳужжат - LIST_SORT'даги id
+     * DEC-052 (042): бир ХИЛ санали size+1 ҳужжат - LIST_SORT'даги id
      * tiebreaker туфайли 2 саҳифа қатор ўтказмайди/такрорламайди
      * (union = ҳаммаси, кесишма йўқ). createdAt ноёб эмаслиги яширинмайди.
      */
@@ -164,7 +164,7 @@ class EstimateServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort_statusFilter() {
-        // Beruniy-perf1 2-босқич retrofit: size+1 estimate - 2-саҳифада
+        // PERF-perf1 2-босқич retrofit: size+1 estimate - 2-саҳифада
         // биттагина қолади; саналар ҳар хил - тартиб детерминистик
         Estimate oldest = null;
         Estimate newest = null;

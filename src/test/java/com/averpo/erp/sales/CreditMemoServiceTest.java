@@ -72,7 +72,7 @@ class CreditMemoServiceTest {
 
     private Contact customer;
 
-    /** USD валютали мижоз (Arbitr-087): чет валюта ҳужжатлари шунга ёзилади. */
+    /** USD валютали мижоз (DEC-087): чет валюта ҳужжатлари шунга ёзилади. */
     private Contact usdCustomer;
 
     private Item service;
@@ -132,7 +132,7 @@ class CreditMemoServiceTest {
 
     /**
      * SERVICE сатрли invoice post қилади (10 000, солиқсиз). Контакт
-     * валютадан танланади (Arbitr-087: ҳужжат валютаси контактдан) -
+     * валютадан танланади (DEC-087: ҳужжат валютаси контактдан) -
      * USD ҳужжат usdCustomer'га, home ҳужжат customer'га.
      */
     private Invoice postServiceInvoice(String currency, BigDecimal rate, String price) {
@@ -154,7 +154,7 @@ class CreditMemoServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 2-босқич retrofit: size+1 кредит-нота - 2-саҳифада
+        // PERF-perf1 2-босқич retrofit: size+1 кредит-нота - 2-саҳифада
         // биттагина қолади; саналар ҳар хил - тартиб детерминистик
         CreditMemo oldest = null;
         CreditMemo newest = null;
@@ -275,7 +275,7 @@ class CreditMemoServiceTest {
                 .satisfies(e -> assertThat(((BusinessRuleException) e).getCode())
                         .isEqualTo("BR-RET-003"));
 
-        // Кросс-валюта қўллаш рад. Arbitr-087 дан кейин бир контактда икки
+        // Кросс-валюта қўллаш рад. DEC-087 дан кейин бир контактда икки
         // валютали ҳужжат структуравий имконсиз (валюта контактдан) - USD
         // кредит энди фақат USD контактда бўлади, бошқа контактнинг UZS
         // invoice'ига қўллашда контакт гарови (BR-RET-005) аввал ушлайди;
@@ -291,7 +291,7 @@ class CreditMemoServiceTest {
                         .isEqualTo("BR-RET-005"));
     }
 
-    /** Arbitr-087 (BR-RET-008): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-RET-008): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD контактдан ўзи олади
@@ -313,7 +313,7 @@ class CreditMemoServiceTest {
     }
 
     /**
-     * Arbitr-052 (007): create сатр валидация чегаралари - миқдор мусбат,
+     * DEC-052 (007): create сатр валидация чегаралари - миқдор мусбат,
      * нарх манфий эмас (BR-RET-001), INVENTORY сатрида омбор шарт
      * (BR-RET-002). Аввал CM create чегаралари умуман қопланмаган эди -
      * бузилиш «камида битта тест» талабини айланиб ўтарди.
@@ -340,7 +340,7 @@ class CreditMemoServiceTest {
     }
 
     /**
-     * Arbitr-069 (Komil-019): BR-RET-006 КУМУЛЯТИВ - аввалги POSTED
+     * DEC-069 (IFRS-019): BR-RET-006 КУМУЛЯТИВ - аввалги POSTED
      * қайтимлар ҳисобга киради, ҳовуз CM+RR умумий (иккиси ҳам invoice
      * қайтими): 10 доналик сотувга RR 6 дона POSTED бўлгач CM 6 дона
      * РАД (12 > 10), лимитга айнан тенг қисман қайтим (4) ЎТАДИ,
@@ -398,7 +398,7 @@ class CreditMemoServiceTest {
     }
 
     /**
-     * Arbitr-069 (Asrorxoja-013): асл ҳужжат СТАТУСИ текширилади - DRAFT
+     * DEC-069 (LOG-013): асл ҳужжат СТАТУСИ текширилади - DRAFT
      * ҳам, REVERSED ҳам «асл ҳужжат» бўла олмайди. Аввал create фақат
      * мавжудлик + контактни текширарди (apply POSTED текшируви билан
      * асимметрия).
@@ -461,7 +461,7 @@ class CreditMemoServiceTest {
     }
 
     /**
-     * Arbitr-050 / Беруний-031: эски (ёпилган) даврдаги кредитни янги очиқ
+     * DEC-050 / Беруний-031: эски (ёпилган) даврдаги кредитни янги очиқ
      * даврдаги invoice'га қўллаш ЎТАДИ - realized FX JE ҳужжат санаси эмас,
      * ҚЎЛЛАШ (бугун) санасида ёзилади. Акс ҳолда FX JE cmDate'да (ёпиқ
      * давр) яратилиб BR-LED-020 блокига урар ва бутун apply тўхтарди.

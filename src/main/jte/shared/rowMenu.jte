@@ -3,8 +3,8 @@
 @param Content items
 @param Msg msg
 
-<%-- Nargiza-007 P1a: рўйхат қаторидаги Action менюси (QBO ⋮ услуби);
-     Penguin dropdown кўриниши - Arbitr-120 (реф: docs/penguin-refs/
+<%-- BA-007 P1a: рўйхат қаторидаги Action менюси (QBO ⋮ услуби);
+     Penguin dropdown кўриниши - DEC-120 (реф: docs/penguin-refs/
      dropdown-menu.html). Panel position:fixed қилиб очилади - акс
      ҳолда жадвал ўрамининг overflow-x-auto'си кесиб қўярди;
      координата тугма жойидан олинади. data-rowmenu - T0 row-click

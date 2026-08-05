@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Компания маълумотлари web оқими (Arbitr-112): SUPER_ADMIN очади, паст
+ * Компания маълумотлари web оқими (DEC-112): SUPER_ADMIN очади, паст
  * роль 403 (/settings/company SETTINGS соҳаси), реквизит round-trip,
  * лого upload → inline+nosniff view → delete. {@code /settings/company*}
  * SecurityConfig'да алоҳида қатор ТАЛАБ ҚИЛМАЙДИ (SETTINGS остида,

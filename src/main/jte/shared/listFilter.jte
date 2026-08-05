@@ -6,7 +6,7 @@
 @param String q = ""
 @param gg.jte.Content extra = null
 
-<%-- Умумий рўйхат филтр қатори (Arbitr-068, list-filters.md): оддий GET
+<%-- Умумий рўйхат филтр қатори (DEC-068, list-filters.md): оддий GET
      форма (bookmark/back ишлайди, audit-log нақши), мобилда wrap.
      from/to null берилса сана оралиғи чиқмайди (каталог рўйхатлари);
      extra - экранга хос select'лар (статус/контакт/тур/фаоллик) шу

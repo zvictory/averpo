@@ -73,7 +73,7 @@ class InvoiceServiceTest {
     private Contact customer;
 
     /**
-     * USD валютали мижоз (Arbitr-087): ҳужжат валютаси контактдан
+     * USD валютали мижоз (DEC-087): ҳужжат валютаси контактдан
      * келади - чет валюта ҳужжатлари шу мижозга ёзилади.
      */
     private Contact usdCustomer;
@@ -135,7 +135,7 @@ class InvoiceServiceTest {
 
     @org.junit.jupiter.api.Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 1-босқич: size+1 ёзув - 2-саҳифада биттагина
+        // PERF-perf1 1-босқич: size+1 ёзув - 2-саҳифада биттагина
         // қолади; саналар атайлаб ҳар хил - тартиб (янгидан эскига)
         // детерминистик текширилади
         Invoice oldest = null;
@@ -289,7 +289,7 @@ class InvoiceServiceTest {
 
     @Test
     void post_foreignMultiLine_pennyRounding_balancedAndPosts() {
-        // Beruniy-007 + Asrorxoja-002: AR дебети (назорат сатри) битта
+        // PERF-007 + LOG-002: AR дебети (назорат сатри) битта
         // яхлитлашли target = round(0.06 × 12345.6789) = 740.7407,
         // даромад сатрлари largest-remainder билан шунга тақсимланади
         Invoice invoice = invoiceService.post(invoiceService.createDraft(new InvoiceData(
@@ -317,7 +317,7 @@ class InvoiceServiceTest {
 
     @Test
     void post_foreignThreeLines_everyLineKeepsMoneyInvariant() {
-        // Asrorxoja-002 сценарийси: 3 × 0.01 USD, rate 10012.345 - эски
+        // LOG-002 сценарийси: 3 × 0.01 USD, rate 10012.345 - эски
         // «йиғинди» ечимида AR сатри BR-LED-003 дан 0.00015 га чиқиб,
         // тўғри киритилган invoice пост бўлмай қоларди
         Invoice invoice = invoiceService.post(invoiceService.createDraft(new InvoiceData(
@@ -347,7 +347,7 @@ class InvoiceServiceTest {
 
     @Test
     void arAging_onlyCurrentDate_rejectsHistorical() {
-        // BR-RPT-001 (Komil-004): жорий balanceDue'дан ўқилади - ўтган
+        // BR-RPT-001 (IFRS-004): жорий balanceDue'дан ўқилади - ўтган
         // санага сўралса ҳисобот ёлғон гапирар эди
         LocalDate today = LocalDate.now(settingsService.zoneId());
         assertThatThrownBy(() -> invoiceService.arAging(today.minusDays(1)))
@@ -470,7 +470,7 @@ class InvoiceServiceTest {
                         .isEqualTo("BR-SINV-006"));
     }
 
-    /** Arbitr-087 (BR-SINV-011): валюта контактдан derive + мослик гарови. */
+    /** DEC-087 (BR-SINV-011): валюта контактдан derive + мослик гарови. */
     @Test
     void currency_derivedFromContact_mismatchRejected() {
         // Бўш currency - server USD контактдан ўзи олади (ҳақиқат манбаи)
@@ -603,7 +603,7 @@ class InvoiceServiceTest {
         // Чет валютали (USD) мижоз - home UZS'да USD курси 12600. Лимит
         // МИЖОЗ ВАЛЮТАСИДА (1000 USD): очиқ AR home'га айлантирилмайди
         // (акс ҳолда 500 USD × 12600 = 6.3M деб лимитдан «ошиб» кетарди -
-        // Arbitr-160 бузилиши). Бу тест конверсия ЙЎҚлигини қулфлайди.
+        // DEC-160 бузилиши). Бу тест конверсия ЙЎҚлигини қулфлайди.
         Contact usdLimited = contactService.create(ContactType.CUSTOMER, new ContactData(
                 "USD лимитли мижоз", null, null, null, null, null,
                 "USD", null, null, new BigDecimal("1000"), null));

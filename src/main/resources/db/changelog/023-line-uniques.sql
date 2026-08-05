@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:023-01-line-tables-unique
--- Beruniy-010: сатр жадвалларида (owner_id, line_no) UNIQUE йўқ эди -
+-- PERF-010: сатр жадвалларида (owner_id, line_no) UNIQUE йўқ эди -
 -- journal_entry_line/landed_cost_allocation_line'даги паттерн билан
 -- мувофиқлаштирилади. Domain (addLine lines.size()+1) ҳимояси бор,
 -- бу DB даражасидаги кафолат: batch import/ташқи скрипт такрор

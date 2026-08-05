@@ -62,7 +62,7 @@ public class LandedCostController {
     private final com.averpo.erp.i18n.Msg msg;
 
     /**
-     * Рўйхат - янгидан эскига; тўлиқ филтр қатори (Arbitr-068): давр/
+     * Рўйхат - янгидан эскига; тўлиқ филтр қатори (DEC-068): давр/
      * статус/матн (контактсиз ҳужжат, саҳифаланмаган - қисқа рўйхат).
      */
     @GetMapping
@@ -73,7 +73,7 @@ public class LandedCostController {
                        Model model) {
         model.addAttribute("allocations", landedCostService.list(
                 new LandedCostService.ListFilter(from, to, parseStatusSafe(status), q)));
-        // U-конвенция: LC суммалари home'да - тепада битта ёзув (Alisa-001)
+        // U-конвенция: LC суммалари home'да - тепада битта ёзув (UI-001)
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         model.addAttribute("from", from == null ? "" : from.toString());
         model.addAttribute("to", to == null ? "" : to.toString());
@@ -98,7 +98,7 @@ public class LandedCostController {
     @GetMapping("/new")
     public String createForm(Model model) {
         LandedCostForm form = new LandedCostForm();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setAllocationDate(LocalDate.now(settingsService.zoneId()));
         fillFormModel(model, form);
         return "purchase/landedCostForm";
@@ -113,7 +113,7 @@ public class LandedCostController {
             for (String id : form.getMovementIds()) {
                 if (id != null && !id.isBlank()) {
                     // Бузуқ checkbox қиймати хом IAE эмас, BR-LC-003 билан
-                    // формага қайтади (Beruniy-006 / FormParsers сиёсати)
+                    // формага қайтади (PERF-006 / FormParsers сиёсати)
                     movementIds.add(FormParsers.uuid(id,
                             BusinessRule.BR_LC_003, "Receipt танлови"));
                 }
@@ -148,7 +148,7 @@ public class LandedCostController {
         model.addAttribute("itemNames", itemNames(receipts.values()));
         model.addAttribute("billNumbers", billNumbers(receipts.values()));
         model.addAttribute("today", LocalDate.now(settingsService.zoneId()).toString());
-        // U-конвенция: LC суммалари home'да - тепада битта ёзув (Alisa-001)
+        // U-конвенция: LC суммалари home'да - тепада битта ёзув (UI-001)
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
         return "purchase/landedCostView";
     }
@@ -190,7 +190,7 @@ public class LandedCostController {
 
     /**
      * Товар номлари - фақат receipt қаторларидаги id'лар byIds/IN
-     * сўровда (ARBITR-105б, Ulugbek-003 §1): бутун каталог юкланмайди.
+     * сўровда (DEC-105б, AUD-003 §1): бутун каталог юкланмайди.
      */
     private Map<UUID, String> itemNames(Iterable<StockMovement> receipts) {
         java.util.Set<UUID> itemIds = new HashSet<>();

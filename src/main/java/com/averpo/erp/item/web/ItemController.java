@@ -61,7 +61,7 @@ public class ItemController {
     private final Msg msg;
 
     /**
-     * Рўйхат: стандарт каталог филтри (Arbitr-068) - тур select, фаоллик
+     * Рўйхат: стандарт каталог филтри (DEC-068) - тур select, фаоллик
      * (фаол/нофаол/ҳаммаси, default фаол) ва матн (ном/SKU). Эски
      * showInactive=true линклари «ҳаммаси» деб тушунилади (бузилмайди).
      */
@@ -109,7 +109,7 @@ public class ItemController {
         } catch (BusinessRuleException e) {
             fillFormModel(model, form, null);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "item/formDrawer" : "item/form";
         }
@@ -142,7 +142,7 @@ public class ItemController {
         } catch (BusinessRuleException e) {
             fillFormModel(model, form, id);
             model.addAttribute("error", e.displayMessage());
-            // Arbitr-024: хато drawer ичида қайта render бўлади
+            // DEC-024: хато drawer ичида қайта render бўлади
             return com.averpo.erp.shared.web.Htmx.isHtmx(request)
                     ? "item/formDrawer" : "item/form";
         }
@@ -156,7 +156,7 @@ public class ItemController {
 
     /** Форма model'ини тўлдиради - счётлар туркум бўйича ажратилган. */
     private void fillFormModel(Model model, ItemForm form, UUID editId) {
-        // Arbitr-014: all() - группа счётлар select'да disabled жилд бўлади
+        // DEC-014: all() - группа счётлар select'да disabled жилд бўлади
         // (нофаолларни accountOptions partial'и ташлайди)
         List<Account> accounts = accountService.all();
         model.addAttribute("form", form);

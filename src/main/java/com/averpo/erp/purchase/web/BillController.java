@@ -92,9 +92,9 @@ public class BillController {
     /**
      * Рўйхат - ихтиёрий статус филтри; T11 drill-down учун vendor ва
      * «фақат очиқ» филтрлари (AP aging қатори шу манзилга боради).
-     * Саҳифаланган (Beruniy-perf1): ?page=, филтрлар саҳифа линкларида
+     * Саҳифаланган (PERF-perf1): ?page=, филтрлар саҳифа линкларида
      * сақланади; open drill-down йўли аввалгидек саҳифасиз. Устун
-     * саралаш (ARBITR-105б): ?sort=/&dir= service whitelist'и орқали;
+     * саралаш (DEC-105б): ?sort=/&dir= service whitelist'и орқали;
      * th линклари филтрни (sort'сиз), саҳифа линклари филтр+sort'ни
      * бирга ташийди.
      */
@@ -116,10 +116,10 @@ public class BillController {
             // Aging'даги маънонинг ўзи: POSTED ва қолдиғи > 0
             bills = billService.openBills(vendorId);
         } else {
-            // ARBITR-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
+            // DEC-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
             int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                     request, response, "bills");
-            // ARBITR-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
+            // DEC-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
             var sorted = BillService.sortOf(sort, dir);
             org.springframework.data.domain.Page<Bill> billPage = billService.list(
                     new BillService.ListFilter(from, to, parseStatusSafe(status),
@@ -137,7 +137,7 @@ public class BillController {
             model.addAttribute("sortDir", sorted.dir());
         }
         // Vendor номлари - фақат саҳифадаги сатрлар (+ филтр чипи id'си)
-        // byIds/IN сўровда (ARBITR-105б, Ulugbek-003 §1)
+        // byIds/IN сўровда (DEC-105б, AUD-003 §1)
         java.util.Set<UUID> vendorIds = new java.util.HashSet<>();
         for (Bill bill : bills) {
             vendorIds.add(bill.getVendorId());
@@ -170,7 +170,7 @@ public class BillController {
     @GetMapping("/new")
     public String createForm(@RequestParam(required = false) UUID purchaseOrderId,
                              Model model) {
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
         BillForm form = purchaseOrderId == null
@@ -178,7 +178,7 @@ public class BillController {
                 : BillForm.fromPurchaseOrder(
                         purchaseOrderService.requireConvertible(purchaseOrderId),
                         settings.homeCurrencyCode());
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setBillDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "purchase/billForm";
@@ -210,7 +210,7 @@ public class BillController {
     public String save(@ModelAttribute BillForm form,
                        @RequestParam String action,
                        Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toData'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             BillData data = toData(form, settings);
@@ -254,7 +254,7 @@ public class BillController {
         model.addAttribute("vendorName",
                 contactService.get(bill.getVendorId()).getDisplayName());
         // Item номлари - фақат шу ҳужжат сатрларидаги id'лар byIds/IN
-        // сўровда (ARBITR-105б, Ulugbek-003 §1: бутун каталог юкланмайди)
+        // сўровда (DEC-105б, AUD-003 §1: бутун каталог юкланмайди)
         model.addAttribute("itemNames", itemService.namesByIds(
                 bill.getLines().stream().map(l -> l.getItemId())
                         .filter(java.util.Objects::nonNull).distinct().toList()));
@@ -262,7 +262,7 @@ public class BillController {
         model.addAttribute("accountNames", accountNames());
         model.addAttribute("unitNames", unitNames());
         model.addAttribute("taxRateNames", taxRateNames());
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
         model.addAttribute("today", LocalDate.now(settings.zoneId()).toString());
@@ -324,7 +324,7 @@ public class BillController {
     // ---- ички ёрдамчилар ----
 
     /** Форма model'ини тўлдиради (select маълумотлари билан) - settings
-     * оқим бошидаги snapshot (Sanjar-005, қайта SELECT қилинмайди). */
+     * оқим бошидаги snapshot (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, BillForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);
@@ -341,7 +341,7 @@ public class BillController {
         model.addAttribute("taxRates", taxRateService.activeRates());
         model.addAttribute("warehouses", warehouseService.all().stream()
                 .filter(Warehouse::isActive).toList());
-        // Arbitr-014: all() - EXPENSE группа счётлари ҳам киради, select'да
+        // DEC-014: all() - EXPENSE группа счётлари ҳам киради, select'да
         // disabled жилд бўлади (нофаолларни accountOptions ташлайди)
         model.addAttribute("expenseAccounts", accountService.all().stream()
                 .filter(a -> a.getClassification() == AccountClassification.EXPENSE)

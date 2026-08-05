@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.time.Duration;
 
 /**
- * Статик ресурсларга табақалашган Cache-Control (Arbitr-131).
+ * Статик ресурсларга табақалашган Cache-Control (DEC-131).
  *
  * <p>Нега керак: Spring Security default'и ҲАМма жавобга (статикларга
  * ҳам) {@code Cache-Control: no-store} қўяди - шрифт ҳеч қачон
@@ -22,7 +22,7 @@ import java.time.Duration;
  * <p>Барча статик гуруҳ 30 кун + immutable: шрифт/вендор файллари
  * фақат версия кўтарилганда ўзгаради, ўз css/js'имиз эса deploy'да
  * ўзгарса ҳам браузерга ЯНГИ URL бўлиб келади - шаблонлардаги
- * {@code ?v=<build вақти>} (Arbitr-137, {@link com.averpo.erp.web.Assets})
+ * {@code ?v=<build вақти>} (DEC-137, {@link com.averpo.erp.web.Assets})
  * ҳар build'да алмашади, эски кэш ёзуви эса ўқилмай ўз-ўзидан
  * эскиради. Шунга revalidation ҳам керак эмас (immutable - reload'да
  * ҳам сўралмайди). HTML/динамик саҳифаларга бу handler'лар тегмайди -
@@ -66,14 +66,14 @@ public class StaticCacheConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/")
                 .setCacheControl(LONG_LIVED);
         // Ўз css/js'имиз ҳам узун кэшда: янги build янги ?v= беради
-        // (Arbitr-137) - эски ёзув кэшда ётаверади, ҳеч ким сўрамайди
+        // (DEC-137) - эски ёзув кэшда ётаверади, ҳеч ким сўрамайди
         registry.addResourceHandler("/css/**")
                 .addResourceLocations("classpath:/static/css/")
                 .setCacheControl(LONG_LIVED);
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("classpath:/static/js/")
                 .setCacheControl(LONG_LIVED);
-        // Расм активлари (Arbitr-143 вендор логоси) - css/js каби узун
+        // Расм активлари (DEC-143 вендор логоси) - css/js каби узун
         // кэш: линкда ?v=<build вақти> (Assets) янги build'да алмашади
         registry.addResourceHandler("/img/**")
                 .addResourceLocations("classpath:/static/img/")

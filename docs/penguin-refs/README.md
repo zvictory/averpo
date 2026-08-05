@@ -16,12 +16,12 @@
 | alert.html | Alert (success/danger) | shared/alert.jte (флеш хабарлар) |
 | card.html | Card (ўрам) | view инфо-панеллари, dashboard карталари |
 | modal.html | Modal (+палитра мослашуви) | layout/main.jte қидирув command-palette |
-| table.html | Table (default + striped) | shared/table.jte фрагменти - барча жадваллар (Arbitr-120) |
+| table.html | Table (default + striped) | shared/table.jte фрагменти - барча жадваллар (DEC-120) |
 | pagination.html | Paginations (next & preview) | shared/pagination.jte |
 | dropdown-menu.html | Dropdowns (click) | shared/rowMenu.jte ⋮ менюси, ledger/accounts.jte |
-| select.html | Select (default) | барча форма/филтр select'лари (Arbitr-121) |
+| select.html | Select (default) | барча форма/филтр select'лари (DEC-121) |
 | checkbox-radio.html | Checkbox + Radio | форма checkbox'лари (native+accent мослашуви) |
-| combobox.html | Combobox (simple + with search) | shared/combobox.jte фрагменти - қидирувли танлагичлар (Arbitr-123) |
+| combobox.html | Combobox (simple + with search) | shared/combobox.jte фрагменти - қидирувли танлагичлар (DEC-123) |
 
 Semantic токенлар `src/main/css/app.css` @theme'дагилар (arctic):
 surface / surface-alt / on-surface(-strong) / primary / on-primary /

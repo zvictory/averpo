@@ -21,7 +21,7 @@
         <input name="displayName" required maxlength="255"
                class="mt-1 w-full rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
     </label>
-    <%-- Валюта - контакт доим валютали (Arbitr-158/159); home олдиндан
+    <%-- Валюта - контакт доим валютали (DEC-158/159); home олдиндан
          танланган, бўш опция ЙЎҚ. Танланган валюта create'да сақланади --%>
     <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
         ${msg.localize("contact.form.currency")}

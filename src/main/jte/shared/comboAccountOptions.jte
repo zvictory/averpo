@@ -7,13 +7,13 @@
 @param String selected = null
 @param Boolean disableNonPostable = true
 
-<%-- shared/accountOptions'нинг combobox твини (Arbitr-123): ўша
+<%-- shared/accountOptions'нинг combobox твини (DEC-123): ўша
      AccountOptionGroups қурувчиси, native optgroup ўрнига comboGroup
      сарлавҳа, option ўрнига comboOption li. postable=false ота счётлар
      кўрсатилмайди - эски combobox.js dropdown хулқи айнан (у disabled
      option'ларни ўтказиб юборарди); disableNonPostable=false бўлса
      (ота счёт танлаш) ҳаммаси чиқади. data-cur/data-undep - тўлов
-     формалари валюта филтри JS'и учун (Arbitr-070): танловда value
+     формалари валюта филтри JS'и учун (DEC-070): танловда value
      input'га кўчади, филтр li.hidden билан ишлайди. --%>
 @for(AccountOptionGroups.Group group : AccountOptionGroups.build(accounts, disableNonPostable != null && disableNonPostable))
     @template.shared.comboGroup(label = msg.lookup(group.titleKey()))

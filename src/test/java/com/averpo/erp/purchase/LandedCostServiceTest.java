@@ -286,7 +286,7 @@ class LandedCostServiceTest {
 
     @Test
     void avco_reverse_blockedWhenMovementsAfterAllocation() {
-        // Asrorxoja-001 сценарийси: qty гарови (15 >= 10) алданиб ўтар,
+        // LOG-001 сценарийси: qty гарови (15 >= 10) алданиб ўтар,
         // тўлиқ inventoryShare айирилиб R2 қийматидан «ўғирланар» эди
         UUID receipt1 = receiptOf(new BigDecimal("10"), new BigDecimal("1000"));
         LandedCostAllocation allocation = landedCostService.create(
@@ -305,7 +305,7 @@ class LandedCostServiceTest {
 
     @Test
     void avco_soldReceipt_allocationGoesFullyToCogs() {
-        // Beruniy-004: receipt тўлиқ сотилган - кейинги партия турибди.
+        // PERF-004: receipt тўлиқ сотилган - кейинги партия турибди.
         // Аввал remaining = min(бутун қолдиқ, q) = 5 бўлиб, сотилган
         // товар харажати кейинги партия активига ёзилар эди
         UUID receipt1 = receiptOf(new BigDecimal("10"), new BigDecimal("1000"));
@@ -362,7 +362,7 @@ class LandedCostServiceTest {
 
     @Test
     void avco_billReverse_blockedWhileAllocationActive_thenWorks() {
-        // Beruniy-005: тақсимот кучда туриб bill reverse қилинса юкланган
+        // PERF-005: тақсимот кучда туриб bill reverse қилинса юкланган
         // қиймат ва клиринг кредити GL'да «осилиб» қолар эди
         Bill bill = postedBill(new BigDecimal("10"), new BigDecimal("1000"));
         UUID receipt = inventoryService.byReference("BILL", bill.getId()).get(0).getId();

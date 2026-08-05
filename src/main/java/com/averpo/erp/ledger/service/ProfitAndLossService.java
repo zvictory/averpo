@@ -20,7 +20,7 @@ import java.util.UUID;
  * Profit &amp; Loss - QBO тузилмасида (docs/modules/reports.md):
  * Даромад → COGS → Ялпи фойда → Харажатлар → Операцион фойда →
  * Бошқа даромад/харажат → Солиққача фойда → Солиқ харажати →
- * Соф фойда (солиқ сатри - IAS 1.82(b), Komil-010).
+ * Соф фойда (солиқ сатри - IAS 1.82(b), IFRS-010).
  *
  * <p>Trial Balance услуби: JdbcClient SQL агрегат, POSTED+REVERSED,
  * барча суммалар home валютада. Ишора: даромад Cr-Dt, харажат Dt-Cr -
@@ -65,7 +65,7 @@ public class ProfitAndLossService {
      * @param otherExpenses Бошқа харажат (OTHER_EXPENSE)
      * @param netOtherIncome Бошқа фойда (нетто) = Бошқа даромад - Бошқа харажат
      * @param profitBeforeTax Солиққача фойда = Операцион + Бошқа (нетто) -
-     *                        IAS 1.82(b) талаби учун оралиқ сатр (Komil-010)
+     *                        IAS 1.82(b) талаби учун оралиқ сатр (IFRS-010)
      * @param taxExpense Солиқ харажати (EXPENSE ичидаги TAXES_PAID detail) -
      *                   операцион харажатлардан ажратиб кўрсатилади,
      *                   GL/detail type ўзгармайди
@@ -87,7 +87,7 @@ public class ProfitAndLossService {
         // харажат сатрларида кейин negate қилинади
         Map<AccountType, List<Row>> byType = new EnumMap<>(AccountType.class);
         // Солиқ харажати (TAXES_PAID) алоҳида бўлимга ажратилади -
-        // IAS 1.82(b) кўрсатиш талаби, GL/detail type ўзгармайди (Komil-010)
+        // IAS 1.82(b) кўрсатиш талаби, GL/detail type ўзгармайди (IFRS-010)
         List<Row> taxRows = new ArrayList<>();
         jdbc.sql("""
                 SELECT a.id, a.name, a.code, a.type, a.classification, a.detail_type,

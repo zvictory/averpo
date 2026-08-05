@@ -14,8 +14,8 @@
 
 @template.layout.main(helpKey = "page.contactCard", title = card.displayName(), msg = msg, lang = lang, csrf = csrf, canEdit = canEdit, isAdmin = isAdmin, content = @`
     <%-- Кўчирма жадвалининг print полиши фрагмент cls/wrap
-         утилиталарида (Arbitr-120, shared/table.jte чақируви);
-         бутун экран Penguin утилиталарда (Arbitr-122). --%>
+         утилиталарида (DEC-120, shared/table.jte чақируви);
+         бутун экран Penguin утилиталарда (DEC-122). --%>
     <%-- Сарлавҳа: ном + тури + Таҳрир (эски форма) + Печат кўчирма --%>
     <div class="mb-4 flex flex-wrap items-start justify-between gap-2 print:hidden">
         <div>
@@ -104,7 +104,7 @@
             <tr>
                 <td class="whitespace-nowrap">${r.date().toString()}</td>
                 <td>@if(r.sourceModule() == null)${msg.localize("statement.type.MANUAL")}@else${msg.localize("statement.type." + r.sourceModule())}@endif</td>
-                <%-- Arbitr-063 услуби: рақам линк - ҳужжатга (тур маълум),
+                <%-- DEC-063 услуби: рақам линк - ҳужжатга (тур маълум),
                      бўлмаса JE'га; print'да оддий матндек чиқади --%>
                 !{var docUrl = SourceDocLinks.url(r.sourceModule(), r.documentId());}
                 <td>

@@ -27,7 +27,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Arbitr-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
+    <%-- DEC-163: header metadata - ёрлиқ тепада, responsive 1/2 устун --%>
     <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 rounded-radius border border-outline bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
         <div class="flex flex-col gap-0.5">
             <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bt.col.type")}</span>
@@ -56,7 +56,7 @@
             <span class="text-base text-on-surface dark:text-on-surface-dark">${Fmt.money(txn.getTotal())} ${txn.getCurrency().getCode()}</span>
         </div>
         @if(!txn.getCurrency().getCode().equals(homeCurrency))
-            <%-- Arbitr-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
+            <%-- DEC-065: курс доим кучли валюта базисида (1 USD = 12 600 UZS) --%>
             !{var rateOr = Fmt.orient(txn.getCurrency().getCode(), homeCurrency, txn.getExchangeRate());}
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bt.form.rate")}</span>
@@ -64,12 +64,12 @@
             </div>
         @endif
         @if(txn.getType() == BankTransactionType.TRANSFER && txn.getCounterpartAmount() != null)
-            <%-- Манзил сумма манзил банк валютасида (Alisa-003) - кодсиз
+            <%-- Манзил сумма манзил банк валютасида (UI-003) - кодсиз
                  конверсия рақами кўчирма билан солиштиришда адаштиради --%>
             <div class="flex flex-col gap-0.5">
                 <span class="text-base font-semibold text-on-surface dark:text-on-surface-dark">${msg.localize("bt.form.toAmount")}</span>
                 <span class="text-base text-on-surface dark:text-on-surface-dark">${Fmt.money(txn.getCounterpartAmount())}@if(counterpartCurrency != null) ${counterpartCurrency}@endif
-                    <%-- Манзил курс фақат манзил ЧЕТ валютада - home курси 1 шовқин (Arbitr-065) --%>
+                    <%-- Манзил курс фақат манзил ЧЕТ валютада - home курси 1 шовқин (DEC-065) --%>
                     @if(counterpartCurrency != null && !counterpartCurrency.equals(homeCurrency) && txn.getCounterpartRate() != null && txn.getCounterpartRate().compareTo(txn.getExchangeRate()) != 0)
                         !{var toOr = Fmt.orient(counterpartCurrency, homeCurrency, txn.getCounterpartRate());}
                         (${msg.localize("bt.form.toRate")}: ${msg.localize("rate.oriented", toOr.base(), Fmt.rate(toOr.value()), toOr.quote())})
@@ -84,7 +84,7 @@
         @endif
     </div>
 
-    <%-- Arbitr-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
+    <%-- DEC-080: ҳужжатдан GL ёзувига (JE) линк - POSTED/REVERSED'да --%>
     @if(txn.getStatus() == BankTransaction.Status.POSTED || txn.getStatus() == BankTransaction.Status.REVERSED)
         @template.shared.jeLink(sourceType = "BANK_TXN", id = txn.getId().toString(), msg = msg)
     @endif

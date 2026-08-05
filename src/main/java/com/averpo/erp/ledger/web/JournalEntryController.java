@@ -54,7 +54,7 @@ public class JournalEntryController {
     /** Home currency ва timezone учун. */
     private final CompanySettingsService settingsService;
 
-    /** Header валюта select каталоги (Arbitr-107 QBO parity). */
+    /** Header валюта select каталоги (DEC-107 QBO parity). */
     private final com.averpo.erp.shared.service.CurrencyService currencyService;
 
     /** Ўқиш ва draft ўчириш - ўз модулимиз ичида рухсат. */
@@ -66,7 +66,7 @@ public class JournalEntryController {
     /** Йўналиш select'и (class-tracking.md) - shared каталог. */
     private final com.averpo.erp.shared.service.TxnClassService txnClassService;
 
-    /** Рўйхат саҳифаси ҳажми (Beruniy-perf1 1-босқич). */
+    /** Рўйхат саҳифаси ҳажми (PERF-perf1 1-босқич). */
     private static final int LIST_PAGE_SIZE = 25;
 
     /**
@@ -79,7 +79,7 @@ public class JournalEntryController {
                     org.springframework.data.domain.Sort.Order.desc("entryNumber"));
 
     /**
-     * Устун саралаш WHITELIST'и (ARBITR-105б): th калити → entity
+     * Устун саралаш WHITELIST'и (DEC-105б): th калити → entity
      * property - хом параметр Sort'га тушмайди (TableSort). JE рўйхати
      * repo билан тўғридан ишлагани учун харита controller'да (бошқа
      * рўйхатларда service'да). description йўқ: узун эркин матн бўйича
@@ -93,9 +93,9 @@ public class JournalEntryController {
 
     /**
      * Рўйхат: сана оралиғи (default - шу йил, мавжуд хатти-ҳаракат
-     * сақланган), статус ва матн (рақам/тавсиф, Arbitr-068) филтри.
-     * Саҳифаланган (Beruniy-perf1) - ?page=, филтрлар линкларда
-     * сақланади. Устун саралаш (ARBITR-105б): ?sort=/&dir= whitelist
+     * сақланган), статус ва матн (рақам/тавсиф, DEC-068) филтри.
+     * Саҳифаланган (PERF-perf1) - ?page=, филтрлар линкларда
+     * сақланади. Устун саралаш (DEC-105б): ?sort=/&dir= whitelist
      * орқали; саҳифа линклари филтр+sort'ни бирга ташийди.
      */
     @GetMapping
@@ -109,22 +109,22 @@ public class JournalEntryController {
                        jakarta.servlet.http.HttpServletRequest request,
                        jakarta.servlet.http.HttpServletResponse response,
                        Model model) {
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         java.time.ZoneId zone = settingsService.get().zoneId();
-        // Давр default'и - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-055)
+        // Давр default'и - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-055)
         LocalDate f = from != null ? from
                 : LocalDate.now(zone).withDayOfYear(1);
         LocalDate t = to != null ? to : LocalDate.now(zone);
         EntryStatus st = parseStatusSafe(status);
-        // ARBITR-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
+        // DEC-105: саҳифа ҳажми ?size=/cookie'дан (PageSizeResolver)
         int size = com.averpo.erp.shared.web.PageSizeResolver.resolve(
                 request, response, "journal-entries");
-        // ARBITR-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
+        // DEC-105б: хом sort/dir whitelist орқали (Sort'га тушмайди)
         var sorted = com.averpo.erp.shared.web.TableSort.resolve(
                 sort, dir, SORT_KEYS, LIST_SORT);
         var pageable = org.springframework.data.domain.PageRequest.of(
                 Math.max(0, page), size, sorted.sort());
-        // Arbitr-068: филтр комбинацияси Specification'да (audit услуби);
+        // DEC-068: филтр комбинацияси Specification'да (audit услуби);
         // ledger ўз repo'сини ишлатади - қоида 6 бузилмайди
         org.springframework.data.domain.Page<JournalEntry> entryPage =
                 entryRepository.findAll(org.springframework.data.jpa.domain.Specification.allOf(
@@ -150,14 +150,14 @@ public class JournalEntryController {
         return "ledger/journalEntries";
     }
 
-    /** Янги проводка формаси - 8 та бўш сатр билан (QBO parity, Arbitr-107). */
+    /** Янги проводка формаси - 8 та бўш сатр билан (QBO parity, DEC-107). */
     @GetMapping("/new")
     public String createForm(Model model) {
         JournalEntryForm form = JournalEntryForm.empty(8);
-        // Sanjar-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
+        // OPT-005: созламалар оқим бошида бир марта ўқилади - аввал ҳар
         // accessor (zoneId/homeCurrency/trackClasses) алоҳида SELECT берарди
         CompanySettings settings = settingsService.get();
-        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/Arbitr-044)
+        // Default сана - компания zoneId'даги «бугун» (JVM tz эмас, қоида 12/DEC-044)
         form.setEntryDate(LocalDate.now(settings.zoneId()));
         fillFormModel(model, form, settings);
         return "ledger/journalEntryForm";
@@ -167,10 +167,10 @@ public class JournalEntryController {
     @GetMapping("/line-row")
     public String lineRow(@RequestParam int index, Model model) {
         model.addAttribute("index", index);
-        // Arbitr-014: тўлиқ рўйхат - группа счётлар select'да disabled жилд
+        // DEC-014: тўлиқ рўйхат - группа счётлар select'да disabled жилд
         // бўлиб кўринади (нофаолларни accountOptions partial'и ташлайди)
         model.addAttribute("accounts", accountService.all());
-        // Arbitr-107: валюта/курс энди header'да - сатрга homeCurrency керак эмас
+        // DEC-107: валюта/курс энди header'да - сатрга homeCurrency керак эмас
         fillClassModel(model, settingsService.get());
         return "ledger/lineRow";
     }
@@ -180,7 +180,7 @@ public class JournalEntryController {
     public String save(@ModelAttribute JournalEntryForm form,
                        @RequestParam String action,
                        Model model, RedirectAttributes redirect) {
-        // Sanjar-005: битта snapshot toRequest'га ҳам, хато қайтишига ҳам
+        // OPT-005: битта snapshot toRequest'га ҳам, хато қайтишига ҳам
         CompanySettings settings = settingsService.get();
         try {
             JournalEntryRequest request = toRequest(form, settings);
@@ -201,7 +201,7 @@ public class JournalEntryController {
     }
 
     /**
-     * Манба ҳужжатдан унинг GL ёзувига ўтиш (Arbitr-080, 063 симметрияси):
+     * Манба ҳужжатдан унинг GL ёзувига ўтиш (DEC-080, 063 симметрияси):
      * ҳужжат кўриш саҳифаларидаги «GL ёзуви →» линки шу ерга келади, бу
      * эса энг охирги асл JE view'ига redirect қилади. Статик URL - линк
      * рендер қилинганда JE рақами учун ортиқча сўров йўқ (063 принципи).
@@ -228,21 +228,21 @@ public class JournalEntryController {
     public String view(@PathVariable UUID id, Model model) {
         JournalEntry entry = entryRepository.findWithLinesById(id)
                 .orElseThrow(() -> new NotFoundException("Entry топилмади: " + id));
-        // Sanjar-005: созламалар snapshot'и - оқимда битта SELECT
+        // OPT-005: созламалар snapshot'и - оқимда битта SELECT
         CompanySettings settings = settingsService.get();
         model.addAttribute("entry", entry);
         model.addAttribute("postedAtText",
                 Fmt.dt(entry.getPostedAt(), settings.zoneId()));
         model.addAttribute("reversedByNumber", entry.getReversedBy() == null
                 ? null : entry.getReversedBy().getEntryNumber());
-        // Arbitr-063: сторно линклари иккала йўналишда - рақам ёнида id ҳам
+        // DEC-063: сторно линклари иккала йўналишда - рақам ёнида id ҳам
         model.addAttribute("reversedById", entry.getReversedBy() == null
                 ? null : entry.getReversedBy().getId().toString());
         model.addAttribute("reversalOfId", entry.getReversalOf() == null
                 ? null : entry.getReversalOf().getId().toString());
         model.addAttribute("reversalOfNumber", entry.getReversalOf() == null
                 ? null : entry.getReversalOf().getEntryNumber());
-        // Arbitr-063: манба ҳужжатга «очиш» линки - mapping ЛОКАЛ (қоида 6)
+        // DEC-063: манба ҳужжатга «очиш» линки - mapping ЛОКАЛ (қоида 6)
         model.addAttribute("sourceUrl", SourceDocLinks.url(
                 entry.getSourceModule(), entry.getSourceDocumentId()));
         model.addAttribute("today", LocalDate.now(settings.zoneId()).toString());
@@ -295,14 +295,14 @@ public class JournalEntryController {
     }
 
     /** Форма model'ини тўлдиради - settings оқим бошидаги snapshot
-     * (Sanjar-005, қайта SELECT қилинмайди). */
+     * (OPT-005, қайта SELECT қилинмайди). */
     private void fillFormModel(Model model, JournalEntryForm form,
                                CompanySettings settings) {
         model.addAttribute("form", form);
-        // Arbitr-014: тўлиқ рўйхат - группа счётлар select'да disabled жилд
+        // DEC-014: тўлиқ рўйхат - группа счётлар select'да disabled жилд
         model.addAttribute("accounts", accountService.all());
         model.addAttribute("homeCurrency", settings.homeCurrencyCode());
-        // Arbitr-107: header валюта select каталоги (rateBlock компоненти учун)
+        // DEC-107: header валюта select каталоги (rateBlock компоненти учун)
         model.addAttribute("currencies", currencyService.active());
         fillClassModel(model, settings);
     }
@@ -329,7 +329,7 @@ public class JournalEntryController {
                 == com.averpo.erp.shared.domain.ClassTrackingMode.PER_TXN;
         UUID headerClass = FormParsers.uuid(form.getClassId(),
                 BusinessRule.BR_CLS_001, "Йўналиш");
-        // Arbitr-107 (QBO parity): валюта/курс энди header'да - бутун проводка
+        // DEC-107 (QBO parity): валюта/курс энди header'да - бутун проводка
         // битта валютада. Header қиймати ҲАММА сатрга тарқатилади, шунда домен
         // (сатр Money'си) ва BR валидациялари ЎЗГАРМАЙДИ (server тегилмади).
         String headerCurrency = form.getCurrency();

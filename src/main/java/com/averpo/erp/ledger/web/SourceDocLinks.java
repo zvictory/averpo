@@ -3,7 +3,7 @@ package com.averpo.erp.ledger.web;
 import java.util.UUID;
 
 /**
- * JE манба ҳужжати кўриш саҳифасига URL (Arbitr-063): sourceModule →
+ * JE манба ҳужжати кўриш саҳифасига URL (DEC-063): sourceModule →
  * URL prefix харитаси. АТАЙЛАБ ledger.web ичида ЛОКАЛ (қоида №6: ledger
  * бошқа модулга компиляция боғланиши қила олмайди - URL string'лар эса
  * боғланиш эмас, шунчаки манзил битими). Экранлар (JE кўриши, statement)

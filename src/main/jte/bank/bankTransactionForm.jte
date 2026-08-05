@@ -21,8 +21,8 @@
     @template.shared.alert(error = error)
 
     <%-- Кирим (DEPOSIT) формаси. Чиқим (EXPENSE) энди алоҳида /expenses
-         экранида (Arbitr-033), Ўтказма (TRANSFER) /transfers'да
-         (Arbitr-022) - бу формада тур танлагичи қолмади, hidden DEPOSIT.
+         экранида (DEC-033), Ўтказма (TRANSFER) /transfers'да
+         (DEC-022) - бу формада тур танлагичи қолмади, hidden DEPOSIT.
          Банк валютаси option'нинг data-currency'сидан: чет валютада курс
          майдони кўринади ва каталогдан prefill бўлади. --%>
     <form id="btForm" method="post" action="/bank-transactions"
@@ -58,7 +58,7 @@
                                         dataBalance = bankBalances.get(account.getId().toString()))
                             @endfor
                         `)
-                <%-- QBO'даги Balance: танланган банк қолдиғи (Arbitr-012) --%>
+                <%-- QBO'даги Balance: танланган банк қолдиғи (DEC-012) --%>
                 <span x-show="fromBal" x-cloak class="text-sm text-current/60">
                     ${msg.localize("bt.form.balance")}: <b x-text="fromBal"></b></span>
             </label>
@@ -69,7 +69,7 @@
                        class="mt-1 block rounded-radius border border-outline bg-surface-alt px-2 py-2 text-sm text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:text-on-surface-dark dark:focus-visible:outline-primary-dark">
             </label>
             <label x-show="fromCur !== '${homeCurrency}'" x-cloak>
-                <%-- Arbitr-065: киритиш йўналиши ёрлиқда аниқ - «1 USD = ? UZS» --%>
+                <%-- DEC-065: киритиш йўналиши ёрлиқда аниқ - «1 USD = ? UZS» --%>
                 <span class="inline-flex items-center gap-1 whitespace-nowrap">${msg.localize("bt.form.rate")} (1 <span x-text="fromCur"></span> = ? ${homeCurrency}) @template.shared.help(key = "field.exchangeRate", msg = msg)</span>
                 <input name="exchangeRate" size="10" inputmode="decimal" data-ratefor="bankAccountId"
                        value="${form.getExchangeRate() != null ? form.getExchangeRate() : ""}"
@@ -143,7 +143,7 @@
     </form>
 
     <script>
-        // Курс prefill (Arbitr-029): банк счёти алмашса force=true, сана
+        // Курс prefill (DEC-029): банк счёти алмашса force=true, сана
         // ўзгарса force=false (фақат автоматик тўлдирилган қиймат
         // янгиланади) - data-autofill нақши; қўлда терилган курс ҳеч
         // қачон устидан ёзилмайди. Home счётда курс бўш хулқи сақланади.

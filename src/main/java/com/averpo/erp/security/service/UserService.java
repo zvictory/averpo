@@ -69,7 +69,7 @@ public class UserService {
 
     /**
      * Аватар (профиль расми) сақлаш - мавжуд Attachment инфраси қайта
-     * ишлатилади (Arbitr-101; модуллараро public service, темир қоида
+     * ишлатилади (DEC-101; модуллараро public service, темир қоида
      * №6). Расм-специфик валидация (png/jpeg/webp, 2MB) шу service'да.
      */
     private final AttachmentService attachmentService;
@@ -82,7 +82,7 @@ public class UserService {
     private final CompanySettingsService settingsService;
 
     /**
-     * Ходим улаш (Arbitr-101 4-бўлим): EMPLOYEE контактлар рўйхати ва
+     * Ходим улаш (DEC-101 4-бўлим): EMPLOYEE контактлар рўйхати ва
      * номини public service орқали олади (темир қоида №6 - contact
      * repository'сига тегмайди). «Ходим» = Contact type=EMPLOYEE (payroll
      * employeeId нақши, алоҳида Employee entity йўқ).
@@ -153,7 +153,7 @@ public class UserService {
     }
 
     /**
-     * Тўлиқ таҳрир - ходим боғланиши ва email билан (Arbitr-101 4-бўлим +
+     * Тўлиқ таҳрир - ходим боғланиши ва email билан (DEC-101 4-бўлим +
      * рефайнмент, super-admin /users'да). {@code employeeContactId} null -
      * боғланиш узилади; қиймат бўлса BR-USR-015 текширилади. {@code email}
      * ихтиёрий (admin киритади) - тўлдирилса формат текширилади
@@ -262,7 +262,7 @@ public class UserService {
     }
 
     /**
-     * Улаш учун фаол EMPLOYEE контактлар (Arbitr-101 4-бўлим): userForm
+     * Улаш учун фаол EMPLOYEE контактлар (DEC-101 4-бўлим): userForm
      * танлагичи ФАҚАТ шуларни кўрсатади. Public service орқали (темир
      * қоида №6). ContactRef - contact модулининг public record'и.
      */
@@ -290,7 +290,7 @@ public class UserService {
 
     /**
      * Жорий фойдаланувчи ЎЗ профилининг маълумотларини янгилайди
-     * (Arbitr-101 + Arbitr-148): кўрсатиладиган ном (BR-USR-004 - бўш
+     * (DEC-101 + DEC-148): кўрсатиладиган ном (BR-USR-004 - бўш
      * эмас), email (BR-USR-013 формат), gender, birthdate (BR-USR-014 -
      * келажак эмас), phone. ФАҚАТ SecurityContext'даги ўзи - бошқа ҳеч
      * кимни ўзгартирмайди (id параметри ЙЎҚ), роль/username/парол
@@ -300,7 +300,7 @@ public class UserService {
      *
      * <p>Ном ЎЗГАРСА USER_UPDATED аудити ёзилади (ким ўзини ўзгартиргани
      * изланиши учун - admin {@link #update} билан бир оила); ном
-     * ўзгармаса шовқин йўқ. Қолган майдонлар (Arbitr-101 семантикаси)
+     * ўзгармаса шовқин йўқ. Қолган майдонлар (DEC-101 семантикаси)
      * аудитсиз - фақат маълумот.
      *
      * @throws BusinessRuleException BR-USR-004 (ном бўш), BR-USR-013
@@ -332,7 +332,7 @@ public class UserService {
     }
 
     /**
-     * Аватар юклаш (Arbitr-101): расм {@link AttachmentService#uploadImage}
+     * Аватар юклаш (DEC-101): расм {@link AttachmentService#uploadImage}
      * орқали сақланади (BR-ATT-005/006 - png/jpeg/webp, 2MB), эски
      * аватар (agar бўлса) ўчирилади - orphan қолмасин. Ҳаммаси битта
      * транзакцияда: янги FK flush'дан кейин эски ўчади (ON DELETE SET
@@ -369,7 +369,7 @@ public class UserService {
         return requireCurrentUser().getProfileImageId();
     }
 
-    // ---- Telegram улаш (Arbitr-103) - app_user эгаси шу модул бўлгани
+    // ---- Telegram улаш (DEC-103) - app_user эгаси шу модул бўлгани
     // учун код/чат майдонлари шу ерда юритилади; ботнинг ЎЗи билан
     // мулоқот TelegramService'да (у бу методларни чақиради - тескари
     // йўналиш ЙЎҚ, шунга bean ҳалқаси ҳам йўқ) ----

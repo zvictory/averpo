@@ -103,7 +103,7 @@ public class PayrollPaymentService {
 
     /**
      * Рўйхат тартиби - янгидан эскига (тўлов санаси, тенг санада яратилиш
-     * вақти). Bill/тўлов рўйхатлари билан бир хил нақш (Beruniy-perf1).
+     * вақти). Bill/тўлов рўйхатлари билан бир хил нақш (PERF-perf1).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -111,14 +111,14 @@ public class PayrollPaymentService {
                     org.springframework.data.domain.Sort.Order.desc("createdAt"),
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
-    /** Рўйхат экрани - саҳифаланган (perf1: туғилишда пагинация); size - ARBITR-105. */
+    /** Рўйхат экрани - саҳифаланган (perf1: туғилишда пагинация); size - DEC-105. */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<PayrollPayment> list(int page, int size) {
         return repository.findAll(org.springframework.data.domain.PageRequest.of(
                 Math.max(0, page), size, LIST_SORT));
     }
 
-    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (ARBITR-105). */
+    /** Default ҳажм ({@link #LIST_PAGE_SIZE}) билан - эски чақирувчилар/тестлар (DEC-105). */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<PayrollPayment> list(int page) {
         return list(page, LIST_PAGE_SIZE);
@@ -129,7 +129,7 @@ public class PayrollPaymentService {
      * = Cr − Dt (компания ходимга қарзи; мусбат - тўланиши керак). Манба -
      * GL clearing контакт кесими (spec: «clearing қолдиғи ҳақиқат манбаи»),
      * ledger public JdbcClient агрегати орқали (қоида №6 - ledger repo'сига
-     * тегмайди). Arbitr-047/Beruniy-028: аввалги EPOCH register бутун
+     * тегмайди). DEC-047/PERF-028: аввалги EPOCH register бутун
      * clearing тарихини объект қилиб хотирага тортарди - энди SQL агрегат.
      *
      * @param asOf шу санагача (инклюзив) бўлган POSTED/REVERSED ҳаракат
@@ -159,7 +159,7 @@ public class PayrollPaymentService {
             payment.updateHeader(data.paymentType(), data.paymentDate(),
                     data.accountId(), Strings.blankToNull(data.memo()));
             payment.clearLines();
-            // uq_payroll_payment_line_employee (Beruniy-010 нақши): Hibernate
+            // uq_payroll_payment_line_employee (PERF-010 нақши): Hibernate
             // flush'да INSERT DELETE'дан олдин - эски сатрлар аввал ўчирилиши
             // шарт, акс ҳолда ўша ходим билан янги сатр эскиси билан тўқнашади
             repository.flush();
@@ -190,9 +190,9 @@ public class PayrollPaymentService {
                     "Тўловда камида битта сатр бўлиши шарт: " + payment.getPaypNumber());
         }
         requireHomeBankAccount(payment.getAccountId());
-        // Ходим қайта текшируви (Arbitr-071/Asrorxoja-012, run post кўзгуси):
+        // Ходим қайта текшируви (DEC-071/LOG-012, run post кўзгуси):
         // DRAFT сақлангандан кейин ходим нофаол қилинган бўлиши мумкин.
-        // Батч (Sanjar-008): N ходим битта IN сўровда, циклда Map.get()
+        // Батч (OPT-008): N ходим битта IN сўровда, циклда Map.get()
         Map<UUID, Contact> employees = BatchLookup.byId(contactService.findAllById(
                 BatchLookup.ids(payment.getLines(), PayrollPaymentLine::getEmployeeId)));
         for (PayrollPaymentLine line : payment.getLines()) {
@@ -298,7 +298,7 @@ public class PayrollPaymentService {
             throw new BusinessRuleException(BusinessRule.BR_PYR_003,
                     "Тўловда камида битта сатр (ходим + сумма) бўлиши шарт");
         }
-        // Батч (Sanjar-008): seen такрорни тақиқлайди - N сатр айнан N ноёб
+        // Батч (OPT-008): seen такрорни тақиқлайди - N сатр айнан N ноёб
         // контакт эди; энди ҳаммаси битта IN сўровда, циклда Map.get()
         Map<UUID, Contact> employees = BatchLookup.byId(
                 contactService.findAllById(BatchLookup.ids(lines, LineData::employeeId)));
@@ -322,8 +322,8 @@ public class PayrollPaymentService {
 
     /**
      * BR-PYR-003: контакт фаол EMPLOYEE бўлиши шарт - saveDraft ҳам,
-     * post ҳам шу ягона текширувдан ўтади (run post кўзгуси, Arbitr-071).
-     * Контакт олдиндан юкланган батч Map'дан ўқилади (Sanjar-008) -
+     * post ҳам шу ягона текширувдан ўтади (run post кўзгуси, DEC-071).
+     * Контакт олдиндан юкланган батч Map'дан ўқилади (OPT-008) -
      * топилмаса {@link NotFoundException} (аввалги get() хулқи айнан).
      */
     private Contact requireActiveEmployee(UUID employeeId, Map<UUID, Contact> employees) {

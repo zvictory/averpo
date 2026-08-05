@@ -58,7 +58,7 @@ class ExcelImportServiceTest {
     @Autowired ContactService contactService;
     @Autowired ItemService itemService;
 
-    /** IMPORT_EXCEL аудит ёзуви текшируви учун (Arbitr-062). */
+    /** IMPORT_EXCEL аудит ёзуви текшируви учун (DEC-062). */
     @Autowired AuditEventRepository auditRepository;
 
     /** Item default счётлари тизим detail type'дан ечилиши учун. */
@@ -122,7 +122,7 @@ class ExcelImportServiceTest {
         assertThat(goods.getUnit().getName()).isEqualTo("дона");
         assertThat(goods.getSalesTaxRateId()).isNotNull();
 
-        // Аудит (Arbitr-062): apply IMPORT_EXCEL ёзуви - details'да
+        // Аудит (DEC-062): apply IMPORT_EXCEL ёзуви - details'да
         // туркумлаб сонлар (spec намунаси кўриниши)
         var importEvents = auditRepository.findAll().stream()
                 .filter(e -> e.getEventType() == AuditEventType.IMPORT_EXCEL).toList();
@@ -133,7 +133,7 @@ class ExcelImportServiceTest {
 
     /**
      * Тест 2: хатоли сатр - ҳеч нарса ёзилмайди, хато сатр рақами билан.
-     * Arbitr-073 билан кенгайган: манфий Ойлик/нарх ва тизимда банд омбор/
+     * DEC-073 билан кенгайган: манфий Ойлик/нарх ва тизимда банд омбор/
      * счёт коди ҳам parse рўйхатида (apply умуман юрмайди); катта-кичик
      * фарқли «ДОНА» энди хато ЭМАС (каталог lookup case-insensitive).
      */
@@ -169,7 +169,7 @@ class ExcelImportServiceTest {
             assertThat(e.sheet()).isEqualTo("Контактлар");
             assertThat(e.row()).isEqualTo(3);
         });
-        // Манфий Ойлик - варақ/сатр контексти билан (Nargiza-045)
+        // Манфий Ойлик - варақ/сатр контексти билан (BA-045)
         assertThat(preview.errors()).anySatisfy(e -> {
             assertThat(e.sheet()).isEqualTo("Ходимлар");
             assertThat(e.row()).isEqualTo(2);
@@ -184,7 +184,7 @@ class ExcelImportServiceTest {
         assertThat(preview.errors()).noneSatisfy(e ->
                 assertThat(e.message()).contains("каталогда йўқ"));
         // Тизимда банд омбор коди - 'main' seed MAIN'га катта-кичик
-        // фарқсиз урилади (Nargiza-051)
+        // фарқсиз урилади (BA-051)
         assertThat(preview.errors()).anySatisfy(e -> {
             assertThat(e.sheet()).isEqualTo("Омборлар");
             assertThat(e.row()).isEqualTo(2);
@@ -261,7 +261,7 @@ class ExcelImportServiceTest {
     }
 
     /**
-     * Arbitr-073 (Nargiza-050): бирлик/ҚҚС номи катта-кичик фарқсиз
+     * DEC-073 (BA-050): бирлик/ҚҚС номи катта-кичик фарқсиз
      * каталогдан ечилади - «ДОНА»/«ққс 12%» тоза парс бўлиб apply'да
      * тўғри каталог ёзувига боғланади.
      */
@@ -283,7 +283,7 @@ class ExcelImportServiceTest {
     }
 
     /**
-     * Botir-052: BR-IMP-001 - requireValidFile учала тармоғи (бўш файл,
+     * TST-052: BR-IMP-001 - requireValidFile учала тармоғи (бўш файл,
      * 5MB'дан катта, кенгайтма .xlsx эмас) айнан код билан рад этилади.
      */
     @Test
@@ -309,7 +309,7 @@ class ExcelImportServiceTest {
     }
 
     /**
-     * Botir-052: BR-IMP-004 - 2000 сатрдан кўп варақ. Exception эмас,
+     * TST-052: BR-IMP-004 - 2000 сатрдан кўп варақ. Exception эмас,
      * варақ даражасидаги хато PREVIEW рўйхатида (спец: хатолар битта
      * жавобда тўлиқ рўйхат) ва варақ типлаштирилмай ўтказилади.
      */

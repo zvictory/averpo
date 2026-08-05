@@ -70,7 +70,7 @@ class BillPaymentServiceTest {
     private Contact vendor;
 
     /**
-     * USD валютали vendor (Arbitr-087): bill валютаси контактдан келади -
+     * USD валютали vendor (DEC-087): bill валютаси контактдан келади -
      * USD bill ва унинг тўловлари шу vendor'га ёзилади (BR-PAY-009:
      * allocation фақат ўша vendor'нинг bill'ига).
      */
@@ -86,7 +86,7 @@ class BillPaymentServiceTest {
     private UUID bankAccountId;
 
     /**
-     * USD банк счёти (default chart) - Arbitr-070 дан бери чет валюта
+     * USD банк счёти (default chart) - DEC-070 дан бери чет валюта
      * тўлов фақат ўз валютасидаги счётдан чиқади (BR-PAY-002).
      */
     private UUID usdBankAccountId;
@@ -136,7 +136,7 @@ class BillPaymentServiceTest {
     }
 
     /**
-     * Arbitr-070 (Nargiza-001, InvoicePayment кўзгуси): банк счёти
+     * DEC-070 (BA-001, InvoicePayment кўзгуси): банк счёти
      * валютаси тўлов валютасига тенг бўлиши шарт (BR-PAY-002) - акс
      * ҳолда UZS счётга USD Money сатр ёзилиб bankBalances() валюта
      * кесими бузиларди. Икки йўналиш ҳам рад, мос валюта ўтади ва GL
@@ -202,7 +202,7 @@ class BillPaymentServiceTest {
 
     @Test
     void list_pagination_secondPageSlice_stableSort() {
-        // Beruniy-perf1 2-босқич: size+1 тўлов (аллокациясиз аванс) -
+        // PERF-perf1 2-босқич: size+1 тўлов (аллокациясиз аванс) -
         // 2-саҳифада биттагина қолади; саналар ҳар хил - тартиб детерминистик
         BillPayment oldest = null;
         BillPayment newest = null;
@@ -463,7 +463,7 @@ class BillPaymentServiceTest {
                         .isEqualTo("BR-PAY-009"));
 
         // BR-PAY-006: home тўлов - USD bill (тўлов ҳам USD vendor номидан -
-        // контакт мос, валюта номос; Arbitr-087: USD bill фақат USD контактда)
+        // контакт мос, валюта номос; DEC-087: USD bill фақат USD контактда)
         Bill usdBill = postedBill(usdVendor.getId(), "USD", new BigDecimal("12600"),
                 new BigDecimal("100"));
         assertThatThrownBy(() -> paymentService.create(new PaymentData(usdVendor.getId(),

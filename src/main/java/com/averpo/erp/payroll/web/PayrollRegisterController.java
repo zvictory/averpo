@@ -42,7 +42,7 @@ public class PayrollRegisterController {
             model.addAttribute("register", registerService.build(null));
         }
         model.addAttribute("homeCurrency", settingsService.homeCurrency());
-        // Print сарлавҳаси учун (Nargiza-047, statement нақши)
+        // Print сарлавҳаси учун (BA-047, statement нақши)
         model.addAttribute("companyName", settingsService.get().getName());
         return "payroll/payrollRegister";
     }

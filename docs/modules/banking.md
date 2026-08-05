@@ -10,23 +10,23 @@ docs/modules/multi-currency.md.
 
 ## Қатъий қарорлар (тасдиқланган)
 - **QBO Reconcile модели**: кўчирма сатрлари киритилмайди - давр +
- якуний қолдиқ киритилади, GL'даги банк сатрлари бир-бир белгиланади,
- фарқ 0 бўлганда якунланади. Old-erp'даги statement line + matching
- олинмади (CSV import кейинги босқичларга).
+  якуний қолдиқ киритилади, GL'даги банк сатрлари бир-бир белгиланади,
+  фарқ 0 бўлганда якунланади. Old-erp'даги statement line + matching
+  олинмади (CSV import кейинги босқичларга).
 - **Match жадвали bank модулида** (bank_reconciliation_match) - ledger
- схемасига тегилмайди (қоида №6: ledger ҳеч кимга боғлиқ эмас).
- Ledger'га фақат янги public READ метод қўшилади:
- `reconcilableLines(accountId, toDate)` (Beruniy-perf2'дан кейин
- toggle текшируви учун нуқтавий `reconcilableLine(accountId, lineId,
- toDate)` ҳам бор).
+  схемасига тегилмайди (қоида №6: ledger ҳеч кимга боғлиқ эмас).
+  Ledger'га фақат янги public READ метод қўшилади:
+  `reconcilableLines(accountId, toDate)` (PERF-perf2'дан кейин
+  toggle текшируви учун нуқтавий `reconcilableLine(accountId, lineId,
+  toDate)` ҳам бор).
 - **Deposit кўп сатрли** (QBO Bank Deposit): битта ҳужжатда бир нечта
- манба сатри (ҳар сатрда манба счёти + сумма + ихтиёрий контакт).
- Типик ҳол: Тушумлар транзитидан банкка.
+  манба сатри (ҳар сатрда манба счёти + сумма + ихтиёрий контакт).
+  Типик ҳол: Тушумлар транзитидан банкка.
 - **Валюта конверсияси transfer ичида**: иккала томон суммаси/курси
- киритилади, base фарқи EXCHANGE_GAIN_OR_LOSS'га.
+  киритилади, base фарқи EXCHANGE_GAIN_OR_LOSS'га.
 - **DRAFT ЙЎҚ**: яратилди = POSTED (тўлов модели), тузатиш reverse.
 - **Ҳужжат валютаси банк счётидан келади** (танланмайди, QBO услуби):
- Account.currency бўш бўлса home. Чет валютали банкда курс шарт.
+  Account.currency бўш бўлса home. Чет валютали банкда курс шарт.
 
 ## Entity'лар (changeset 022, bank модули)
 
@@ -42,15 +42,15 @@ docs/modules/multi-currency.md.
 | counterpart_amount / counterpart_rate | numeric nullable | Transfer'да манзил томон суммаси/курси (конверсия); бир валютада amount/rate билан тенг |
 | total / total_base | numeric(19,4) | Ҳужжат валютасида / home |
 | contact_id | UUID nullable (DB FK contact) | Ихтиёрий контрагент (QBO payee) - dimension |
-| payment_method_id | UUID nullable (FK payment_method) | Тўлов усули (Arbitr-033, QBO PaymentMethodRef) - чиқим формасида; deposit ҳам қабул қилади (формасида кейин) |
+| payment_method_id | UUID nullable (FK payment_method) | Тўлов усули (DEC-033, QBO PaymentMethodRef) - чиқим формасида; deposit ҳам қабул қилади (формасида кейин) |
 | ref_no | varchar(30) nullable | Ҳужжат/чек рақами (QBO DocNumber - Ref no) |
 | status | enum | POSTED / REVERSED |
 | memo | varchar(500) | |
 
 ### PaymentMethod (payment_method, changeset 036, shared модули)
-Тўлов усуллари каталоги (Arbitr-033, QBO PaymentMethod): name
+Тўлов усуллари каталоги (DEC-033, QBO PaymentMethod): name
 varchar(30) unique + active. QBO'даги Type (CREDIT_CARD/...) атайлаб
-олинмаган - credit card кўлами рад этилган (Otabek-001). Усул
+олинмаган - credit card кўлами рад этилган (QBO-001). Усул
 ЎЧИРИЛМАЙДИ - active=false (каталог қолипи). Seed: Нақд, Банк
 ўтказмаси, Пластик карта. CRUD: /settings/payment-methods (SETTINGS
 соҳаси).
@@ -80,34 +80,34 @@ journal_entry_line - dimension паттерни). **UNIQUE(journal_entry_line_id
 
 ## Posting (posting-rules «Банк», sourceModule=BANK_TXN, docId=txn id)
 - **DEPOSIT**: банк счёти Dt (жами) / ҳар сатр манба счёти Cr
- (ҳужжат валютасида, ҳужжат курсида; сатр contact dimension билан).
+  (ҳужжат валютасида, ҳужжат курсида; сатр contact dimension билан).
 - **EXPENSE**: ҳар сатр счёти Dt / банк счёти Cr (жами).
 - **TRANSFER (бир валюта)**: манзил банк Dt / манба банк Cr.
 - **TRANSFER (конверсия)**: манзил банк Dt (counterpart_amount,
- counterpart_rate) / манба банк Cr (total, exchange_rate); base фарқи
- EXCHANGE_GAIN_OR_LOSS сатри билан тенгланади: олинган base кўп -
- фойда (FX Cr), кам - зарар (FX Dt). Нол фарқ - FX сатр ёзилмайди.
+  counterpart_rate) / манба банк Cr (total, exchange_rate); base фарқи
+  EXCHANGE_GAIN_OR_LOSS сатри билан тенгланади: олинган base кўп -
+  фойда (FX Cr), кам - зарар (FX Dt). Нол фарқ - FX сатр ёзилмайди.
 - **Reverse**: оддий GL сторно (reverseBySource) - омбор/денормализация
- йўқ, энг содда тур. Reconcile қилинган транзакция reverse бўлса
- сторноси ҳам кейинги reconcile'да белгиланади (QBO услуби, ҳимоя шарт
- эмас).
+  йўқ, энг содда тур. Reconcile қилинган транзакция reverse бўлса
+  сторноси ҳам кейинги reconcile'да белгиланади (QBO услуби, ҳимоя шарт
+  эмас).
 
 ## Reconcile оқими (QBO услуби)
 1. `start(accountId, statementDate, closingBalance[, openingBalance])`:
- IN_PROGRESS ҳужжат; opening автоматик - ЯНГИ САНАДАН ОЛДИНГИ энг
- сўнгги COMPLETED'нинг closing'идан (ундай давр бўлмаса киритилади).
- Тартибсиз (орқага) бошлаш тақиқ: янги санадан кейинги давр
- аллақачон COMPLETED бўлса BR-RCN-008 (Zumrad-003 - акс ҳолда
- opening «глобал охирги» closing'дан олиниб фарқ ҳеч қачон нолга
- тушмас ёки ёлғон COMPLETED ҳосил бўлар эди).
+   IN_PROGRESS ҳужжат; opening автоматик - ЯНГИ САНАДАН ОЛДИНГИ энг
+   сўнгги COMPLETED'нинг closing'идан (ундай давр бўлмаса киритилади).
+   Тартибсиз (орқага) бошлаш тақиқ: янги санадан кейинги давр
+   аллақачон COMPLETED бўлса BR-RCN-008 (CHK-003 - акс ҳолда
+   opening «глобал охирги» closing'дан олиниб фарқ ҳеч қачон нолга
+   тушмас ёки ёлғон COMPLETED ҳосил бўлар эди).
 2. Экранда счётнинг statement_date'гача бўлган POSTED, ҳали reconcile
- қилинмаган GL сатрлари (ledger public read методи орқали) - ҳар
- бирини белгилаш/ечиш (`toggle(reconciliationId, lineId)`).
+   қилинмаган GL сатрлари (ledger public read методи орқали) - ҳар
+   бирини белгилаш/ечиш (`toggle(reconciliationId, lineId)`).
 3. Жонли фарқ = closing − opening − (белгиланган Dt йиғиндиси −
- белгиланган Cr йиғиндиси), счёт валютасида (сатр Money.amount).
+   белгиланган Cr йиғиндиси), счёт валютасида (сатр Money.amount).
 4. `complete(reconciliationId)`: фарқ айнан 0 бўлса COMPLETED
- (BR-RCN-005), акс ҳолда хато. COMPLETED ўзгармас; IN_PROGRESS'ни
- бекор қилиш мумкин (match'лар ўчади).
+   (BR-RCN-005), акс ҳолда хато. COMPLETED ўзгармас; IN_PROGRESS'ни
+   бекор қилиш мумкин (match'лар ўчади).
 
 ## Валидация (BR-BT, BR-RCN)
 | Код | Қоида |
@@ -121,7 +121,7 @@ journal_entry_line - dimension паттерни). **UNIQUE(journal_entry_line_id
 | BR-BT-007 | Фақат POSTED транзакция reverse қилинади |
 | BR-BT-008 | Чет валютали банкда мусбат курс шарт; home'да курс 1 |
 | BR-BT-009 | Транзакция тури шарт (форма) |
-| BR-BT-010 | Кирим/чиқим сатри тизим-бошқарув назорат счёти эмас (Xorazmiy-012) |
+| BR-BT-010 | Кирим/чиқим сатри тизим-бошқарув назорат счёти эмас (QA-012) |
 | BR-RCN-001 | Reconciliation фақат BANK туридаги фаол счёт учун |
 | BR-RCN-002 | Кўчирма санаси ва якуний қолдиқ шарт |
 | BR-RCN-003 | Бир (счёт, сана)га битта reconciliation (409) |
@@ -129,9 +129,9 @@ journal_entry_line - dimension паттерни). **UNIQUE(journal_entry_line_id
 | BR-RCN-005 | Якунлашда фарқ айнан 0 бўлиши шарт |
 | BR-RCN-006 | GL сатри аллақачон reconcile қилинган (409, DB unique ҳам) |
 | BR-RCN-007 | Фақат шу счётнинг GL'даги (POSTED/REVERSED, кўчирма санасигача) сатри белгиланади - сторно жуфти иккиси ҳам белгиланиб неттоси нолга тушади (DRAFT ҳеч қачон) |
-| BR-RCN-008 | Тартибсиз (орқага) бошлаш тақиқ: янги санадан кейинги давр аллақачон COMPLETED (Zumrad-003) |
+| BR-RCN-008 | Тартибсиз (орқага) бошлаш тақиқ: янги санадан кейинги давр аллақачон COMPLETED (CHK-003) |
 
-BR-BT-010 кўлам изоҳи (Xorazmiy-012, BR-TXF-002 нинг deposit/expense
+BR-BT-010 кўлам изоҳи (QA-012, BR-TXF-002 нинг deposit/expense
 кўзгуси): тизим назорат счётлари (`AccountDetailType.systemManaged` -
 AR, AP, INVENTORY, INVENTORY_CLEARING, PAYROLL_CLEARING,
 OPENING_BALANCE_EQUITY, RETAINED_EARNINGS) кирим/чиқим сатрида ҳам рад
@@ -153,28 +153,28 @@ Payroll (23а): `PAYROLL_CLEARING` systemManaged'га қўшилди - ҳисо�
 
 ## Туртки режаси (ҳар бири алоҳида тасдиқланади)
 1. Spec (шу ҳужжат) + BR каталог + changeset 022 + domain entity'лар +
- DocumentType.BANK_TXN + sequence seed.
+   DocumentType.BANK_TXN + sequence seed.
 2. BankTransactionService: deposit (кўп сатрли) / expense / transfer
- (конверсия FX билан) / reverse - тўлиқ тестлар.
+   (конверсия FX билан) / reverse - тўлиқ тестлар.
 3. ReconciliationService + ledger public read методи
- (reconcilableLines) - тўлиқ тестлар.
+   (reconcilableLines) - тўлиқ тестлар.
 4. UI: /bank-transactions рўйхат/форма (тур бўйича динамик Alpine),
- /reconciliation (QBO-флоу: checkbox'лар, жонли фарқ, якунлаш),
- sidebar БАНК бўлими, «+ Янги»: Банк транзакцияси.
+   /reconciliation (QBO-флоу: checkbox'лар, жонли фарқ, якунлаш),
+   sidebar БАНК бўлими, «+ Янги»: Банк транзакцияси.
 
 ## Тестлар (мажбурий рўйхат - 2-3-турткиларда)
 - Deposit кўп сатрли: банк Dt жами / манбалар Cr, debit == credit;
- UF'дан банкка оқим (тушум → deposit).
+  UF'дан банкка оқим (тушум → deposit).
 - Expense: харажат Dt / банк Cr; контакт dimension.
 - Transfer бир валютада (FX сатрсиз); конверсия UZS→USD ва USD→UZS
- (фойда/зарар иккала йўналиш, фарқ EXCHANGE_GAIN_OR_LOSS'га); айнан
- тенг base'да FX сатр йўқ.
+  (фойда/зарар иккала йўналиш, фарқ EXCHANGE_GAIN_OR_LOSS'га); айнан
+  тенг base'да FX сатр йўқ.
 - Чет валютали банкда ҳужжат валютаси счётдан келади; курссиз BR-BT-008.
 - Reverse ҳар уч тур учун (GL сторно).
 - Reconcile: биринчи statement (opening қўлда) → белгилаш → фарқ 0 да
- COMPLETED; фарқ != 0 да BR-RCN-005; иккинчи statement opening'ни
- аввалгисидан олади; сатр икки марта белгиланмайди (BR-RCN-006);
- бошқа счёт сатри рад (BR-RCN-007); бекор қилишда match'лар бўшайди.
+  COMPLETED; фарқ != 0 да BR-RCN-005; иккинчи statement opening'ни
+  аввалгисидан олади; сатр икки марта белгиланмайди (BR-RCN-006);
+  бошқа счёт сатри рад (BR-RCN-007); бекор қилишда match'лар бўшайди.
 - BR-BT-001..006, 008 guard'лари.
 
 ## Экранлар (4-туртки)
@@ -182,11 +182,11 @@ Sidebar'га янги БАНК бўлими: Транзакциялар (/bank-t
 Reconciliation (/reconciliation). «+ Янги»: Банк транзакцияси.
 Ҳамма жадвал zebra + .table-wrap, 375px, money формат (Fmt).
 
-### Чиқим - алоҳида экран (Arbitr-033)
+### Чиқим - алоҳида экран (DEC-033)
 Чиқим (EXPENSE) QBO /app/expense паритетидаги алоҳида /expenses
-экранига кўчди (transfers нақши): рўйхат (Beruniy-020 fetch йўли +
-Arbitr-068 давр/статус/payee/матн филтри), QBO тартибидаги форма (Олувчи | Тўлов счёти +
-жонли Balance | катта жонли Сумма | курс (prefill, Arbitr-029) | сана |
+экранига кўчди (transfers нақши): рўйхат (PERF-020 fetch йўли +
+DEC-068 давр/статус/payee/матн филтри), QBO тартибидаги форма (Олувчи | Тўлов счёти +
+жонли Balance | катта жонли Сумма | курс (prefill, DEC-029) | сана |
 Тўлов усули | Ҳужжат рақами | сатрлар (systemManaged'сиз, BR-BT-010) |
 Total ҳужжат валютасида + home'да | memo), кўриш + сторно
 (/expenses/{id}; EXPENSE бўлмаган id умумий view'га йўналади). Умумий

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 /**
  * Иш ҳақи ҳисоблашлари репозиторийси - фақат payroll модули ичида.
- * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
+ * JpaSpecificationExecutor - рўйхат филтри учун (DEC-068).
  */
 public interface PayrollRunRepository extends JpaRepository<PayrollRun, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<PayrollRun> {
@@ -28,7 +28,7 @@ public interface PayrollRunRepository extends JpaRepository<PayrollRun, UUID>,
 
     /**
      * Рўйхат экрани учун run кесимида жами gross/net - JPQL агрегат
-     * (Arbitr-054). Рўйхат сатрида {@code run.totalGross()} lazy {@code lines}
+     * (DEC-054). Рўйхат сатрида {@code run.totalGross()} lazy {@code lines}
      * коллекциясини айланарди; render транзакциядан ташқарида
      * (open-in-view=false) → LazyInitializationException. Бу агрегат сатрларни
      * юкламай DB'да йиғади. @EntityGraph(lines)+Pageable ЙЎЛИ РАД: коллекция

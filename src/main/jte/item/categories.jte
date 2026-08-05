@@ -83,7 +83,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <%-- Xorazmiy-008: rowMenu қолипи - item/list.jte билан бир хил --%>
+                        <%-- QA-008: rowMenu қолипи - item/list.jte билан бир хил --%>
                         @if(canEdit != null && canEdit)
                             @template.shared.rowMenu(msg = msg, items = @`
                                 <a href="/item-categories?edit=${node.category().getId().toString()}">${msg.localize("accounts.edit")}</a>

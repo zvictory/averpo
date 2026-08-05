@@ -9,19 +9,19 @@ Multi-warehouse омбор ҳисоби (Averpo'нинг QBO'дан атайла
 
 ## Қатъий қарорлар (тасдиқланган)
 - **Манфий қолдиқ ТАҚИҚ** (BR-INV-003): чиқим қолдиқдан ошса аниқ
- хато. FIFO'да манфий қолдиқ математик жиҳатдан бузуқ бўлар эди;
- DB'да ҳам CHECK (qty >= 0) инварианти туради.
+  хато. FIFO'да манфий қолдиқ математик жиҳатдан бузуқ бўлар эди;
+  DB'да ҳам CHECK (qty >= 0) инварианти туради.
 - **Adjustment кўпайиш нархи**: формада unit cost ихтиёрий; бўш бўлса
- жорий қиймат олинади (AVCO - жорий ўртача, FIFO - охирги фаол layer
- нархи). Қолдиқ нол бўлса (жорий нарх аниқланмайди) нарх мажбурий -
- BR-INV-007.
+  жорий қиймат олинади (AVCO - жорий ўртача, FIFO - охирги фаол layer
+  нархи). Қолдиқ нол бўлса (жорий нарх аниқланмайди) нарх мажбурий -
+  BR-INV-007.
 - **Transfer иккита ҳаракат ёзуви** билан ифодаланади (TRANSFER_OUT
- манбада, TRANSFER_IN манзилда, бир-бирига counterpart омбор орқали
- боғланган) - эски лойиҳадаги бир-қаторли TRANSFER'дан фарқ: ҳар
- ёзув айнан битта омборга таъсир қилади, баланс ҳисоби бир хил
- йўлдан юради.
+  манбада, TRANSFER_IN манзилда, бир-бирига counterpart омбор орқали
+  боғланган) - эски лойиҳадаги бир-қаторли TRANSFER'дан фарқ: ҳар
+  ёзув айнан битта омборга таъсир қилади, баланс ҳисоби бир хил
+  йўлдан юради.
 - Барча қийматлар (unit cost, жами) **home валютада** - валюта
- конверсияси ҳужжат (Bill/Invoice) қатламида бўлади.
+  конверсияси ҳужжат (Bill/Invoice) қатламида бўлади.
 
 ## Entity'лар (changeset 017)
 
@@ -73,23 +73,23 @@ layer_id FK, movement_id FK (OUT ҳаракат), quantity CHECK > 0 -
 
 ### InventoryService (2-3-туртки, ягона public API)
 - `receive(itemId, warehouseId, qty, unitCost, date, reference, memo)` -
- кирим: AVCO ўртача қайта ҳисобланади
- (янги ўртача = (эски qty × эски avg + qty × cost) / жами qty),
- FIFO'да янги layer.
+  кирим: AVCO ўртача қайта ҳисобланади
+  (янги ўртача = (эски qty × эски avg + qty × cost) / жами qty),
+  FIFO'да янги layer.
 - `IssueResult issue(itemId, warehouseId, qty, date, reference, memo)` -
- чиқим: AVCO'да qty × жорий avg; FIFO'да layer'лар received_date,
- кейин id тартибида ейилади (consumption ёзувлари билан). Қайтарган
- қиймати (home) 6-7-босқичда COGS проводкасига киради.
+  чиқим: AVCO'да qty × жорий avg; FIFO'да layer'лар received_date,
+  кейин id тартибида ейилади (consumption ёзувлари билан). Қайтарган
+  қиймати (home) 6-7-босқичда COGS проводкасига киради.
 - `adjust(itemId, warehouseId, deltaQty, unitCostOrNull, date, memo)` -
- инвентаризация: фарқ ADJUST_IN/ADJUST_OUT + GL проводка
- PostingService орқали (posting-rules «Омбор»: камайиш
- OTHER_COSTS_OF_SERVICE_COS Dt / INVENTORY Cr, кўпайиш тескари;
- sourceModule=INVENTORY, docId=movement id - BR-LED-012 idempotency
- ва BR-LED-020 период қулфи автоматик).
+  инвентаризация: фарқ ADJUST_IN/ADJUST_OUT + GL проводка
+  PostingService орқали (posting-rules «Омбор»: камайиш
+  OTHER_COSTS_OF_SERVICE_COS Dt / INVENTORY Cr, кўпайиш тескари;
+  sourceModule=INVENTORY, docId=movement id - BR-LED-012 idempotency
+  ва BR-LED-020 период қулфи автоматик).
 - `transfer(itemId, fromWarehouseId, toWarehouseId, qty, date, memo)` -
- GL проводка ЙЎҚ (posting-rules): AVCO'да қиймат манба ўртачасида
- манзилга кўчади; FIFO'да ейилган layer'лар манзилда худди шу
- unit_cost/received_date билан қайта яратилади.
+  GL проводка ЙЎҚ (posting-rules): AVCO'да қиймат манба ўртачасида
+  манзилга кўчади; FIFO'да ейилган layer'лар манзилда худди шу
+  unit_cost/received_date билан қайта яратилади.
 - `InventoryValuationLock` импли: ҳаракат мавжуд бўлса метод қулф.
 - Item текшируви ItemService (public API) орқали: фақат INVENTORY тип.
 
@@ -108,8 +108,8 @@ layer_id FK, movement_id FK (OUT ҳаракат), quantity CHECK > 0 -
 | BR-INV-008 | Ҳаракат санаси шарт |
 | BR-INV-009 | Чиқимни қайтариб бўлмайди: ейилган партия нархи кейин ўзгарган (landed cost) - қиймат GL сторноси билан мос келмайди |
 | BR-INV-010 | Қийматни ортга қайтариш (кирим reverse, landed cost reverse) фақат шу (item, warehouse)да КЕЙИН бошқа ҳужжат ҳаракати бўлмаганда - акс ҳолда AVCO/FIFO таннарх тарихи бузилади; манба ҳужжатнинг ўз ҳаракатлари истисно, тузатиш adjustment орқали |
-| BR-INV-011 | Ҳужжатли актда (StockAdjustment/StockTransfer, Arbitr-093) камида битта сатр бўлиши шарт |
-| BR-INV-012 | Ҳужжатли акт сатрларида битта item такрорланмайди (UNIQUE(акт_id, item_id); Arbitr-093) |
+| BR-INV-011 | Ҳужжатли актда (StockAdjustment/StockTransfer, DEC-093) камида битта сатр бўлиши шарт |
+| BR-INV-012 | Ҳужжатли акт сатрларида битта item такрорланмайди (UNIQUE(акт_id, item_id); DEC-093) |
 
 ## Posting
 posting-rules.md «Омбор» жадвали: Adjustment GL'га боради, Transfer
@@ -134,7 +134,7 @@ Sidebar'да янги «ОМБОР» бўлими: Қолдиқлар (/inventor
 Созламалар каталогларида /settings/warehouses. Ҳамма жадвал zebra +
 .table-wrap, 375px.
 
-## ҲУЖЖАТЛИ Adjustment/Transfer + филтрлар (Arbitr-093, фойдаланувчи қарори)
+## ҲУЖЖАТЛИ Adjustment/Transfer + филтрлар (DEC-093, фойдаланувчи қарори)
 
 Фойдаланувчи талаби: бир-амаллик формалар ўрнига КЎП САТРЛИ ҳужжатлар
 (QBO Inventory Qty Adjustment ҳам кўп сатрли ҳужжат) + рўйхат/view +
@@ -142,55 +142,55 @@ Sidebar'да янги «ОМБОР» бўлими: Қолдиқлар (/inventor
 
 ### StockAdjustment (stock_adjustment + stock_adjustment_line, changeset 056)
 - Сарлавҳа: рақам **ADJ-YYYY-NNNNN** (префикс grep билан текширилган -
- эркин), сана, БИТТА омбор (инвентаризация акти омбор бўйича), изоҳ,
- ташқи ҳужжат № `external_ref` (қоғоз/ташқи Reference no., ихтиёрий
- nullable, max 50 белги - Arbitr-109, changeset 060). Фарқи очиқ:
- ички ADJ- рақамини тизим ўзи беради, external_ref ташқи/қоғоз
- ҳужжат рақами учун.
-- Сатр: item, жорий qty ва бирлик ҳинти (кўрсатилади - Arbitr-109),
- ЯНГИ qty киритилади → delta авто (QBO «New quantity» услуби),
- unit cost ихтиёрий (BR-INV-007 қоидаси сатрга).
- UNIQUE(adjustment_id, item_id) - BR-INV-012; актда камида битта
- сатр - BR-INV-011.
+  эркин), сана, БИТТА омбор (инвентаризация акти омбор бўйича), изоҳ,
+  ташқи ҳужжат № `external_ref` (қоғоз/ташқи Reference no., ихтиёрий
+  nullable, max 50 белги - DEC-109, changeset 060). Фарқи очиқ:
+  ички ADJ- рақамини тизим ўзи беради, external_ref ташқи/қоғоз
+  ҳужжат рақами учун.
+- Сатр: item, жорий qty ва бирлик ҳинти (кўрсатилади - DEC-109),
+  ЯНГИ qty киритилади → delta авто (QBO «New quantity» услуби),
+  unit cost ихтиёрий (BR-INV-007 қоидаси сатрга).
+  UNIQUE(adjustment_id, item_id) - BR-INV-012; актда камида битта
+  сатр - BR-INV-011.
 - Сақлаш = дарҳол POSTED (SalesReceipt нақши, draft йўқ): ҳар сатр
- StockMovement (ADJUST_IN/OUT, reference_type=STOCK_ADJUSTMENT,
- reference_id=акт id) + БИТТА JE (posting-rules «Омбор» янги банди).
+  StockMovement (ADJUST_IN/OUT, reference_type=STOCK_ADJUSTMENT,
+  reference_id=акт id) + БИТТА JE (posting-rules «Омбор» янги банди).
 - Reverse: қарши-акт prefill (ҳар сатр тескари delta) - POSTED
- ўзгармас қоидаси сақланади; тарихий movements'га тегилмайди.
+  ўзгармас қоидаси сақланади; тарихий movements'га тегилмайди.
 - Рўйхат /inventory/adjustments (Page<> + pagination билан ТУҒИЛАДИ),
- филтрлар: омбор, сана оралиғи. View: сарлавҳада ташқи ҳужжат №
- (бор бўлса), сатрлар + GL линк (080 нақши).
+  филтрлар: омбор, сана оралиғи. View: сарлавҳада ташқи ҳужжат №
+  (бор бўлса), сатрлар + GL линк (080 нақши).
 
 ### StockTransfer (stock_transfer + stock_transfer_line, changeset 056)
 - Сарлавҳа: рақам **WTR-YYYY-NNNNN** (эркинлиги текширилган), сана,
- манба/манзил омбор (BR-INV-005), изоҳ, ташқи ҳужжат №
- `external_ref` (қоғоз/ташқи Reference no., ихтиёрий nullable,
- max 50 белги - Arbitr-109, changeset 060; ички WTR- рақамидан
- фарқли - уни тизим беради). Сатр: item, qty - манба омбор қолдиғи
- ва бирлик ҳинти кўрсатилади (Arbitr-109).
+  манба/манзил омбор (BR-INV-005), изоҳ, ташқи ҳужжат №
+  `external_ref` (қоғоз/ташқи Reference no., ихтиёрий nullable,
+  max 50 белги - DEC-109, changeset 060; ички WTR- рақамидан
+  фарқли - уни тизим беради). Сатр: item, qty - манба омбор қолдиғи
+  ва бирлик ҳинти кўрсатилади (DEC-109).
 - Сақлаш = POSTED: ҳар сатр TRANSFER_OUT+TRANSFER_IN жуфти
- (reference акт id), GL ЙЎҚ (аввалгидек). Reverse: қарши-акт prefill.
- Актда камида битта сатр - BR-INV-011; сатрда item такрори тақиқ -
- BR-INV-012.
+  (reference акт id), GL ЙЎҚ (аввалгидек). Reverse: қарши-акт prefill.
+  Актда камида битта сатр - BR-INV-011; сатрда item такрори тақиқ -
+  BR-INV-012.
 - Рўйхат /inventory/transfers + view (сарлавҳада ташқи ҳужжат №,
- сатрлар, GL линк ЙЎҚ).
+  сатрлар, GL линк ЙЎҚ).
 
 ### Эски оқим тақдири
 - Бир-амаллик формалар ЎРНИНИ янги кўп сатрли формалар олади
- (маршрутлар сақланади, эски энди list'га олиб боради; /new - янги
- форма). InventoryService.adjust/transfer per-movement методлари
- ҚОЛАДИ (ички ва тарихий); янги adjustDocument/transferDocument
- методлари қўшилади (JE битта - акт даражасида).
+  (маршрутлар сақланади, эски энди list'га олиб боради; /new - янги
+  форма). InventoryService.adjust/transfer per-movement методлари
+  ҚОЛАДИ (ички ва тарихий); янги adjustDocument/transferDocument
+  методлари қўшилади (JE битта - акт даражасида).
 - Эски (ҳужжатсиз) movements тарихий - рўйхат/view'ларга кирмайди,
- Ҳаракатлар журналида кўринаверади («ҳужжатсиз» деб).
+  Ҳаракатлар журналида кўринаверади («ҳужжатсиз» деб).
 
 ### Филтрлар (мукаммал тўплам - фойдаланувчи талаби)
 - **Қолдиқлар (/inventory/balances)**: item ном қидируви, омбор,
- категория, «нолни яшир» (default: яширилган).
+  категория, «нолни яшир» (default: яширилган).
 - **Ҳаракатлар (/inventory/movements)**: ТУР (кирим/чиқим/тузатиш/
- кўчириш), омбор, item қидируви, сана оралиғи, ҳужжат рақами.
- 068 ListFilter нақши; ҳар икки рўйхат филтрлари pagination билан
- ҳамкор (query параметрлар сақланади).
+  кўчириш), омбор, item қидируви, сана оралиғи, ҳужжат рақами.
+  068 ListFilter нақши; ҳар икки рўйхат филтрлари pagination билан
+  ҳамкор (query параметрлар сақланади).
 
 ### Тестлар (қўшимча рўйхат)
 Акт post: сатрлар movements'га тўғри (reference акт id), JE битта ва

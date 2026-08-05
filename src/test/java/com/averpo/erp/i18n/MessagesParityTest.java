@@ -13,7 +13,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Учала messages файлининг калит паритети (Arbitr-088 тест кутилмаси).
+ * Учала messages файлининг калит паритети (DEC-088 тест кутилмаси).
  *
  * <p>UI уч тилда (uz default / en / ru) - калит фақат биттасига қўшилса
  * қолган тилларда MessageSource хом калит кодини кўрсатади ва бу қўлда

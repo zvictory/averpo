@@ -30,7 +30,7 @@ import java.util.UUID;
  * ҳаракати: давр боши clearing қолдиқ / ҳисобланган (gross, солиқлар,
  * net) / даврда тўланган / давр охири clearing қолдиқ.
  *
- * <p>Манба (spec, Arbitr-047 - ТЎЛИҚ GL асосида): PAYROLL_CLEARING GL
+ * <p>Манба (spec, DEC-047 - ТЎЛИҚ GL асосида): PAYROLL_CLEARING GL
  * контакт кесими - давр боши/охири owed (Cr − Dt) ledger JdbcClient
  * агрегатидан; «даврда тўланган» ҳам GL'дан (давр ичи PAYROLL_PAYMENT
  * манбали Dt − Cr - тўлов reverse'да жуфти нолга тушади, домен status
@@ -83,11 +83,11 @@ public class PayrollRegisterService {
         LocalDate end = ym.atEndOfMonth();
 
         // Clearing GL контакт кесими (JdbcClient агрегат - хотирага entity
-        // ЮКЛАНМАЙДИ, Beruniy-028): давр боши owed (start'дан ОЛДИН) ва
+        // ЮКЛАНМАЙДИ, PERF-028): давр боши owed (start'дан ОЛДИН) ва
         // давр охири owed (end'гача). «Даврда тўланган» ҳам GL'дан - давр
         // ичи PAYROLL_PAYMENT манбали Dt − Cr (тўлов сторноси жуфти нолга
         // тушади - домен status'дан фарқли, инвариант reverse'да ҳам
-        // сақланади, Arbitr-047 банд 1).
+        // сақланади, DEC-047 банд 1).
         UUID clearing = accountService.requireSystemAccountId(AccountDetailType.PAYROLL_CLEARING);
         Map<UUID, BigDecimal> opening = ledgerDashboardService.contactBalances(
                 clearing, start.minusDays(1));
@@ -107,7 +107,7 @@ public class PayrollRegisterService {
         ids.addAll(paid.keySet());
 
         // Ходим номлари фақат қатнашган id'лар бўйича - byIds/IN сўровда
-        // (ARBITR-105б, Ulugbek-003 §1); нофаоллар ҳам келади - тарихий
+        // (DEC-105б, AUD-003 §1); нофаоллар ҳам келади - тарихий
         // даврда ном кўриниши шарт, топилмагани «?» билан чиқади.
         Map<UUID, String> names = contactService.namesByIds(ids);
         List<Row> rows = new ArrayList<>(ids.size());

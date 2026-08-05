@@ -2,7 +2,7 @@
 
 --changeset averpo:068-telegram-webhook
 -- Telegram webhook сири (docs/modules/user-profile.md 3-бўлим,
--- Arbitr-138): prod'да Telegram янгиликларни POST /telegram/webhook'га
+-- DEC-138): prod'да Telegram янгиликларни POST /telegram/webhook'га
 -- юборади, ҳар сўровда X-Telegram-Bot-Api-Secret-Token header'ини
 -- қўшади. Шу header сақланган сир билан таққосланиб «фақат Telegram»
 -- кириши гарантланади (permitAll endpoint - секрет ягона ҳимоя).

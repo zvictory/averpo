@@ -52,7 +52,7 @@
             </label>
             <label class="flex flex-col gap-1 text-sm text-on-surface dark:text-on-surface-dark">
                 <span class="inline-flex items-center gap-1">${msg.localize("rcpt.form.depositAccount")} @template.shared.help(key = "field.depositAccount", msg = msg)</span>
-                <%-- Arbitr-014: QBO tree - счёт валютаси кўринади; id
+                <%-- DEC-014: QBO tree - счёт валютаси кўринади; id
                      rcptDeposit - қуйидаги валюта филтри JS'и учун --%>
                 @template.shared.combobox(name = "depositAccountId", msg = msg,
                         value = form.getDepositAccountId(),
@@ -68,7 +68,7 @@
                                     selected = form.getDepositAccountId())
                         `)
             </label>
-            <%-- Arbitr-097: валюта select + курс майдони - shared.rateBlock
+            <%-- DEC-097: валюта select + курс майдони - shared.rateBlock
                  (prefill + ориентация). Тўлов формасида жадвал жамиси йўқ. --%>
             @template.shared.rateBlock(currencies = currencies, selected = form.getCurrency(),
                     exchangeRate = form.getExchangeRate(), homeCurrency = homeCurrency,
@@ -109,11 +109,11 @@
     </form>
 
     <script>
-        <%-- Arbitr-097: курс prefill + ориентация - rate-block.js
+        <%-- DEC-097: курс prefill + ориентация - rate-block.js
              компонентида (эски IIFE ЎЧИРИЛДИ; счёт филтр rcptCurrency
              id билан ишлайверади). --%>
 
-        // Счёт валюта филтри (Arbitr-070/Nargiza-044): combobox тўлов
+        // Счёт валюта филтри (DEC-070/BA-044): combobox тўлов
         // валютасига мос BANK счётларгагина рухсат беради - мос эмас счёт
         // танлаб тўлиқ форма тўлдиргач рад олиш олдини олади. UNDEPOSITED
         // клиринг чўнтаги (data-undep) ДОИМ қолади - чет валюта тўлов
@@ -161,8 +161,8 @@
             applyFilter();
         })();
 
-        <%-- Arbitr-097: курс майдони кўрсат/яшир - rate-block.js
-             компонентида (эски Arbitr-088 view IIFE ЎЧИРИЛДИ). --%>
+        <%-- DEC-097: курс майдони кўрсат/яшир - rate-block.js
+             компонентида (эски DEC-088 view IIFE ЎЧИРИЛДИ). --%>
     </script>
 `, actions = @`
     <a href="/invoice-payments" class="inline-block no-underline cursor-pointer whitespace-nowrap rounded-radius border border-outline-dark bg-transparent px-4 py-2 text-center text-sm font-medium tracking-wide text-on-surface-dark transition hover:border-outline-dark-strong hover:text-on-surface-dark-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark active:outline-offset-0">${msg.localize("common.cancel")}</a>

@@ -14,7 +14,7 @@ import java.util.UUID;
  * ичида. gross/солиқлар/net POSTED run сатрларидан ходим кесимида. Clearing
  * давр боши/охири owed ва «даврда тўланган» бу ерда ЭМАС - улар ТЎЛИҚ GL'дан
  * (LedgerDashboardService контакт-кесими агрегати, GL ҳақиқат манбаи,
- * Arbitr-047; домен status'дан фарқли, reverse'да инвариант сақланади).
+ * DEC-047; домен status'дан фарқли, reverse'да инвариант сақланади).
  *
  * <p>Repository домен тури техник ({@link PayrollPayment}) - @Query ўз
  * entity'сини (PayrollRunLine) танлайди, faqat ўқиш.

@@ -12,7 +12,7 @@
 @param String editId = null
 @param String error = null
 
-<%-- Arbitr-024: drawer жавоби (HX-Request) - #drawerBody ичига тушади.
+<%-- DEC-024: drawer жавоби (HX-Request) - #drawerBody ичига тушади.
      Муваффақиятли POST'да controller HX-Redirect беради (drawer ёпилиб
      рўйхат янгиланади); хатода шу шаблон error билан қайта келади. --%>
 <div class="flex items-center justify-between gap-3 bg-surface-dark px-5 py-3.5 font-semibold text-on-surface-dark-strong">

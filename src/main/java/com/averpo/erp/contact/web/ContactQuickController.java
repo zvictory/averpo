@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * Combobox «+ Янги қўшиш» қуйма endpoint'лари - мижоз/таъминотчи
- * (spec: docs/modules/combobox.md, Arbitr-066).
+ * (spec: docs/modules/combobox.md, DEC-066).
  *
  * <p>Алоҳида controller, чунки {@link ContactController}'нинг class-mapping
  * regex'ида employees ҳам бор - қуйма қўшиш эса фақат мижоз/таъминотчига
@@ -34,16 +34,16 @@ public class ContactQuickController {
     /** Контактлар service - қуйма яратишда тўлиқ валидацияси реюз қилинади. */
     private final ContactService contactService;
 
-    /** Home currency - қуйма контакт валютаси default'и (форма home'ни олдиндан танлайди; Arbitr-159/161). */
+    /** Home currency - қуйма контакт валютаси default'и (форма home'ни олдиндан танлайди; DEC-159/161). */
     private final com.averpo.erp.shared.service.CompanySettingsService settingsService;
 
-    /** Фаол валюталар рўйхати - қуйма формадаги валюта select учун (Arbitr-161). */
+    /** Фаол валюталар рўйхати - қуйма формадаги валюта select учун (DEC-161). */
     private final com.averpo.erp.shared.service.CurrencyService currencyService;
 
     /**
      * Модал ичи учун мини форма fragment'и (CSRF token билан) -
      * penguin-combobox.js'даги openAdd() («+ Янги ...» банди) GET
-     * билан Penguin modal ичига юклайди (Arbitr-123).
+     * билан Penguin modal ичига юклайди (DEC-123).
      */
     @GetMapping("/{kind:customers|vendors}/quick-form")
     public String quickForm(@PathVariable String kind, Model model) {
@@ -59,8 +59,8 @@ public class ContactQuickController {
      *
      * @return муваффақиятда {id, label, currency} - JS option қўшиб
      *         танлайди; currency (қуйма формадан танланган; бўш бўлса home -
-     *         Arbitr-159) option data-currency'сига кўчади, шунда контакт-
-     *         валюта занжири (Arbitr-087) янги контактда ҳам ишлайди; бизнес
+     *         DEC-159) option data-currency'сига кўчади, шунда контакт-
+     *         валюта занжири (DEC-087) янги контактда ҳам ишлайди; бизнес
      *         қоида бузилса 422 {message} (модал ичида кўрсатилади)
      */
     @PostMapping("/{kind:customers|vendors}/quick")

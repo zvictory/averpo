@@ -62,7 +62,7 @@
                     </tr>
                 @endfor
                 @if(report.vendorPrepayments().signum() != 0)
-                    <%-- Komil-005: таъминотчиларга тақсимланмаган аванслар - AP дебет
+                    <%-- IFRS-005: таъминотчиларга тақсимланмаган аванслар - AP дебет
                          қолдиғидан prepayment активга КЎРСАТИШДА reclass (IAS 1.32) --%>
                     <tr>
                         <td class="pl-7!">${msg.localize("bs.vendorPrepayments")}</td>
@@ -70,7 +70,7 @@
                     </tr>
                 @endif
                 @if(report.employeeAdvances().signum() != 0)
-                    <%-- Komil-020 (Arbitr-071): ходимларга берилган аванслар -
+                    <%-- IFRS-020 (DEC-071): ходимларга берилган аванслар -
                          PAYROLL_CLEARING нетто дебетидан активга КЎРСАТИШДА
                          reclass (IAS 1.32), GL ўзгармайди --%>
                     <tr>
@@ -98,7 +98,7 @@
                 </tr>
             @endif
 
-            <%-- Komil-012: гудвилл ва номоддий активлар алоҳида моддалар
+            <%-- IFRS-012: гудвилл ва номоддий активлар алоҳида моддалар
                  (IAS 1.54(c)) - «Бошқа активлар»дан ажратилган, GL ўзгармаган --%>
             @if(!report.goodwill().isEmpty())
                 <tr class="font-semibold text-on-surface-strong dark:text-on-surface-dark-strong"><td colspan="2" class="pl-4!">${msg.localize("account.detail.GOODWILL")}</td></tr>
@@ -166,7 +166,7 @@
                     </tr>
                 @endfor
                 @if(report.customerAdvances().signum() != 0)
-                    <%-- Komil-005: мижозлардан тақсимланмаган аванслар - AR кредит
+                    <%-- IFRS-005: мижозлардан тақсимланмаган аванслар - AR кредит
                          қолдиғидан мажбуриятга КЎРСАТИШДА reclass (IFRS 15.106) --%>
                     <tr>
                         <td class="pl-7!">${msg.localize("bs.customerAdvances")}</td>

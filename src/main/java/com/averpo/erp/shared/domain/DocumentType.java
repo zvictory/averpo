@@ -64,18 +64,18 @@ public enum DocumentType {
 
     /**
      * Ҳужжатли инвентаризация акти (ADJ-2026-00001, inventory.md,
-     * Arbitr-093): кўп сатрли, битта омбор, дарҳол POSTED, актга битта JE.
+     * DEC-093): кўп сатрли, битта омбор, дарҳол POSTED, актга битта JE.
      */
     STOCK_ADJUSTMENT,
 
     /**
      * Ҳужжатли омборлараро кўчириш акти (WTR-2026-00001, inventory.md,
-     * Arbitr-093): кўп сатрли, манба/манзил омбор, GL'сиз.
+     * DEC-093): кўп сатрли, манба/манзил омбор, GL'сиз.
      */
     STOCK_TRANSFER,
 
     /**
-     * Фойдаланувчи профил расми (аватар, Arbitr-101). Рақамланмайди -
+     * Фойдаланувчи профил расми (аватар, DEC-101). Рақамланмайди -
      * {@link DocumentSequence} қатори ЙЎҚ (рақам сўралмайди), фақат
      * {@code Attachment} target тури: {@code app_user} қаторига боғланади
      * (AttachmentService.DOCUMENT_TABLES), BR-ATT-003 EXISTS текшируви шу
@@ -84,7 +84,7 @@ public enum DocumentType {
     APP_USER,
 
     /**
-     * Компания логоси (Arbitr-112). APP_USER каби рақамланмайди - фақат
+     * Компания логоси (DEC-112). APP_USER каби рақамланмайди - фақат
      * {@code Attachment} target тури: {@code company_settings} қаторига
      * боғланади (singleton, битта лого). Юклаш {@code uploadImage} орқали.
      */

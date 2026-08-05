@@ -53,7 +53,7 @@ public class ReconciliationService {
 
     /**
      * Ишчи экраннинг тўлиқ маълумоти БИТТА read-only транзакцияда
-     * (Sanjar-006): аввал controller reconciliation'ни уч марта, счётни
+     * (OPT-006): аввал controller reconciliation'ни уч марта, счётни
      * икки марта, match рўйхатини икки марта алоҳида сўровларда ўқирди
      * (жами 9 SELECT). Энди reconciliation/match бир марта юкланиб,
      * candidates ҳам, difference ҳам шу нусхадан ҳисобланади.
@@ -88,7 +88,7 @@ public class ReconciliationService {
 
     /**
      * Рўйхат тартиби - янгидан эскига (statementDate, createdAt) + id
-     * tie-breaker (саҳифалашга барқарор тартиб, ARBITR-105 3-босқич).
+     * tie-breaker (саҳифалашга барқарор тартиб, DEC-105 3-босқич).
      */
     private static final org.springframework.data.domain.Sort LIST_SORT =
             org.springframework.data.domain.Sort.by(
@@ -96,7 +96,7 @@ public class ReconciliationService {
                     org.springframework.data.domain.Sort.Order.desc("createdAt"),
                     org.springframework.data.domain.Sort.Order.desc("id"));
 
-    /** Рўйхат экрани - саҳифаланган (ARBITR-105 3-босқич), янгидан эскига. */
+    /** Рўйхат экрани - саҳифаланган (DEC-105 3-босқич), янгидан эскига. */
     @Transactional(readOnly = true)
     public org.springframework.data.domain.Page<BankReconciliation> list(int page, int size) {
         return repository.findAll(org.springframework.data.domain.PageRequest.of(
@@ -108,7 +108,7 @@ public class ReconciliationService {
      * счётнинг ШУ САНАДАН ОЛДИНГИ охирги COMPLETED reconciliation'ининг
      * closing'и; ундай давр бўлмаса киритилган қиймат (бўш бўлса 0).
      *
-     * <p>Zumrad-003: тартибсиз (орқага) бошлаш очиқ тақиқланади -
+     * <p>CHK-003: тартибсиз (орқага) бошлаш очиқ тақиқланади -
      * янги санадан КЕЙИНГИ давр аллақачон COMPLETED бўлса BR-RCN-008:
      * ўтказиб юборилган даврнинг opening'и «глобал охирги» closing'дан
      * олиниб, фарқ ҳеч қачон нолга тушмас ёки ёлғон COMPLETED ҳосил
@@ -170,7 +170,7 @@ public class ReconciliationService {
         // Сатр айнан шу счётники ва кўчирма давригача эканини ledger
         // read методи орқали текширамиз (BR-RCN-007). Якка-сатр
         // варианти атайлаб: рўйхат методи бутун тарихни ўқийди, toggle
-        // эса сессияда 50-100 марта чақирилади (Beruniy-perf2)
+        // эса сессияда 50-100 марта чақирилади (PERF-perf2)
         ReconcilableLine line = accountTransactionsService
                 .reconcilableLine(reconciliation.getAccountId(), journalEntryLineId,
                         reconciliation.getStatementDate())
@@ -192,7 +192,7 @@ public class ReconciliationService {
     }
 
     /**
-     * Фарқ формуласи юкланган нусхалардан (Sanjar-006): view/complete
+     * Фарқ формуласи юкланган нусхалардан (OPT-006): view/complete
      * оқимлари reconciliation ва match'ларни қайта ўқимасдан ҳисоблайди.
      */
     private static BigDecimal differenceOf(BankReconciliation reconciliation,
@@ -214,7 +214,7 @@ public class ReconciliationService {
     public BankReconciliation complete(UUID reconciliationId) {
         BankReconciliation reconciliation = get(reconciliationId);
         reconciliation.requireInProgress();
-        // Sanjar-006: ички difference(id) reconciliation'ни яна ўқирди -
+        // OPT-006: ички difference(id) reconciliation'ни яна ўқирди -
         // энди юкланган нусха + бир марта ўқилган match'лар ишлатилади
         BigDecimal difference = differenceOf(reconciliation,
                 matchRepository.findByReconciliationIdOrderByCreatedAtAsc(reconciliationId));
@@ -250,7 +250,7 @@ public class ReconciliationService {
 
     /**
      * Ишчи экраннинг тўлиқ маълумоти - reconciliation, счёт ном/валютаси,
-     * номзодлар ва фарқ битта read-only транзакцияда (Sanjar-006).
+     * номзодлар ва фарқ битта read-only транзакцияда (OPT-006).
      * Битта сессия ичида ledger'нинг ички account ўқишлари ҳам биринчи
      * даражали кэшдан ҳал бўлади - счёт учун битта SELECT қолади.
      */
@@ -267,7 +267,7 @@ public class ReconciliationService {
     }
 
     /**
-     * Номзодлар рўйхати юкланган нусхалардан (Sanjar-006). Elsewhere
+     * Номзодлар рўйхати юкланган нусхалардан (OPT-006). Elsewhere
      * текшируви жорий номзодлар КЕСИМИДА битта query - бутун match
      * тарихи хотирага юкланмайди; membership фақат номзод id'лари учун
      * сўралгани сабабли натижа аввалги тўлиқ тўпламдагидек.

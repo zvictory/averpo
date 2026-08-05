@@ -3291,3 +3291,589 @@
 2026-08-05 16:25:03.843 INFO  [] -            com.averpo.erp.AverpoApplication - Started AverpoApplication in 17.884 seconds (process running for 18.58)
 2026-08-05 16:25:04.076 INFO  [] -            c.averpo.erp.config.DemoDataSeeder - Demo маълумот аллақачон бор - сеедер ўтказиб юборилди
 2026-08-05 16:25:04.083 INFO  [] -            c.a.e.shared.config.StartupUrlLogger - Илова тайёр: http://localhost:8091
+2026-08-05 16:27:37.816 INFO  [] -            com.averpo.erp.AverpoApplication - Starting AverpoApplication using Java 21.0.9 with PID 114832 (D:\Averpo\averpo-erp-web-tech-award\build\classes\java\main started by nurmu in D:\Averpo\averpo-erp-web-tech-award)
+2026-08-05 16:27:37.821 INFO  [] -            com.averpo.erp.AverpoApplication - The following 2 profiles are active: "dev", "demo"
+2026-08-05 16:27:39.110 INFO  [] -            o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-05 16:27:39.410 INFO  [] -            o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 290 ms. Found 56 JPA repository interfaces.
+2026-08-05 16:27:40.561 INFO  [] -            o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2026-08-05 16:27:40.581 INFO  [] -            o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+2026-08-05 16:27:40.591 INFO  [] -            o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-05 16:27:40.591 INFO  [] -            o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.14]
+2026-08-05 16:27:40.723 INFO  [] -            o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2824 ms
+2026-08-05 16:27:40.989 INFO  [] -            com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-05 16:27:41.209 INFO  [] -            com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4aab7195
+2026-08-05 16:27:41.212 INFO  [] -            com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-05 16:27:41.435 INFO  [] -            liquibase.database - Set default schema name to public
+2026-08-05 16:27:41.722 INFO  [] -            liquibase.changelog - Creating database changelog table with name: public.databasechangelog
+2026-08-05 16:27:41.778 INFO  [] -            liquibase.changelog - Reading from public.databasechangelog
+2026-08-05 16:27:41.972 INFO  [] -            liquibase.snapshot - Creating snapshot
+2026-08-05 16:27:42.095 INFO  [] -            liquibase.lockservice - Successfully acquired change log lock
+2026-08-05 16:27:42.098 INFO  [] -            liquibase.command - Using deploymentId: 5929260975
+2026-08-05 16:27:42.102 INFO  [] -            liquibase.changelog - Reading from public.databasechangelog
+2026-08-05 16:27:42.165 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/001-shared.sql::001-exchange-rate::erp
+2026-08-05 16:27:42.194 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.199 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/001-shared.sql::001-exchange-rate::erp ran successfully in 33ms
+2026-08-05 16:27:42.210 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/002-company-settings.sql::002-company-settings::averpo
+2026-08-05 16:27:42.220 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.224 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/002-company-settings.sql::002-company-settings::averpo ran successfully in 14ms
+2026-08-05 16:27:42.230 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/003-ledger.sql::003-account::averpo
+2026-08-05 16:27:42.250 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.254 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/003-ledger.sql::003-account::averpo ran successfully in 23ms
+2026-08-05 16:27:42.260 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/003-ledger.sql::004-journal-entry::averpo
+2026-08-05 16:27:42.277 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.282 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/003-ledger.sql::004-journal-entry::averpo ran successfully in 20ms
+2026-08-05 16:27:42.287 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/003-ledger.sql::005-journal-entry-line::averpo
+2026-08-05 16:27:42.301 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.305 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/003-ledger.sql::005-journal-entry-line::averpo ran successfully in 17ms
+2026-08-05 16:27:42.310 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/004-currency.sql::006-currency::averpo
+2026-08-05 16:27:42.318 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.321 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/004-currency.sql::006-currency::averpo ran successfully in 10ms
+2026-08-05 16:27:42.328 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/004-currency.sql::007-currency-seed::averpo
+2026-08-05 16:27:42.336 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.338 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/004-currency.sql::007-currency-seed::averpo ran successfully in 9ms
+2026-08-05 16:27:42.345 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/005-rate-scale.sql::008-rate-scale-12::averpo
+2026-08-05 16:27:42.359 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.365 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/005-rate-scale.sql::008-rate-scale-12::averpo ran successfully in 20ms
+2026-08-05 16:27:42.372 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/006-jel-constraints.sql::009-jel-constraints::averpo
+2026-08-05 16:27:42.384 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.387 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/006-jel-constraints.sql::009-jel-constraints::averpo ran successfully in 14ms
+2026-08-05 16:27:42.395 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/007-contact.sql::010-payment-term::averpo
+2026-08-05 16:27:42.404 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.409 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/007-contact.sql::010-payment-term::averpo ran successfully in 13ms
+2026-08-05 16:27:42.415 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/007-contact.sql::011-payment-term-seed::averpo
+2026-08-05 16:27:42.421 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.426 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/007-contact.sql::011-payment-term-seed::averpo ran successfully in 9ms
+2026-08-05 16:27:42.435 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/007-contact.sql::012-contact::averpo
+2026-08-05 16:27:42.447 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.454 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/007-contact.sql::012-contact::averpo ran successfully in 18ms
+2026-08-05 16:27:42.461 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/008-item.sql::013-unit::averpo
+2026-08-05 16:27:42.469 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.473 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/008-item.sql::013-unit::averpo ran successfully in 11ms
+2026-08-05 16:27:42.480 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/008-item.sql::014-unit-seed::averpo
+2026-08-05 16:27:42.488 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.492 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/008-item.sql::014-unit-seed::averpo ran successfully in 11ms
+2026-08-05 16:27:42.499 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/008-item.sql::015-item-category::averpo
+2026-08-05 16:27:42.512 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.517 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/008-item.sql::015-item-category::averpo ran successfully in 17ms
+2026-08-05 16:27:42.526 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/008-item.sql::016-item::averpo
+2026-08-05 16:27:42.550 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.557 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/008-item.sql::016-item::averpo ran successfully in 30ms
+2026-08-05 16:27:42.565 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/009-jel-constraints-v2.sql::017-jel-constraints-v2::averpo
+2026-08-05 16:27:42.577 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.580 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/009-jel-constraints-v2.sql::017-jel-constraints-v2::averpo ran successfully in 14ms
+2026-08-05 16:27:42.590 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/010-currency-fk.sql::018-account-currency-fk::averpo
+2026-08-05 16:27:42.604 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.608 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/010-currency-fk.sql::018-account-currency-fk::averpo ran successfully in 17ms
+2026-08-05 16:27:42.614 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/010-currency-fk.sql::019-company-settings-currency-fk::averpo
+2026-08-05 16:27:42.630 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.636 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/010-currency-fk.sql::019-company-settings-currency-fk::averpo ran successfully in 20ms
+2026-08-05 16:27:42.643 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/010-currency-fk.sql::020-contact-currency-fk::averpo
+2026-08-05 16:27:42.656 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.660 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/010-currency-fk.sql::020-contact-currency-fk::averpo ran successfully in 16ms
+2026-08-05 16:27:42.669 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/010-currency-fk.sql::021-exchange-rate-currency-fk::averpo
+2026-08-05 16:27:42.688 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.694 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/010-currency-fk.sql::021-exchange-rate-currency-fk::averpo ran successfully in 25ms
+2026-08-05 16:27:42.702 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/011-app-user.sql::022-app-user::averpo
+2026-08-05 16:27:42.713 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.719 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/011-app-user.sql::022-app-user::averpo ran successfully in 16ms
+2026-08-05 16:27:42.726 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/012-inventory-valuation.sql::023-inventory-valuation::averpo
+2026-08-05 16:27:42.733 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.737 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/012-inventory-valuation.sql::023-inventory-valuation::averpo ran successfully in 10ms
+2026-08-05 16:27:42.745 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/013-je-source-unique.sql::013-01-je-reversal-of::averpo
+2026-08-05 16:27:42.752 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.758 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/013-je-source-unique.sql::013-01-je-reversal-of::averpo ran successfully in 13ms
+2026-08-05 16:27:42.766 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/013-je-source-unique.sql::013-02-je-source-partial-unique::averpo
+2026-08-05 16:27:42.773 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.777 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/013-je-source-unique.sql::013-02-je-source-partial-unique::averpo ran successfully in 11ms
+2026-08-05 16:27:42.786 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/013-je-source-unique.sql::013-03-jel-rate-positive::averpo
+2026-08-05 16:27:42.793 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.797 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/013-je-source-unique.sql::013-03-jel-rate-positive::averpo ran successfully in 11ms
+2026-08-05 16:27:42.804 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/014-document-sequence.sql::014-01-document-sequence::averpo
+2026-08-05 16:27:42.813 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.818 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/014-document-sequence.sql::014-01-document-sequence::averpo ran successfully in 14ms
+2026-08-05 16:27:42.825 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/014-document-sequence.sql::014-02-document-sequence-seed::averpo
+2026-08-05 16:27:42.837 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.841 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/014-document-sequence.sql::014-02-document-sequence-seed::averpo ran successfully in 16ms
+2026-08-05 16:27:42.849 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/014-document-sequence.sql::014-03-drop-je-number-seq::averpo
+2026-08-05 16:27:42.854 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.857 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/014-document-sequence.sql::014-03-drop-je-number-seq::averpo ran successfully in 8ms
+2026-08-05 16:27:42.864 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/015-closing-date.sql::015-01-company-settings-closing-date::averpo
+2026-08-05 16:27:42.869 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.872 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/015-closing-date.sql::015-01-company-settings-closing-date::averpo ran successfully in 6ms
+2026-08-05 16:27:42.878 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/016-contact-extension.sql::016-01-contact-tax-credit::averpo
+2026-08-05 16:27:42.888 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.892 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/016-contact-extension.sql::016-01-contact-tax-credit::averpo ran successfully in 13ms
+2026-08-05 16:27:42.897 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/016-contact-extension.sql::016-02-contact-address::averpo
+2026-08-05 16:27:42.911 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.916 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/016-contact-extension.sql::016-02-contact-address::averpo ran successfully in 19ms
+2026-08-05 16:27:42.922 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/016-contact-extension.sql::016-03-contact-person::averpo
+2026-08-05 16:27:42.935 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.939 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/016-contact-extension.sql::016-03-contact-person::averpo ran successfully in 16ms
+2026-08-05 16:27:42.946 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/016-contact-extension.sql::016-04-contact-bank-account::averpo
+2026-08-05 16:27:42.960 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.967 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/016-contact-extension.sql::016-04-contact-bank-account::averpo ran successfully in 20ms
+2026-08-05 16:27:42.972 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/016-contact-extension.sql::016-05-contact-address-migrate::averpo
+2026-08-05 16:27:42.984 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:42.986 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/016-contact-extension.sql::016-05-contact-address-migrate::averpo ran successfully in 14ms
+2026-08-05 16:27:42.992 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-01-warehouse::averpo
+2026-08-05 16:27:43.002 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.006 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-01-warehouse::averpo ran successfully in 14ms
+2026-08-05 16:27:43.012 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-02-warehouse-seed::averpo
+2026-08-05 16:27:43.019 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.022 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-02-warehouse-seed::averpo ran successfully in 9ms
+2026-08-05 16:27:43.028 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-03-stock-movement::averpo
+2026-08-05 16:27:43.045 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.049 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-03-stock-movement::averpo ran successfully in 20ms
+2026-08-05 16:27:43.055 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-04-stock-balance::averpo
+2026-08-05 16:27:43.064 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.068 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-04-stock-balance::averpo ran successfully in 13ms
+2026-08-05 16:27:43.075 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-05-cost-layer::averpo
+2026-08-05 16:27:43.087 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.092 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-05-cost-layer::averpo ran successfully in 16ms
+2026-08-05 16:27:43.098 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/017-inventory.sql::017-06-cost-layer-consumption::averpo
+2026-08-05 16:27:43.110 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.113 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/017-inventory.sql::017-06-cost-layer-consumption::averpo ran successfully in 15ms
+2026-08-05 16:27:43.118 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/018-detail-type-rename.sql::018-01-detail-type-rename::averpo
+2026-08-05 16:27:43.133 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.135 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/018-detail-type-rename.sql::018-01-detail-type-rename::averpo ran successfully in 16ms
+2026-08-05 16:27:43.140 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/019-purchases.sql::019-01-bill::averpo
+2026-08-05 16:27:43.161 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.167 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/019-purchases.sql::019-01-bill::averpo ran successfully in 26ms
+2026-08-05 16:27:43.172 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/019-purchases.sql::019-02-bill-line::averpo
+2026-08-05 16:27:43.188 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.192 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/019-purchases.sql::019-02-bill-line::averpo ran successfully in 20ms
+2026-08-05 16:27:43.199 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/019-purchases.sql::019-03-bill-payment::averpo
+2026-08-05 16:27:43.215 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.219 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/019-purchases.sql::019-03-bill-payment::averpo ran successfully in 20ms
+2026-08-05 16:27:43.225 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/019-purchases.sql::019-04-bill-payment-allocation::averpo
+2026-08-05 16:27:43.237 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.240 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/019-purchases.sql::019-04-bill-payment-allocation::averpo ran successfully in 15ms
+2026-08-05 16:27:43.247 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/020-landed-cost.sql::020-01-landed-cost-allocation::averpo
+2026-08-05 16:27:43.257 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.261 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/020-landed-cost.sql::020-01-landed-cost-allocation::averpo ran successfully in 14ms
+2026-08-05 16:27:43.266 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/020-landed-cost.sql::020-02-landed-cost-allocation-line::averpo
+2026-08-05 16:27:43.281 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.285 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/020-landed-cost.sql::020-02-landed-cost-allocation-line::averpo ran successfully in 18ms
+2026-08-05 16:27:43.292 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/020-landed-cost.sql::020-03-landed-cost-sequence::averpo
+2026-08-05 16:27:43.296 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.299 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/020-landed-cost.sql::020-03-landed-cost-sequence::averpo ran successfully in 7ms
+2026-08-05 16:27:43.309 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/021-sales.sql::021-01-invoice::averpo
+2026-08-05 16:27:43.328 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.334 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/021-sales.sql::021-01-invoice::averpo ran successfully in 25ms
+2026-08-05 16:27:43.341 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/021-sales.sql::021-02-invoice-line::averpo
+2026-08-05 16:27:43.361 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.367 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/021-sales.sql::021-02-invoice-line::averpo ran successfully in 26ms
+2026-08-05 16:27:43.374 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/021-sales.sql::021-03-invoice-payment::averpo
+2026-08-05 16:27:43.393 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.400 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/021-sales.sql::021-03-invoice-payment::averpo ran successfully in 25ms
+2026-08-05 16:27:43.406 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/021-sales.sql::021-04-invoice-payment-allocation::averpo
+2026-08-05 16:27:43.419 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.422 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/021-sales.sql::021-04-invoice-payment-allocation::averpo ran successfully in 16ms
+2026-08-05 16:27:43.428 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/021-sales.sql::021-05-receipt-sequence::averpo
+2026-08-05 16:27:43.432 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.435 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/021-sales.sql::021-05-receipt-sequence::averpo ran successfully in 7ms
+2026-08-05 16:27:43.441 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/022-banking.sql::022-01-bank-transaction::averpo
+2026-08-05 16:27:43.458 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.464 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/022-banking.sql::022-01-bank-transaction::averpo ran successfully in 23ms
+2026-08-05 16:27:43.470 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/022-banking.sql::022-02-bank-transaction-line::averpo
+2026-08-05 16:27:43.481 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.485 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/022-banking.sql::022-02-bank-transaction-line::averpo ran successfully in 15ms
+2026-08-05 16:27:43.491 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/022-banking.sql::022-03-bank-reconciliation::averpo
+2026-08-05 16:27:43.503 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.508 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/022-banking.sql::022-03-bank-reconciliation::averpo ran successfully in 17ms
+2026-08-05 16:27:43.515 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/022-banking.sql::022-04-bank-reconciliation-match::averpo
+2026-08-05 16:27:43.527 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.533 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/022-banking.sql::022-04-bank-reconciliation-match::averpo ran successfully in 16ms
+2026-08-05 16:27:43.539 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/022-banking.sql::022-05-bank-txn-sequence::averpo
+2026-08-05 16:27:43.545 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.549 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/022-banking.sql::022-05-bank-txn-sequence::averpo ran successfully in 8ms
+2026-08-05 16:27:43.556 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/023-line-uniques.sql::023-01-line-tables-unique::averpo
+2026-08-05 16:27:43.569 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.573 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/023-line-uniques.sql::023-01-line-tables-unique::averpo ran successfully in 17ms
+2026-08-05 16:27:43.581 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/024-fiscal-year.sql::024-01-fiscal-year-start-month::averpo
+2026-08-05 16:27:43.590 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.593 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/024-fiscal-year.sql::024-01-fiscal-year-start-month::averpo ran successfully in 10ms
+2026-08-05 16:27:43.599 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/025-lc-reversal-date.sql::025-01-lc-reversal-date::averpo
+2026-08-05 16:27:43.606 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.610 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/025-lc-reversal-date.sql::025-01-lc-reversal-date::averpo ran successfully in 10ms
+2026-08-05 16:27:43.618 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/026-uom.sql::026-01-unit-group::averpo
+2026-08-05 16:27:43.626 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.630 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/026-uom.sql::026-01-unit-group::averpo ran successfully in 12ms
+2026-08-05 16:27:43.637 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/026-uom.sql::026-02-unit-uom-columns::averpo
+2026-08-05 16:27:43.655 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.658 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/026-uom.sql::026-02-unit-uom-columns::averpo ran successfully in 21ms
+2026-08-05 16:27:43.665 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/026-uom.sql::026-03-item-default-units::averpo
+2026-08-05 16:27:43.673 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.677 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/026-uom.sql::026-03-item-default-units::averpo ran successfully in 12ms
+2026-08-05 16:27:43.683 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/027-bill-line-uom.sql::027-01-bill-line-uom::averpo
+2026-08-05 16:27:43.690 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.694 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/027-bill-line-uom.sql::027-01-bill-line-uom::averpo ran successfully in 10ms
+2026-08-05 16:27:43.700 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/028-invoice-line-uom.sql::028-01-invoice-line-uom::averpo
+2026-08-05 16:27:43.707 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.711 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/028-invoice-line-uom.sql::028-01-invoice-line-uom::averpo ran successfully in 11ms
+2026-08-05 16:27:43.717 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/029-user-management.sql::029-01-app-user-lockout::averpo
+2026-08-05 16:27:43.725 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.728 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/029-user-management.sql::029-01-app-user-lockout::averpo ran successfully in 10ms
+2026-08-05 16:27:43.735 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/030-created-by.sql::030-01-created-by::averpo
+2026-08-05 16:27:43.802 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.807 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/030-created-by.sql::030-01-created-by::averpo ran successfully in 72ms
+2026-08-05 16:27:43.816 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/031-price-list.sql::031-01-price-list::averpo
+2026-08-05 16:27:43.828 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.833 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/031-price-list.sql::031-01-price-list::averpo ran successfully in 16ms
+2026-08-05 16:27:43.841 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/031-price-list.sql::031-02-price-list-item::averpo
+2026-08-05 16:27:43.852 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.856 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/031-price-list.sql::031-02-price-list-item::averpo ran successfully in 15ms
+2026-08-05 16:27:43.863 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/031-price-list.sql::031-03-price-list-customer::averpo
+2026-08-05 16:27:43.872 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.876 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/031-price-list.sql::031-03-price-list-customer::averpo ran successfully in 13ms
+2026-08-05 16:27:43.882 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/032-tax.sql::032-01-tax-rate::averpo
+2026-08-05 16:27:43.891 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.896 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/032-tax.sql::032-01-tax-rate::averpo ran successfully in 12ms
+2026-08-05 16:27:43.902 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/032-tax.sql::032-02-tax-rate-seed::averpo
+2026-08-05 16:27:43.908 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.910 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/032-tax.sql::032-02-tax-rate-seed::averpo ran successfully in 7ms
+2026-08-05 16:27:43.917 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/032-tax.sql::032-03-item-tax-defaults::averpo
+2026-08-05 16:27:43.923 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.925 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/032-tax.sql::032-03-item-tax-defaults::averpo ran successfully in 8ms
+2026-08-05 16:27:43.931 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/032-tax.sql::032-04-bill-tax::averpo
+2026-08-05 16:27:43.946 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.949 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/032-tax.sql::032-04-bill-tax::averpo ran successfully in 17ms
+2026-08-05 16:27:43.956 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/032-tax.sql::032-05-invoice-tax::averpo
+2026-08-05 16:27:43.968 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.975 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/032-tax.sql::032-05-invoice-tax::averpo ran successfully in 18ms
+2026-08-05 16:27:43.980 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/033-exchange-rate-history.sql::033-01-exchange-rate-history::averpo
+2026-08-05 16:27:43.990 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:43.994 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/033-exchange-rate-history.sql::033-01-exchange-rate-history::averpo ran successfully in 13ms
+2026-08-05 16:27:44.002 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/034-audit-log.sql::034-01-audit-event::averpo
+2026-08-05 16:27:44.018 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.027 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/034-audit-log.sql::034-01-audit-event::averpo ran successfully in 23ms
+2026-08-05 16:27:44.035 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/035-exchange-rate-index.sql::035-01-exchange-rate-lookup-index::averpo
+2026-08-05 16:27:44.040 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.043 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/035-exchange-rate-index.sql::035-01-exchange-rate-lookup-index::averpo ran successfully in 8ms
+2026-08-05 16:27:44.050 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/036-payment-method.sql::036-01-payment-method::averpo
+2026-08-05 16:27:44.057 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.062 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/036-payment-method.sql::036-01-payment-method::averpo ran successfully in 10ms
+2026-08-05 16:27:44.068 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/036-payment-method.sql::036-02-payment-method-seed::averpo
+2026-08-05 16:27:44.074 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.077 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/036-payment-method.sql::036-02-payment-method-seed::averpo ran successfully in 9ms
+2026-08-05 16:27:44.083 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/036-payment-method.sql::036-03-bank-transaction-payment-fields::averpo
+2026-08-05 16:27:44.090 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.094 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/036-payment-method.sql::036-03-bank-transaction-payment-fields::averpo ran successfully in 10ms
+2026-08-05 16:27:44.100 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/036-payment-method.sql::036-04-audit-event-entry-index::averpo
+2026-08-05 16:27:44.105 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.108 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/036-payment-method.sql::036-04-audit-event-entry-index::averpo ran successfully in 8ms
+2026-08-05 16:27:44.114 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/037-class-tracking.sql::037-01-txn-class::averpo
+2026-08-05 16:27:44.122 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.127 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/037-class-tracking.sql::037-01-txn-class::averpo ran successfully in 12ms
+2026-08-05 16:27:44.134 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/037-class-tracking.sql::037-02-company-settings-track-classes::averpo
+2026-08-05 16:27:44.139 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.143 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/037-class-tracking.sql::037-02-company-settings-track-classes::averpo ran successfully in 8ms
+2026-08-05 16:27:44.149 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/037-class-tracking.sql::037-03-line-class-columns::averpo
+2026-08-05 16:27:44.163 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.167 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/037-class-tracking.sql::037-03-line-class-columns::averpo ran successfully in 18ms
+2026-08-05 16:27:44.173 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/038-credit-memo.sql::038-01-credit-memo::averpo
+2026-08-05 16:27:44.188 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.193 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/038-credit-memo.sql::038-01-credit-memo::averpo ran successfully in 19ms
+2026-08-05 16:27:44.200 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/038-credit-memo.sql::038-02-credit-memo-line::averpo
+2026-08-05 16:27:44.212 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.218 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/038-credit-memo.sql::038-02-credit-memo-line::averpo ran successfully in 18ms
+2026-08-05 16:27:44.224 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/038-credit-memo.sql::038-03-credit-application::averpo
+2026-08-05 16:27:44.234 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.239 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/038-credit-memo.sql::038-03-credit-application::averpo ran successfully in 14ms
+2026-08-05 16:27:44.246 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/038-credit-memo.sql::038-04-credit-memo-sequence::averpo
+2026-08-05 16:27:44.250 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.253 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/038-credit-memo.sql::038-04-credit-memo-sequence::averpo ran successfully in 7ms
+2026-08-05 16:27:44.259 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/039-estimates-po.sql::039-01-estimate::averpo
+2026-08-05 16:27:44.275 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.279 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/039-estimates-po.sql::039-01-estimate::averpo ran successfully in 20ms
+2026-08-05 16:27:44.286 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/039-estimates-po.sql::039-02-estimate-line::averpo
+2026-08-05 16:27:44.300 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.304 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/039-estimates-po.sql::039-02-estimate-line::averpo ran successfully in 17ms
+2026-08-05 16:27:44.311 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/039-estimates-po.sql::039-03-purchase-order::averpo
+2026-08-05 16:27:44.333 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.337 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/039-estimates-po.sql::039-03-purchase-order::averpo ran successfully in 25ms
+2026-08-05 16:27:44.344 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/039-estimates-po.sql::039-04-purchase-order-line::averpo
+2026-08-05 16:27:44.358 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.363 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/039-estimates-po.sql::039-04-purchase-order-line::averpo ran successfully in 19ms
+2026-08-05 16:27:44.370 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/039-estimates-po.sql::039-05-est-po-sequences::averpo
+2026-08-05 16:27:44.375 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.378 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/039-estimates-po.sql::039-05-est-po-sequences::averpo ran successfully in 8ms
+2026-08-05 16:27:44.384 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/040-drop-price-list-item-index.sql::040-drop-price-list-item-index::averpo
+2026-08-05 16:27:44.390 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.393 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/040-drop-price-list-item-index.sql::040-drop-price-list-item-index::averpo ran successfully in 8ms
+2026-08-05 16:27:44.400 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-01-vendor-credit::averpo
+2026-08-05 16:27:44.413 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.418 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-01-vendor-credit::averpo ran successfully in 18ms
+2026-08-05 16:27:44.424 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-02-vendor-credit-line::averpo
+2026-08-05 16:27:44.435 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.439 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-02-vendor-credit-line::averpo ran successfully in 15ms
+2026-08-05 16:27:44.446 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-03-vendor-credit-application::averpo
+2026-08-05 16:27:44.455 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.458 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-03-vendor-credit-application::averpo ran successfully in 12ms
+2026-08-05 16:27:44.465 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-04-refund-receipt::averpo
+2026-08-05 16:27:44.478 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.483 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-04-refund-receipt::averpo ran successfully in 16ms
+2026-08-05 16:27:44.489 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-05-refund-receipt-line::averpo
+2026-08-05 16:27:44.503 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.508 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-05-refund-receipt-line::averpo ran successfully in 18ms
+2026-08-05 16:27:44.515 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/041-vendor-credit-refund-receipt.sql::041-06-returns-sequences::averpo
+2026-08-05 16:27:44.521 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.525 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/041-vendor-credit-refund-receipt.sql::041-06-returns-sequences::averpo ran successfully in 8ms
+2026-08-05 16:27:44.531 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/042-attachment.sql::042-01-attachment::averpo
+2026-08-05 16:27:44.543 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.547 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/042-attachment.sql::042-01-attachment::averpo ran successfully in 16ms
+2026-08-05 16:27:44.553 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/043-payroll-employee.sql::043-01-contact-monthly-salary::averpo
+2026-08-05 16:27:44.557 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.562 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/043-payroll-employee.sql::043-01-contact-monthly-salary::averpo ran successfully in 9ms
+2026-08-05 16:27:44.569 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/043-payroll-employee.sql::043-02-company-settings-payroll-rates::averpo
+2026-08-05 16:27:44.580 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.584 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/043-payroll-employee.sql::043-02-company-settings-payroll-rates::averpo ran successfully in 15ms
+2026-08-05 16:27:44.590 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/043-payroll-employee.sql::043-03-payroll-accounts-seed::averpo
+2026-08-05 16:27:44.605 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.606 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/043-payroll-employee.sql::043-03-payroll-accounts-seed::averpo ran successfully in 16ms
+2026-08-05 16:27:44.612 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/044-payroll-run.sql::044-01-payroll-run::averpo
+2026-08-05 16:27:44.620 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.625 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/044-payroll-run.sql::044-01-payroll-run::averpo ran successfully in 12ms
+2026-08-05 16:27:44.631 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/044-payroll-run.sql::044-02-payroll-run-period-posted-unique::averpo
+2026-08-05 16:27:44.636 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.640 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/044-payroll-run.sql::044-02-payroll-run-period-posted-unique::averpo ran successfully in 8ms
+2026-08-05 16:27:44.647 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/044-payroll-run.sql::044-03-payroll-run-line::averpo
+2026-08-05 16:27:44.659 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.663 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/044-payroll-run.sql::044-03-payroll-run-line::averpo ran successfully in 16ms
+2026-08-05 16:27:44.669 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/044-payroll-run.sql::044-04-payroll-run-sequence::averpo
+2026-08-05 16:27:44.674 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.676 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/044-payroll-run.sql::044-04-payroll-run-sequence::averpo ran successfully in 7ms
+2026-08-05 16:27:44.683 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/045-payroll-payment.sql::045-01-payroll-payment::averpo
+2026-08-05 16:27:44.693 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.699 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/045-payroll-payment.sql::045-01-payroll-payment::averpo ran successfully in 16ms
+2026-08-05 16:27:44.705 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/045-payroll-payment.sql::045-02-payroll-payment-line::averpo
+2026-08-05 16:27:44.715 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.720 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/045-payroll-payment.sql::045-02-payroll-payment-line::averpo ran successfully in 15ms
+2026-08-05 16:27:44.727 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/045-payroll-payment.sql::045-03-payroll-payment-sequence::averpo
+2026-08-05 16:27:44.735 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.737 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/045-payroll-payment.sql::045-03-payroll-payment-sequence::averpo ran successfully in 10ms
+2026-08-05 16:27:44.745 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/046-sales-receipt.sql::046-01-sales-receipt::averpo
+2026-08-05 16:27:44.756 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.760 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/046-sales-receipt.sql::046-01-sales-receipt::averpo ran successfully in 15ms
+2026-08-05 16:27:44.766 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/046-sales-receipt.sql::046-02-sales-receipt-line::averpo
+2026-08-05 16:27:44.781 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.785 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/046-sales-receipt.sql::046-02-sales-receipt-line::averpo ran successfully in 19ms
+2026-08-05 16:27:44.791 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/046-sales-receipt.sql::046-03-sales-receipt-sequence::averpo
+2026-08-05 16:27:44.796 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.799 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/046-sales-receipt.sql::046-03-sales-receipt-sequence::averpo ran successfully in 7ms
+2026-08-05 16:27:44.805 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/047-list-index-perf.sql::047-01-jel-contact-index::averpo
+2026-08-05 16:27:44.809 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.812 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/047-list-index-perf.sql::047-01-jel-contact-index::averpo ran successfully in 6ms
+2026-08-05 16:27:44.817 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/047-list-index-perf.sql::047-02-returns-lookup-indexes::averpo
+2026-08-05 16:27:44.830 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.834 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/047-list-index-perf.sql::047-02-returns-lookup-indexes::averpo ran successfully in 16ms
+2026-08-05 16:27:44.840 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/048-setup-done.sql::048-01-company-settings-setup-done::averpo
+2026-08-05 16:27:44.849 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.852 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/048-setup-done.sql::048-01-company-settings-setup-done::averpo ran successfully in 11ms
+2026-08-05 16:27:44.858 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/049-stock-movement-date-index.sql::049-01-stock-movement-date-index::averpo
+2026-08-05 16:27:44.862 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.865 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/049-stock-movement-date-index.sql::049-01-stock-movement-date-index::averpo ran successfully in 7ms
+2026-08-05 16:27:44.870 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/050-audit-user-agent.sql::050-01-audit-user-agent::averpo
+2026-08-05 16:27:44.874 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.877 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/050-audit-user-agent.sql::050-01-audit-user-agent::averpo ran successfully in 7ms
+2026-08-05 16:27:44.882 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/051-returns-family-invariants.sql::051-01-returns-family-rate-check::averpo
+2026-08-05 16:27:44.891 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.893 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/051-returns-family-invariants.sql::051-01-returns-family-rate-check::averpo ran successfully in 11ms
+2026-08-05 16:27:44.897 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/051-returns-family-invariants.sql::051-02-sales-receipt-line-price-precision::averpo
+2026-08-05 16:27:44.900 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.908 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/051-returns-family-invariants.sql::051-02-sales-receipt-line-price-precision::averpo ran successfully in 11ms
+2026-08-05 16:27:44.915 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/051-returns-family-invariants.sql::051-03-payroll-gross-check::averpo
+2026-08-05 16:27:44.919 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.921 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/051-returns-family-invariants.sql::051-03-payroll-gross-check::averpo ran successfully in 6ms
+2026-08-05 16:27:44.926 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/052-user-roles-migration.sql::052-01-user-roles-migration::averpo
+2026-08-05 16:27:44.932 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.933 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/052-user-roles-migration.sql::052-01-user-roles-migration::averpo ran successfully in 7ms
+2026-08-05 16:27:44.938 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/053-audit-ipv4-country.sql::053-01-audit-ipv4-country::averpo
+2026-08-05 16:27:44.944 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.947 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/053-audit-ipv4-country.sql::053-01-audit-ipv4-country::averpo ran successfully in 8ms
+2026-08-05 16:27:44.951 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/054-company-info.sql::054-company-info::averpo
+2026-08-05 16:27:44.982 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:44.986 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/054-company-info.sql::054-company-info::averpo ran successfully in 35ms
+2026-08-05 16:27:44.993 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/056-stock-document.sql::056-01-stock-adjustment::averpo
+2026-08-05 16:27:45.002 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.006 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/056-stock-document.sql::056-01-stock-adjustment::averpo ran successfully in 13ms
+2026-08-05 16:27:45.011 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/056-stock-document.sql::056-02-stock-adjustment-line::averpo
+2026-08-05 16:27:45.024 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.028 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/056-stock-document.sql::056-02-stock-adjustment-line::averpo ran successfully in 17ms
+2026-08-05 16:27:45.033 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/056-stock-document.sql::056-03-stock-transfer::averpo
+2026-08-05 16:27:45.046 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.051 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/056-stock-document.sql::056-03-stock-transfer::averpo ran successfully in 17ms
+2026-08-05 16:27:45.058 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/056-stock-document.sql::056-04-stock-transfer-line::averpo
+2026-08-05 16:27:45.077 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.081 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/056-stock-document.sql::056-04-stock-transfer-line::averpo ran successfully in 22ms
+2026-08-05 16:27:45.087 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/056-stock-document.sql::056-05-stock-document-sequence::averpo
+2026-08-05 16:27:45.093 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.097 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/056-stock-document.sql::056-05-stock-document-sequence::averpo ran successfully in 9ms
+2026-08-05 16:27:45.103 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/057-app-user-profile.sql::057-app-user-profile::averpo
+2026-08-05 16:27:45.124 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.129 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/057-app-user-profile.sql::057-app-user-profile::averpo ran successfully in 26ms
+2026-08-05 16:27:45.134 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/059-telegram.sql::059-01-telegram-settings::averpo
+2026-08-05 16:27:45.140 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.144 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/059-telegram.sql::059-01-telegram-settings::averpo ran successfully in 10ms
+2026-08-05 16:27:45.148 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/059-telegram.sql::059-02-app-user-telegram::averpo
+2026-08-05 16:27:45.159 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.163 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/059-telegram.sql::059-02-app-user-telegram::averpo ran successfully in 14ms
+2026-08-05 16:27:45.169 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/060-stock-external-ref.sql::060-01-stock-adjustment-external-ref::averpo
+2026-08-05 16:27:45.174 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.178 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/060-stock-external-ref.sql::060-01-stock-adjustment-external-ref::averpo ran successfully in 8ms
+2026-08-05 16:27:45.185 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/060-stock-external-ref.sql::060-02-stock-transfer-external-ref::averpo
+2026-08-05 16:27:45.189 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.192 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/060-stock-external-ref.sql::060-02-stock-transfer-external-ref::averpo ran successfully in 6ms
+2026-08-05 16:27:45.197 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/061-indexes.sql::061-01-list-filter-indexes::averpo
+2026-08-05 16:27:45.231 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.237 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/061-indexes.sql::061-01-list-filter-indexes::averpo ran successfully in 38ms
+2026-08-05 16:27:45.246 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/065-plugins.sql::065-01-plugin-state::averpo
+2026-08-05 16:27:45.251 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.254 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/065-plugins.sql::065-01-plugin-state::averpo ran successfully in 8ms
+2026-08-05 16:27:45.261 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/066-refinement.sql::066-refinement::averpo
+2026-08-05 16:27:45.269 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.272 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/066-refinement.sql::066-refinement::averpo ran successfully in 11ms
+2026-08-05 16:27:45.277 INFO  [] -            liquibase.ui - Running Changeset: db/changelog/068-telegram-webhook.sql::068-telegram-webhook::averpo
+2026-08-05 16:27:45.280 INFO  [] -            liquibase.changelog - Custom SQL executed
+2026-08-05 16:27:45.283 INFO  [] -            liquibase.changelog - ChangeSet db/changelog/068-telegram-webhook.sql::068-telegram-webhook::averpo ran successfully in 6ms
+2026-08-05 16:27:45.294 INFO  [] -            liquibase.util - UPDATE SUMMARY
+2026-08-05 16:27:45.296 INFO  [] -            liquibase.util - Run:                        142
+2026-08-05 16:27:45.296 INFO  [] -            liquibase.util - Previously run:               0
+2026-08-05 16:27:45.296 INFO  [] -            liquibase.util - Filtered out:                 0
+2026-08-05 16:27:45.296 INFO  [] -            liquibase.util - -------------------------------
+2026-08-05 16:27:45.296 INFO  [] -            liquibase.util - Total change sets:          142
+2026-08-05 16:27:45.297 INFO  [] -            liquibase.util - Update summary generated
+2026-08-05 16:27:45.297 INFO  [] -            liquibase.command - Update command completed successfully.
+2026-08-05 16:27:45.297 INFO  [] -            liquibase.ui - Liquibase: Update has been successful. Rows affected: 40
+2026-08-05 16:27:45.308 INFO  [] -            liquibase.lockservice - Successfully released change log lock
+2026-08-05 16:27:45.310 INFO  [] -            liquibase.command - Command execution complete
+2026-08-05 16:27:47.905 INFO  [] -            o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-05 16:27:51.135 INFO  [] -            o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-05 16:27:51.289 INFO  [] -            o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-05 16:27:57.620 INFO  [] -            o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+2026-08-05 16:27:57.648 INFO  [] -            o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/'
+2026-08-05 16:27:57.653 INFO  [] -            c.a.e.p.t.service.TelegramPoller - Telegram poller ишга тушди
+2026-08-05 16:27:57.667 INFO  [] -            com.averpo.erp.AverpoApplication - Started AverpoApplication in 20.655 seconds (process running for 21.363)
+2026-08-05 16:27:57.753 WARN  [] -            c.a.e.s.config.AdminUserInitializer - ДИҚҚАТ: admin фойдаланувчиси DEV DEFAULT парол билан яратилди. Production'da AVERPO_ADMIN_PASSWORD env бериш ШАРТ!
+2026-08-05 16:27:57.835 INFO  [] -            o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-05 16:27:57.835 INFO  [] -            o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-05 16:27:57.835 INFO  [] -            o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-08-05 16:27:58.277 INFO  [] -            c.a.e.l.c.DefaultChartInitializer - Янги ўрнатиш: default счётлар режаси автоматик юкланди (51 счёт)
+2026-08-05 16:28:00.828 INFO  [] -            c.averpo.erp.config.DemoDataSeeder - Demo каталог: 30 мижоз, 20 етказувчи, 16 товар, 4 хизмат, 6 омбор
+2026-08-05 16:28:01.071 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000001 home жами 300000000.0000
+2026-08-05 16:28:01.329 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000002 home жами 38990336.0000
+2026-08-05 16:28:01.700 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000003 home жами 29965320.0000
+2026-08-05 16:28:01.876 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000004 home жами 809600.0000
+2026-08-05 16:28:01.991 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000005 home жами 4560000.0000
+2026-08-05 16:28:02.093 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000006 home жами 1850000.0000
+2026-08-05 16:28:02.250 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000007 home жами 33890304.0000
+2026-08-05 16:28:02.448 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000008 home жами 33913241.6000
+2026-08-05 16:28:02.671 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000009 home жами 11618304.0000
+2026-08-05 16:28:02.902 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000010 home жами 15197798.4000
+2026-08-05 16:28:03.165 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000011 home жами 24977817.6000
+2026-08-05 16:28:03.240 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000012 home жами 4620000.0000
+2026-08-05 16:28:03.318 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000013 home жами 1850000.0000
+2026-08-05 16:28:03.403 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000014 home жами 940000.0000
+2026-08-05 16:28:03.472 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000015 home жами 63000000.0000
+2026-08-05 16:28:03.662 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000016 home жами 36787856.0000
+2026-08-05 16:28:03.834 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000017 home жами 21338100.0000
+2026-08-05 16:28:04.060 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000018 home жами 24701358.4000
+2026-08-05 16:28:04.238 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000019 home жами 11265600.0000
+2026-08-05 16:28:04.400 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000020 home жами 466200.0000
+2026-08-05 16:28:04.469 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000021 home жами 4680000.0000
+2026-08-05 16:28:04.549 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000022 home жами 1850000.0000
+2026-08-05 16:28:04.782 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000023 home жами 37484025.6000
+2026-08-05 16:28:04.954 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000024 home жами 37234014.7200
+2026-08-05 16:28:05.172 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000025 home жами 14511111.0400
+2026-08-05 16:28:05.341 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000026 home жами 25904254.4000
+2026-08-05 16:28:05.486 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000027 home жами 471600.0000
+2026-08-05 16:28:05.785 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000028 home жами 31275104.0000
+2026-08-05 16:28:05.872 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000029 home жами 4740000.0000
+2026-08-05 16:28:05.935 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000030 home жами 1150000.0000
+2026-08-05 16:28:06.002 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000031 home жами 1000000.0000
+2026-08-05 16:28:06.064 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000032 home жами 9000000.0000
+2026-08-05 16:28:06.207 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000033 home жами 38928288.0000
+2026-08-05 16:28:06.457 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000034 home жами 10529624.0000
+2026-08-05 16:28:06.661 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000035 home жами 18955440.0000
+2026-08-05 16:28:06.916 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000036 home жами 18869160.0000
+2026-08-05 16:28:07.085 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000037 home жами 21116000.0000
+2026-08-05 16:28:07.193 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000038 home жами 4800000.0000
+2026-08-05 16:28:07.298 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000039 home жами 1150000.0000
+2026-08-05 16:28:07.509 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000040 home жами 42604070.4000
+2026-08-05 16:28:07.681 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000041 home жами 57330560.0000
+2026-08-05 16:28:07.924 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000042 home жами 31514656.0000
+2026-08-05 16:28:08.111 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000043 home жами 26857552.0000
+2026-08-05 16:28:08.281 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000044 home жами 26403990.0000
+2026-08-05 16:28:08.458 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000045 home жами 28498696.0000
+2026-08-05 16:28:08.630 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000046 home жами 24155028.0000
+2026-08-05 16:28:08.709 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000047 home жами 4860000.0000
+2026-08-05 16:28:08.792 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000048 home жами 1150000.0000
+2026-08-05 16:28:08.869 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000049 home жами 1060000.0000
+2026-08-05 16:28:09.015 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000050 home жами 52387552.0000
+2026-08-05 16:28:09.188 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000051 home жами 28725732.0000
+2026-08-05 16:28:09.444 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000052 home жами 19386252.0000
+2026-08-05 16:28:09.658 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000053 home жами 24957464.0000
+2026-08-05 16:28:09.854 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000054 home жами 25721613.8609
+2026-08-05 16:28:10.030 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000055 home жами 26920817.6552
+2026-08-05 16:28:10.254 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000056 home жами 25716020.7814
+2026-08-05 16:28:10.345 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000057 home жами 4920000.0000
+2026-08-05 16:28:10.417 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000058 home жами 1150000.0000
+2026-08-05 16:28:10.614 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000059 home жами 68250112.0000
+2026-08-05 16:28:10.770 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL JE-2026-000060 home жами 47259520.0000
+2026-08-05 16:28:10.974 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000061 home жами 29958465.6000
+2026-08-05 16:28:11.147 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000062 home жами 11755270.4000
+2026-08-05 16:28:11.351 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000063 home жами 25765820.9766
+2026-08-05 16:28:11.548 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000064 home жами 27395139.8680
+2026-08-05 16:28:11.722 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000065 home жами 55418528.0000
+2026-08-05 16:28:11.914 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE JE-2026-000066 home жами 32600608.0000
+2026-08-05 16:28:11.993 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000067 home жами 4980000.0000
+2026-08-05 16:28:12.065 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000068 home жами 1150000.0000
+2026-08-05 16:28:12.151 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000069 home жами 1120000.0000
+2026-08-05 16:28:12.219 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BANK_TXN JE-2026-000070 home жами 9000000.0000
+2026-08-05 16:28:12.368 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000071 home жами 17922520.0000
+2026-08-05 16:28:12.476 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000072 home жами 809600.0000
+2026-08-05 16:28:12.550 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000073 home жами 7010304.0000
+2026-08-05 16:28:12.624 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000074 home жами 9627238.4000
+2026-08-05 16:28:12.706 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000075 home жами 15393177.6000
+2026-08-05 16:28:12.780 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000076 home жами 15295918.4000
+2026-08-05 16:28:12.857 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000077 home жами 7210560.0000
+2026-08-05 16:28:12.935 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000078 home жами 466200.0000
+2026-08-05 16:28:13.008 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000079 home жами 9174695.0400
+2026-08-05 16:28:13.078 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000080 home жами 16173574.4000
+2026-08-05 16:28:13.171 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000081 home жами 471600.0000
+2026-08-05 16:28:13.261 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000082 home жами 19333504.0000
+2026-08-05 16:28:13.337 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000083 home жами 6568184.0000
+2026-08-05 16:28:13.410 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000084 home жами 11770240.0000
+2026-08-05 16:28:13.487 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000085 home жами 11517960.0000
+2026-08-05 16:28:13.562 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000086 home жами 13144000.0000
+2026-08-05 16:28:13.654 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000087 home жами 18865056.0000
+2026-08-05 16:28:13.733 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000088 home жами 16525952.0000
+2026-08-05 16:28:13.810 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000089 home жами 15729037.5000
+2026-08-05 16:28:13.861 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: RECEIPT_ALLOCATION JE-2026-000090 home жами 185047.5000
+2026-08-05 16:28:13.939 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000091 home жами 17334900.0000
+2026-08-05 16:28:13.993 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: RECEIPT_ALLOCATION JE-2026-000092 home жами 203940.0000
+2026-08-05 16:28:14.064 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000093 home жами 14499045.0000
+2026-08-05 16:28:14.117 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: RECEIPT_ALLOCATION JE-2026-000094 home жами 170577.0000
+2026-08-05 16:28:14.202 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000095 home жами 6244057.5000
+2026-08-05 16:28:14.259 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: RECEIPT_ALLOCATION JE-2026-000096 home жами 73459.5000
+2026-08-05 16:28:14.327 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000097 home жами 8523275.2000
+2026-08-05 16:28:14.406 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000098 home жами 8862155.2800
+2026-08-05 16:28:14.492 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000099 home жами 9295950.4000
+2026-08-05 16:28:14.573 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVOICE_PAYMENT JE-2026-000100 home жами 8873983.8900
+2026-08-05 16:28:14.684 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000101 home жами 38990336.0000
+2026-08-05 16:28:14.789 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000102 home жами 33890304.0000
+2026-08-05 16:28:14.879 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000103 home жами 33913241.6000
+2026-08-05 16:28:14.959 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000104 home жами 36787856.0000
+2026-08-05 16:28:15.030 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000105 home жами 21592125.0000
+2026-08-05 16:28:15.074 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: PAYMENT_ALLOCATION JE-2026-000106 home жами 254025.0000
+2026-08-05 16:28:15.155 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000107 home жами 37484025.6000
+2026-08-05 16:28:15.246 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000108 home жами 37234014.7200
+2026-08-05 16:28:15.336 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000109 home жами 38928288.0000
+2026-08-05 16:28:15.417 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000110 home жами 42604070.4000
+2026-08-05 16:28:15.505 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000111 home жами 57330560.0000
+2026-08-05 16:28:15.591 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000112 home жами 26193776.0000
+2026-08-05 16:28:15.712 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: BILL_PAYMENT JE-2026-000113 home жами 14533852.5000
+2026-08-05 16:28:15.812 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: PAYMENT_ALLOCATION JE-2026-000114 home жами 170986.5000
+2026-08-05 16:28:15.976 INFO  [] -            c.a.e.l.service.PostingServiceImpl - JE POSTED: INVENTORY JE-2026-000115 home жами 877533.4783
+2026-08-05 16:28:15.985 INFO  [] -            c.averpo.erp.config.DemoDataSeeder - Demo маълумот тайёр (Январь - Август ойлари): 50 контакт, 20 товар/хизмат, 6 омбор, 14 bill, 32 invoice, 26 тушум, 12 тўлов, 20 харажат, 3 банк ўтказма, 3 омбор кўчириш, 1 акт
+2026-08-05 16:28:15.990 INFO  [] -            c.a.e.shared.config.StartupUrlLogger - Илова тайёр: http://localhost:8090

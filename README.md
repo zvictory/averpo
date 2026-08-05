@@ -351,7 +351,79 @@ themes, mobile-first layouts (every screen works at 375 px).
 
 ## 8. Screenshots
 
-_Screenshots of the running application are collected in
+All screenshots below are of the running application with the `demo` profile
+loaded - a fictional Uzbek trading company with 50 contacts, 20 products,
+6 warehouses and 8 months of posted transactions.
+
+### Dashboard
+
+Revenue, expenses and net profit for the period, a six-month trend, cash flow,
+bank balances in their own currencies, receivables and payables with overdue
+amounts, and the top expense categories.
+
+![Dashboard](docs/screenshots/01-dashboard.png)
+
+### Sales
+
+| Invoice list | Invoice |
+|---|---|
+| ![Invoices](docs/screenshots/02-invoices.png) | ![Invoice](docs/screenshots/03-invoice-view.png) |
+
+The invoice form: customer, currency and exchange rate, line items with unit,
+price, VAT rate and class, with running totals in both document and home currency.
+
+![Invoice form](docs/screenshots/04-invoice-form.png)
+
+### Financial statements (IFRS presentation)
+
+| Balance Sheet (IAS 1) | Profit & Loss (IAS 1) |
+|---|---|
+| ![Balance Sheet](docs/screenshots/08-balance-sheet.png) | ![Profit and Loss](docs/screenshots/09-profit-loss.png) |
+
+| Trial balance | AR ageing |
+|---|---|
+| ![Trial balance](docs/screenshots/10-trial-balance.png) | ![AR ageing](docs/screenshots/13-ar-aging.png) |
+
+### Chart of accounts and the general ledger
+
+The three-level IFRS-style chart of accounts, and every posting that reaches the
+ledger - each linked back to the document that produced it.
+
+| Chart of accounts | Journal entries |
+|---|---|
+| ![Chart of accounts](docs/screenshots/06-chart-of-accounts.png) | ![Journal entries](docs/screenshots/07-journal-entries.png) |
+
+### Inventory (multi-warehouse)
+
+Stock balances across six warehouses, and inventory valuation as of any date
+under the company's chosen method (AVCO or FIFO, per IAS 2).
+
+| Stock balances | Inventory valuation |
+|---|---|
+| ![Stock balances](docs/screenshots/11-inventory-balances.png) | ![Inventory valuation](docs/screenshots/12-inventory-valuation.png) |
+
+### Purchasing, banking and catalogues
+
+| Bills | Bank transactions |
+|---|---|
+| ![Bills](docs/screenshots/05-bills.png) | ![Bank transactions](docs/screenshots/17-bank-transactions.png) |
+
+| Products and services | Customers |
+|---|---|
+| ![Items](docs/screenshots/14-items.png) | ![Customers](docs/screenshots/15-customers.png) |
+
+![Vendors](docs/screenshots/21-vendors.png)
+
+### Multi-currency and audit
+
+Exchange rates imported automatically from the Central Bank of Uzbekistan, and an
+append-only audit log of every significant action.
+
+| Currencies and rates (IAS 21) | Audit log |
+|---|---|
+| ![Currencies](docs/screenshots/16-currencies.png) | ![Audit log](docs/screenshots/19-audit-log.png) |
+
+_The full set, including expenses and settings, is in
 [`docs/screenshots/`](docs/screenshots/)._
 
 ---

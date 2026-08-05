@@ -21,8 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ҳар роль учун кутилган соҳа даражалари спец жадвалига айнан мос
  * бўлиши. Матрица кодда ўзгарса (янги роль/соҳа) - бу тест спец билан
  * солиштиришга мажбурлайди.
- *
- * @author Zafar
  */
 class RolePermissionsTest {
 

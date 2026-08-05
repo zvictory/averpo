@@ -40,8 +40,6 @@ import java.util.stream.Stream;
  * узатмайди - жадвал номлари хом SQL'да, фиксирланган seed UUID'лар шу
  * ердаги константаларда (манба changeset изоҳда). app_user ҳам JdbcClient
  * билан ўчирилади (security модулига боғланмасдан).
- *
- * @author Zafar
  */
 @Service
 @RequiredArgsConstructor

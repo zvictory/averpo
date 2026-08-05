@@ -12,8 +12,6 @@ import java.util.UUID;
  * Рўйхат экрани саҳифаланган: findAll(Specification, Pageable) (тартиб
  * EstimateService.LIST_SORT'дан) - Beruniy-perf1 2-босқич + Arbitr-068
  * рўйхат филтри (аввалги findByStatus шунга алмашди).
- *
- * @author Zafar
  */
 public interface EstimateRepository extends JpaRepository<Estimate, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Estimate> {

@@ -32,8 +32,6 @@ import java.util.UUID;
  * <p>ЁЗУВ ТАҚИҚИ (logging.md): URL query (getRequestURI query'сиз),
  * парол/токен/CSRF ҲЕЧ ҚАЧОН логланмайди - фақат метод, йўл, статус,
  * давомийлик.
- *
- * @author Zafar
  */
 public class RequestLogFilter extends OncePerRequestFilter {
 

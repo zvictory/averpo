@@ -38,8 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * сатр Money'си (валюта+курс) ва BR-LED валидациялари айнан аввалгидек.
  * Тест ИККАЛА home вариантини қамрайди (SABOQLAR: home=UZS + home=USD
  * флип - каноник курс ЎЗГАРМАГАНи assert).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

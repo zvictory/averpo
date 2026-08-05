@@ -41,8 +41,6 @@ import java.util.UUID;
  * Мижоз тўлови (тушум) экранлари: рўйхат, форма (мижоз танланганда
  * очиқ invoice'лар HTMX билан юкланади), кўриш (тақсимотлар + аванс
  * ишлатиш + reverse). BillPaymentController'нинг кўзгу акси.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/invoice-payments")

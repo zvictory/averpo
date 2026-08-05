@@ -39,8 +39,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * давр охири қолдиқ (invoice/тўлов/CM fixture билан) - ҳамда мижоз
  * фильтри тўғрилиги. Барча суммалар home валютада (base). GL'га
  * тегилмайди - фақат ўқиш.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

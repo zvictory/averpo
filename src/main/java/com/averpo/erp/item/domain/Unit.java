@@ -24,8 +24,6 @@ import java.math.BigDecimal;
  * base'га нисбатан factor бор (1 шу бирлик = factor × base), гуруҳда
  * айнан битта base (factor 1). Гуруҳсиз бирлик конверсиясиз - factor 1
  * бўлиб қолади. Инвариантлар UnitService'да (BR-UOM-002..005).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "unit")

@@ -41,8 +41,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * com.averpo.erp.security.config.CsrfAwareAccessDeniedHandler}'га
  * тушади. Тест кирган фойдаланувчи билан - карта кузатган реал 403
  * Whitelabel айнан шунда (CSRF токени login ротациясидан кейин эскирган).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

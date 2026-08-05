@@ -43,8 +43,6 @@ import java.util.UUID;
  * {@code POST /**} қоидаси уларни камида битта соҳада EDIT борларга чеклайди (view-only роллар
  * → 403); бўлимни кўриш ва юклаб олиш GET - VIEWER'га ҳам очиқ. Шу
  * контроллерда алоҳида роль текшируви керак эмас.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/attachments")

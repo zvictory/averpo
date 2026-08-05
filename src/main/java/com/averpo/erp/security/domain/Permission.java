@@ -13,8 +13,6 @@ package com.averpo.erp.security.domain;
  *
  * <p>Тартиб = спец матрицаси қатор тартиби (RolePermissions.row
  * позицион параметрлари шу тартибга таянади).
- *
- * @author Zafar
  */
 public enum Permission {
 

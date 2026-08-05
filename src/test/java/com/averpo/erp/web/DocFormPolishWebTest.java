@@ -54,8 +54,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>Жонли JS хулқи (қиймат ҳисоблари, сатр қўшиш/ўчириш) MockMvc'да
  * текширилмайди - улар браузер smoke сценарийларида; бу ерда фақат
  * server томон render контракти.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Категориялар репозиторийси.
- *
- * @author Zafar
  */
 public interface ItemCategoryRepository extends JpaRepository<ItemCategory, UUID> {
 

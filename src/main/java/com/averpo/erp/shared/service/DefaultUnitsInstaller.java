@@ -11,8 +11,6 @@ package com.averpo.erp.shared.service;
  * тескари боғлиқликни ечади ({@link DefaultChartInstaller} нақши): item
  * буни bean сифатида имплементация қилади ({@code UnitService}),
  * FactoryResetService интерфейс орқали чақиради.
- *
- * @author Zafar
  */
 public interface DefaultUnitsInstaller {
 

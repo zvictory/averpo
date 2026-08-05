@@ -7,8 +7,6 @@ package com.averpo.erp.shared.service;
  * «POSTED проводка борми?» деб сўрай олмайди. Шу интерфейс тескари
  * боғлиқликни ечади: ledger буни bean сифатида имплементация қилади,
  * {@code CompanySettingsService} эса мавжуд bean'ларни сўраб чиқади.
- *
- * @author Zafar
  */
 public interface HomeCurrencyLock {
 

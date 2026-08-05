@@ -26,8 +26,6 @@ import java.time.ZoneId;
  * ТАШҚАРИДА (у аллақачон қайтган ёки throw бўлган) эълон қилинади, шунда
  * хато импортнинг rollback'и аудит ёзувини ютмайди (тингловчи ҳам
  * REQUIRES_NEW билан ҳимояланган).
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

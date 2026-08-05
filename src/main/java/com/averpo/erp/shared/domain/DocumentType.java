@@ -7,8 +7,6 @@ package com.averpo.erp.shared.domain;
  * <p>Янги ҳужжат тури киритилганда: аввал шу enum'га қиймат, кейин
  * document_sequence жадвалига seed changeset (prefix/padding билан) -
  * акс ҳолда рақам сўралганда BR-SEQ-001 отилади.
- *
- * @author Zafar
  */
 public enum DocumentType {
 

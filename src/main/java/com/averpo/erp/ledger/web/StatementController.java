@@ -20,8 +20,6 @@ import java.util.UUID;
  *
  * <p>Мижоз танланмаса - фақат форма (кўчирма ҳисобланмайди). Print
  * кўриниши учун компания номи + мижоз + давр сарлавҳага узатилади.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

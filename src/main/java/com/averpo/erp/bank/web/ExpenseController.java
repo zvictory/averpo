@@ -47,8 +47,6 @@ import java.util.UUID;
  * <p>Ёзувчи мантиқ ўзгармаган - ягона
  * {@link BankTransactionService#expense}; проводка ўша (Dt сатр
  * счётлари / Cr банк, posting-rules «Банк» бўлими ЎЗГАРМАЙДИ).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/expenses")

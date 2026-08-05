@@ -7,8 +7,6 @@ package com.averpo.erp.audit.domain;
  * entity-diff эмас (дизайн қарори spec'да). Экран номлари i18n
  * bundle'да ({@link #titleKey()}). Янги тур қўшиш - аввал spec'га
  * (2-босқич рўйхати), кейин бу enum'га.
- *
- * @author Zafar
  */
 public enum AuditEventType {
 

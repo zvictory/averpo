@@ -24,8 +24,6 @@ import java.util.UUID;
  * <p>net = gross − income_tax − pension (ижтимоий солиқ иш берувчи
  * устига - ходим net'ига таъсир қилмайди). Бир run'да ходим бир марта
  * (BR-PYR-003, DB unique ҳам).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payroll_run_line",

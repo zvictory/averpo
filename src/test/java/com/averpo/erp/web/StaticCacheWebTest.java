@@ -40,8 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *   <li>йўқ статикнинг аноним 404 оқими (021/127) бузилмаган ва 404
  *       жавоби ўзи кэшланмайди.</li>
  * </ol>
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

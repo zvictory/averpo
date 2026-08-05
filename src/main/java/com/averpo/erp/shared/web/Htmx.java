@@ -13,8 +13,6 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * <p>Қолип: controller HX-Request header'ига қараб drawer partial ёки
  * тўлиқ саҳифани render қилади - JS'сиз (HTMX'сиз) ҳам ҳамма оқим
  * тўлиқ саҳифа сифатида ишлашда қолади (мажбурий fallback).
- *
- * @author Zafar
  */
 public final class Htmx {
 

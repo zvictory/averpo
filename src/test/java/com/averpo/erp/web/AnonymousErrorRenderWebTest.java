@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * узарди (браузерда ERR_INCOMPLETE_CHUNKED_ENCODING). MockMvc бу синфни
  * КЎРМАЙДИ (mock response ҳеч қачон commit бўлмайди) - шунга бу тест
  * реал embedded server ({@code RANDOM_PORT}) билан юради.
- *
- * @author Zafar
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")

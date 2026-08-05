@@ -12,8 +12,6 @@ package com.averpo.erp.shared.service;
  * чақиради. Счётларда фиксирланган seed UUID йўқ (CSV импорт) - шунинг
  * учун бошқа каталоглардек «id NOT IN (seed)» билан тозалаб бўлмайди,
  * TRUNCATE + қайта импорт ягона йўл.
- *
- * @author Zafar
  */
 public interface DefaultChartInstaller {
 

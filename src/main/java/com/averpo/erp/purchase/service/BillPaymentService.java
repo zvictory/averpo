@@ -47,8 +47,6 @@ import java.util.UUID;
  * фақат public service орқали (№6). Realized курс фарқи ҳар allocation
  * учун АЛОҲИДА JE - тўлов билан бирга ҳам, кейинги allocation'да ҳам
  * бир хил йўл (posting-rules «Харид»).
- *
- * @author Zafar
  */
 @Service
 @Transactional

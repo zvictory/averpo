@@ -40,8 +40,6 @@ import java.util.UUID;
  * 2-босқичга hidden майдон орқали ЎТКАЗИЛМАЙДИ - session маркери қўйилади
  * ({@link #VERIFIED_ATTR}). Якуний confirm шу маркерни ва компания номи
  * тасдиғини (BR-RST-002) текшириб reset'ни бажаради.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

@@ -53,8 +53,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 7 - invoiceView'да шу ҳужжатдан яратилган кредит-нота линки.
  * Банд 4 (statement) - StatementWebTest'да; банд 6 (payroll тўлов→run)
  * ўтказилган: PayrollPayment domain'ида run боғи мавжуд эмас.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

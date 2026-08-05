@@ -12,8 +12,6 @@ import java.time.LocalDate;
 /**
  * Balance Sheet экрани - ҳисоблаш тўлиқ BalanceSheetService'да,
  * бу ерда фақат default сана ва model йиғилади.
- *
- * @author Zafar
  */
 @Controller
 @lombok.RequiredArgsConstructor

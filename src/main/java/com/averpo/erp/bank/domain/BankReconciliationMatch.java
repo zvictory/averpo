@@ -24,8 +24,6 @@ import java.util.UUID;
  * <p>amount - сатр суммаси СЧЁТ ВАЛЮТАСИДА, ишорали (дебет мусбат,
  * кредит манфий): фарқ ҳисоби ledger'га қайта мурожаатсиз чиқади.
  * POSTED GL сатри ўзгармас (темир қоида №3) - snapshot хавфсиз.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bank_reconciliation_match",

@@ -15,8 +15,6 @@ import java.util.List;
  * Invoice формаси. Суммалар атайлаб String - бузуқ киритишда
  * BindException ўрнига тушунарли (кирилл) BR хабари билан қайтамиз ва
  * киритилган қийматлар формада сақланиб қолади (BillForm паттерни).
- *
- * @author Zafar
  */
 @Getter
 @Setter

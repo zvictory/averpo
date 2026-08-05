@@ -48,8 +48,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 1-5 бандлар): сатр class'ининг GL'га кўчиши, назорат/техник сатрлар
  * class'сизлиги, BR-CLS-001/002/003, P&amp;L by Class инварианти.
  * PER_TXN/OFF форма хулқи (6-7) - ClassTrackingWebTest'да.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

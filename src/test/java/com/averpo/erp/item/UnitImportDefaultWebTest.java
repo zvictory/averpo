@@ -34,8 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * токенсиз POST {@code CsrfException} билан {@code /login?expired} га
  * (Arbitr-096 семантикаси, ProfileWebTest каби). Роль: WAREHOUSE_MANAGER
  * (INVENTORY EDIT - combobox тестидаги /warehouses/quick билан бир хил).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

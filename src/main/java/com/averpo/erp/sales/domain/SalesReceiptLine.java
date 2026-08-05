@@ -22,8 +22,6 @@ import java.util.UUID;
  * «Сотув чеки»): item/хизмат, миқдор, бирлик (UoM snapshot), нарх, ҚҚС
  * ставка snapshot (tax.md механизми айнан - amount НЕТТО, gross = net +
  * tax), class теги (class-tracking.md). ITEM сатрда омбордан чиқим бор.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "sales_receipt_line",

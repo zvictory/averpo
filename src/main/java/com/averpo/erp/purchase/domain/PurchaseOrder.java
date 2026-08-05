@@ -31,8 +31,6 @@ import java.util.UUID;
  * POSTED тушунчаси йўқ, таҳрирланади - ҳаёт цикли
  * {@link PurchaseOrderStatus} (OPEN→CLOSED) билан. Ҳимоя қоидалари
  * (BR-PO-002/003) шу entity'да.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "purchase_order")

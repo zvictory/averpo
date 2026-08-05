@@ -38,8 +38,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 2-туртки. Иккала метод (AVCO/FIFO) тўлиқ қопланади, метод тест
  * ичида CompanySettings орқали танланади (қулф биринчи ҳаракатгача
  * очиқ - ҳар тест rollback билан изоляцияда).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

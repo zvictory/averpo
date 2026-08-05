@@ -24,8 +24,6 @@ import java.util.UUID;
  * base (BR-UOM-004), base factor 1 (BR-UOM-003), factor мусбат
  * (BR-UOM-002), гуруҳсизга factor/base йўқ (BR-UOM-005), конверсия
  * фақат бир гуруҳ ичида (BR-UOM-006).
- *
- * @author Zafar
  */
 @Service
 @Transactional

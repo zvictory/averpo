@@ -19,8 +19,6 @@ import java.math.BigDecimal;
  * тарихий ҳужжатлар сатрга snapshot сақлагани учун бузилмайди
  * (BillLine/InvoiceLine.tax_rate_value). {@code rate} - фоиз:
  * {@code 12} = 12%, DB CHECK 0..100 (BR-TAX-002).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "tax_rate")

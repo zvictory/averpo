@@ -4,8 +4,6 @@ package com.averpo.erp.purchase.domain;
  * PurchaseOrder ҳолатлари (docs/modules/estimates-po.md, Finance.xsd
  * POStatus кўзгуси): GL'сиз ҳужжат - ҳаёт цикли фақат шу status билан.
  * Ўтишлар қоидаси PurchaseOrder entity'сида.
- *
- * @author Zafar
  */
 public enum PurchaseOrderStatus {
 

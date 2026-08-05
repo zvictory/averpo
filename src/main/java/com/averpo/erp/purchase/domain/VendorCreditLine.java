@@ -23,8 +23,6 @@ import java.util.UUID;
  * EXPENSE (қайтадиган харажат - счёт/сумма); LANDED_COST қайтарилмайди
  * (у bill'нинг ўз механизми). ҚҚС ставка snapshot tax.md механизми
  * айнан - amount НЕТТО, gross = net + tax; class теги class-tracking.md.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "vendor_credit_line",

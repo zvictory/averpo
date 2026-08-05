@@ -49,8 +49,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * CreditMemo тестлари (docs/modules/returns.md «Тестлар» 1-4, 7-8
  * бандлари; 9-банд смок ScreenSmokeTest'да, VendorCredit бандлари
  * 15-турткида). Ҳар posting'да debit == credit (ТЕМИР ҚОИДА №7).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

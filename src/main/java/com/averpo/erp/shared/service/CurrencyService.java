@@ -20,8 +20,6 @@ import java.util.Optional;
  * Валюта каталогининг public API'си - бошқа модуллар (ledger, contact,
  * item...) каталогга ФАҚАТ шу орқали мурожаат қилади (ТЕМИР ҚОИДА №6:
  * repository'га тегиш тақиқ).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

@@ -42,8 +42,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ҳодисалари, филтр кесимлари. Rollback исботи (3-банд) алоҳида
  * транзакциясиз классда - {@link AuditRollbackTest}; login ҳодисалари
  * (4-банд) LoginLockoutTest'да.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

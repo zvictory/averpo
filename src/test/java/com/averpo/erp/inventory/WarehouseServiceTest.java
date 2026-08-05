@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Омбор CRUD валидациялари: docs/modules/inventory.md → «Тестлар», 1-туртки.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

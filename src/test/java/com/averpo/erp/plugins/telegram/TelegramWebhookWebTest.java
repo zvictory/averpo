@@ -44,8 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * секрет → 200 + ишлов; (4) бузуқ тана → 200 (эътиборсиз); (5) плагин
  * ўчиқ + тўғри секрет → 200 жим (404 ЭМАС - гейт ҳолати ошкор
  * бўлмасин); (6) секрет/тана логга чиқмайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

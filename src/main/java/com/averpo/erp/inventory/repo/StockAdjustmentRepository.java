@@ -12,8 +12,6 @@ import java.util.UUID;
  * Ҳужжатли инвентаризация актлари репозиторийси - фақат inventory
  * модули ичида (қоида №6). JpaSpecificationExecutor рўйхат филтрлари
  * учун (омбор/сана оралиғи, ListSpecs нақши).
- *
- * @author Zafar
  */
 public interface StockAdjustmentRepository
         extends JpaRepository<StockAdjustment, UUID>,

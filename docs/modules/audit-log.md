@@ -8,7 +8,7 @@ QBO Audit Log паритети: тизимда КИМ, ҚАЧОН, НИМА қи
 ролларга (амалда SUPER_ADMIN) битта экранда кўринади.
 
 Эталон изоҳи: Audit Log - QBO'нинг ПРОГРАММА хусусияти, Finance.xsd'да
-entity эмас (docs/qbo-reference'да йўқлиги текширилди, 2026-07-07).
+entity эмас (docs/qbo-reference'да йўқлиги текширилди).
 Солиштирув учун QBO экран хулқи олинди: ҳодисалар рўйхати (Date changed /
 User / Event), фильтрлар (User, Date, Events), тарих ўчирилмаслиги.
 
@@ -19,11 +19,11 @@ User / Event), фильтрлар (User, Date, Events), тарих ўчирил�
 (б) танланди:
 
 - POSTED ҳужжат ўзгармайди (темир қоида 3) - «ўзгариш тарихи» бизда
-  деярли бутунлай яратиш + сторно, diff'га материал оз;
+ деярли бутунлай яратиш + сторно, diff'га материал оз;
 - Envers 30+ жадвални икки баробарлайди, ddl-auto=validate + Liquibase
-  тартибига оғир юк;
+ тартибига оғир юк;
 - QBO ҳам фойдаланувчига ҳодиса тилида кўрсатади, diff фақат «View»
-  тафсилотида (бизда 2-босқич).
+ тафсилотида (бизда 2-босқич).
 
 ## Entity'лар
 
@@ -41,12 +41,12 @@ User / Event), фильтрлар (User, Date, Events), тарих ўчирил�
 
 - Индекслар: `created_at DESC` (рўйхат), `event_type`, `username`.
 - Ҳодиса вақти = `created_at` (UTC, қоида 12; экранда Fmt.dt). Бир
-  транзакция ичидаги тартиб id (uuid7) билан - курс тарихи нақши.
+ транзакция ичидаги тартиб id (uuid7) билан - курс тарихи нақши.
 - `username` алоҳида устун (createdBy UUID'ига қарамай): LOGIN_FAILURE'да
-  authenticated principal йўқ (createdBy null бўлади), уринилган
-  username'га жой керак; қолган ҳолларда ҳам экран JOIN'сиз ўқийди.
+ authenticated principal йўқ (createdBy null бўлади), уринилган
+ username'га жой керак; қолган ҳолларда ҳам экран JOIN'сиз ўқийди.
 - ЎЗГАРМАС: update/delete йўқ - на UI'да, на service'да. Super admin
-  ҳам ўчира олмайди (аудит изи маъноси шу).
+ ҳам ўчира олмайди (аудит изи маъноси шу).
 
 `AuditEventType` (MVP): `JE_POSTED`, `JE_REVERSED`, `LOGIN_SUCCESS`,
 `LOGIN_FAILURE`, `LOCKOUT`, `USER_CREATED`, `USER_UPDATED`,
@@ -57,41 +57,41 @@ User / Event), фильтрлар (User, Date, Events), тарих ўчирил�
 Икки механизм - иккиси ҳам сабабли:
 
 1. **Ledger ҳодисалари - Spring application event орқали.** Қоида 6:
-   `ledger` ҳеч кимга боғлиқ эмас, демак PostingService
-   AuditLogService'ни чақира олмайди. Ечим: PostingService ўзининг
-   event'ини эълон қилади (record'лар `ledger.service` ичида туради -
-   ledger'га янги dependency қўшилмайди), audit модули тинглайди:
-   - createAndPost муваффақиятли якунида
-     `JournalEntryPostedEvent(entry)`;
-   - reverse'да `JournalEntryReversedEvent(reversal, original)`;
-   - audit модулида `@EventListener` СИНХРОН, ўша транзакцияда -
-     rollback бўлса аудит ёзуви ҳам йўқолади (журнал фақат ҳақиқатан
-     содир бўлган ишни акс эттиради);
-   - битта нуқта = тўлиқ қамров: invoice, bill, payment, bank txn,
-     transfer, inventory, landed cost, opening balance, қўлда JE -
-     ҳаммаси PostingService'дан ўтади (қоида 2).
+ `ledger` ҳеч кимга боғлиқ эмас, демак PostingService
+ AuditLogService'ни чақира олмайди. Ечим: PostingService ўзининг
+ event'ини эълон қилади (record'лар `ledger.service` ичида туради -
+ ledger'га янги dependency қўшилмайди), audit модули тинглайди:
+ - createAndPost муваффақиятли якунида
+ `JournalEntryPostedEvent(entry)`;
+ - reverse'да `JournalEntryReversedEvent(reversal, original)`;
+ - audit модулида `@EventListener` СИНХРОН, ўша транзакцияда -
+ rollback бўлса аудит ёзуви ҳам йўқолади (журнал фақат ҳақиқатан
+ содир бўлган ишни акс эттиради);
+ - битта нуқта = тўлиқ қамров: invoice, bill, payment, bank txn,
+ transfer, inventory, landed cost, opening balance, қўлда JE -
+ ҳаммаси PostingService'дан ўтади (қоида 2).
 2. **Auth/user ҳодисалари:**
-   - LOGIN_SUCCESS / LOGIN_FAILURE: audit модулидаги алоҳида listener
-     Spring Security'нинг ўз event'ларини тинглайди
-     (AuthenticationSuccessEvent / AuthenticationFailureBadCredentialsEvent /
-     AuthenticationFailureLockedEvent / AuthenticationFailureDisabledEvent -
-     LoginAttemptListener нақши, security модулига ТЕГИЛМАЙДИ). Учала
-     хато уриниш ҳам битта LOGIN_FAILURE - сабаб details'да фарқланади
-     («Нотўғри парол билан уриниш» / «Қулф даврида уриниш» / «Нофаол
-     ҳисобга уриниш»); шу туфайли қулф давридаги уринишлар ҳам журналда
-     кўринади. IP - event ичидаги WebAuthenticationDetails'дан.
-   - LOCKOUT: LoginAttemptListener қулф қўйган жойда
-     AuditLogService.record(...) тўғри чақиради (security → audit
-     боғлиқлик рухсатли, цикл йўқ: audit security'ни import қилмайди).
-   - USER_CREATED / USER_UPDATED / PASSWORD_CHANGED: UserService ва
-     ProfileController'дан тўғри чақириқ.
+ - LOGIN_SUCCESS / LOGIN_FAILURE: audit модулидаги алоҳида listener
+ Spring Security'нинг ўз event'ларини тинглайди
+ (AuthenticationSuccessEvent / AuthenticationFailureBadCredentialsEvent /
+ AuthenticationFailureLockedEvent / AuthenticationFailureDisabledEvent -
+ LoginAttemptListener нақши, security модулига ТЕГИЛМАЙДИ). Учала
+ хато уриниш ҳам битта LOGIN_FAILURE - сабаб details'да фарқланади
+ («Нотўғри парол билан уриниш» / «Қулф даврида уриниш» / «Нофаол
+ ҳисобга уриниш»); шу туфайли қулф давридаги уринишлар ҳам журналда
+ кўринади. IP - event ичидаги WebAuthenticationDetails'дан.
+ - LOCKOUT: LoginAttemptListener қулф қўйган жойда
+ AuditLogService.record(...) тўғри чақиради (security → audit
+ боғлиқлик рухсатли, цикл йўқ: audit security'ни import қилмайди).
+ - USER_CREATED / USER_UPDATED / PASSWORD_CHANGED: UserService ва
+ ProfileController'дан тўғри чақириқ.
 
 ## Service API
 
 - `AuditLogService.record(type, username, entryId, docNumber, details, ip)` -
-  ягона ёзиш йўли (append-only). Бошқа модуллар фақат шуни кўради.
+ ягона ёзиш йўли (append-only). Бошқа модуллар фақат шуни кўради.
 - `AuditLogService.page(filter, pageable)` - экран учун: сана оралиғи,
-  event_type, username филтрлари, янгидан эскига.
+ event_type, username филтрлари, янгидан эскига.
 
 ## Posting
 
@@ -101,39 +101,39 @@ GL'га ёзмайди - posting-rules.md ЎЗГАРМАЙДИ (аудит мо�
 ## Валидация ва инвариантлар
 
 - BR-* кодлари ЙЎҚ ва киритилмайди: фойдаланувчи буза оладиган қоида
-  йўқ - экран read-only, ёзувни тизим ўзи киритади
-  (docs/business-rules.md ўзгармайди).
+ йўқ - экран read-only, ёзувни тизим ўзи киритади
+ (docs/business-rules.md ўзгармайди).
 - Инвариант: append-only - update/delete API умуман мавжуд эмас.
 - event_type фақат enum қийматлари (STRING + NOT NULL).
 
 ## Тестлар (мажбурий рўйхат)
 
 1. Transfer (ёки invoice) post → JE_POSTED ёзуви: entry_id,
-   doc_number, username тўғри.
+ doc_number, username тўғри.
 2. Reverse → JE_REVERSED, details'да original entry рақами.
 3. Rollback исботи: post'дан кейин атайлаб exception → на JE, на audit
-   ёзуви қолади (синхрон same-tx listener текшируви).
+ ёзуви қолади (синхрон same-tx listener текшируви).
 4. LOGIN_FAILURE ёзилади; бўсағада LOCKOUT ёзуви (LoginAttemptListener
-   тести кенгаяди).
+ тести кенгаяди).
 5. USER_CREATED / PASSWORD_CHANGED ёзилади.
 6. /audit-log: USERS соҳали роль (SUPER_ADMIN) 200, соҳасиз роль
-   403 (ScreenSmokeTest).
+ 403 (ScreenSmokeTest).
 7. Фильтр: event_type + сана оралиғи тўғри кесади.
 
 ## Экранлар (JTE routes)
 
 - `GET /audit-log` - USERS соҳаси (user-roles.md; амалда SUPER_ADMIN).
-  Жадвал устунлари: Вақт (Fmt.dt, компания TZ) | Фойдаланувчи |
-  Ҳодиса (i18n: `audit.event.JE_POSTED` ...) | Ҳужжат (doc_number;
-  entry_id бор бўлса /journal-entries/{id} линк) | Тафсилот.
+ Жадвал устунлари: Вақт (Fmt.dt, компания TZ) | Фойдаланувчи |
+ Ҳодиса (i18n: `audit.event.JE_POSTED` ...) | Ҳужжат (doc_number;
+ entry_id бор бўлса /journal-entries/{id} линк) | Тафсилот.
 - Фильтрлар GET параметрлар: from/to сана, event_type select,
-  username. Пагинация page/size (default 50), янгидан эскига - янги
-  экран нолдан Pageable (Beruniy-perf1 master'ига зид эмас).
+ username. Пагинация page/size (default 50), янгидан эскига - янги
+ экран нолдан Pageable (Beruniy-perf1 master'ига зид эмас).
 - Сайдбар: Созламалар гуруҳида «Аудит журнали», USERS соҳаси
-  кўринадиган ролларга (сайдбар соҳа филтри - Perms, 092).
+ кўринадиган ролларга (сайдбар соҳа филтри - Perms, 092).
 - Мобил: .table-wrap, 375px'да ишлайди.
 
-## Кенгайиш (2026-07-09, фойдаланувчи тасдиғи - Arbitr-062)
+## Кенгайиш (фойдаланувчи тасдиғи - Arbitr-062)
 
 Фойдаланувчи талаби: «барча ўзгаришлар кўриниши керак - ким, нима,
 қайси IP, қайси client'дан».
@@ -142,7 +142,7 @@ GL'га ёзмайди - posting-rules.md ЎЗГАРМАЙДИ (аудит мо�
 
 | Тур | Манба | details намунаси |
 |---|---|---|
-| SETTINGS_CHANGED | CompanySettingsService.update (shared ўз event'ини эълон қилади, audit тинглайди - ledger нақши, цикл йўқ) | «closingDate: 2026-06-30 → 2026-07-31» - фақат ЎЗГАРГАН майдонлар |
+| SETTINGS_CHANGED | CompanySettingsService.update (shared ўз event'ини эълон қилади, audit тинглайди - ledger нақши, цикл йўқ) | «closingDate: →» - фақат ЎЗГАРГАН майдонлар |
 | FACTORY_RESET | FactoryResetService | reset ичида TRUNCATE'дан КЕЙИН ёзилади - тоза журналнинг биринчи ёзуви бўлиб қолади |
 | IMPORT_EXCEL | ExcelImportService.apply | «яратилди: 12 контакт, 34 товар; ўтказилди: 3» |
 | CHART_IMPORTED | AccountService.importDefaultChart | «яратилди N, ўтказилди M» (қўлда тугма ва авто-init иккиси) |
@@ -172,4 +172,4 @@ DB нагрузка: append-only INSERT posting'нинг ёнида арзима
 - Attachment юкланди/ўчирилди;
 - before/after diff («View» тафсилоти, QBO услуби);
 - АРХИВЛАШ сиёсати: жадвал жуда катталашганда эски ёзувларни export
-  қилиб алоҳида сақлаш (ўчириш ЙЎҚ - юқоридаги қарор).
+ қилиб алоҳида сақлаш (ўчириш ЙЎҚ - юқоридаги қарор).

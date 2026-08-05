@@ -16,8 +16,6 @@ import java.util.UUID;
  * Омбор ҳаракатлари репозиторийси - фақат inventory модули ичида.
  * JpaSpecificationExecutor - Ҳаракатлар экрани мукаммал филтри учун
  * (Arbitr-093: тур/омбор/item/сана/ҳужжат; warehouse fetch spec ичида).
- *
- * @author Zafar
  */
 public interface StockMovementRepository extends JpaRepository<StockMovement, UUID>,
         JpaSpecificationExecutor<StockMovement> {

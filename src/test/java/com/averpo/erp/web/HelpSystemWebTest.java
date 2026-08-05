@@ -35,8 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * учрайди - саҳифа тугмаси фақат унга хос барқарор префикс
  * («helpbtn float-right», Arbitr-122 утилита канони) бўйича assert
  * қилинади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

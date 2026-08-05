@@ -10,21 +10,21 @@ docs/modules/returns.md; таклиф (Estimate) -
 docs/modules/estimates-po.md; ҚҚС - docs/modules/tax.md; сотув чеки
 (SalesReceipt) ҳам шу модулда - posting-rules «Сотув чеки» бўлими.
 
-## Қатъий қарорлар (2026-07-06 тасдиқланган)
+## Қатъий қарорлар (тасдиқланган)
 - **Ҳамма item тури сотилади** (QBO услуби): INVENTORY сатр - омбордан
-  issue + COGS; SERVICE / NON_INVENTORY - омборсиз, фақат даромад.
+ issue + COGS; SERVICE / NON_INVENTORY - омборсиз, фақат даромад.
 - **Қайтариш ҳужжатлари**: docs/modules/returns.md (қурилган -
-  CreditMemo/RefundReceipt, BR-RET-001..008; posting-rules.md
-  «Қайтариш (Returns)» бўлими). Майда тузатиш учун Invoice/
-  InvoicePayment reverse ҳам жойида.
+ CreditMemo/RefundReceipt, BR-RET-001..008; posting-rules.md
+ «Қайтариш (Returns)» бўлими). Майда тузатиш учун Invoice/
+ InvoicePayment reverse ҳам жойида.
 - **Credit limit - огоҳлантириш, тўсмайди** (QBO услуби): AR қолдиғи +
-  янги invoice лимитдан ошса форма/кўришда белги, лекин post блокланмайди.
+ янги invoice лимитдан ошса форма/кўришда белги, лекин post блокланмайди.
 - **InvoicePayment purchase паттерни билан айнан бир хил**: allocation
-  тўғридан-тўғри invoice'га FK, аванс (unallocated) рухсат, DRAFT'сиз
-  (яратилди = POSTED), тўлов валютаси = invoice валютаси (BR-RCPT-006),
-  realized курс фарқи ҳар allocation учун алоҳида JE.
+ тўғридан-тўғри invoice'га FK, аванс (unallocated) рухсат, DRAFT'сиз
+ (яратилди = POSTED), тўлов валютаси = invoice валютаси (BR-RCPT-006),
+ realized курс фарқи ҳар allocation учун алоҳида JE.
 - **Тўлов қабул счёти танланади**: банк / касса / UNDEPOSITED_FUNDS
-  (BANK туридан ёки UNDEPOSITED_FUNDS detail type - BR-RCPT-002).
+ (BANK туридан ёки UNDEPOSITED_FUNDS detail type - BR-RCPT-002).
 
 ## Entity'лар (changeset 021, sales модули)
 
@@ -75,35 +75,35 @@ payment FK + invoice FK + amount, UNIQUE(payment_id, invoice_id).
 
 ## Posting (posting-rules «Сотув» - қатъий)
 - **Invoice post** (sourceModule=INVOICE, docId=invoice id): ҳар сатр -
-  AR тизим счётига Dt (жами, ҳужжат курсида), item даромад счётига Cr
-  (ҳужжат курсида). ITEM (INVENTORY) сатрлар ҚЎШИМЧА:
-  `InventoryService.issue` (омбордан, home таннарх) → COGS
-  (SUPPLIES_MATERIALS_COGS) Dt / item INVENTORY asset Cr, home валютада.
-  Нол таннарх (avg 0) - COGS сатр ёзилмайди. SERVICE сатр омборга
-  тегмайди.
+ AR тизим счётига Dt (жами, ҳужжат курсида), item даромад счётига Cr
+ (ҳужжат курсида). ITEM (INVENTORY) сатрлар ҚЎШИМЧА:
+ `InventoryService.issue` (омбордан, home таннарх) → COGS
+ (SUPPLIES_MATERIALS_COGS) Dt / item INVENTORY asset Cr, home валютада.
+ Нол таннарх (avg 0) - COGS сатр ёзилмайди. SERVICE сатр омборга
+ тегмайди.
 - **Invoice reverse**: COGS сатрлари учун товар омборга ҚАЙТАДИ
-  (`InventoryService.reverseIssue` - асл ейилган партиялар/қиймат
-  ортга), кейин GL сторно (reverseBySource). Ҳимоя керак эмас -
-  reverseIssue доим бажарилади (товар қайта кирими).
+ (`InventoryService.reverseIssue` - асл ейилган партиялар/қиймат
+ ортга), кейин GL сторно (reverseBySource). Ҳимоя керак эмас -
+ reverseIssue доим бажарилади (товар қайта кирими).
 - **Payment post** (sourceModule=INVOICE_PAYMENT): танланган қабул
-  счёти Dt (тўлов валютасида, тўлов курсида) / AR Cr. Аванс қисми ҳам
-  шу ёзув ичида.
+ счёти Dt (тўлов валютасида, тўлов курсида) / AR Cr. Аванс қисми ҳам
+ шу ёзув ичида.
 - **Realized курс фарқи - ҳар allocation учун алоҳида JE**
-  (sourceModule=RECEIPT_ALLOCATION, docId=allocation id): фарқ base =
-  allocation × (тўлов курси - invoice курси); мусбат (тўловда base
-  кўпроқ келди) - фойда: AR Cr / EXCHANGE_GAIN_OR_LOSS... йўқ, аниқ:
-  posting-rules «Сотув» - фойда: AR Dt / gain Cr, зарар: gain Dt /
-  AR Cr. Нол фарқ - JE ёзилмайди.
+ (sourceModule=RECEIPT_ALLOCATION, docId=allocation id): фарқ base =
+ allocation × (тўлов курси - invoice курси); мусбат (тўловда base
+ кўпроқ келди) - фойда: AR Cr / EXCHANGE_GAIN_OR_LOSS... йўқ, аниқ:
+ posting-rules «Сотув» - фойда: AR Dt / gain Cr, зарар: gain Dt /
+ AR Cr. Нол фарқ - JE ёзилмайди.
 - **Payment reverse**: GL сторно + allocation'лар бекор (invoice
-  paid/status қайта) + FX JE'лари сторно.
+ paid/status қайта) + FX JE'лари сторно.
 
 ### Курс фарқи йўналиши (Bill билан ТЕСКАРИ - диққат)
 Сотувда AR - актив (мижоз қарзи). Invoice base'да AR дебети ёзилган.
 Тўлов base'да фарқли келса:
 - Тўлов курси > invoice курси (base кўпроқ олдик) - realized ФОЙДА:
-  фарқни AR'га Dt қилиб (қолдиқни тенглаш) EXCHANGE_GAIN_OR_LOSS Cr.
+ фарқни AR'га Dt қилиб (қолдиқни тенглаш) EXCHANGE_GAIN_OR_LOSS Cr.
 - Тўлов курси < invoice курси - realized ЗАРАР: EXCHANGE_GAIN_OR_LOSS
-  Dt / AR Cr.
+ Dt / AR Cr.
 formula: diffBase = allocation × (paymentRate - invoiceRate).
 
 ## Валидация (BR-SINV, BR-RCPT)
@@ -147,32 +147,32 @@ reversal movement ёзилади (аудит). Bill'даги reverseReceive'ни
 
 ## Туртки режаси (тасдиқлансагина бошланади)
 1. Spec + BR каталог (BR-SINV, BR-RCPT) + changeset 021 + domain
-   entity'лар (Invoice, InvoiceLine, InvoicePayment, allocation +
-   enum'лар) + DocumentType.INVOICE/RECEIPT + document_sequence seed.
+ entity'лар (Invoice, InvoiceLine, InvoicePayment, allocation +
+ enum'лар) + DocumentType.INVOICE/RECEIPT + document_sequence seed.
 2. InvoiceService: draft CRUD, post (GL AR/income + INVENTORY сатрлар
-   issue+COGS), reverse (reverseIssue + reverseBySource), credit limit
-   огоҳлантириш - тўлиқ тестлар. InventoryService.reverseIssue + тест.
+ issue+COGS), reverse (reverseIssue + reverseBySource), credit limit
+ огоҳлантириш - тўлиқ тестлар. InventoryService.reverseIssue + тест.
 3. InvoicePaymentService: post + allocation + FX-per-allocation +
-   reverse, денормализация - тўлиқ тестлар.
+ reverse, денормализация - тўлиқ тестлар.
 4. UI: /invoices рўйхат/форма/кўриш, тўлов формаси (очиқ invoice'лар),
-   AR aging экрани (/reports/ar-aging), sidebar СОТУВ бўлими,
-   credit limit белгиси.
+ AR aging экрани (/reports/ar-aging), sidebar СОТУВ бўлими,
+ credit limit белгиси.
 
 ## Тестлар (мажбурий рўйхат - 2-3-турткиларда)
 - Invoice post: AR дебети = total_base; ҳар сатр даромади тўғри
-  счётга; INVENTORY сатр омбордан чиқди + COGS Dt/INVENTORY Cr
-  (таннарх home). SERVICE сатр омборга тегмайди.
+ счётга; INVENTORY сатр омбордан чиқди + COGS Dt/INVENTORY Cr
+ (таннарх home). SERVICE сатр омборга тегмайди.
 - Чет валюта invoice: base = amount × rate (BR-SINV-008).
 - Reverse: GL сторно + товар омборга қайтди (омбор қолдиғи ва қиймат
-  асл ҳолига); COGS ҳам сторно.
+ асл ҳолига); COGS ҳам сторно.
 - Омборда қолдиқ етмаса BR-SINV-004 (post блокланади).
 - Credit limit ошса огоҳлантириш келади, лекин post ўтади.
 - Payment: қабул счёти Dt, AR Cr; денормализация (UNPAID→PARTIAL→PAID);
-  аванс unallocated'да.
+ аванс unallocated'да.
 - FX: invoice 12 600, тўлов 12 700 - allocation фарқи фойда (AR Dt/
-  gain Cr), 12 500 - зарар (иккала йўналиш), нол фарқда JE йўқ.
+ gain Cr), 12 500 - зарар (иккала йўналиш), нол фарқда JE йўқ.
 - Payment reverse: allocation'лар бекор, invoice status қайтади,
-  FX JE'лар сторно.
+ FX JE'лар сторно.
 - BR-RCPT-003/004/005/006/009 guard'лари.
 
 ## Экранлар (4-туртки)

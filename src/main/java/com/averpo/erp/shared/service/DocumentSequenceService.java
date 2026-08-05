@@ -16,8 +16,6 @@ import java.time.LocalDate;
  * Умумий ҳужжат рақамлаш public API'си (docs/modules/document-sequence.md).
  * Барча модуллар (ledger, кейин sales/purchases) ҳужжат рақамини фақат
  * шу орқали олади - формат ва race ҳимояси битта жойда.
- *
- * @author Zafar
  */
 @Service
 @RequiredArgsConstructor

@@ -19,8 +19,6 @@ import java.util.List;
  * POSTED билан бирга REVERSED entry'лар ҳам киради: сторно жуфти
  * иккиси ҳам GL'да туради ва нетто нолга тушади (ТЕМИР ҚОИДА №3'нинг
  * ҳисоботдаги оқибати).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

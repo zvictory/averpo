@@ -37,8 +37,6 @@ import java.util.UUID;
  * <p>EMPLOYEE бу саҳифага КИРМАЙДИ (payroll кесими бошқа - ходим картаси
  * 2-босқич): route regex {@code customers|vendors} билан чекланган,
  * ходим қатори рўйхатда аввалгидек таҳрир формасига боради.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/{kind:customers|vendors}")

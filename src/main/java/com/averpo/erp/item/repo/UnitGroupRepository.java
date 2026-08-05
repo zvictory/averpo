@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * UoM гуруҳлари репозиторийси (docs/modules/uom.md).
- *
- * @author Zafar
  */
 public interface UnitGroupRepository extends JpaRepository<UnitGroup, UUID> {
 

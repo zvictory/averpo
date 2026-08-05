@@ -32,8 +32,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * UserService тестлари: docs/modules/user-management.md → «Тестлар».
  * Bootstrap admin (AdminUserInitializer) контекст кўтарилишида
  * яратилган бўлади - BR-USR-007 сценарийлари шуни ҳисобга олади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

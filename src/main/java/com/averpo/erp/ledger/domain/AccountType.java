@@ -8,8 +8,6 @@ package com.averpo.erp.ledger.domain;
  * белгилайди. Ҳар тур ўз {@link AccountClassification}'ига боғланган -
  * фойдаланувчи {@link AccountDetailType} танлаганда иккиси ҳам
  * автоматик аниқланади. Экран номлари i18n bundle'да ({@link #titleKey()}).
- *
- * @author Zafar
  */
 public enum AccountType {
 

@@ -22,8 +22,6 @@ package com.averpo.erp.shared.service;
  * @param changed      муваффақиятда: қиймати аввалгидан ўзгарган валюта сони (хатода 0)
  * @param skipped      муваффақиятда: ЦБ рўйхатида йўқлиги учун ўтказилган сони (хатода 0)
  * @param errorMessage хато сабаби; муваффақиятда null
- *
- * @author Zafar
  */
 public record ExchangeRateImportedEvent(int checked, int changed, int skipped,
                                         String errorMessage) {

@@ -11,8 +11,6 @@ package com.averpo.erp.search.service;
  * {@code href}'лари. {@code adminOnly} бандлар (Созламалар гуруҳи)
  * фақат SUPER_ADMIN'га чиқади - SecurityConfig'даги SETTINGS/USERS соҳа
  * қоидаларининг кўзгуси (user-roles.md: бошқа роллар кўрмайди).
- *
- * @author Zafar
  */
 public enum SearchScreen {
 

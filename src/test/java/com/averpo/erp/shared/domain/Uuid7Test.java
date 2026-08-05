@@ -12,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ичидаги чақириқлар ҳам қатъий ўсувчи бўлиши ШАРТ (RFC 9562 §6.2
  * counter услуби). Random rand_a'да бу бузилар эди - 2026-07-06 да
  * InvoiceServiceTest'нинг FIFO reverse тестида flake сифатида ушланган.
- *
- * @author Zafar
  */
 class Uuid7Test {
 

@@ -26,8 +26,6 @@ import java.util.UUID;
  * формаси, ишчи экран (сатрларни белгилаш checkbox'лари, жонли фарқ,
  * якунлаш/бекор қилиш). Белгилаш оддий form POST билан - CSRF табиий
  * ҳимояланган, ҳар босишда фарқ серверда қайта ҳисобланади.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/reconciliation")

@@ -40,8 +40,6 @@ import java.util.UUID;
  * Пул қайтариш чеки экранлари (returns.md): саҳифаланган рўйхат,
  * FULL форма (CreditMemo қолипи + пул счёти), кўриш (reverse шу
  * ерда - application йўқ). Ҳамма ёзиш RefundReceiptService орқали.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/refund-receipts")

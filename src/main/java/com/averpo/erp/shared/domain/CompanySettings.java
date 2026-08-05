@@ -23,8 +23,6 @@ import java.time.ZoneId;
  *
  * <p>Timezone ҳам шу ерда (темир қоида №12): базада вақтлар UTC,
  * экранга чиқаришда шу минтақага ўгирилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "company_settings")

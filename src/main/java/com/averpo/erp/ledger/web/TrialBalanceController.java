@@ -15,8 +15,6 @@ import java.util.List;
 /**
  * Айланма-қолдиқ ведомости экрани. Сатрлар TrialBalanceService'дан,
  * бу ерда фақат кўрсатиш учун Dt/Cr устунларга ажратилади.
- *
- * @author Zafar
  */
 @Controller
 @lombok.RequiredArgsConstructor

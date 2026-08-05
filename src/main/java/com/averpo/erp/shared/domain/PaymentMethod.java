@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
  * туради - усул ЎЧИРИЛМАЙДИ, фақат нофаол қилинади (каталог қолипи:
  * тарихий ҳужжат изи сақланади). QBO'даги Type майдони атайлаб йўқ -
  * credit card кўлами рад этилган (Otabek-001).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payment_method")

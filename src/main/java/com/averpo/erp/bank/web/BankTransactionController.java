@@ -42,8 +42,6 @@ import java.util.UUID;
  * Банк транзакциялари экранлари: рўйхат, тур бўйича динамик форма
  * (Alpine), кўриш, reverse. Ҳамма ёзиш BankTransactionService орқали -
  * контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/bank-transactions")

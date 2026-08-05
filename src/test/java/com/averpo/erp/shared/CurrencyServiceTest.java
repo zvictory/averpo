@@ -17,8 +17,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Валюта каталоги бошқаруви: фаоллаштириш ва home валюта қулфи.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

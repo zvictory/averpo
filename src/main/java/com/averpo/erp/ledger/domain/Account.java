@@ -19,8 +19,6 @@ import lombok.Setter;
  * эмас, detail type орқали топилади. Иерархия {@code parent} орқали:
  * гуруҳ счётлари ({@code postable=false}) фақат тузилма учун,
  * проводка фақат postable счётларга ёзилади (3-инвариант).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "account")

@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * trailing ноллар, NBSP минг ажратгич, чегара ҳолатлар). Пул формати
  * Arbitr-011 қарори бўйича: 2 хона + НУҚТА каср ажратгичи (QBO
  * стандарти: 12 600.50).
- *
- * @author Zafar
  */
 class FmtTest {
 

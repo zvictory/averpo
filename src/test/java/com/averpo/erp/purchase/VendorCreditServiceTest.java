@@ -47,8 +47,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * бандларининг VC қисми + фарқ сатри; 9-банд смок ScreenSmokeTest'да).
  * Apply/FX/BR-RET-007 ҳам шу ерда - ҳар posting логикага тест шарт
  * (ТЕМИР ҚОИДА №7), FX JE ҳам posting. Ҳар JE'да debit == credit.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

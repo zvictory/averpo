@@ -41,8 +41,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * блокланади, ғолиб commit қилгач ютқазган DataIntegrityViolation олади
  * ва у 500 эмас, BR кодга таржима қилиниши текширилади. Committed
  * маълумот finally'да қўлда тозаланади (номлар шу синфга хос unique).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

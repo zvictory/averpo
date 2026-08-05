@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
  *
  * <p>Қаторлар фақат Liquibase seed орқали яратилади (014-02) - runtime'да
  * яратиш/ўчириш API'си атайлаб йўқ.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "document_sequence")

@@ -17,8 +17,6 @@ import static org.assertj.core.api.Assertions.catchThrowable;
  * пароли билан boot тўхташи, dev оқими эса тегилмагани текширилади.
  * Тўлиқ boot тести @SpringBootTest эмас - guard контекст кўтарилишини
  * атайлаб йиқитади, кэшланадиган контекст йўқ.
- *
- * @author Zafar
  */
 class ProdDatasourceGuardTest {
 

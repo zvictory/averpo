@@ -37,8 +37,6 @@ import java.util.UUID;
  * Landed cost тақсимоти экранлари: рўйхат, форма (охирги BILL
  * киримлари checkbox билан), кўриш (inventory/COGS бўлиниши + reverse).
  * Ҳамма ёзиш LandedCostService орқали - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/landed-costs")

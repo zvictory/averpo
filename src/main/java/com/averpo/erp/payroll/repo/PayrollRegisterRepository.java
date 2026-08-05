@@ -18,8 +18,6 @@ import java.util.UUID;
  *
  * <p>Repository домен тури техник ({@link PayrollPayment}) - @Query ўз
  * entity'сини (PayrollRunLine) танлайди, faqat ўқиш.
- *
- * @author Zafar
  */
 public interface PayrollRegisterRepository extends Repository<PayrollPayment, UUID> {
 

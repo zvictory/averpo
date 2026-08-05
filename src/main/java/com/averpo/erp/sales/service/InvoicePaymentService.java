@@ -48,8 +48,6 @@ import java.util.UUID;
  * ҳар allocation учун АЛОҲИДА JE; ЙЎНАЛИШИ AP томонга ТЕСКАРИ: фарқ
  * base = allocation × (тўлов курси - invoice курси), мусбат - фойда
  * (AR Dt / gain Cr) - posting-rules «Сотув».
- *
- * @author Zafar
  */
 @Service
 @Transactional

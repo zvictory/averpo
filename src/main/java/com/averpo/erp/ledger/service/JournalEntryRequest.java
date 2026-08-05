@@ -19,8 +19,6 @@ import java.util.UUID;
  * @param sourceModule     MANUAL, SALES, PURCHASE... - ҳужжат манбаси
  * @param sourceDocumentId манба ҳужжат id'си (қўлда проводкада null)
  * @param lines            камида 2 та сатр
- *
- * @author Zafar
  */
 public record JournalEntryRequest(
         LocalDate entryDate,

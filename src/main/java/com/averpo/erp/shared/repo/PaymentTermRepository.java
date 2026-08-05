@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Тўлов шартлари каталоги репозиторийси.
- *
- * @author Zafar
  */
 public interface PaymentTermRepository extends JpaRepository<PaymentTerm, UUID> {
 

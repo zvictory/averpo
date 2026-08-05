@@ -26,8 +26,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Dashboard GL кесимлари: ойлик P&L, банк қолдиқлари, харажат тақсимоти.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

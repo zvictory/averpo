@@ -46,8 +46,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * тасдиқланади. Шу боис бу тест валве ЧИҚИШИНИ ({@code getRemoteAddr})
  * симуляция қилиб (remoteAddr'ни қўлда қўяди) уни аудитга тўғри кўчишини
  * текширади; конфиг ўзи иккинчи тест билан гаровланади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

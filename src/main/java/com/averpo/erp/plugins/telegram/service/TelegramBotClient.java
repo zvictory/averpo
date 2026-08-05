@@ -16,8 +16,6 @@ import java.util.Optional;
  * <p>Токен ҳар чақиришда параметр сифатида берилади (клиент ҳолат
  * сақламайди): токен фақат TelegramService'да - у SecretCrypto орқали
  * очади ва дарҳол ишлатади, ҳеч қаерда кэшланмайди/логланмайди.
- *
- * @author Zafar
  */
 public interface TelegramBotClient {
 

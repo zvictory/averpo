@@ -23,8 +23,6 @@ import java.util.UUID;
  * рўйхат + inline қўшиш/таҳрир. Йўл /settings остида - SETTINGS (SUPER_ADMIN) чекловига
  * автоматик тушади (SecurityConfig); мантиқ TaxRateService'да,
  * контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/tax-rates")

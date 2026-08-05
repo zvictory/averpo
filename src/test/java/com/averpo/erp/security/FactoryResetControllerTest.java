@@ -35,8 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * session гарови, тасдиқ матни (BR-RST-002) ва тўлиқ занжирда ҳақиқий
  * reset'нинг controller сими орқали ишлаши. Reset'нинг тўлиқ тозалаш
  * кафолати {@link com.averpo.erp.shared.FactoryResetServiceTest}'да.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

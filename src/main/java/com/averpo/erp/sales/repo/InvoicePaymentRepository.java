@@ -10,8 +10,6 @@ import java.util.UUID;
  * InvoicePayment (тушум) репозиторийси - фақат sales модули ичида.
  * Рўйхат экрани саҳифаланган: JpaRepository.findAll(Pageable) (тартиб
  * InvoicePaymentService.LIST_SORT'дан) - Beruniy-perf1 2-босқич.
- *
- * @author Zafar
  */
 public interface InvoicePaymentRepository extends JpaRepository<InvoicePayment, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<InvoicePayment> {

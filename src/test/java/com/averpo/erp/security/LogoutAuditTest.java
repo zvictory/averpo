@@ -29,8 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * {@code /login?logout} манзилига йўналтиради (аввалги logoutSuccessUrl
  * хулқи ўзгармаган). MockMvc web оқими - LoginAuditIpTest нақши
  * (remoteAddr қўлда қўйилади, жонли серверда уни RemoteIpValve ечади).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

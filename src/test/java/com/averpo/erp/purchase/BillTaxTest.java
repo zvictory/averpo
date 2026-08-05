@@ -41,8 +41,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Bill'да ҚҚС интеграцияси тестлари: docs/modules/tax.md «Тестлар».
  * GL posting-rules «Харид» (Солиқ) бандларига мослиги (ТЕМИР ҚОИДА №7:
  * debit == credit) ва net/tax/gross бўлиниши шу ерда.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

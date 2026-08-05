@@ -62,8 +62,6 @@ import java.util.UUID;
  * бу «marked rollback-only» тузоғидан ҳам сақлайди (BR-*-банд хатоси
  * @Transactional service ичида отилса, чақирувчи уни тутса ҳам
  * транзакция rollback'га белгиланиб қоларди).
- *
- * @author Zafar
  */
 @Service
 @RequiredArgsConstructor

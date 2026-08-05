@@ -20,8 +20,6 @@ import java.util.UUID;
  * <p>Ҳозирча ягона истеъмолчиси - счёт амаллари (register) экрани:
  * сатрлар entry орқали эмас, тўғридан-тўғри счёт кесимида керак
  * бўлгани учун JournalEntryRepository'дан алоҳида.
- *
- * @author Zafar
  */
 public interface JournalEntryLineRepository extends JpaRepository<JournalEntryLine, UUID> {
 

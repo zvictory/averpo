@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Кредит қўллашлари репозиторийси - фақат sales модули ичида.
- *
- * @author Zafar
  */
 public interface CreditApplicationRepository extends JpaRepository<CreditApplication, UUID> {
 

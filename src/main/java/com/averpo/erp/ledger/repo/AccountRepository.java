@@ -10,8 +10,6 @@ import java.util.UUID;
 
 /**
  * Счётлар репозиторийси - фақат ledger модули ичида ишлатилади.
- *
- * @author Zafar
  */
 public interface AccountRepository extends JpaRepository<Account, UUID> {
 

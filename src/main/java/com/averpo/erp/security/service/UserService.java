@@ -42,8 +42,6 @@ import java.util.regex.Pattern;
  *
  * <p>Парол ҲЕЧ ҚАЧОН очиқ сақланмайди/логланмайди - фақат bcrypt hash;
  * хато хабарларига ҳам парол қиймати ёзилмайди.
- *
- * @author Zafar
  */
 @Service
 @Transactional

@@ -39,8 +39,6 @@ import java.util.UUID;
  * <p>TrialBalanceService каби POSTED билан бирга REVERSED entry'лар
  * ҳам киради: сторно жуфти иккиси ҳам GL тарихида кўринади ва нетто
  * нолга тушади. DRAFT'лар GL'да йўқ - ҳеч қачон кирмайди.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

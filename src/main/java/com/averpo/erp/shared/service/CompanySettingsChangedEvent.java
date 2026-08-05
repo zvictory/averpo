@@ -12,8 +12,6 @@ package com.averpo.erp.shared.service;
  *
  * @param details фақат ЎЗГАРГАН майдонлар «майдон: эски → янги»
  *                кўринишида, «; » билан бирлашган
- *
- * @author Zafar
  */
 public record CompanySettingsChangedEvent(String details) {
 }

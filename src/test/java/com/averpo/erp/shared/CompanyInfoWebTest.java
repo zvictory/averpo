@@ -32,8 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * лого upload → inline+nosniff view → delete. {@code /settings/company*}
  * SecurityConfig'да алоҳида қатор ТАЛАБ ҚИЛМАЙДИ (SETTINGS остида,
  * автоматик - 101 профилдан фарқли).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

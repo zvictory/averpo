@@ -18,8 +18,6 @@ import java.util.Map;
  * <p>Танланган устун тартибига default (LIST_SORT) tie-breaker бўлиб
  * қўшилади - тенг қийматларда ҳам кетма-кетлик детерминистик қолади
  * (саҳифалараро сатр «сакраши» бўлмасин).
- *
- * @author Zafar
  */
 public final class TableSort {
 

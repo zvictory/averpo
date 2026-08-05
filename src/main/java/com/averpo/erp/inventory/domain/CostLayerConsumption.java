@@ -17,8 +17,6 @@ import java.math.BigDecimal;
  * FIFO ейилиш изи: қайси партия (layer) қайси чиқим ҳаракатига қанча
  * ейилгани - таннарх ҳисобининг тўлиқ audit изи (old-erp-ideas §6).
  * Ёзувлар ўзгармас.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "cost_layer_consumption")

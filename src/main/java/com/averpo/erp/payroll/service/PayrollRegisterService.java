@@ -38,8 +38,6 @@ import java.util.UUID;
  * давр_боши + net − тўланган (тўлов сторноси остида ҳам сақланади);
  * per-employee closing йиғиндиси = GL clearing счёт қолдиғи (test 7).
  * Ledger'га фақат public service орқали (қоида №6). Суммалар home (UZS).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

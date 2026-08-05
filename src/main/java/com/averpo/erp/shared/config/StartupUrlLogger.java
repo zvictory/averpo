@@ -35,8 +35,6 @@ import org.springframework.stereotype.Component;
  * {@link WebServerInitializedEvent} «management» namespace билан отилади -
  * уни четлаб, фойдаланувчи кирадиган асосий сервер портини сақлаймиз
  * (ҳозир management порт йўқ, бу келажак учун гаров).
- *
- * @author Zafar
  */
 @Component
 @Slf4j

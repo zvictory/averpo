@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Login саҳифаси. POST /login'ни Spring Security'нинг ўзи қабул
  * қилади - бу контроллер фақат форманы кўрсатади.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

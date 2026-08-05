@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Контакт банк реквизитлари репозиторийси - фақат contact модули ичида.
- *
- * @author Zafar
  */
 public interface ContactBankAccountRepository extends JpaRepository<ContactBankAccount, UUID> {
 

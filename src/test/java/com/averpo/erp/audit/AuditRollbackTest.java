@@ -34,8 +34,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * <p>Класс АТАЙЛАБ @Transactional эмас: rollback'ни тест framework'и
  * эмас, кодда очилган TransactionTemplate қилади - ҳамма ёзув (chart
  * import ҳам) ўша битта транзакция ичида бўлгани учун база тоза қолади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

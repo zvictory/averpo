@@ -25,8 +25,6 @@ import java.util.Map;
  * balance кейин тўлиқ формада. Мантиқ бутунлай {@link AccountService#create}
  * реюзи (BR-COA-001/008/009/010/011 ўша ерда) - янги бизнес қоида ЙЎҚ.
  * VIEWER ҳимояси SecurityConfig POST қоидасида.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

@@ -26,8 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * яратолмайди (SecurityConfig POST чекловидан 403), лекин кўради.
  * Экранлар render текшируви ҳам шу ерда - ScreenSmokeTest'га
  * тегилмайди (параллел агентлар ҳам ўша файлга ёзади).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

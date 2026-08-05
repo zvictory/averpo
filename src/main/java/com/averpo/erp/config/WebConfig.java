@@ -17,8 +17,6 @@ import java.util.Locale;
  * <p>Танлов cookie'да сақланади, {@code ?lang=ru} query параметри билан
  * алмашади. Фойдаланувчи тизими пайдо бўлганда (кейинги босқич) тил
  * user profile'га кўчади - QBO услуби.
- *
- * @author Zafar
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

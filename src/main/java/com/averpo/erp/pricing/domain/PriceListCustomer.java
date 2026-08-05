@@ -18,8 +18,6 @@ import java.util.UUID;
  * docs/modules/price-list.md): contact модулига тегилмайди, доиравий
  * боғлиқлик йўқ. customer_id глобал UNIQUE - мижозга биттагина рўйхат
  * (BR-PL-006); бошқа рўйхатга бириктирилса ёзув кўчади (service).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "price_list_customer")

@@ -32,8 +32,6 @@ import static org.mockito.BDDMockito.given;
 /**
  * Валюта курслари каталоги тестлари: docs/modules/multi-currency.md →
  * «Тестлар». ЦБ client сохта - тармоққа чиқилмайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

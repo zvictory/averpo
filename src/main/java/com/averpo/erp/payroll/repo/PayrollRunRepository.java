@@ -15,8 +15,6 @@ import java.util.UUID;
 /**
  * Иш ҳақи ҳисоблашлари репозиторийси - фақат payroll модули ичида.
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
- *
- * @author Zafar
  */
 public interface PayrollRunRepository extends JpaRepository<PayrollRun, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<PayrollRun> {

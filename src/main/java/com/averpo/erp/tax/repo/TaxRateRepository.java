@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * ҚҚС ставкалари репозиторийси - фақат tax модули ичида.
- *
- * @author Zafar
  */
 public interface TaxRateRepository extends JpaRepository<TaxRate, UUID> {
 

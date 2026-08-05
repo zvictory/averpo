@@ -47,8 +47,6 @@ import java.util.UUID;
  * қўл узатмасдан текширилади: DocumentType жадвал номига map қилинади ва
  * битта JdbcClient {@code SELECT EXISTS} юборилади (LedgerDashboardService
  * хом SQL прецеденти, темир қоида №6 - модуллараро боғланиш йўқ).
- *
- * @author Zafar
  */
 @Service
 @Transactional

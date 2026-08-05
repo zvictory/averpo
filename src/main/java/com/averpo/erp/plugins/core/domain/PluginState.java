@@ -23,8 +23,6 @@ import java.util.UUID;
  *
  * <p>Қатор ФАҚАТ биринчи toggle'да туғилади - enum'да бор-у жадвалда
  * йўқ плагин ЎЧИҚ ҳисобланади ({@code PluginService.isEnabled}).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "plugin_state")

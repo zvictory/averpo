@@ -32,8 +32,6 @@ import java.io.IOException;
  *
  * <p>CSRF қиймати ҲЕЧ ҚАЧОН log'га ёзилмайди (logging.md тақиғи) - фақат
  * «сессия муддати» факти DEBUG'да қолади.
- *
- * @author Zafar
  */
 public class CsrfAwareAccessDeniedHandler implements AccessDeniedHandler {
 

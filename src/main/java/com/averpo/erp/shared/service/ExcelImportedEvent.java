@@ -13,8 +13,6 @@ import com.averpo.erp.shared.service.ExcelImportService.ImportResult;
  *
  * @param result туркумлаб яратилган/ўтказилган сонлар - details матнини
  *               listener шундан ясайди
- *
- * @author Zafar
  */
 public record ExcelImportedEvent(ImportResult result) {
 }

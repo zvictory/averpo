@@ -14,8 +14,6 @@ import java.time.LocalDate;
  * AR aging ҳисоботи (QBO A/R Aging Summary услуби): мижоз бўйича очиқ
  * дебиторлик home валютада, кечикиш корзиналарида. Ҳисоб-китоб
  * InvoiceService.arAging'да - контроллер юпқа (ApAging кўзгуси).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

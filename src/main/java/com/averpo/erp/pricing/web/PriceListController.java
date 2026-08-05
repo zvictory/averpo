@@ -38,8 +38,6 @@ import java.util.stream.Collectors;
  * Нарх рўйхатлари экранлари (docs/modules/price-list.md, INVENTORY соҳаси):
  * рўйхат + карта саҳифаси (поғоналар, мижоз бириктируви). Мантиқ
  * PriceListService'да - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/price-lists")

@@ -9,8 +9,6 @@ import java.util.UUID;
  * Landed cost тақсимоти репозиторийси - фақат purchase модули ичида.
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068): эски
  * findAllByOrderBy... методи findAll(Specification, Sort)'га алмашди.
- *
- * @author Zafar
  */
 public interface LandedCostAllocationRepository
         extends JpaRepository<LandedCostAllocation, UUID>,

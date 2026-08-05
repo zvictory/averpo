@@ -29,8 +29,6 @@ import java.util.UUID;
  * <p>Инвариант (тестда текширилади): опенинг + давр ҳаракатлари
  * йиғиндиси == клозинг - бу GL'даги AR қолдиғининг ўзи (accrual), шунинг
  * учун ҳисобот AR subledger билан бир хил гапиради.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * FIFO партиялари репозиторийси - фақат inventory модули ичида.
- *
- * @author Zafar
  */
 public interface CostLayerRepository extends JpaRepository<CostLayer, UUID> {
 

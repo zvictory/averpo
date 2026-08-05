@@ -44,8 +44,6 @@ import static org.mockito.Mockito.verify;
  * {@code @AfterEach} фақат шу турдаги ёзувларни ўчиради (умумий тест
  * базасини ифлосламаслик учун; repository.delete тест-only, prod
  * append-only контракти ўзгармайди - service'да ўчириш йўли йўқ).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -44,8 +44,6 @@ import java.util.UUID;
  * Bill экранлари: рўйхат (статус филтри), форма (HTMX сатр қўшиш,
  * валюта курси prefill), кўриш, post/reverse/draft-delete. Ҳамма ёзиш
  * BillService орқали - контроллер юпқа (validation + view render).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/bills")

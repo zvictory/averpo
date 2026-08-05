@@ -31,8 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * қўшилмагани каби (GlobalExceptionHandler изоҳи), бу ерда ҳам
  * msg/lang/csrf/perms қўлда берилади - акс ҳолда error.jte'даги msg
  * null бўлиб NPE берарди.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

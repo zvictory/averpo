@@ -15,8 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * (CbuRestClientTest нақши): муҳит {@link StandardEnvironment} билан
  * қўлда қурилади, шунда «production'да калит йўқ» ҳолатини ҳам
  * текшириб бўлади.
- *
- * @author Zafar
  */
 class SecretCryptoTest {
 

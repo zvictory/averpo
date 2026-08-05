@@ -10,8 +10,6 @@ import com.averpo.erp.shared.exception.BusinessRuleException;
  * <p>BusinessRuleException'дан мерос - умумий web қатлам ва бошқа
  * модуллар уни бошқа бизнес хатолар қатори ушлай олади, ledger'га
  * хос catch'лар эса аниқ типни ишлатади.
- *
- * @author Zafar
  */
 public class PostingException extends BusinessRuleException {
 

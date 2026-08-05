@@ -11,8 +11,6 @@ package com.averpo.erp.security.domain;
  * ACCOUNTANT→ACCOUNTANT (ном сақланади, ҳуқуқ торайган),
  * VIEWER→VIEWER_AUDITOR. Қийматлар тартиби = user формасидаги select
  * тартиби (кучлидан кучсизга, спец матрица устунлари).
- *
- * @author Zafar
  */
 public enum UserRole {
 

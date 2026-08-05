@@ -12,8 +12,6 @@ import java.time.LocalDate;
 /**
  * Profit &amp; Loss экрани - ҳисоблаш тўлиқ ProfitAndLossService'да,
  * бу ерда фақат default давр ва model йиғилади.
- *
- * @author Zafar
  */
 @Controller
 @lombok.RequiredArgsConstructor

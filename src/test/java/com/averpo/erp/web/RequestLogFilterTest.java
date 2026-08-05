@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 1-банд, Arbitr-099): rid ва user сўров ДАВОМИДА MDC'да туради,
  * сўров ОХИРИДА тозаланади (thread pool'да leak бўлмасин). Web контекст
  * шарт эмас - filter'ни тўғридан-тўғри юритамиз.
- *
- * @author Zafar
  */
 class RequestLogFilterTest {
 

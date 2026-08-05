@@ -5,8 +5,6 @@ package com.averpo.erp.security.domain;
  * (docs/modules/user-roles.md). Authority сифатида enum номи ўзи
  * берилади (масалан {@code PERIOD_CLOSE}) - соҳа_VIEW/_EDIT қолипидан
  * атайлаб фарқли, чунки булар даражасиз ёқиқ/ўчиқ байроқлар.
- *
- * @author Zafar
  */
 public enum Capability {
 

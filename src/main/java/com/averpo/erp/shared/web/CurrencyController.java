@@ -27,8 +27,6 @@ import java.util.List;
  * docs/modules/multi-currency.md). /settings/** остида - фақат SUPER_ADMIN
  * (SecurityConfig); фақат lookup endpoint'и алоҳида йўлда, чунки уни
  * проводка формаси (ACCOUNTANT ҳам) ишлатади.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

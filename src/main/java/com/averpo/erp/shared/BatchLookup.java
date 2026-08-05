@@ -23,8 +23,6 @@ import java.util.function.Function;
  * шартномаси ({@code findAllById} throw қилмайди); чақирувчи
  * мавжудликни ўз сатр хатоси (BR/NotFound) билан текширади, шунда
  * аввалги {@code get()} хулқи айнан сақланади.
- *
- * @author Zafar
  */
 public final class BatchLookup {
 

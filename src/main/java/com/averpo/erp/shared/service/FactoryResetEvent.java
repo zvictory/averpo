@@ -10,8 +10,6 @@ package com.averpo.erp.shared.service;
  * <p>Payload йўқ - актор username/IP/UA'ни audit ўзи жорий контекстдан
  * олади. Event shared ичида туради, тингловчи audit модулида
  * (CompanySettingsChangedEvent изоҳидаги цикл сабаби).
- *
- * @author Zafar
  */
 public record FactoryResetEvent() {
 }

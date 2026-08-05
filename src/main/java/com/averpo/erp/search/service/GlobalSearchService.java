@@ -26,8 +26,6 @@ import java.util.List;
  *
  * <p>MVP кўлами: рақам substring / ном ILIKE. Full-text, trgm индекс ва
  * fuzzy - phase-2 (spec «ҚИЛИНМАЙДИ»).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

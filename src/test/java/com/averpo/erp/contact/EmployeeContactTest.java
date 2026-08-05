@@ -20,8 +20,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * EMPLOYEE (Payroll 23а) контакт CRUD ва oklad валидацияси - spec:
  * docs/modules/payroll.md «Contact кенгайтма». Мавжуд contact
  * инфратузилмаси қайта ишлатилади (ContactType.EMPLOYEE + monthly_salary).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

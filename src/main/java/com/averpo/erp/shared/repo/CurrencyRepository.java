@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Валюта каталоги репозиторийси - фақат shared модул ичида ишлатилади.
- *
- * @author Zafar
  */
 public interface CurrencyRepository extends JpaRepository<Currency, UUID> {
 

@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
  * <p>Sub-class ота орқали (QBO ParentRef), чуқурлик чекланмаган -
  * счёт дарахти нақши. Ўчириш ЙЎҚ - фақат active=false (GL тарихида
  * ишлатилган бўлиши мумкин). GL суммаларига МУТЛАҚО таъсир қилмайди.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "txn_class")

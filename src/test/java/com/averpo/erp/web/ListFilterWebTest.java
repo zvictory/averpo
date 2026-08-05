@@ -33,8 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>Дата ҚЎЛДА JdbcClient билан қуйилади (GlobalSearchServiceTest
  * нақши) - филтр SQL'и хом жадвалда синалади, seed'га боғланмайди.
  * Ноёб кирилл {@code T} токени seed маълумотида учрамайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

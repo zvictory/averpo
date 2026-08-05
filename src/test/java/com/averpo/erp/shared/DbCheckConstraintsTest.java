@@ -25,8 +25,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * <p>Ҳар сценарий алоҳида тест методи: CHECK бузилиши Postgres
  * транзакциясини abort ҳолатига ўтказади - кейинги statement'лар шу
  * транзакцияда юрмайди, шунга бузувчи INSERT ҳар методда охирги амал.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

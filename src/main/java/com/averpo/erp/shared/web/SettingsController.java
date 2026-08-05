@@ -20,8 +20,6 @@ import java.util.List;
 /**
  * Компания созламалари экрани: ном, home currency, timezone.
  * Контроллер юпқа - валидация ва қулф мантиқи CompanySettingsService'да.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings")

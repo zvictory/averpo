@@ -36,8 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * RequestContextHolder'дан ўқилади - иккала йўл бир ёзувга бирлашиши
  * гаровланади. MockMvc жонли CF занжирини юргизмайди (header'лар қўлда
  * сохталанади) - жонли занжир deploy'дан кейин серверда текширилади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

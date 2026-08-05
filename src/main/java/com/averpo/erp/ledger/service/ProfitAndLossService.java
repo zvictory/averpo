@@ -25,8 +25,6 @@ import java.util.UUID;
  * <p>Trial Balance услуби: JdbcClient SQL агрегат, POSTED+REVERSED,
  * барча суммалар home валютада. Ишора: даромад Cr-Dt, харажат Dt-Cr -
  * мусбат сон нормал оқим.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

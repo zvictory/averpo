@@ -30,8 +30,6 @@ import java.util.UUID;
  * шу орқали BR-LED-012 idempotency бир счётга иккинчи opening balance
  * киритишни автоматик тўсади; хато бўлса entry reverse қилинади ва
  * қайта киритилади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

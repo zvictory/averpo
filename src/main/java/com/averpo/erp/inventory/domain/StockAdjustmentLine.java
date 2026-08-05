@@ -24,8 +24,6 @@ import java.util.UUID;
  *
  * <p>item_id - dimension (DB'да FK, JPA'да UUID - модуллараро entity
  * боғланиш йўқ, StockMovement қолипи). (акт, item) UNIQUE - BR-INV-012.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_adjustment_line",

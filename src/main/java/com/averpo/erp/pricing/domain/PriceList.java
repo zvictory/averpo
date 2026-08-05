@@ -19,8 +19,6 @@ import java.time.LocalDate;
  * каталог, поғонали нархлар {@link PriceListItem}'да. Ҳужжатга ҳавола
  * сақланмайди - фақат invoice формасида prefill манбаси, шунинг учун
  * рўйхат/поғона ўзгариши тарихий ҳужжатларга таъсир қилмайди.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "price_list")

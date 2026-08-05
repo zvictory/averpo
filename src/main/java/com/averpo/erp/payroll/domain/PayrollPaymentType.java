@@ -6,8 +6,6 @@ package com.averpo.erp.payroll.domain;
  * (posting-rules «Иш ҳақи») иккисида АЙНАН бир хил: Dr PAYROLL_CLEARING
  * (ходим кесимида) / Cr банк-касса - шунга тур GL мантиғига таъсир
  * қилмайди, фақат кўриниш/ҳисобот белгиси.
- *
- * @author Zafar
  */
 public enum PayrollPaymentType {
 

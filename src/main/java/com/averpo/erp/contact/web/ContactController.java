@@ -27,8 +27,6 @@ import java.util.UUID;
  * Мижозлар ва етказувчилар экранлари - иккала рўйхат битта контроллерда
  * ({kind} path сегменти орқали), чунки QBO услубида улар битта contact
  * жадвалининг иккита кўриниши (spec: docs/modules/contact.md).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/{kind:customers|vendors|employees}")

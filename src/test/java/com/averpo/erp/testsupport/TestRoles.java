@@ -10,8 +10,6 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
  * билан бир хил манба: authority'лар продакшн RolePermissions
  * матрицасидан ({@code user(...).roles("X")} эски услуби фақат ROLE_X
  * беради ва соҳа қоидаларида 403 олади).
- *
- * @author Zafar
  */
 public final class TestRoles {
 

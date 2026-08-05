@@ -24,8 +24,6 @@ import java.util.UUID;
  * ҳам қоплайди. equals/hashCode қўлда - фақат id бўйича (identity);
  * Lombok'нинг {@code @EqualsAndHashCode}'и бу семантикани бузар эди,
  * шунинг учун entity'ларда у ТАҚИҚ (CLAUDE.md).
- *
- * @author Zafar
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)

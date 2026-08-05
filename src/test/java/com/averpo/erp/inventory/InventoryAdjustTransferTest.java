@@ -37,8 +37,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * «Тестлар», 3-туртки. Adjustment GL проводкаси posting-rules «Омбор»
  * жадвалига мослиги ҳам шу ерда текширилади (ТЕМИР ҚОИДА №7:
  * debit == credit assert).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

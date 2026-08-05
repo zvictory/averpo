@@ -34,8 +34,6 @@ import java.nio.charset.StandardCharsets;
  * <p>Оқим (spec: алоҳида preview-тасдиқ қадами ЙЎҚ - минималлик): юклаш →
  * parse → хато бўлса рўйхат ўша экранда; тоза бўлса дарҳол apply + якун
  * flash хабари билан redirect (PRG - қайта юборишда такрор import бўлмайди).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/import")

@@ -24,8 +24,6 @@ import java.util.UUID;
  * қайтарилади (формада required бор - бу tampered POST ҳимояси), ном
  * дубли DB unique'дан DataIntegrityViolation бўлиб келади ва тушунарли
  * хабарга айлантирилади.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/payment-methods")

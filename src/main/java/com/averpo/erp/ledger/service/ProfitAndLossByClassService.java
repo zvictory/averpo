@@ -28,8 +28,6 @@ import java.util.UUID;
  * Net Income'да айнан оддий P&amp;L'га тенг - class фақат тег,
  * суммаларни қайта тақсимламайди. ProfitAndLossService'га АТАЙЛАБ
  * тегилмаган (параллел иш) - SQL ўша, фақат class_id кесими қўшилган.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

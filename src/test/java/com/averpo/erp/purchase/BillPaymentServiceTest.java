@@ -48,8 +48,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * (3-туртки). Тўлов GL'и, allocation денормализацияси, realized курс
  * фарқи (ҳар allocation учун алоҳида JE) ва reverse шу ерда
  * текширилади (ТЕМИР ҚОИДА №7: debit == credit).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

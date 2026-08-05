@@ -35,8 +35,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * Нарх рўйхатлари: каталог инвариантлари, поғона танлаш ва ечиш
  * тартиби (docs/modules/price-list.md).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

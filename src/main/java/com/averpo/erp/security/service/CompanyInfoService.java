@@ -23,8 +23,6 @@ import java.util.UUID;
  * FK (UUID) ва email валидациясини сақлайди. Бу - 101 профиль аватари
  * (UserService.setOwnProfileImage) нақшининг айнан ўзи, расм-специфик
  * валидация {@link AttachmentService#uploadImage}'да (BR-ATT-005/006).
- *
- * @author Zafar
  */
 @Service
 @Transactional

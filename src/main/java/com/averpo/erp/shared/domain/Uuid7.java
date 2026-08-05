@@ -21,8 +21,6 @@ import java.util.UUID;
  * тайинланади - шу туфайли {@code equals}/{@code hashCode} persist'дан
  * олдин ҳам ишлайди. Янгилик аниқлаш {@link BaseEntity}'даги
  * Persistable {@code isNew} байроғи орқали ҳал қилинади.
- *
- * @author Zafar
  */
 public final class Uuid7 {
 

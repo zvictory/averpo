@@ -17,8 +17,6 @@ import java.util.List;
  * қайтариш кўзгуси (ITEM/EXPENSE сатрлар, LANDED_COST йўқ). Ҳамма сон
  * String - бузуқ киритишда тушунарли BR хабари билан қийматлар
  * сақланиб қайтади (BillForm паттерни).
- *
- * @author Zafar
  */
 @Getter
 @Setter

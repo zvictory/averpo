@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * (JS'сиз) сўровда тўлиқ саҳифани render қилади - мажбурий fallback
  * (input Enter'да форма шу манзилга юборилади). Контроллер юпқа:
  * роль аниқлаш + service чақириқ + view танлаш.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

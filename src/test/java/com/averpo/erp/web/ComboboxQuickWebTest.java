@@ -44,8 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * янги ACCOUNTANT'да GL йўқ), warehouse quick create -
  * WAREHOUSE_MANAGER (INVENTORY EDIT; ACCOUNTANT фақат кўради) -
  * quick endpoint'лар соҳа қоидасига тушганининг исботи ҳам шу.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

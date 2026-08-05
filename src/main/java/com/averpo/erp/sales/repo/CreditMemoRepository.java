@@ -13,8 +13,6 @@ import java.util.UUID;
  * Рўйхат экрани саҳифаланган: findAll(Specification, Pageable) (тартиб
  * CreditMemoService.LIST_SORT'дан) - Beruniy-perf1 2-босқич +
  * Arbitr-068 рўйхат филтри.
- *
- * @author Zafar
  */
 public interface CreditMemoRepository extends JpaRepository<CreditMemo, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<CreditMemo> {

@@ -27,8 +27,6 @@ import java.util.UUID;
  * (йил/ой/UUID.ext): фойдаланувчи киритган {@code originalName} диск
  * йўлига ҲЕЧ ҚАЧОН кирмайди (path traversal ҳимояси) - асл ном фақат
  * шу ерда сақланади ва юклаб олишда Content-Disposition'да қайтарилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "attachment")

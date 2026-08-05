@@ -35,8 +35,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * тасдиқлайди), шунинг учун хато оқимларида (401, тармоқ узилиши)
  * exception хабари логланса токен error.log'га чиқиб кетарди. Ҳар хато
  * сценарийсидан кейин ListAppender'даги ҲАММА қатор текширилади.
- *
- * @author Zafar
  */
 class PengradTelegramClientTest {
 

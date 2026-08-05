@@ -31,8 +31,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Reconciliation тестлари: docs/modules/banking.md → «Тестлар»
  * (3-туртки). QBO Reconcile оқими - opening занжири, белгилаш/ечиш,
  * фарқ 0 гарови, глобал unique, бекор қилиш.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

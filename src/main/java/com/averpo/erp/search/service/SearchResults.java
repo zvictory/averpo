@@ -13,8 +13,6 @@ import java.util.List;
  * @param items     товар/хизмат (ном/SKU бўйича)
  * @param accounts  счётлар режаси (ном/код бўйича)
  * @param screens   экран/ҳисобот реестри (жорий тил + роль филтри)
- *
- * @author Zafar
  */
 public record SearchResults(List<SearchHit> documents, List<SearchHit> contacts,
                             List<SearchHit> items, List<SearchHit> accounts,

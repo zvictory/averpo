@@ -44,8 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *       саҳифа фрагмент ичига swap бўлиб хунук чиқмасин;</li>
  *   <li>stack trace/exception тафсилоти саҳифага ҲЕЧ ҚАЧОН чиқмайди.</li>
  * </ol>
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -36,8 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 3). Контакт SELECT'лар банк формасида 2 (customer+vendor; аввал
  * allContacts() икки марта чақирилиб 4 эди). Option таркиби ва
  * тартиби (CHART_ORDER) айнан сақланганини model'дан текширамиз.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

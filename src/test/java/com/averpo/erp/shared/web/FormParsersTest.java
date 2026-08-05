@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Web parse сиёсатининг ягона нуқтаси тестлари: оддий пробел, NBSP,
  * вергул, бўш қиймат ва бузуқ UUID ҳолатлари (Xorazmiy-003 кутилмаси).
  * Соф unit - Spring контексти шарт эмас.
- *
- * @author Zafar
  */
 class FormParsersTest {
 

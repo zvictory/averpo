@@ -49,8 +49,6 @@ import java.util.Optional;
  * бўлади; (3) бузуқ тана - JSON парс хатоси. Учаласи ҳам бир хил
  * натижага олиб келади: бўш {@link Optional} → чақирувчи BR-TG-001
  * отади ёки poller backoff қилади.
- *
- * @author Zafar
  */
 @Component
 @Slf4j

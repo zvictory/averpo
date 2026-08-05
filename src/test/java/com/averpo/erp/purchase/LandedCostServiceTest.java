@@ -49,8 +49,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Landed cost тақсимоти тестлари: docs/modules/purchases.md «Landed
  * cost» механикаси - қиймат нисбати, сотилган улуш COGS'га, аниқ
  * reverse, яxлитлаш дрейфисиз (ТЕМИР ҚОИДА №7: debit == credit).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

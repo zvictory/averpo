@@ -15,8 +15,6 @@ import lombok.Setter;
 /**
  * Товар категорияси - QBO Categories услубида иерархик.
  * Цикл ҳимояси service'да (Account иерархияси паттерни).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "item_category")

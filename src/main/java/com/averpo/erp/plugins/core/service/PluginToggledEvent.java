@@ -14,8 +14,6 @@ import com.averpo.erp.plugins.core.domain.PluginKey;
  *
  * @param key     қайси плагин
  * @param enabled янги ҳолат (true - ёқилди, false - ўчирилди)
- *
- * @author Zafar
  */
 public record PluginToggledEvent(PluginKey key, boolean enabled) {
 }

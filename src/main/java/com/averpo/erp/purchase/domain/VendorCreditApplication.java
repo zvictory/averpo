@@ -21,8 +21,6 @@ import java.math.BigDecimal;
  * алоҳида JE (VENDOR_CREDIT_APPLICATION манба). Бир (кредит, bill)
  * жуфтига биттагина ёзув (DB unique); unapply'да ёзув ЎЧИРИЛАДИ
  * (кредитнинг ўзи очиқ қолдиғи билан туради).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "vendor_credit_application",

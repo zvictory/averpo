@@ -32,7 +32,7 @@ display name глобал unique. Экранлар алоҳида: /customers в
 | notes | text nullable | Эркин изоҳ |
 | active | boolean | QBO «make inactive» - ўчириш йўқ, тарих сақланади |
 
-Эслатма (2026-07-06): дастлабки billing_address/shipping_address оддий
+Эслатма: дастлабки billing_address/shipping_address оддий
 матн устунлари contact_address жадвалига кўчирилиб олиб ташланган
 (changeset 016).
 
@@ -57,12 +57,12 @@ Seed: Due on receipt (0), Net 15, Net 30, Net 60.
 ## Service - public API
 ```java
 public class ContactService {
-    Contact create(ContactType type, /* форма майдонлари */ ...);
-    Contact update(UUID id, ...);
-    Contact get(UUID id);
-    List<Contact> byType(ContactType type, boolean includeInactive);
-    // Кейинги босқичлар: sales/purchase модуллари контакт номи ва
-    // currency'си учун фақат шу public service орқали мурожаат қилади
+ Contact create(ContactType type, /* форма майдонлари */ ...);
+ Contact update(UUID id, ...);
+ Contact get(UUID id);
+ List<Contact> byType(ContactType type, boolean includeInactive);
+ // Кейинги босқичлар: sales/purchase модуллари контакт номи ва
+ // currency'си учун фақат шу public service орқали мурожаат қилади
 }
 ```
 
@@ -74,19 +74,19 @@ public class ContactService {
 
 ## Экранлар (JTE, i18n, QBO услуби)
 - /customers - рўйхат: Display name, Компания, Email, Телефон, Валюта,
-  Ҳолат. «Nofaollarni кўрсатиш» тогл. Қатор → таҳрир.
+ Ҳолат. «Nofaollarni кўрсатиш» тогл. Қатор → таҳрир.
 - /vendors - худди шу, type=VENDOR.
 - Форма - full-screen layout/form.jte (QBO паттерни), sticky footer.
 - Ўчириш ЙЎҚ - фақат active тогл (QBO make inactive).
 
 ## Тестлар (мажбурий)
 - create: displayName unique - дубликат IllegalArgumentException
-  (customer ва vendor ўртасида ҳам).
+ (customer ва vendor ўртасида ҳам).
 - currency каталогда йўқ → хато; фаол эмас → хато.
 - update: ўз номини сақлаш OK, бошқаники банд.
 - byType фақат сўралган типни қайтаради; inactive филтри ишлайди.
 
-## Кенгайтма: манзил, шахс, банк реквизит (2026-07-06, old-erp-ideas §3)
+## Кенгайтма: манзил, шахс, банк реквизит (old-erp-ideas §3)
 
 Учта child жадвал - барчаси contact модули ичида, ташқарига фақат
 ContactService орқали очилади. Child қаторлар hard delete қилинади
@@ -138,20 +138,20 @@ void deleteAddress(UUID addressId);
 
 ### Тестлар (кенгайтма)
 - ИНН дубликат (customer↔vendor орасида ҳам) - BR-CON-005; NULL ИНН
-  кўп контактда эркин; ўз ИННини сақлаш OK.
+ кўп контактда эркин; ўз ИННини сақлаш OK.
 - Credit limit vendor'га ёки манфий - BR-CON-006.
 - Биринчи манзил авто-default; янги default эскисини бўшатади;
-  line1 бўш - BR-CON-007.
+ line1 бўш - BR-CON-007.
 - Шахс: исм бўш - BR-CON-008; primary алмашуви.
 - Банк: мажбурий майдонлар - BR-CON-009; шу контактда рақам дубликати -
-  BR-CON-010; бошқа контактда шу рақам OK.
+ BR-CON-010; бошқа контактда шу рақам OK.
 - EMPLOYEE oklad (monthly_salary) фақат EMPLOYEE учун, манфий эмас -
-  BR-CON-011 (payroll.md).
+ BR-CON-011 (payroll.md).
 - Контакт валютаси қулфи - BR-CON-012 (Arbitr-087; тафсилот
-  multi-currency.md «Контакт валютаси»).
+ multi-currency.md «Контакт валютаси»).
 
 ## Кейинги босқичларга мослик
 - 6/7-босқич: Invoice/Bill контактга боғланади, contact.currency
-  ҳужжат валютасини default қилади, биринчи POSTED ҳужжатдан кейин
-  валюта қулфланади (CompanySettings home currency қулфи паттерни).
+ ҳужжат валютасини default қилади, биринчи POSTED ҳужжатдан кейин
+ валюта қулфланади (CompanySettings home currency қулфи паттерни).
 - payment_term_days'дан due date ва AR/AP aging ҳисобланади.

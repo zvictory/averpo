@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Ўлчов бирликлари репозиторийси.
- *
- * @author Zafar
  */
 public interface UnitRepository extends JpaRepository<Unit, UUID> {
 

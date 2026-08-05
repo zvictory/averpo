@@ -13,8 +13,6 @@ import com.averpo.erp.ledger.domain.JournalEntry;
  *
  * @param reversal янги сторно entry'си
  * @param original сторно қилинган асл entry
- *
- * @author Zafar
  */
 public record JournalEntryReversedEvent(JournalEntry reversal, JournalEntry original) {
 }

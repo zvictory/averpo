@@ -37,8 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>Матчер тартиби гарови: /settings/warehouses (INVENTORY)
  * /settings/** (SETTINGS)дан олдин туриши WAREHOUSE_MANAGER
  * сценарийсида исботланади - тартиб бузилса айнан шу тест қизаради.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

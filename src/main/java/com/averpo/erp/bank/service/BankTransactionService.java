@@ -46,8 +46,6 @@ import java.util.UUID;
  * <p>Ҳужжат валютаси БАНК СЧЁТИДАН келади (танланмайди, QBO услуби):
  * Account.currency бўш бўлса home. GL - фақат PostingService (ТЕМИР
  * ҚОИДА №2); бошқа модулларга фақат public service'лар орқали (№6).
- *
- * @author Zafar
  */
 @Service
 @Transactional

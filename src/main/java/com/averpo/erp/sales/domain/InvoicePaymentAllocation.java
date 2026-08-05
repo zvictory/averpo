@@ -20,8 +20,6 @@ import java.math.BigDecimal;
  * Полиморф ҳавола атайлаб йўқ - тушум фақат invoice'ларга (purchase
  * модулидаги BillPaymentAllocation қарорининг кўзгуси). Олиб ташлаш
  * йўқ - тўловни reverse қилиш орқали бекор бўлади (MVP).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "invoice_payment_allocation",

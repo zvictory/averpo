@@ -32,8 +32,6 @@ import java.util.UUID;
  * жуфти билан амалга ошади (reference=акт id). Тузатиш reverse (қарши-акт).
  *
  * <p>Барча қийматлар home валютада (омбор ҳисоби доим home, spec).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_transfer")

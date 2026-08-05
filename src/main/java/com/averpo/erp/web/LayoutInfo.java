@@ -17,8 +17,6 @@ import java.util.UUID;
  * қўяди (у CompanySettingsService/UserService bean'ларини inject қила
  * олади; static helper эса RequestContextHolder орқали ўқийди - bean
  * керак эмас, Perms.current() SecurityContextHolder'дан олгани каби).
- *
- * @author Zafar
  */
 public record LayoutInfo(String companyName, UUID brandLogoId, boolean setupDone,
                          boolean mustChangePassword, String displayName, String username,

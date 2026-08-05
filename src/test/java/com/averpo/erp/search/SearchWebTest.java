@@ -26,8 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Глобал қидирув web қатлами (docs/modules/global-search.md «Тестлар» 6):
  * /search тўлиқ саҳифа смоки + HTMX dropdown partial смоки. Партиал
  * тўлиқ саҳифа emas (layout йўқ) - шу билан ажратилади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -1,6 +1,6 @@
 # Payroll Lite - Иш ҳақи (аванс билан) - SPEC
 
-ҲОЛАТ: БАЖАРИЛГАН (23а/23б/23в турткилари, 2026-07-08; кўлам:
+ҲОЛАТ: БАЖАРИЛГАН (23а/23б/23в турткилари,; кўлам:
 «Lite + аванс/қисман тўлаш» - фойдаланувчи тасдиғи).
 
 ДИҚҚАТ: QBO ядросида payroll ЙЎҚ (алоҳида пулли маҳсулот) - бу
@@ -21,48 +21,48 @@ detail type орқали счёт топиш, contact dimension, POSTED/reverse)
 ## Қатъий қарорлар
 
 - **Employee = ContactType.EMPLOYEE** (янги қиймат) - мавжуд contact
-  инфраструктураси (карточка, фаоллик, JE contact dimension) қайта
-  ишлатилади; ходим кесимидаги қолдиқ GL contact кесимидан ўқилади
-  (AR/AP субледжер услуби). QBO'да ҳам Employee - core name-list.
+ инфраструктураси (карточка, фаоллик, JE contact dimension) қайта
+ ишлатилади; ходим кесимидаги қолдиқ GL contact кесимидан ўқилади
+ (AR/AP субледжер услуби). QBO'да ҳам Employee - core name-list.
 - **Ҳамма payroll ҳужжатлари ФАҚАТ home валютада** (BR-PYR-001) -
-  Lite соддалаштириши, курс/FX умуман йўқ.
+ Lite соддалаштириши, курс/FX умуман йўқ.
 - **Ставкалар CompanySettings'да** (фоиз, SETTINGS соҳаси ўзгартиради):
-  даромад солиғи % (default 12), жамғариб бориладиган пенсия бадали %
-  (default 0.1, ходимдан ушланма), ижтимоий солиқ % (default 12,
-  иш берувчи устига). Ҳужжат сатрида ҳисобланган СУММАЛАР сақланади
-  (snapshot, Money.exchangeRate услуби) - кейин ставка ўзгарса
-  тарихий ҳужжат ўзгармайди.
-  ⚠ Ставкалар МУСТАҚИЛ созланма (Lite модели): пенсия бадали даромад
-  солиғи ИЧИДАН ажралма эмас, алоҳида ушланма - default'лар билан
-  жами ушланма 12.1%. Расмий «12% ичида 0.1% INPS» талқинини истаган
-  компания income_tax=11.9 + pension=0.1 деб созлайди (Nargiza-049
-  триаж қарори, 2026-07-10: формула net = gross − солиқ − пенсия
-  баланс исботининг ядроси - posting-rules.md, ўзгармайди).
+ даромад солиғи % (default 12), жамғариб бориладиган пенсия бадали %
+ (default 0.1, ходимдан ушланма), ижтимоий солиқ % (default 12,
+ иш берувчи устига). Ҳужжат сатрида ҳисобланган СУММАЛАР сақланади
+ (snapshot, Money.exchangeRate услуби) - кейин ставка ўзгарса
+ тарихий ҳужжат ўзгармайди.
+ ⚠ Ставкалар МУСТАҚИЛ созланма (Lite модели): пенсия бадали даромад
+ солиғи ИЧИДАН ажралма эмас, алоҳида ушланма - default'лар билан
+ жами ушланма 12.1%. Расмий «12% ичида 0.1% INPS» талқинини истаган
+ компания income_tax=11.9 + pension=0.1 деб созлайди (Nargiza-049
+ триаж қарори,: формула net = gross − солиқ − пенсия
+ баланс исботининг ядроси - posting-rules.md, ўзгармайди).
 - **Счётлар detail type орқали топилади** (мавжуд қоида, инвариант 6):
-  PAYROLL_EXPENSES (иккита seed: «Иш ҳақи харажати», «Иш ҳақи солиқ
-  харажати»), PAYROLL_CLEARING («Иш ҳақи бўйича мажбурият», ходим
-  кесимида), PAYROLL_TAX_PAYABLE («Иш ҳақи солиқлари мажбурияти»).
-  Default chart'га seed changeset'да қўшилади (мавжуд базада ҳам).
+ PAYROLL_EXPENSES (иккита seed: «Иш ҳақи харажати», «Иш ҳақи солиқ
+ харажати»), PAYROLL_CLEARING («Иш ҳақи бўйича мажбурият», ходим
+ кесимида), PAYROLL_TAX_PAYABLE («Иш ҳақи солиқлари мажбурияти»).
+ Default chart'га seed changeset'да қўшилади (мавжуд базада ҳам).
 - **PAYROLL_EXPENSES иккита счёти НОМ бўйича ажратилади**: битта detail
-  type'да иккита счёт (иш ҳақи харажати / иш ҳақи солиқ харажати) -
-  шунга requireSystemAccount (ягона кутади) ишламайди, buildGlLines
-  НОМ бўйича топади (payrollExpenseAccount). ⚠️ Оқибат: бу иккита счёт
-  НОМИ тизимга керак - фойдаланувчи уларни қайта номласа payroll
-  posting BR-LED-021 («ном бўйича PAYROLL_EXPENSES топилмади») билан
-  ТЎХТАЙДИ. Тўлиқ ечим (CompanySettings'да счёт mapping) - 1.1
-  statutory кенгайишида; ҳозирча ном инвариант.
+ type'да иккита счёт (иш ҳақи харажати / иш ҳақи солиқ харажати) -
+ шунга requireSystemAccount (ягона кутади) ишламайди, buildGlLines
+ НОМ бўйича топади (payrollExpenseAccount). ⚠️ Оқибат: бу иккита счёт
+ НОМИ тизимга керак - фойдаланувчи уларни қайта номласа payroll
+ posting BR-LED-021 («ном бўйича PAYROLL_EXPENSES топилмади») билан
+ ТЎХТАЙДИ. Тўлиқ ечим (CompanySettings'да счёт mapping) - 1.1
+ statutory кенгайишида; ҳозирча ном инвариант.
 - **PAYROLL_CLEARING systemManaged'га киради**: транзфер/қўлда банк
-  сатрида танланмайди - тўлов ФАҚАТ PayrollPayment орқали (AR/AP
-  услуби; banking.md изоҳи янгиланади). PAYROLL_TAX_PAYABLE
-  systemManaged ЭМАС - солиқ тўлови мавжуд Чиқим (Expense) орқали
-  (SALES_TAX_PAYABLE прецеденти).
+ сатрида танланмайди - тўлов ФАҚАТ PayrollPayment орқали (AR/AP
+ услуби; banking.md изоҳи янгиланади). PAYROLL_TAX_PAYABLE
+ systemManaged ЭМАС - солиқ тўлови мавжуд Чиқим (Expense) орқали
+ (SALES_TAX_PAYABLE прецеденти).
 - **Аванс = PayrollPayment ҳисоблашдан олдин**: PAYROLL_CLEARING
-  ходим кесимида вақтинча дебет қолдиқ ҳосил қилади; ой охирги
-  ҳисоблаш (net кредит) уни ёпади. Тўлов run'га боғланМАЙДИ -
-  clearing қолдиғи ўзи ҳақиқат манбаи (Lite соддалиги). Ведомость
-  давр бўйича жамлайди.
+ ходим кесимида вақтинча дебет қолдиқ ҳосил қилади; ой охирги
+ ҳисоблаш (net кредит) уни ёпади. Тўлов run'га боғланМАЙДИ -
+ clearing қолдиғи ўзи ҳақиқат манбаи (Lite соддалиги). Ведомость
+ давр бўйича жамлайди.
 - POSTED ҳужжат ўзгармайди - фақат reverse (темир қоида 3). DRAFT
-  ҳолати бор (invoice қолипи).
+ ҳолати бор (invoice қолипи).
 
 ## Модел
 
@@ -79,7 +79,7 @@ ContactType enum'га EMPLOYEE қўшилади (контакт рўйхатид
 
 DocumentType PAYROLL_RUN, рақам PAYR-YYYY-NNNNN (spec'даги дастлабки
 PAY- префикси BillPayment'га банд экан - 23б имплементациясида PAYR-
-танланди, 2026-07-08).
+танланди).
 
 | Майдон | Тип | Изоҳ |
 |---|---|---|
@@ -125,14 +125,14 @@ Line: employee_id (EMPLOYEE, фаол) + amount (> 0). UNIQUE
 ## Service API (payroll модули)
 
 - `PayrollRunService`: `list(pageable)`, `get`, `saveDraft(form)`,
-  `post(id)` → JE (posting-rules «Иш ҳақи»), `reverse(id)`,
-  `prefillLines()` - фаол EMPLOYEE'лар oklad билан.
+ `post(id)` → JE (posting-rules «Иш ҳақи»), `reverse(id)`,
+ `prefillLines` - фаол EMPLOYEE'лар oklad билан.
 - `PayrollPaymentService`: `list`, `get`, `saveDraft`, `post(id)` →
-  JE, `reverse(id)`; `unpaidByEmployee(date)` - PAYROLL_CLEARING
-  контакт кесими қолдиғи (форма prefill'и учун).
+ JE, `reverse(id)`; `unpaidByEmployee(date)` - PAYROLL_CLEARING
+ контакт кесими қолдиғи (форма prefill'и учун).
 - `PayrollRegisterService`: `build(period)` - ведомость (қуйида).
 - GL'га ёзиш фақат PostingService орқали (темир қоида 2); счётлар
-  detail type resolve (инвариант 6).
+ detail type resolve (инвариант 6).
 
 ## Posting
 
@@ -157,47 +157,47 @@ clearing леглари ходим кесимида, class'сиз (назора�
 ## Экранлар (JTE routes)
 
 - `/payroll` - run'лар рўйхати (period DESC, пагинация 17-банд
-  қолипи) + «Янги ҳисоблаш» (FULL форма: period, run_date, сатрлар
-  жадвали - «Ходимларни тўлдириш» тугмаси prefill, gross таҳрир,
-  ҳисобланган устунлар Alpine билан жонли, Жами сатри) + кўриш
-  (сатрлар + JE ҳаволаси + reverse).
+ қолипи) + «Янги ҳисоблаш» (FULL форма: period, run_date, сатрлар
+ жадвали - «Ходимларни тўлдириш» тугмаси prefill, gross таҳрир,
+ ҳисобланган устунлар Alpine билан жонли, Жами сатри) + кўриш
+ (сатрлар + JE ҳаволаси + reverse).
 - `/payroll/payments` - тўловлар рўйхати (пагинация 17-банд қолипи) +
-  янги (тур ADVANCE/SALARY, счёт select Balance билан, сатрлар:
-  ходим + сумма, prefill unpaidByEmployee) + кўриш.
+ янги (тур ADVANCE/SALARY, счёт select Balance билан, сатрлар:
+ ходим + сумма, prefill unpaidByEmployee) + кўриш.
 - `/reports/payroll-register?period=` - ВЕДОМОСТЬ: ходим кесимида
-  давр боши қолдиқ / gross / даромад солиғи / пенсия / net / даврда
-  тўланган / давр охири қолдиқ; пастда жамилар. Манба - GL
-  (PAYROLL_CLEARING контакт кесими) + run сатрлари. Сарлавҳада
-  «Барча суммалар UZS да» (home).
+ давр боши қолдиқ / gross / даромад солиғи / пенсия / net / даврда
+ тўланган / давр охири қолдиқ; пастда жамилар. Манба - GL
+ (PAYROLL_CLEARING контакт кесими) + run сатрлари. Сарлавҳада
+ «Барча суммалар UZS да» (home).
 - Меню: Созламалардан ташқарида «Иш ҳақи» гуруҳи (Ҳисоблашлар,
-  Тўловлар, Ведомость); «+ Янги»да иккита банд. Контакт рўйхатида
-  EMPLOYEE филтри; contact формасида oklad майдони (EMPLOYEE
-  танланганда кўринади, Alpine).
+ Тўловлар, Ведомость); «+ Янги»да иккита банд. Контакт рўйхатида
+ EMPLOYEE филтри; contact формасида oklad майдони (EMPLOYEE
+ танланганда кўринади, Alpine).
 - Ҳаммаси mobile-first 375px (.table-wrap).
 
 ## Туртки режаси (NAVBAT 23а/23б/23в)
 
 1. **23а**: ContactType.EMPLOYEE + oklad майдони + changeset 043
-   (contact устуни + счёт seed'лари) + ставкалар CompanySettings'да +
-   PAYROLL_CLEARING systemManaged + banking.md изоҳи.
+ (contact устуни + счёт seed'лари) + ставкалар CompanySettings'да +
+ PAYROLL_CLEARING systemManaged + banking.md изоҳи.
 2. **23б**: PayrollRun (домен/сервис/posting/BR-PYR/форма/кўриш) +
-   changeset 044 + тестлар.
+ changeset 044 + тестлар.
 3. **23в**: PayrollPayment + changeset 045 + ведомость + меню полиши.
 
 ## Тестлар (мажбурий рўйхат)
 
 1. Run post: debit == credit (home); gross = income_tax + pension +
-   net; счётлар айнан detail type бўйича; харажат леги ходим+class,
-   clearing леги ходим, солиқ леги contact'сиз.
+ net; счётлар айнан detail type бўйича; харажат леги ходим+class,
+ clearing леги ходим, солиқ леги contact'сиз.
 2. Snapshot: ставка ўзгартирилгач эски POSTED run суммалари ва JE
-   ўзгармайди; янги run янги ставкада.
+ ўзгармайди; янги run янги ставкада.
 3. BR-PYR-002: иккинчи POSTED run ўша ойга рад; reverse қилингач
-   қайта POST мумкин.
+ қайта POST мумкин.
 4. Аванс оқими: аванс → clearing ходимда дебет; run → кредит; ведомость
-   қолдиғи = net - аванс; иккинчи (SALARY) тўлов қолдиқни нолга ёпади.
+ қолдиғи = net - аванс; иккинчи (SALARY) тўлов қолдиқни нолга ёпади.
 5. Reverse: run ва payment сторнолари кўзгу; ведомость нейтралланади.
 6. BR-PYR-001: чет валюта счёти билан payment рад; BR-PYR-003:
-   CUSTOMER contact билан сатр рад, нофаол ходим рад.
+ CUSTOMER contact билан сатр рад, нофаол ходим рад.
 7. Ведомость йиғиндилари GL қолдиқлари билан айнан тенг (инвариант).
 8. VIEWER_AUDITOR ҳужжат яратолмайди (EDIT рухсатисиз - соҳа
-   қолипи), кўради.
+ қолипи), кўради.

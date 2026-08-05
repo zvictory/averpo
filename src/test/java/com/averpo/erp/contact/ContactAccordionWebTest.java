@@ -51,8 +51,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * dark:bg-surface-dark">}), очиғи {@code dark:bg-surface-dark" open>}
  * билан тугайди (Arbitr-121: details Penguin card утилиталарида,
  * охирги утилита dark:bg-surface-dark); тест шу икки маркерни фарқлайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

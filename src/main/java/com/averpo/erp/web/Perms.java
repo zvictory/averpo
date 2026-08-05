@@ -21,8 +21,6 @@ import java.util.Set;
  *
  * <p>Бу фақат КЎРИНИШ филтри - server ҳақиқати SecurityConfig'даги
  * соҳа қоидаларида.
- *
- * @author Zafar
  */
 public final class Perms {
 

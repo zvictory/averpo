@@ -19,8 +19,6 @@ import java.util.UUID;
  * кўринмайди), ном дубли DB unique constraint билан ушланади -
  * controller DataIntegrityViolation'ни тушунарли flash хабарига
  * айлантиради. Delete ЙЎҚ - каталог қолипи (тарихий ҳужжат FK изи).
- *
- * @author Zafar
  */
 @Service
 @Transactional

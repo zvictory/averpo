@@ -23,8 +23,6 @@ import java.util.UUID;
  * <p>AccountController'дан алоҳида: у CoA CRUD/импорт билан банд,
  * бу эса соф ўқиш экрани - мантиқ тўлиқ
  * {@link AccountTransactionsService}'да (юпқа контроллер қоидаси).
- *
- * @author Zafar
  */
 @Controller
 @lombok.RequiredArgsConstructor

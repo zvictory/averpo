@@ -12,8 +12,6 @@ import java.util.UUID;
 
 /**
  * Мижоз бириктирувлари репозиторийси.
- *
- * @author Zafar
  */
 public interface PriceListCustomerRepository
         extends JpaRepository<PriceListCustomer, UUID> {

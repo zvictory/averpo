@@ -16,8 +16,6 @@ import java.util.UUID;
  *
  * <p>Рўйхат query'ларида category/unit ҳам fetch қилинади
  * (open-in-view=false, шаблонда lazy хатоси бўлмасин).
- *
- * @author Zafar
  */
 public interface ItemRepository extends JpaRepository<Item, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Item> {

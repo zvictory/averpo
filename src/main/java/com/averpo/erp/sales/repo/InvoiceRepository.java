@@ -14,8 +14,6 @@ import java.util.UUID;
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068): давр/
  * статус/мижоз/матн комбинациялари битта Specification'да, аввалги
  * findByStatus/findByCustomerId derived методлари шунга алмашди.
- *
- * @author Zafar
  */
 public interface InvoiceRepository extends JpaRepository<Invoice, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Invoice> {

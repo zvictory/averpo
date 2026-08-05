@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Spring Security'ни app_user жадвалига улайди - form login шу ердан
  * фойдаланувчини топади.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

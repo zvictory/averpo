@@ -3,8 +3,6 @@ package com.averpo.erp.contact.domain;
 /**
  * Контакт тури - QBO'даги Customers, Vendors ва Employees рўйхатларига
  * мос. Ном намespace'и ягона: бир display name фақат биттасида бўлади.
- *
- * @author Zafar
  */
 public enum ContactType {
 

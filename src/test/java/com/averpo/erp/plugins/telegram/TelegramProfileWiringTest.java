@@ -20,8 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ажралишни аннотация ва профил ифодаси кафолатлайди; шу тест
  * иккисининг ҳам тест контекстида ЙЎҚлигини қотиради (келажакда
  * биров профилни ўзгартирса тест дарҳол қизаради).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

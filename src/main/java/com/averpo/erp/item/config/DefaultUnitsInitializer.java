@@ -33,8 +33,6 @@ import org.springframework.stereotype.Component;
  * (seed бирликларни гуруҳлаб, «дона гуруҳсиз» инвариантига таянган
  * тестларни синдирарди). Логика {@code DefaultUnitsInitializerTest}'да
  * bean қўлда қуриб текширилади.
- *
- * @author Zafar
  */
 @Component
 @Profile("!test")

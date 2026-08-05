@@ -6,13 +6,13 @@
 омбор, товар, бирлик, солиқ, валюта...) учун ягона component:
 (1) рўйхат узун бўлса ёзиб ҚИДИРИШ; (2) керакли ёзув йўқ бўлса ўша
 жойнинг ўзида «+ Янги қўшиш» - формадан чиқиб кетмасдан. Фойдаланувчи
-талаби (2026-07-10). Эталон: QBO'нинг барча каталог dropdown'лари
+талаби. Эталон: QBO'нинг барча каталог dropdown'лари
 айнан шундай (type-to-search + «+ Add new» биринчи қатор).
 
 ## Кўлам (1-босқич - MVP)
 
 **Қидирув-филтр - ҳамма каталог select'ига** (`class="combo"` белгиси
-билан). Арбитр съёмкаси (2026-07-10) бўйича қамров:
+билан). Арбитр съёмкаси бўйича қамров:
 
 | Гуруҳ | Майдонлар (JTE'даги name) |
 |---|---|
@@ -42,46 +42,46 @@ Enum/тизим select'лари (status, type, role, timezone ва ҳ.к.) combo
 ## Дизайн қарорлари
 
 - **Progressive enhancement**: native `<select class="combo">` ДОМ'да
-  қолади (яширинади), component қиймати ўша select'га синхронланади -
-  форма submit, controller'лар, web тестлар ЎЗГАРМАЙДИ. JS ўчиқ
-  бўлса native select ишлайверади.
+ қолади (яширинади), component қиймати ўша select'га синхронланади -
+ форма submit, controller'лар, web тестлар ЎЗГАРМАЙДИ. JS ўчиқ
+ бўлса native select ишлайверади.
 - Битта янги файл: `static/js/combobox.js` (money-input.js услубида
-  ўз-ўзини улайдиган, vanilla/Alpine-дўст). Vendor'га ТАШҚИ
-  БИБЛИОТЕКА ҚЎШИЛМАЙДИ (alpine/htmx кифоя - стек қоидаси).
+ ўз-ўзини улайдиган, vanilla/Alpine-дўст). Vendor'га ТАШҚИ
+ БИБЛИОТЕКА ҚЎШИЛМАЙДИ (alpine/htmx кифоя - стек қоидаси).
 - Қидирув: клиент томонда, render қилинган option'лар устидан
-  (AJAX ЙЎҚ - рўйхатлар ҳозирги model'лардан келаверади); катта-кичик
-  ҳарф фарқсиз, label'нинг исталган жойидан мос келади. Клавиатура:
-  ↑/↓/Enter/Esc (глобал қидирув dropdown нақши - Arbitr-039).
+ (AJAX ЙЎҚ - рўйхатлар ҳозирги model'лардан келаверади); катта-кичик
+ ҳарф фарқсиз, label'нинг исталган жойидан мос келади. Клавиатура:
+ ↑/↓/Enter/Esc (глобал қидирув dropdown нақши - Arbitr-039).
 - Динамик сатрлар (Alpine x-for қўшадиган line row'лар): янги
-  қўшилган сатрдаги select ҳам enhance қилиниши ШАРТ - delegation/
-  MutationObserver ёки row-add hook (coder танлайди, талаб spec'да).
+ қўшилган сатрдаги select ҳам enhance қилиниши ШАРТ - delegation/
+ MutationObserver ёки row-add hook (coder танлайди, талаб spec'да).
 - **Add-new оқими**: select'да `data-add-url` бўлса рўйхат тепасида
-  «+ Янги мижоз...» қатори. Босилганда HTMX модал: GET fragment
-  (мини форма, CSRF token билан) → POST quick endpoint → жавобда
-  {id, label} → JS янги option қўшиб ТАНЛАЙДИ, модал ёпилади -
-  ота-форма ҳолати бузилмайди. Хато (BR) - модал ичида
-  displayMessage() кўрсатилади.
+ «+ Янги мижоз...» қатори. Босилганда HTMX модал: GET fragment
+ (мини форма, CSRF token билан) → POST quick endpoint → жавобда
+ {id, label} → JS янги option қўшиб ТАНЛАЙДИ, модал ёпилади -
+ ота-форма ҳолати бузилмайди. Хато (BR) - модал ичида
+ displayMessage кўрсатилади.
 - Quick endpoint'лар юпқа, ҳар модул ЎЗИНИКИни беради (қоида 6):
-  POST /customers/quick, /vendors/quick, /accounts/quick,
-  /warehouses/quick (+ GET .../quick-form fragment'лари). Мавжуд
-  service'лар қайта ишлатилади - янги бизнес мантиқ ЙЎҚ.
+ POST /customers/quick, /vendors/quick, /accounts/quick,
+ /warehouses/quick (+ GET .../quick-form fragment'лари). Мавжуд
+ service'лар қайта ишлатилади - янги бизнес мантиқ ЙЎҚ.
 - **Роллар**: data-add-url server томонда роль текшируви билан
-  render қилинади - VIEWER_AUDITOR'га add-new КЎРИНМАЙДИ (endpoint'да ҳам
-  SecurityConfig ёзув қоидаси амал қилади).
+ render қилинади - VIEWER_AUDITOR'га add-new КЎРИНМАЙДИ (endpoint'да ҳам
+ SecurityConfig ёзув қоидаси амал қилади).
 - Мобил 375px: dropdown тўлиқ кенгликда, max-height + scroll, touch
-  учун қатор баландлиги етарли.
+ учун қатор баландлиги етарли.
 - Changeset КЕРАК ЭМАС. Янги матнлар i18n уч тилда.
 
 ## Тестлар (мажбурий рўйхат)
 
 1. Quick endpoint'лар web тести: муваффақиятли create (id+label
-   қайтади), BR хато оқими, VIEWER_AUDITOR'га 403.
+ қайтади), BR хато оқими, VIEWER_AUDITOR'га 403.
 2. Fragment формалар render тести (CSRF token бор).
 3. Мавжуд ScreenSmoke/web тестлар яшиллигича (native select
-   сақлангани исботи).
+ сақлангани исботи).
 4. ЖОНЛИ smoke МАЖБУРИЙ (JS'ни gradle тестламайди): invoice формада
-   товар қидируви; шу форманинг ўзидан янги мижоз қўшиб танланиши;
-   375px кўриниш - скриншотлар билан.
+ товар қидируви; шу форманинг ўзидан янги мижоз қўшиб танланиши;
+ 375px кўриниш - скриншотлар билан.
 
 ## Экранлар
 

@@ -20,8 +20,6 @@ import lombok.Setter;
  * яратилгандан кейин ЎЗГАРМАЙДИ (BR-USR-003) - шунинг учун унга setter
  * ҳам, update методида параметр ҳам йўқ
  * (docs/modules/user-management.md).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "app_user")

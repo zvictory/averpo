@@ -26,8 +26,6 @@ import java.util.UUID;
  * factory reset TRUNCATE'ида stale қолиб флейки берарди. Web қатламда
  * request бошига битта {@code enabledKeys()} ўқиш bor - request ичи
  * «кэш» шу (web.Plugins request attribute).
- *
- * @author Zafar
  */
 @Service
 @Transactional

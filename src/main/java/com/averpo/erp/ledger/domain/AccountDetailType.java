@@ -19,8 +19,6 @@ import java.util.List;
  * <p>Константа номлари расмий {@code AccountSubTypeEnum} (Finance.xsd,
  * docs/qbo-reference) CamelCase номларининг SNAKE_CASE кўриниши -
  * 4.5-босқичда 1:1 мосликка келтирилган (detail-type-rename-plan.md).
- *
- * @author Zafar
  */
 public enum AccountDetailType {
 

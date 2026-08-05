@@ -9,8 +9,6 @@ import java.nio.charset.StandardCharsets;
  * бўш қийматлар ташлаб кетилади, қийматлар URL-encode қилинади,
  * натижа «&name=value&...» кўринишида - «page» параметрини
  * shared/pagination.jte линкнинг ўзи қўшади.
- *
- * @author Zafar
  */
 public final class FilterQuery {
 

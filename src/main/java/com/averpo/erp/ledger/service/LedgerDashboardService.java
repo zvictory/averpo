@@ -19,8 +19,6 @@ import java.util.UUID;
  * (docs/modules/reports.md «Dashboard»). Ledger жадвалларига SQL фақат
  * шу модулда - dashboard модули тайёр натижани олади (қоида №6).
  * Барча суммалар home валютада (банк қолдиғида қўшимча счёт валютаси).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

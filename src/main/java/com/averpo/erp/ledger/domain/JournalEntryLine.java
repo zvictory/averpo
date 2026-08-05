@@ -15,8 +15,6 @@ import java.util.UUID;
  * валютадаги baseAmount. Ишлатилмаган томон null. contact/warehouse/item
  * - dimension'лар, ҳисоботда кесим бериш учун (FK эмас, чунки ўша
  * модуллар кейинги босқичларда қурилади).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "journal_entry_line",

@@ -32,8 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Balance Sheet: ишоралар, RE/NI бўлиниши, молия йили, баланс текшируви.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

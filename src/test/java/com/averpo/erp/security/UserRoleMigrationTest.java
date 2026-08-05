@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ўзгарса тест ҳам ўша матнни олади). Rollback UPDATE'лари ҳам
  * тескари йўналишда текширилади. Ҳаммаси @Transactional ичида -
  * умумий тест базасига из қолмайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

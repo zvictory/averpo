@@ -53,8 +53,6 @@ import java.util.Optional;
  * қарори 2026-07-17); очиқ қиймат фақат Bot API чақируви учун
  * очилади ва ҳеч қаерда кэшланмайди/логланмайди/аудит диффига
  * тушмайди (logging.md; аудитда фақат «янгиланди/ўчирилди» ФАКТи).
- *
- * @author Zafar
  */
 @Service
 @RequiredArgsConstructor

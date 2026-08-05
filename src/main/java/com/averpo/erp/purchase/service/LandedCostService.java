@@ -43,8 +43,6 @@ import java.util.UUID;
  *
  * <p>GL - фақат PostingService (ТЕМИР ҚОИДА №2); омбор қийматлари -
  * фақат InventoryService public API орқали (№6).
- *
- * @author Zafar
  */
 @Service
 @Transactional

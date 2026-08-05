@@ -15,8 +15,6 @@ import java.util.List;
  * Кредит-нота формаси (returns.md) - InvoiceForm'нинг қайтариш кўзгуси.
  * Ҳамма сон String - бузуқ киритишда тушунарли BR хабари билан
  * қийматлар сақланиб қайтади (BillForm паттерни).
- *
- * @author Zafar
  */
 @Getter
 @Setter

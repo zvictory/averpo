@@ -41,8 +41,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * - Estimate тестларининг кўзгуси): GL'сизлик (journal_entry сони
  * ЎЗГАРМАЙДИ), OPEN→CLOSED оқими, айлантириш/linked ҳимоялари ва
  * prefill мослиги.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

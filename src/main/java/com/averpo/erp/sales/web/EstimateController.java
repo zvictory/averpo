@@ -40,8 +40,6 @@ import java.util.UUID;
  * Айлантириш тугмаси /invoices/new?estimateId=... га олиб боради -
  * prefill/markConverted оқими InvoiceController'да. Ҳамма ёзиш
  * EstimateService орқали - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/estimates")

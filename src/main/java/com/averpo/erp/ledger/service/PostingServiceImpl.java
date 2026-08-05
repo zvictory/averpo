@@ -27,8 +27,6 @@ import java.util.UUID;
  * (5) Money инварианти, (6) статус. Хатолар аниқ хабарли
  * {@link PostingException} билан чиқади - чақирувчи модул фойдаланувчига
  * шу матнни кўрсата олади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Attachment репозиторийси - фақат attachment модули ичида ишлатилади.
- *
- * @author Zafar
  */
 public interface AttachmentRepository extends JpaRepository<Attachment, UUID> {
 

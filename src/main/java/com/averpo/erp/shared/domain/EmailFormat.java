@@ -12,8 +12,6 @@ import java.util.regex.Pattern;
  *
  * <p>Static util (янги entity/service ЭМАС) - фақат такрорланувчи
  * валидация битта манбада.
- *
- * @author Zafar
  */
 public final class EmailFormat {
 

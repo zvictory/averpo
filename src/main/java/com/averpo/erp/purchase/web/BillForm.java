@@ -16,8 +16,6 @@ import java.util.List;
  * ўрнига ўзимиз тушунарли (кирилл) BR хабари билан қайтамиз ва
  * киритилган қийматлар формада сақланиб қолади (JournalEntryForm
  * паттерни).
- *
- * @author Zafar
  */
 @Getter
 @Setter

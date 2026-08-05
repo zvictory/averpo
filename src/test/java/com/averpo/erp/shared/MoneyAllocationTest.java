@@ -12,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * MoneyAllocation (largest-remainder, Asrorxoja-002) кафолатлари:
  * йиғинди айнан target, ҳар сатр четлашиши ≤ 0.0001 (BR-LED-003
  * tolerance) - Spring'сиз соф unit тест.
- *
- * @author Zafar
  */
 class MoneyAllocationTest {
 

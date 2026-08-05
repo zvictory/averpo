@@ -46,8 +46,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * бандларининг RR қисми; 9-банд смок ScreenSmokeTest'да). CreditMemo
  * кўзгуси - фарқи фақат Cr банк экани тестда ҳам кўринади. Ҳар
  * posting'да debit == credit (ТЕМИР ҚОИДА №7).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

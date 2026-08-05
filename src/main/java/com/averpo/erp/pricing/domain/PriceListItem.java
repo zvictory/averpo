@@ -19,8 +19,6 @@ import java.util.UUID;
  * Рўйхатдаги битта поғонали нарх: min_quantity дан бошлаб (BASE
  * бирликда) шу нарх амал қилади. item_id - dimension паттерни (DB'да
  * FK бор, JPA'да UUID - item модулига entity боғланиш йўқ, қоида №6).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "price_list_item",

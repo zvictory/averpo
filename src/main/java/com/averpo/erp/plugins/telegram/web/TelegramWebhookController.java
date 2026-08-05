@@ -36,8 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
  * <p><b>Хавфсизлик</b>: тана ҳам, секрет ҳам ЛОГ/аудитга ёзилмайди
  * (ишончсиз кириш + сир); handleUpdate мавжуд қаттиқлашган мантиқ (103:
  * бир марталик SecureRandom линк код - сохта update фойда бермайди).
- *
- * @author Zafar
  */
 @RestController
 @RequiredArgsConstructor

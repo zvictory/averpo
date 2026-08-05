@@ -22,8 +22,6 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * ExchangeRateServiceTest портни mock қилади - бу тест импл'нинг ўзи
  * учун (review топилмаси, 2026-07-06). Импл package-private бўлгани
  * учун тест шу пакетда туради; Spring контексти йўқ - соф unit тест.
- *
- * @author Zafar
  */
 class CbuRestClientTest {
 

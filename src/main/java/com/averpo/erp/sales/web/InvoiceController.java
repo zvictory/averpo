@@ -42,8 +42,6 @@ import java.util.UUID;
  * item танланганда сотув нархи prefill, курс prefill), кўриш (credit
  * limit огоҳлантириши билан), post/reverse/draft-delete. Ҳамма ёзиш
  * InvoiceService орқали - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/invoices")

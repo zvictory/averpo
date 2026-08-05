@@ -11,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * гаровлайди: Chrome-асосли тартиб (Edge Chrome'дан олдин), Android
  * UA'даги «Linux» тузоғи, iPhone UA'даги «like Mac OS X» тузоғи, Safari
  * версияси «Version/» токенида экани.
- *
- * @author Zafar
  */
 class AuditClientParseTest {
 

@@ -6,8 +6,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * AVERPO кириш нуқтаси. Scheduling - ЦБ курс импорти учун (4-босқич).
- *
- * @author Zafar
  */
 @SpringBootApplication
 @EnableScheduling

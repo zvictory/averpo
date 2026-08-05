@@ -22,8 +22,6 @@ import java.util.UUID;
  * item/хизмат, миқдор, бирлик (UoM snapshot), нарх, ҚҚС ставка
  * snapshot (tax.md механизми айнан - amount НЕТТО, gross = net + tax),
  * class теги (class-tracking.md).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "credit_memo_line",

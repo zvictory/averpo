@@ -47,8 +47,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Web smoke (6) - {@code ImportWebTest}. Каталог (units/tax/currency)
  * Liquibase seed'дан келади; default chart @BeforeEach импорт қилинади
  * (item default счётлари учун).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

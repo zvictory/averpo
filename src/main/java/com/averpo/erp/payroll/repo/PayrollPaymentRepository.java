@@ -11,8 +11,6 @@ import java.util.UUID;
  * Иш ҳақи тўлови репозиторийси - фақат payroll модули ичида.
  * Рўйхат экрани саҳифаланган: JpaRepository.findAll(Pageable) (тартиб
  * PayrollPaymentService.LIST_SORT'дан) - «туғилишда пагинация» (perf1).
- *
- * @author Zafar
  */
 public interface PayrollPaymentRepository extends JpaRepository<PayrollPayment, UUID> {
 

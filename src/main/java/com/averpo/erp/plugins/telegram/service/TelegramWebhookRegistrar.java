@@ -30,8 +30,6 @@ import org.springframework.transaction.event.TransactionalEventListener;
  * <p><b>Нега {@code AFTER_COMMIT}</b>: toggle/токен ўзгариши commit
  * бўлмаса webhook ҳам ўзгармаслиги керак (изчиллик) - rollback'да
  * тингловчи умуман чақирилмайди.
- *
- * @author Zafar
  */
 @Component
 @Profile("!dev & !test")

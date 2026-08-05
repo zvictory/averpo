@@ -27,8 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * билан. FACTORY_RESET - FactoryResetServiceTest'да (TRUNCATE у ерда),
  * IMPORT_EXCEL - ExcelImportServiceTest'да, LOGOUT/user_agent -
  * LogoutAuditTest'да (web оқим).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

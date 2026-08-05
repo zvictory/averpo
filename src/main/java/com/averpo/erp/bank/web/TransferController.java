@@ -42,8 +42,6 @@ import java.util.UUID;
  * <p>Проводка/сақлаш ягона {@link BankTransactionService#transfer}
  * орқали - контроллер юпқа. Кўриш ва сторно мавжуд
  * {@code /bank-transactions/{id}} орқали ишлайди (бир хил entity).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/transfers")

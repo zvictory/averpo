@@ -43,8 +43,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Inventory valuation ҳисоботи: «санага» тиклаш, омбор фильтри,
  * landed cost улушлари (сторно санаси билан) ва GL солиштируви.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

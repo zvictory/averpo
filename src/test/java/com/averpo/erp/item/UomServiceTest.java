@@ -26,8 +26,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * UoM гуруҳ/конверсия инвариантлари (BR-UOM-001..006) ва item default
  * бирликлари (BR-ITM-012) - docs/modules/uom.md.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

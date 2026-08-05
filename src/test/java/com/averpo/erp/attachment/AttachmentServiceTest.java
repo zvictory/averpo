@@ -53,8 +53,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * ҳужжат сифатида Estimate ишлатилади (GL'сиз - journal_entry сонига
  * таъсир қилмайди, шунда 7-банд assert'и тоза). PostingService
  * УМУМАН ишлатилмайди (attachment модули GL'сизлиги).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

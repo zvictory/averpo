@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Тўлов усуллари каталоги тестлари (Arbitr-033): CRUD + seed +
  * BR кодисиз валидация чегаралари (NotFound, DB unique дубли,
  * нофаол усул select'дан тушиб қолиши).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

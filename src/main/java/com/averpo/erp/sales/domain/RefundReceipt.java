@@ -33,8 +33,6 @@ import java.util.UUID;
  * пул счёти кредитланади (ҳужжатда танланади) ва application ЙЎҚ:
  * пул дарҳол қайтгани учун очиқ қолдиқ тушунчаси йўқ - тугал ҳужжат.
  * DRAFT йўқ - яратилди = POSTED, тузатиш reverse (темир қоида 3).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "refund_receipt")

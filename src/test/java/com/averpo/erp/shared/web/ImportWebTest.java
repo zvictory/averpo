@@ -28,8 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Excel import web қатлами (spec тест 6 - ScreenSmokeTest /settings/import
  * GET) + шаблон юклаб олиш + роль гарови (ADMIN, /settings/** нақши).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

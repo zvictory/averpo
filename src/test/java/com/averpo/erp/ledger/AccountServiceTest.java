@@ -14,8 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Счёт CRUD валидациялари: иерархия цикли, код дубликати, тизим тури дубликати.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

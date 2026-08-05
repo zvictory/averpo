@@ -25,8 +25,6 @@ import java.util.UUID;
  * контакт модулига entity боғланиш йўқ, қоида №6; EMPLOYEE тури ва
  * фаоллик service'да - BR-PYR-003). Бир тўловда ходим бир марта
  * (uq_payroll_payment_line_employee).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payroll_payment_line",

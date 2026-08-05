@@ -35,8 +35,6 @@ import java.util.UUID;
  * <p>customer_id - dimension паттерни (DB'да FK, JPA'да UUID - контакт
  * модулига entity боғланиш йўқ, қоида №6). Денормализация
  * (paid/balance/status) фақат InvoicePaymentService орқали янгиланади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "invoice")

@@ -12,8 +12,6 @@ import java.util.List;
  * Home currency қулфи: GL'да биттагина POSTED (ёки REVERSED) entry
  * пайдо бўлиши билан валюта ўзгартириш ёпилади - мавжуд baseAmount'лар
  * бошқа валютада қайта талқин қилиниб кетмасин.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

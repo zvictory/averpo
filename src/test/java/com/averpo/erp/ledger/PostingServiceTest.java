@@ -29,8 +29,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Мажбурий тестлар рўйхати: docs/modules/ledger.md → «Тестлар».
  * Локал PostgreSQL'даги averpo_test базасида ишлайди,
  * ҳар тест rollback.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

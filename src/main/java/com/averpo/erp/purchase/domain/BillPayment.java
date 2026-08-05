@@ -26,8 +26,6 @@ import java.util.UUID;
  * рухсат: total = allocated + unallocated (DB CHECK ҳам бор) -
  * тақсимланмаган қисм AP'да vendor аванси бўлиб туради, кейин
  * allocate қилинади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bill_payment")

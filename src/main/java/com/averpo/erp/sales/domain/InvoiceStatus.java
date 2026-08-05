@@ -5,8 +5,6 @@ package com.averpo.erp.sales.domain;
  * (ТЕМИР ҚОИДА №3: POSTED ўзгармас, фақат reverse).
  * Purchase'даги BillStatus такрорланмайди - модуллар бир-бирининг
  * domain'ига боғланмайди (қоида №6).
- *
- * @author Zafar
  */
 public enum InvoiceStatus {
 

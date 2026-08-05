@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Қолдиқлар репозиторийси - фақат inventory модули ичида.
- *
- * @author Zafar
  */
 public interface StockBalanceRepository extends JpaRepository<StockBalance, UUID> {
 

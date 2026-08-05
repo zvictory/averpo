@@ -11,8 +11,6 @@ import org.springframework.security.test.context.support.WithSecurityContextFact
  * продакшн {@code RolePermissions.authorities()} дан - JpaUserDetailsService
  * жонли login'да берадиган тўплам билан АЙНАН бир хил (тест ва продакшн
  * хулқи ажралмасин).
- *
- * @author Zafar
  */
 public class WithMockRoleSecurityContextFactory implements WithSecurityContextFactory<WithMockRole> {
 

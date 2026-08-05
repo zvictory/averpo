@@ -39,7 +39,7 @@ Gain/Loss...) кодга эмас, **detail type**'га қараб топила�
 
 QBO default chart'и ясси ва рақамсиз - дарахт ва кодлар онгли кичик
 кенгайтма (sub-account ва Account numbers механикаси QBO'ники,
-фойдаланувчи қарори 2026-07-17, Arbitr-126). Рақамлаш IFRS услуби:
+фойдаланувчи қарори, Arbitr-126). Рақамлаш IFRS услуби:
 1xxx актив, 2xxx мажбурият, 3xxx капитал, 4xxx даромад, 5xxx таннарх,
 6xxx операцион харажат, 7xxx бошқа даромад/харажат. Жами 51 счёт:
 42 postable + 9 гуруҳ ота (postable=false).
@@ -146,15 +146,15 @@ OTHER_CURRENT_ASSET, лекин тасдиқланган дарахтда пул
 ## PostingService - ягона public API
 ```java
 public interface PostingService {
-    /** DRAFT entry яратади (валидациясиз сақлаш мумкин эмас -
-        структура валидацияси доим ишлайди) */
-    JournalEntry createDraft(JournalEntryRequest request);
-    /** Валидация + POSTED. Инвариантлар бузилса PostingException */
-    JournalEntry post(UUID entryId);
-    /** createDraft + post битта транзакцияда - модуллар учун асосий йўл */
-    JournalEntry createAndPost(JournalEntryRequest request);
-    /** Сторно: тескари entry яратиб post қилади, асл entry → REVERSED */
-    JournalEntry reverse(UUID entryId, LocalDate reversalDate, String reason);
+ /** DRAFT entry яратади (валидациясиз сақлаш мумкин эмас -
+ структура валидацияси доим ишлайди) */
+ JournalEntry createDraft(JournalEntryRequest request);
+ /** Валидация + POSTED. Инвариантлар бузилса PostingException */
+ JournalEntry post(UUID entryId);
+ /** createDraft + post битта транзакцияда - модуллар учун асосий йўл */
+ JournalEntry createAndPost(JournalEntryRequest request);
+ /** Сторно: тескари entry яратиб post қилади, асл entry → REVERSED */
+ JournalEntry reverse(UUID entryId, LocalDate reversalDate, String reason);
 }
 ```
 
@@ -211,4 +211,4 @@ entry id → line_no), давр бошидаги очилиш қолдиғи в�
 - /journal-entries/new - қўлда проводка формаси (HTMX билан line қўшиш)
 - /reports/trial-balance - давр танлаш, счёт бўйича Dt/Cr айланма + қолдиқ
 - /accounts/{id}/transactions - счёт амаллари (register): давр филтри,
-  жорий қолдиқ, ҳар қатор ўз JE'сига боради (T1)
+ жорий қолдиқ, ҳар қатор ўз JE'сига боради (T1)

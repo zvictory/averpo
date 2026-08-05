@@ -27,8 +27,6 @@ import java.util.List;
  * ўзида боради - rollback бўлса аудит ёзуви ҳам йўқолади. FACTORY_RESET
  * учун бу тартиб ҳам муҳим: reset TRUNCATE'дан кейин publish қилади,
  * шунда ёзув тоза журналнинг биринчи қатори бўлиб қолади.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

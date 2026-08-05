@@ -31,8 +31,6 @@ import java.time.Instant;
  * учун қабул қилинган, ташқи deployment'да IP-даражали чекловлар
  * билан қайта кўрилади. Мавжуд бўлмаган username'да ҳеч нарса
  * ёзилмайди - фарқли хулқ ҳам чиқмайди.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

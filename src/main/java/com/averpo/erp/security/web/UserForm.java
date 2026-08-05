@@ -10,8 +10,6 @@ import lombok.Setter;
  * алмашади - тасодифан бирга submit бўлмасин, spec); username таҳрирда
  * read-only, лекин hidden эмас - tampered қиймат BR-USR-003 текширувига
  * service'да учрайди.
- *
- * @author Zafar
  */
 @Getter
 @Setter

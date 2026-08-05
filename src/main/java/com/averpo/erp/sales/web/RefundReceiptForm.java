@@ -15,8 +15,6 @@ import java.util.List;
  * Пул қайтариш чеки формаси (returns.md) - CreditMemoForm'нинг айнан
  * кўзгуси + пул счёти танлови. Ҳамма сон String - бузуқ киритишда
  * тушунарли BR хабари билан қийматлар сақланиб қайтади.
- *
- * @author Zafar
  */
 @Getter
 @Setter

@@ -20,8 +20,6 @@ import java.util.UUID;
  * фақат item буюртмаси (EXPENSE/LANDED_COST турлари bill'да,
  * айлантиришда қўшилиши мумкин), омбор йўқ - bill формасида
  * танланади. ҚҚС фақат кўрсатиш учун (amount - НЕТТО, snapshot'ли).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "purchase_order_line",

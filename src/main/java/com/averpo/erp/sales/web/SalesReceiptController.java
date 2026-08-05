@@ -42,8 +42,6 @@ import java.util.UUID;
  * рўйхат, FULL форма (invoice қолипи + тўлов счёти жонли Balance билан),
  * кўриш (reverse шу ерда - allocation йўқ). Ҳамма ёзиш
  * SalesReceiptService орқали.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/sales-receipts")

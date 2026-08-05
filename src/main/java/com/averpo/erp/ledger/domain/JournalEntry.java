@@ -21,8 +21,6 @@ import java.util.UUID;
  * ҳужжат ўзгартирилмайди - ҳар бир мутатор {@link #requireDraft()}
  * орқали буни entity даражасида ҳимоя қилади, service'даги
  * текширувга ишониб қолмайди.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "journal_entry")

@@ -34,8 +34,6 @@ import java.util.UUID;
  * ўқилади - ledger схемасига тегилмайди (қоида №6). Match'да сумма
  * snapshot'и сақланади: POSTED сатр ўзгармас, фарқ ҳисоби ledger'га
  * қайта мурожаатсиз чиқади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

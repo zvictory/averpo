@@ -28,8 +28,6 @@ import java.util.function.Function;
  * Бош саҳифа - QBO home услубидаги dashboard. Ҳисоб-китоблар
  * модулларнинг public service'ларида; бу ерда фақат кўрсатиш учун
  * масштаблаш (SVG устун баландликлари, бар улушлари).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

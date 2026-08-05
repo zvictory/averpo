@@ -26,8 +26,6 @@ import org.springframework.stereotype.Component;
  * унутиб қўйиш» бу ҳимояни айланиб ўтмаслиги керак. Бу business rule
  * эмас, deploy конфигурация хатоси - шунинг учун BusinessRuleException
  * эмас, IllegalStateException билан бутун boot тўхтатилади.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

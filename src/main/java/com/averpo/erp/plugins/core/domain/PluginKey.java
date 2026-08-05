@@ -15,8 +15,6 @@ import lombok.Getter;
  * <p>Ёқилиш ҳолатини ФАҚАТ {@code plugins.core.service.PluginService.isEnabled}
  * орқали текширилади - меню, созлама бўлими ва фича коди бир манбадан
  * (Perms.current() нақши, спец «Гейт helper» бўлими).
- *
- * @author Zafar
  */
 @Getter
 public enum PluginKey {

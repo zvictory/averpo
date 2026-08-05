@@ -20,8 +20,6 @@ import java.util.UUID;
  * dimension паттерни (DB'да FK, JPA'да UUID - inventory модулига
  * entity боғланиш йўқ, қоида №6). inventory/cogs бўлиниши ва тақсимот
  * пайтидаги қолдиқ reverse'нинг аниқ гарови учун сақланади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "landed_cost_allocation_line",

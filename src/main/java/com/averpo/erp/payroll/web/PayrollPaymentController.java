@@ -43,8 +43,6 @@ import java.util.UUID;
  * prefill - unpaidByEmployee), кўриш (post/reverse/draft-delete). Ҳамма
  * ёзиш PayrollPaymentService орқали - контроллер юпқа. VIEWER ҳимояси
  * SecurityConfig'даги POST /** қоидасида.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/payroll/payments")

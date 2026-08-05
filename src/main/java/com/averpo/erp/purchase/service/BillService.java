@@ -54,8 +54,6 @@ import java.util.UUID;
  * кирими, ўзгармас) → REVERSED (GL сторно + омбор қайтариши).
  * Бошқа модулларга (repo'ларга эмас) фақат public service'лар орқали
  * мурожаат қилади (ТЕМИР ҚОИДА №6); GL - фақат PostingService (№2).
- *
- * @author Zafar
  */
 @Service
 @Transactional

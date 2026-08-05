@@ -13,8 +13,6 @@ import static org.mockito.Mockito.verify;
  * Spring контекстисиз, мок {@link TelegramService} билан: старт ва
  * event'лар тўғри service методига уланадими. Ишлов мантиғи
  * (registerWebhookIfReady/remove) TelegramServiceTest'да.
- *
- * @author Zafar
  */
 class TelegramWebhookRegistrarTest {
 

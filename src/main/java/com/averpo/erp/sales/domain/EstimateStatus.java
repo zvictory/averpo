@@ -4,8 +4,6 @@ package com.averpo.erp.sales.domain;
  * Estimate ҳолатлари (docs/modules/estimates-po.md, Finance.xsd
  * TxnStatus кўзгуси): GL'сиз ҳужжатда POSTED йўқ - ҳаёт цикли фақат
  * шу status билан бошқарилади. Ўтишлар қоидаси Estimate entity'сида.
- *
- * @author Zafar
  */
 public enum EstimateStatus {
 

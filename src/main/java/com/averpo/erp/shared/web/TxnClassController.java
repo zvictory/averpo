@@ -23,8 +23,6 @@ import java.util.UUID;
  * кўриниш, яратиш/номлаш/ота алмаштириш/актив-деактив + tracking
  * режими танлагичи. Йўл /settings остида - SETTINGS (SUPER_ADMIN) чекловига автоматик
  * тушади; мантиқ TxnClassService'да, контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/classes")

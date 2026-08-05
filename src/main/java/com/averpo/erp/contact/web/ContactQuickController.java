@@ -26,8 +26,6 @@ import java.util.Map;
  * {@link ContactService#create} реюзи - янги бизнес қоида ЙЎҚ.
  *
  * <p>VIEWER ҳимояси SecurityConfig'даги умумий POST қоидасида (403).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

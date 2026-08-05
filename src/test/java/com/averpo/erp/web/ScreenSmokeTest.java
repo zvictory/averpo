@@ -27,8 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * тестда кўринсин; чуқур мазмун тестлари service қатламида қолади.
  * SUPER_ADMIN роли билан кирилади (Arbitr-092) - /settings саҳифалари
  * ҳам фақат шу ролга очиқ.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

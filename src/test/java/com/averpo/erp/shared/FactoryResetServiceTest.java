@@ -27,8 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * detach) - reset'нинг JdbcClient DELETE'лари ҳақиқий ҳолатни кўради;
  * reset'дан КЕЙИН flush (JPA билан қайта ўрнатилган 51 счётни уланишга) -
  * JdbcClient count'лари уларни кўради.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

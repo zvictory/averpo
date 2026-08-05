@@ -68,8 +68,6 @@ import java.util.UUID;
  * <p>GL фақат PostingService (қоида №2), омбор фақат InventoryService
  * public API'си (қоида №6). Проводкалар posting-rules «Қайтариш»
  * VendorCredit жадвалига қатъий мос (қоида №8).
- *
- * @author Zafar
  */
 @Service
 @Transactional

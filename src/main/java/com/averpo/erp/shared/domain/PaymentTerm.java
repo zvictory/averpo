@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
  * <p>Shared'да туради (Currency паттерни), чунки контактдан ташқари
  * Invoice/Bill ҳам кейинги босқичларда тўғридан-тўғри ишлатади.
  * Due date = ҳужжат санаси + days; AR/AP aging шунга таянади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payment_term")

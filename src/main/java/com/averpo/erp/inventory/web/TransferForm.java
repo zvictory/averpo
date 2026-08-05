@@ -12,8 +12,6 @@ import java.util.List;
  * Ҳужжатли омборлараро кўчириш акти формаси (Arbitr-093): манба/манзил
  * омбор, кўп сатр (item + qty). Ҳамма сон String - бузуқ киритишда BR
  * хабари билан қийматлар сақланиб қайтади (SalesReceiptForm қолипи).
- *
- * @author Zafar
  */
 @Getter
 @Setter

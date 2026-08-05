@@ -30,8 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * («[BR-SET-005]» / «[BR-SET-006]») кўради; тўғри форматда сақланиб redirect
  * бўлади. Service даражасидаги чегара (0..100) PayrollRatesTest'да - бу ерда
  * фақат web парс қатлами.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

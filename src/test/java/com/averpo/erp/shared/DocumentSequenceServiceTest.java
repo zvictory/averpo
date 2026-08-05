@@ -30,8 +30,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Транзакцион тестлар rollback билан изоляцияланган; parallel тест
  * атайлаб commit қилади (PAYMENT рақамлари олдинга юради - test база
  * ҳар прогонда нолдан қурилади, муаммо эмас).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

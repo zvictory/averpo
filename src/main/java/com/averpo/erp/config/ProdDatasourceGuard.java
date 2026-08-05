@@ -24,8 +24,6 @@ import org.springframework.stereotype.Component;
  * деб қарайди, бу guard эса ФАҚАТ prod профилида ишлайди - профилсиз
  * локал старт (dev оқими) аввалгидек default DB пароли билан юраверади
  * (арбитр кўлами, Eldor-001).
- *
- * @author Zafar
  */
 @Component
 public class ProdDatasourceGuard implements BeanFactoryPostProcessor, EnvironmentAware {

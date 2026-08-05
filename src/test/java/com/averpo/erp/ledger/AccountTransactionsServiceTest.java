@@ -36,8 +36,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Счёт амаллари (register, spec T1) тестлари.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

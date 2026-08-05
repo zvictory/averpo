@@ -20,8 +20,6 @@ import java.util.UUID;
  * транзакция ичидаги тартиб UUIDv7 id билан аниқланади (курс тарихи
  * нақши). Ёзишнинг ягона йўли -
  * {@link com.averpo.erp.audit.service.AuditLogService#record}.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "audit_event")

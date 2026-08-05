@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
  * Averpo'нинг QBO'дан атайлаб фарқи. Ўчириш йўқ - фақат active=false:
  * ҳаракатлар тарихи бузилмайди, нофаол омборга янги ҳаракат тақиқ
  * (BR-INV-006).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "warehouse")

@@ -20,8 +20,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Item CRUD валидациялари - spec: docs/modules/item.md.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

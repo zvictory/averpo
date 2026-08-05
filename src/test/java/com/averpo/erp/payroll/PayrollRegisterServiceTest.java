@@ -36,8 +36,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Иш ҳақи ведомости тестлари (docs/modules/payroll.md «Тестлар» 4/5/7):
  * аванс → run → ведомость қолдиғи = net - аванс; reverse нейтраллайди;
  * ведомость жамлари GL clearing қолдиқлари билан айнан тенг.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

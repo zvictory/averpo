@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Таъминотчи кредити қўллашлари репозиторийси - фақат purchase модули ичида.
- *
- * @author Zafar
  */
 public interface VendorCreditApplicationRepository
         extends JpaRepository<VendorCreditApplication, UUID> {

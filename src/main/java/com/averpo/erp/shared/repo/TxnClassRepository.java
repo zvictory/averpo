@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Йўналишлар репозиторийси - ташқарига фақат TxnClassService орқали.
- *
- * @author Zafar
  */
 public interface TxnClassRepository extends JpaRepository<TxnClass, UUID> {
 

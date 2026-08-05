@@ -45,8 +45,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Bill ҳаёт цикли тестлари: docs/modules/purchases.md → «Тестлар»
  * (2-туртки). GL posting-rules «Харид» жадвалига мослиги ва омбор
  * интеграцияси шу ерда текширилади (ТЕМИР ҚОИДА №7: debit == credit).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -16,8 +16,6 @@ import com.averpo.erp.ledger.domain.Account;
  * @param action  нима бўлди - audit тури шунга қараб танланади
  * @param changes таҳрирда ўзгарган майдонлар «эски → янги» рўйхати
  *                (created'да null; ўзгаришсиз update event бермайди)
- *
- * @author Zafar
  */
 public record AccountChangedEvent(Account account, Action action, String changes) {
 

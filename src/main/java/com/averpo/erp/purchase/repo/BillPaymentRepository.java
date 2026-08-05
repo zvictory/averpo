@@ -10,8 +10,6 @@ import java.util.UUID;
  * BillPayment репозиторийси - фақат purchase модули ичида ишлатилади.
  * Рўйхат экрани саҳифаланган: JpaRepository.findAll(Pageable) (тартиб
  * BillPaymentService.LIST_SORT'дан) - Beruniy-perf1 2-босқич.
- *
- * @author Zafar
  */
 public interface BillPaymentRepository extends JpaRepository<BillPayment, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<BillPayment> {

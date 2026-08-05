@@ -33,8 +33,6 @@ import java.util.UUID;
  * Маҳсулот ва хизматлар экранлари (QBO Products and Services).
  * Счёт select'лари ledger'нинг public AccountService'идан олинади
  * (ТЕМИР ҚОИДА №6).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/items")

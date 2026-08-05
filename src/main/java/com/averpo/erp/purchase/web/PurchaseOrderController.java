@@ -38,8 +38,6 @@ import java.util.UUID;
  * EstimateController'нинг харид томонидаги кўзгуси. «Bill'га
  * айлантириш» тугмаси /bills/new?purchaseOrderId=... га олиб боради -
  * prefill/markConverted оқими BillController'да.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/purchase-orders")

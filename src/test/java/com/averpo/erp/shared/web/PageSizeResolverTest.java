@@ -12,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * default устуворлиги, whitelist ҳимояси ва cookie ёзилиши. Static
  * метод - Spring контекст керак эмас, {@code MockHttpServlet*} билан
  * тез unit тест.
- *
- * @author Zafar
  */
 class PageSizeResolverTest {
 

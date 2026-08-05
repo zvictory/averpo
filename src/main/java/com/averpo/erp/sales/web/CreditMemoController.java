@@ -38,8 +38,6 @@ import java.util.UUID;
  * Кредит-нота экранлари (returns.md): рўйхат, FULL форма (invoice
  * қолипи, ҳаволали prefill), кўриш («Қўллаш» бўлими + unapply +
  * reverse). Ҳамма ёзиш CreditMemoService орқали - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/credit-memos")

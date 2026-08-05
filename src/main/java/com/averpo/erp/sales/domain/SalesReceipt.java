@@ -33,8 +33,6 @@ import java.util.UUID;
  * (ҳужжатда танланади) ва allocation ЙЎҚ - тўлов дарҳол тушган, тугал
  * ҳужжат. DRAFT йўқ - яратилди = POSTED (RefundReceipt қолипи), тузатиш
  * reverse (темир қоида 3, товар омборга қайтади).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "sales_receipt")

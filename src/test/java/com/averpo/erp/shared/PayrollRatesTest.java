@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Payroll ставкалари (23а) - CompanySettings'да, ADMIN /settings'да
  * таҳрирланади. spec: docs/modules/payroll.md «Ставкалар CompanySettings».
  * Валидация: BR-SET-005 (0..100 фоиз).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

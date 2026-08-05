@@ -13,8 +13,6 @@ import java.util.UUID;
  * Валюта курслари репозиторийси - ташқарига фақат ExchangeRateService
  * орқали. Append-only тарих: тартиб доим (rate_date, кейин UUIDv7 id)
  * бўйича - бир кунда кўп ёзув бўлса энг охиргиси олинади (Arbitr-022).
- *
- * @author Zafar
  */
 public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, UUID> {
 

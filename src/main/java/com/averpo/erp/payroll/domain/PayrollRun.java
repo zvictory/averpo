@@ -30,8 +30,6 @@ import java.util.UUID;
  * <p>Битта period'га биттагина POSTED run (BR-PYR-002 - service
  * текшируви + ux_payroll_run_period_posted partial unique). entryId -
  * post'да ёзилган JE ҳаваласи (кўриш экрани linki).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payroll_run")

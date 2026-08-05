@@ -7,8 +7,6 @@ import java.math.RoundingMode;
  * Валюта курс фарқи ҳисоблари - ПУЛ ФОРМУЛАСИ битта жойда туради
  * (Beruniy-backlog5: Bill/Invoice тўлов service'ларида айнан бир хил
  * формула иккита нусхада эди - ажралиб кетиш хавфи).
- *
- * @author Zafar
  */
 public final class Fx {
 

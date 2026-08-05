@@ -36,8 +36,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * PayrollRun тестлари (docs/modules/payroll.md «Тестлар» 1/2/3
  * бандлари; 8-банд PayrollRunWebTest'да). Ҳар posting'да
  * debit == credit (ТЕМИР ҚОИДА №7).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

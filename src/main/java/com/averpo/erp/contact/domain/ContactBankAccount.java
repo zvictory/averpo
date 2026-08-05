@@ -18,8 +18,6 @@ import lombok.NoArgsConstructor;
  * ичида unique (BR-CON-010, DB constraint ҳам бор). Эски лойиҳадаги
  * status enum атайлаб олинмаган - қатор ўчириб қайта қўшилади (MVP);
  * Payment реквизитга боғлангач ўчиришга guard қўшилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "contact_bank_account",

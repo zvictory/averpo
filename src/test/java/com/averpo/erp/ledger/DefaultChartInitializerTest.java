@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * умумий базани ифлослар - initializer JavaDoc'ига қаранг). Шунинг учун
  * bean'ни қўлда қуриб, ҳақиқий {@link AccountService} билан {@code run()}
  * чақирамиз - логика @Transactional ичида (rollback билан) синалади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

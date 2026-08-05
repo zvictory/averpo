@@ -20,8 +20,6 @@ import org.springframework.stereotype.Component;
  * транзакциясининг ўзида боради - кейинроқ rollback бўлса аудит ёзуви
  * ҳам йўқолади. Журнал фақат ҳақиқатан содир бўлган ишни акс
  * эттиради (spec, rollback исботи тести).
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

@@ -37,8 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>Хулқ регрессиялари (карта талаби): home=UZS/USD render, class mode
  * OFF/PER_TXN ва компания timezone'идаги default сана - snapshot
  * қийматлари accessor'лар қайтарадигани билан айнан бир хил бўлиши шарт.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

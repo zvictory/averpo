@@ -52,8 +52,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * SecurityConfig'даги {@code POST /**} қоидасидан келади (attachment
  * контроллерида алоҳида текширув йўқ) - шу қоида айнан шу endpoint'ларда
  * VIEWER'ни тўсишини тасдиқлайди.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

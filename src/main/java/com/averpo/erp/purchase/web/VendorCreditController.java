@@ -44,8 +44,6 @@ import java.util.UUID;
  * рўйхат, FULL форма (bill қолипи, ҳаволали prefill), кўриш
  * («Қўллаш» бўлими + unapply + reverse). Ҳамма ёзиш
  * VendorCreditService орқали - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/vendor-credits")

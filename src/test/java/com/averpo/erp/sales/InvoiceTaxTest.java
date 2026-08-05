@@ -38,8 +38,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Invoice'да ҚҚС интеграцияси тестлари (docs/modules/tax.md): Bill'нинг
  * кўзгуси - AR Dt gross, даромад Cr net, ҚҚС Cr (ставка кесими).
  * ТЕМИР ҚОИДА №7: debit == credit.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

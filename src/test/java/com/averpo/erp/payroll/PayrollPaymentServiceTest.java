@@ -37,8 +37,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * ведомость 4/5/7 PayrollRegisterServiceTest'да). Ҳар posting'да
  * debit == credit (ТЕМИР ҚОИДА №7). Проводка: Dr PAYROLL_CLEARING
  * (ходим кесимида) / Cr банк-касса.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

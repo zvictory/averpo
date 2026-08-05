@@ -16,8 +16,6 @@ import java.util.UUID;
  * берувчида (purchase - у inventory'га боғланиши мумкин, тескариси
  * тақиқ, қоида №6). ObjectProvider орқали йиғилади - purchase модули
  * бўлмаса ҳам ҳисобот ишлайверади.
- *
- * @author Zafar
  */
 public interface LandedValueContribution {
 

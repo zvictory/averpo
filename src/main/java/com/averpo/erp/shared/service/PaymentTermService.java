@@ -12,8 +12,6 @@ import java.util.UUID;
 /**
  * Тўлов шартлари каталогининг public API'си - contact (ва кейин
  * sales/purchase) модуллари шу орқали мурожаат қилади.
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

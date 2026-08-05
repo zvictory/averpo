@@ -15,8 +15,6 @@ import java.util.UUID;
  * VENDOR_CREDIT_APPLICATION) - sourceDocumentId аллокация ёзувига ишора
  * қилади, унинг ўз саҳифаси йўқ; INVENTORY - movement'нинг алоҳида
  * кўриш саҳифаси йўқ.
- *
- * @author Zafar
  */
 public final class SourceDocLinks {
 

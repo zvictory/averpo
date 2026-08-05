@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * TaxRate каталоги тестлари: docs/modules/tax.md «Тестлар» - seed
  * мавжуд, код unique, 0..100, нофаол рад, snapshot қиймат.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

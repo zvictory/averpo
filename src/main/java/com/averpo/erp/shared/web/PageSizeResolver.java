@@ -28,8 +28,6 @@ import java.util.Set;
  * тор), {@code httpOnly} (JS ўқимайди - шунчаки UI ҳолати, XSS сирқиши
  * керак эмас). Stateless static: controller'да битта қатор чақириқ,
  * DI шарт эмас.
- *
- * @author Zafar
  */
 public final class PageSizeResolver {
 

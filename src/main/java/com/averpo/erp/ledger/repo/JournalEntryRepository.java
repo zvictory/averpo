@@ -14,8 +14,6 @@ import java.util.UUID;
  * GL ёзувлари репозиторийси - фақат ledger модули ичида (қоида 6:
  * ledger ҳеч кимга боғлиқ эмас, бошқалар бунга тегмайди).
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
- *
- * @author Zafar
  */
 public interface JournalEntryRepository extends JpaRepository<JournalEntry, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<JournalEntry> {

@@ -6,8 +6,6 @@ package com.averpo.erp.security.domain;
  * nullable) - тўлдириш мажбурий эмас, соф фойдаланувчи ихтиёри. Экранда
  * i18n калити орқали таржима қилиб кўрсатилади ({@link #titleKey}) -
  * enum номи (MALE/FEMALE) DB'да сақланади, кўрсатиш тилга боғланмайди.
- *
- * @author Zafar
  */
 public enum Gender {
 

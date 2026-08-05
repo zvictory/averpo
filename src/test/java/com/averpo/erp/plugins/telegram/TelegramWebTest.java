@@ -38,8 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 404), SUPER_ADMIN созлама саҳифаси / паст роль 403, профил улаш
  * амаллари ҳар роль учун (VIEWER_AUDITOR ҳам - ЎЗ профили, 092 тузоғи),
  * экранда токен маскаси.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

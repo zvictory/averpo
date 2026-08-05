@@ -23,8 +23,6 @@ import java.util.UUID;
  * (docs/modules/inventory.md, old-erp-ideas §6). Тўлиқ ейилган layer
  * is_exhausted=true - «кейинги ейилмаган» қидируви partial index
  * билан тез.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "cost_layer")

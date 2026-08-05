@@ -19,8 +19,6 @@ import java.util.UUID;
 /**
  * Товар категориялари CRUD - Account иерархияси паттернлари
  * (DFS дарахт, цикл ҳимояси) қайта ишлатилади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

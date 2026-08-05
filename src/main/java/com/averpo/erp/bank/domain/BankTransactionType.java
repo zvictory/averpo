@@ -3,8 +3,6 @@ package com.averpo.erp.bank.domain;
 /**
  * Банк транзакцияси тури - QBO Banking формаларига мос
  * (docs/modules/banking.md): тур проводка йўналишини белгилайди.
- *
- * @author Zafar
  */
 public enum BankTransactionType {
 

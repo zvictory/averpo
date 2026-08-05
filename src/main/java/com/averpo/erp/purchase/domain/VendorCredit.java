@@ -36,8 +36,6 @@ import java.util.UUID;
  * <p>Очиқ қолдиқ = total − appliedAmount - денормализация (CreditMemo
  * қолипи); application фақат VendorCreditService орқали. billId -
  * ихтиёрий асл ҳужжат ҳаваласи (prefill + BR-RET-006 миқдор чеклови).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "vendor_credit")

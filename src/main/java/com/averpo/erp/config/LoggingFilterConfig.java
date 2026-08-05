@@ -20,8 +20,6 @@ import org.springframework.context.annotation.Configuration;
  *
  * <p>@Component ЭМАС - акс ҳолда Spring Boot уни default (энг паст)
  * тартибда иккинчи марта авто-рўйхатга оларди. Ягона рўйхат = шу bean.
- *
- * @author Zafar
  */
 @Configuration
 public class LoggingFilterConfig {

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * - ходим кесимида давр ҳаракати (боши/охири clearing қолдиқ, ҳисобланган,
  * тўланган). Ҳисобот - фақат ўқиш; мантиқ PayrollRegisterService'да.
  * Ҳамма суммалар home валютада (сарлавҳада «Барча суммалар UZS да»).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

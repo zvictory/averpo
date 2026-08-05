@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Тўлов усуллари репозиторийси - ташқарига фақат PaymentMethodService орқали.
- *
- * @author Zafar
  */
 public interface PaymentMethodRepository extends JpaRepository<PaymentMethod, UUID> {
 

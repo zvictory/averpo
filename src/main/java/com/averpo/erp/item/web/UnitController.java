@@ -30,8 +30,6 @@ import java.util.UUID;
  * бошқаруви (ҳар гуруҳ ўз картасида: base/factor, қўшиш/чиқариш).
  * Йўл /settings остида, лекин Arbitr-092'дан бери INVENTORY соҳасида (омбор менежери ҳам киради); контроллер
  * item модулида (қатлам йўналиши).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/units")

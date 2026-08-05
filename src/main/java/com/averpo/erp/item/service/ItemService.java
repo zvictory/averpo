@@ -27,8 +27,6 @@ import java.util.UUID;
 /**
  * Item CRUD - счёт боғлашлар ledger'нинг public AccountService'и
  * орқали текширилади (ТЕМИР ҚОИДА №6: repository'га тегиш тақиқ).
- *
- * @author Zafar
  */
 @Service
 @Transactional

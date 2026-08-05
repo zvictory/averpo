@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * тестда кўринмас эди. Шунга мантиқ {@code purgeDirectory} static методига
  * ажратилган ва бу ерда Spring'сиз, DB'сиз, {@code @TempDir} билан тўғридан
  * тўғри синалади - файллар ҳақиқатан ўчиши гаровланади.
- *
- * @author Zafar
  */
 class FactoryResetServicePurgeTest {
 

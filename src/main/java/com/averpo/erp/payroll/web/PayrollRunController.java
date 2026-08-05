@@ -35,8 +35,6 @@ import java.util.UUID;
  * ҳисоб), кўриш (JE ҳавола + reverse). Ҳамма ёзиш PayrollRunService
  * орқали - контроллер юпқа. VIEWER ҳимояси SecurityConfig'даги
  * POST /** қоидасида (BR-ATT-004 нақши).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/payroll")

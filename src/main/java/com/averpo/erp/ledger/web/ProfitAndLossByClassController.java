@@ -18,8 +18,6 @@ import java.util.List;
  * controller - умумий ҳисобот контроллерларига тегилмайди (параллел
  * иш); давр default'и оддий P&amp;L билан бир хил (йил боши - бугун,
  * компания минтақасида; тескари давр default'га қайтади, Alisa-005).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

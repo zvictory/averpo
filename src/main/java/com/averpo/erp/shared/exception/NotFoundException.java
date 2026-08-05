@@ -6,8 +6,6 @@ package com.averpo.erp.shared.exception;
  * <p>BusinessRuleException'дан мерос: контроллерлардаги умумий
  * catch'лар иккаласини ҳам ушлайди, web қатлам эса буни алоҳида
  * 404 (Not Found) сифатида қайтаради ({@link BusinessRule#NOT_FOUND}).
- *
- * @author Zafar
  */
 public class NotFoundException extends BusinessRuleException {
 

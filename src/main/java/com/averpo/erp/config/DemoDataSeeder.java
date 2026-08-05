@@ -74,8 +74,6 @@ import java.util.UUID;
  * ҳам order'сиз (LOWEST_PRECEDENCE) - тенг вазнда тартиб
  * кафолатланмайди, шунинг учун {@link #ensureCatalogs()} шартларни
  * ЎЗИ ҳам idempotent равишда таъминлайди.
- *
- * @author Zafar
  */
 @Component
 @Profile("demo")

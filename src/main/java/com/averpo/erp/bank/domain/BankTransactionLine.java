@@ -21,8 +21,6 @@ import java.util.UUID;
  * "received from"). account_id/contact_id - dimension паттернидаги
  * UUID'лар (DB'да FK, JPA боғланиш йўқ - қоида №6). POSTED
  * транзакциянинг сатрлари ўзгармас.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bank_transaction_line",

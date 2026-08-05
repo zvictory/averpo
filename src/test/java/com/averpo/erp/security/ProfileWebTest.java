@@ -38,8 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * <p>Реал app_user яратилади (TestRoles фақат auth token беради, user'ни
  * DB'га ёзмайди) - {@code current()}/аватар target шу user'ни талаб қилади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Поғонали нархлар репозиторийси.
- *
- * @author Zafar
  */
 public interface PriceListItemRepository extends JpaRepository<PriceListItem, UUID> {
 

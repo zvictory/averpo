@@ -12,8 +12,6 @@ import java.util.List;
  * Landed cost тақсимот формаси. Сумма String - бузуқ киритишда
  * тушунарли BR хабари билан қайтамиз (BillForm паттерни). Receipt'лар
  * checkbox'лардан keladi (name="movementIds").
- *
- * @author Zafar
  */
 @Getter
 @Setter

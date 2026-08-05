@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Экран реестри тестлари (docs/modules/global-search.md «Тестлар» 5):
  * жорий тил бўйича сарлавҳа филтри ва роль филтри (VIEWER'га Settings
  * экранлари чиқмайди).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

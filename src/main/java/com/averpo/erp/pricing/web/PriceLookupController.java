@@ -24,8 +24,6 @@ import java.util.UUID;
  * ACCOUNTANT ҳам киритади. CurrencyController.lookup ({@code
  * /exchange-rates/lookup}) айнан шу сабабдан /settings дан ташқарида -
  * ўша прецедент такрорланади. Фақат ўқийди, GL/posting'га таъсир йўқ.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

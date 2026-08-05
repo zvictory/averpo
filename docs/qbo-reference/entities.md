@@ -5,8 +5,7 @@
 - `IntuitNamesTypes.xsd` - Customer/Vendor базаси (NameBase)
 
 Олинган жойи: `github.com/intuit/QuickBooks-V3-Java-SDK`
-(`ipp-v3-java-data/src/main/xsd/`), Apache 2.0, юклаб олинган сана:
-2026-07-06. Расмий SDK модули: `ipp-v3-java-data`.
+(`ipp-v3-java-data/src/main/xsd/`), Apache 2.0, юклаб олинган сана:. Расмий SDK модули: `ipp-v3-java-data`.
 Бу айнан developer.intuit.com веб-ҳужжатлари generate
 қилинадиган манба - веб-саҳифага мурожаат шарт эмас, schema саволига
 жавоб шу файллардан олинади.
@@ -46,7 +45,7 @@ landed cost ва Unit каталоги шу кенгайтманинг тарк�
 | OpeningBalance / OpeningBalanceDate | decimal + date | алоҳида Opening Balance оқими | Мос - бизда PostingService орқали, натижа бир хил |
 | CurrentBalance / CurrentBalanceWithSubAccounts | decimal | сақланмайди, ledger'дан ҳисобланади | Онгли фарқ ЭМАС, яхшиланиш: QBO API'да ҳам бу ReadOnly ҳисобланган қиймат |
 | CurrencyRef | ref | `currency` (ManyToOne) | Мос |
-| TaxAccount / TaxCodeRef | boolean / ref (QBW) | йўқ - контрол счёт detail type орқали | Tax қурилган (2026-07-07, changeset 032, tax.md): ҚҚС контрол счёти SALES_TAX_PAYABLE detail type билан топилади - Account'да алоҳида солиқ майдони АТАЙЛАБ йўқ (булар QBW мероси майдонлар) |
+| TaxAccount / TaxCodeRef | boolean / ref (QBW) | йўқ - контрол счёт detail type орқали | Tax қурилган (changeset 032, tax.md): ҚҚС контрол счёти SALES_TAX_PAYABLE detail type билан топилади - Account'да алоҳида солиқ майдони АТАЙЛАБ йўқ (булар QBW мероси майдонлар) |
 | OnlineBankingEnabled / FIName | ReadOnly | йўқ | Banking босқичида кўрилади |
 
 Бизда бор, QBO Account'да йўқ: `postable` (гуруҳ счётига проводка
@@ -64,7 +63,7 @@ Other Income, Other Expense, **Non-Posting**.
 проводкасиз ҳужжатлар учун; бизда бундай ҳужжатлар GL'га умуман
 бормайди, тур ҳам керак эмас).
 
-### 1.2 AccountSubTypeEnum - номлашдаги фарқлар (✅ БАЖАРИЛДИ, 2026-07-06)
+### 1.2 AccountSubTypeEnum - номлашдаги фарқлар (✅ БАЖАРИЛДИ)
 
 XSD'да 282 қиймат бор (US + FR/UK/IN/CA global вариантлари билан).
 4.5-босқичда (detail-type-rename-plan.md, changeset 018) қуйидаги
@@ -110,12 +109,12 @@ QBO'да JE `Transaction` базасидан мерос олади. Base'даг�
 |---|---|---|
 | PostingType (Debit/Credit) | `debit`/`credit` Money жуфти | Мос (XOR инварианти билан) |
 | AccountRef | `account` | Мос |
-| Entity (Customer/Vendor/Employee ref) | `contactId` dimension | Мос - Employee ҲАМ бор (2026-07-08, Payroll Lite: ContactType.EMPLOYEE, payroll ходим кесими GL contact'дан - AR/AP субледжер услуби) |
-| DepartmentRef / ClassRef | ClassRef - бор (`class_id` сатрда, TxnClass каталоги); DepartmentRef (Location) - СПЕЦ ёзилди 2026-07-12 | Class tracking бор (2026-07-08, docs/modules/class-tracking.md): сатр даражасида, OFF/PER_TXN/PER_LINE, P&L by Class. Location (DepartmentRef) - docs/modules/location-tracking.md (2026-07-12, фойдаланувчи талаби): header даражали, OFF/ON, ёрлиқ қайта номланади, P&L by Location - ТАСДИҚ КУТМОҚДА |
-| TaxCodeRef / TaxApplicableOn / TaxAmount | ҳужжат сатрларида (tax_rate_id + ставка snapshot) | Tax қурилган (2026-07-07, changeset 032, tax.md): проводка SALES_TAX_PAYABLE контрол счётига ҳужжат posting'ида тушади. Қолдиқ фарқ (аниқ): ҚЎЛДА JE'га алоҳида солиқ майдони киритилмаган - зарурат чиқса алоҳида карта |
+| Entity (Customer/Vendor/Employee ref) | `contactId` dimension | Мос - Employee ҲАМ бор (Payroll Lite: ContactType.EMPLOYEE, payroll ходим кесими GL contact'дан - AR/AP субледжер услуби) |
+| DepartmentRef / ClassRef | ClassRef - бор (`class_id` сатрда, TxnClass каталоги); DepartmentRef (Location) - СПЕЦ ёзилди | Class tracking бор (docs/modules/class-tracking.md): сатр даражасида, OFF/PER_TXN/PER_LINE, P&L by Class. Location (DepartmentRef) - docs/modules/location-tracking.md (фойдаланувчи талаби): header даражали, OFF/ON, ёрлиқ қайта номланади, P&L by Location - ТАСДИҚ КУТМОҚДА |
+| TaxCodeRef / TaxApplicableOn / TaxAmount | ҳужжат сатрларида (tax_rate_id + ставка snapshot) | Tax қурилган (changeset 032, tax.md): проводка SALES_TAX_PAYABLE контрол счётига ҳужжат posting'ида тушади. Қолдиқ фарқ (аниқ): ҚЎЛДА JE'га алоҳида солиқ майдони киритилмаган - зарурат чиқса алоҳида карта |
 | BillableStatus | йўқ | Billable expense - кейинги босқичлар |
 
-**Қарор (2026-07-06 текширувидан)**: ҳужжат модуллари (Invoice, Bill,
+**Қарор (текширувидан)**: ҳужжат модуллари (Invoice, Bill,
 Payment - 6/7-босқич) QBO услубида **битта ҳужжат = битта валюта**
 қоидаси билан қурилади (валюта ва курс ҳужжат header'ида). Line
 даражасидаги Money эркинлиги фақат қўлда JE учун ички имконият бўлиб
@@ -136,7 +135,7 @@ Inventory, NonInventory, Service, Bundle, Category.
 | Type | `type` (3) | Мос; Bundle кейинги босқич (roadmap'да бор) |
 | Active | `active` | Мос - ўчириш йўқ |
 | SubItem/ParentRef, ItemCategoryType | алоҳида `ItemCategory` entity | QBO'да категория ҳам Item (Type=Category); биздаги алоҳида entity - ҳужжатланган соддалаштириш (item.md §5) |
-| Taxable / SalesTaxCodeRef / PurchaseTaxCodeRef | `salesTaxRateId` / `purchaseTaxRateId` (default ставкалар - сатр prefill) | Tax қурилган (2026-07-07, changeset 032, tax.md). Алоҳида Taxable флаги йўқ - ставкаси null item ўзи солиқсиз (соддалаштириш, маъно бир хил) |
+| Taxable / SalesTaxCodeRef / PurchaseTaxCodeRef | `salesTaxRateId` / `purchaseTaxRateId` (default ставкалар - сатр prefill) | Tax қурилган (changeset 032, tax.md). Алоҳида Taxable флаги йўқ - ставкаси null item ўзи солиқсиз (соддалаштириш, маъно бир хил) |
 | UnitPrice | `salesPrice` | Мос |
 | Description | `salesDescription` | Мос |
 | PurchaseDesc | `purchaseDescription` | Мос |
@@ -176,9 +175,9 @@ Fax, AlternatePhone, PrimaryEmailAddr, WebAddr.
 | PrimaryTaxIdentifier | `taxId` (ИНН) | Мос |
 | Balance / OverDueBalance | сақланмайди - ledger'дан | QBO'да ҳам ҳисобланган қиймат |
 | Job/ParentRef (sub-customer) | йўқ | Кейинги босқичлар - зарурати чиқса |
-| Taxable / DefaultTaxCodeRef | йўқ | Tax қурилган (2026-07-07, changeset 032, tax.md), лекин КОНТАКТ даражасида default ставка йўқ - prefill item default'идан (сатрда). Қолдиқ фарқ (аниқ): зарурат чиқса алоҳида карта |
+| Taxable / DefaultTaxCodeRef | йўқ | Tax қурилган (changeset 032, tax.md), лекин КОНТАКТ даражасида default ставка йўқ - prefill item default'идан (сатрда). Қолдиқ фарқ (аниқ): зарурат чиқса алоҳида карта |
 | PreferredDeliveryMethod | йўқ | Кейин |
-| PaymentMethodRef | БОР (2026-07-07, Arbitr-033): payment_method каталоги (name+active; Type атайлаб йўқ - credit card кўлами РАД) + bank_transaction.payment_method_id; Expense экранида танланади | Мос (Type'сиз) |
+| PaymentMethodRef | БОР (Arbitr-033): payment_method каталоги (name+active; Type атайлаб йўқ - credit card кўлами РАД) + bank_transaction.payment_method_id; Expense экранида танланади | Мос (Type'сиз) |
 
 ### Vendor (Product: QBO тегишлилари)
 
@@ -243,11 +242,11 @@ QBO CompanyAccountingPrefs (Product: QBO тегишлилари):
 | UseAccountNumbers | доим ихтиёрий code | Мос (QBO default'и ҳам ўчиқ) |
 | DefaultARAccount / DefaultAPAccount | detail type орқали топилади | Мос ечим |
 | AutoJournalEntryNumber | доим авто (sequence) | Мос |
-| TrackDepartments / ClassTracking* | ClassTracking* - бор (`track_classes`: OFF/PER_TXN/PER_LINE) | Class tracking бор (2026-07-08, docs/modules/class-tracking.md); TrackDepartments (Location) - спец ёзилди 2026-07-12 (docs/modules/location-tracking.md), ТАСДИҚ КУТМОҚДА. Warehouse dimension Class ўрнини босмайди |
+| TrackDepartments / ClassTracking* | ClassTracking* - бор (`track_classes`: OFF/PER_TXN/PER_LINE) | Class tracking бор (docs/modules/class-tracking.md); TrackDepartments (Location) - спец ёзилди (docs/modules/location-tracking.md), ТАСДИҚ КУТМОҚДА. Warehouse dimension Class ўрнини босмайди |
 | Timezone | `timezone` | QBO Preferences'да алоҳида йўқ (CompanyInfo'да) - бизники тўғри |
 | InventoryValuation (AVCO/FIFO) | бизда бор, QBO'да йўқ | Multi-warehouse кенгайтмасининг қисми (QBO Advanced доим FIFO, танлов йўқ) |
-| Preferences.AutoApplyPayments (:12310) | ЙЎҚ - customer payment фақат ҚЎЛДА allocation | ОНГЛИ ФАРҚ (Otabek-013, 2026-07-10): AutoApplyCredit билан бир оила (§8) - auto-apply 1.1 ғояси; vendor BillPayment'га бу preference QBO'да ҳам тегишли эмас |
-| CustomTxnNumbers (Finance.xsd:12118-12124) | ЙЎҚ - DocNumber ДОИМ сервер sequence'идан (DocumentSequenceService) | ОНГЛИ ФАРҚ (Otabek-014, ҳукм 2026-07-14): қўлда/ташқи ҳужжат рақами киритилмайди - ноёблик ва race-ҳимоя sequence'да марказлашган; зарурат чиқса preference + ноёблик валидацияси алоҳида карта бўлади. §8-13 даги DocNumber «Мос» баҳолари шу фарқ доирасида ўқилсин (рақам формати мос, киритиш эркинлиги эмас) |
+| Preferences.AutoApplyPayments (:12310) | ЙЎҚ - customer payment фақат ҚЎЛДА allocation | ОНГЛИ ФАРҚ (Otabek-013): AutoApplyCredit билан бир оила (§8) - auto-apply 1.1 ғояси; vendor BillPayment'га бу preference QBO'да ҳам тегишли эмас |
+| CustomTxnNumbers (Finance.xsd:12118-12124) | ЙЎҚ - DocNumber ДОИМ сервер sequence'идан (DocumentSequenceService) | ОНГЛИ ФАРҚ (Otabek-014, ҳукм): қўлда/ташқи ҳужжат рақами киритилмайди - ноёблик ва race-ҳимоя sequence'да марказлашган; зарурат чиқса preference + ноёблик валидацияси алоҳида карта бўлади. §8-13 даги DocNumber «Мос» баҳолари шу фарқ доирасида ўқилсин (рақам формати мос, киритиш эркинлиги эмас) |
 
 ---
 
@@ -261,7 +260,7 @@ QBO CompanyAccountingPrefs (Product: QBO тегишлилари):
 | RemainingCredit (:10506) | `open_balance` денорм | Мос ечим |
 | CurrencyRef + ExchangeRate | Money (amount/base/rate) | Мос |
 | Қўллаш: ReceivePayment ичида credit line | алоҳида `credit_application` + apply/unapply | Мос семантика, бошқа механика (тўловсиз тўғри қўллаш ҳам бор) |
-| Preferences.AutoApplyCredit (:12301, default ёқиқ) | ЙЎҚ - фақат ҚЎЛДА apply | ОНГЛИ ФАРҚ (Otabek-009, 2026-07-08): auto-apply 1.1 ғояси, roadmap'да |
+| Preferences.AutoApplyCredit (:12301, default ёқиқ) | ЙЎҚ - фақат ҚЎЛДА apply | ОНГЛИ ФАРҚ (Otabek-009): auto-apply 1.1 ғояси, roadmap'да |
 
 ## 9. RefundReceipt (пул қайтариш чеки)
 
@@ -287,7 +286,7 @@ QBO CompanyAccountingPrefs (Product: QBO тегишлилари):
 |---|---|---|
 | DocNumber, TxnDate, CustomerRef | EST- рақам, сана, мижоз | Мос |
 | TxnStatus (:4665 - Pending/Accepted/Closed/Rejected) | `status` (PENDING/ACCEPTED/REJECTED/CLOSED) | Мос |
-| ExpirationDate (:5640) | `expiration_date` (Estimate.java, форма + spec estimates-po.md:19) | Мос - бор (Otabek-015 тузатуви 2026-07-10: аввал «йўқ» деб хато ёзилган эди) |
+| ExpirationDate (:5640) | `expiration_date` (Estimate.java, форма + spec estimates-po.md:19) | Мос - бор (Otabek-015 тузатуви: аввал «йўқ» деб хато ёзилган эди) |
 | AcceptedBy/AcceptedDate (:5649) | йўқ (status ўтишида ким/қачон сақланмайди) | Кичик қолдиқ - зарурат чиқса қўшилади |
 | LinkedTxn (Invoice) | `invoice_id` FK + айлантириш оқими | Мос - конверсия prefill + манба CLOSED |
 | GL таъсири | ЙЎҚ (иккисида ҳам non-posting) | Мос - PostingService import қилинмайди (тест билан) |
@@ -306,7 +305,7 @@ QBO CompanyAccountingPrefs (Product: QBO тегишлилари):
 | QBO майдони | Бизда | Изоҳ |
 |---|---|---|
 | DocNumber, TxnDate | SR- рақам, `srDate` | Мос |
-| CustomerRef (ИХТИЁРИЙ) | `customerId` МАЖБУРИЙ (BR-SR-001) | ОНГЛИ ФАРҚ (2026-07-08, Arbitr-045): Statement/ҳисобот қиймати учун; чакана оқимда сўралса бўшатилади |
+| CustomerRef (ИХТИЁРИЙ) | `customerId` МАЖБУРИЙ (BR-SR-001) | ОНГЛИ ФАРҚ (Arbitr-045): Statement/ҳисобот қиймати учун; чакана оқимда сўралса бўшатилади |
 | DepositToAccountRef (:9008) | `bank_account_id` (BANK/CASH, валюта ҳужжатга тенг - BR-SR-002) | Мос - AR қатнашмайди (иккисида ҳам) |
 | Line + ClassRef | `sales_receipt_line` + class_id | Мос (invoice кўзгуси) |
 | PaymentMethodRef (:9008 ёни) | йўқ | Кичик қолдиқ - Expense'даги каби улаш мумкин, зарурат чиқса |
@@ -314,11 +313,11 @@ QBO CompanyAccountingPrefs (Product: QBO тегишлилари):
 ## 14. Текшириш тартиби (кейинги сессиялар учун)
 
 1. Schema саволи туғилди - аввал шу ҳужжат, кейин XSD'нинг ўзи:
-   `grep -A 30 'name="Invoice"' docs/qbo-reference/Finance.xsd`
+ `grep -A 30 'name="Invoice"' docs/qbo-reference/Finance.xsd`
 2. Майдон изоҳидаги `Product:` белгисига қаралади - `QBW` бўлса
-   солиштирувга кирмайди.
+ солиштирувга кирмайди.
 3. Расмий веб-ҳужжат (developer.intuit.com) фақат матний тушунтириш
-   керак бўлганда ўқилади - schema масаласида XSD устун.
+ керак бўлганда ўқилади - schema масаласида XSD устун.
 4. QBO'да йўқ нарса қўшилаётган бўлса - у multi-warehouse inventory
-   кенгайтмасига тегишлими? Тегишли бўлмаса - ҚЎШИЛМАЙДИ, аввал
-   фойдаланувчи билан келишилади.
+ кенгайтмасига тегишлими? Тегишли бўлмаса - ҚЎШИЛМАЙДИ, аввал
+ фойдаланувчи билан келишилади.

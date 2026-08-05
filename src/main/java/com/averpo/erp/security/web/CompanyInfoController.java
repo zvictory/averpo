@@ -37,8 +37,6 @@ import java.util.UUID;
  * у соҳасиз /profile эди). Контроллер юпқа: реквизит валидацияси
  * {@link CompanySettingsService}'да, лого оркестрацияси
  * {@link CompanyInfoService}'да.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/company")

@@ -39,8 +39,6 @@ import java.util.UUID;
  * Vendor тўлови экранлари: рўйхат, форма (vendor танланганда очиқ
  * bill'лар HTMX билан юкланади), кўриш (тақсимотлар + аванс ишлатиш +
  * reverse). Тўлов DRAFT'сиз - яратилди = POSTED (QBO услуби).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/payments")

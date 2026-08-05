@@ -20,8 +20,6 @@ import java.util.Set;
  * гарови PluginService.isEnabled'нинг ўзида - бу фақат кўриниш филтри.
  *
  * @param enabled шу request'да ёқиқ плагинлар тўплами
- *
- * @author Zafar
  */
 public record Plugins(Set<PluginKey> enabled) {
 

@@ -37,8 +37,6 @@ import java.util.concurrent.TimeUnit;
  * <p>Плагин ўчиқ ёки бот созланмаган бўлса - Telegram'га УМУМАН
  * чиқилмайди (pollTarget бўш → уйқу): ўчиқ плагин трафик ҳосил
  * қилмайди (plugins.md гейти).
- *
- * @author Zafar
  */
 @Component
 @Profile("dev")

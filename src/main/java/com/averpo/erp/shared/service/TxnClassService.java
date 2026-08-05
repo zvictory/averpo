@@ -21,8 +21,6 @@ import java.util.UUID;
  * орқали текширади (BR-CLS-001) - shared'да тургани учун қоида №6
  * бузилмайди. Delete API атайлаб ЙЎҚ - GL тарихида ишлатилган class
  * фақат нофаол қилинади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

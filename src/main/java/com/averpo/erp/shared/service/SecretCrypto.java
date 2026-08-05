@@ -32,8 +32,6 @@ import java.util.Optional;
  * BR каталогини БИЛМАЙДИ (shared, ҳар кимга хизмат қилади) - калит йўқ
  * бўлса чақирувчи ЎЗ BR коди билан хато отади (TelegramService →
  * BR-TG-004). Темир қоида 13: service'ларда IllegalState ТАҚИҚ.
- *
- * @author Zafar
  */
 @Component
 @Slf4j

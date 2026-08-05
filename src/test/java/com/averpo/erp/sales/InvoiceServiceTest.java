@@ -48,8 +48,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * (2-туртки). GL posting-rules «Сотув» жадвалига мослиги, омбор
  * чиқими (COGS) ва reverseIssue аниқлиги шу ерда текширилади
  * (ТЕМИР ҚОИДА №7: debit == credit).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

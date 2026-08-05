@@ -24,8 +24,6 @@ import java.time.LocalDate;
  * ёзилмайди, ҳар бири сақланади. Амалдаги курс = энг охирги ёзув
  * ({@code rate_date <= сана}, кейин UUIDv7 {@code id} тартиби - бир
  * кунда 3-4 марта ўзгарса ҳам охиргиси амалда). Манба {@link RateSource}.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "exchange_rate")

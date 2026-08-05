@@ -19,8 +19,6 @@ import java.util.UUID;
  * Товар категориялари - кичик экран: иерархик рўйхат + битта форма
  * (яратиш ёки ?edit=id билан таҳрирлаш). Full-screen форма шарт эмас -
  * майдонлар иккита холос (spec: item.md).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/item-categories")

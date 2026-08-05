@@ -18,8 +18,6 @@ import java.util.UUID;
  * (docs/modules/tax.md). Бошқа модуллар (purchase/sales) фақат шу
  * орқали мурожаат қилади (темир қоида №6): ставка танлаш, snapshot
  * қиймат ва мавжудлик/фаоллик текшируви.
- *
- * @author Zafar
  */
 @Service
 @Transactional

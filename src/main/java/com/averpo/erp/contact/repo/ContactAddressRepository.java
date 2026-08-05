@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Контакт манзиллари репозиторийси - фақат contact модули ичида.
- *
- * @author Zafar
  */
 public interface ContactAddressRepository extends JpaRepository<ContactAddress, UUID> {
 

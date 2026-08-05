@@ -44,8 +44,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * иккала жуфт бир JE'да, debit==credit ТЕМИР ҚОИДА №7); ҳар сатр
  * StockMovement (reference=акт id); transfer балансларни ўзгартиради
  * GL'сиз; сатр гаровлари (BR-INV-011/012); филтрлар.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

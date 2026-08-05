@@ -23,8 +23,6 @@ import java.util.UUID;
  * <p>PaymentTerm shared модулда бўлгани учун id орқали сақланади
  * (dimension паттерни эмас - shared'га JPA relation мумкин эди, лекин
  * id соддароқ ва list экранларида lazy муаммосиз).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "contact")

@@ -26,8 +26,6 @@ import java.util.UUID;
  * reverse орқали. Аванс рухсат: total = allocated + unallocated
  * (DB CHECK ҳам бор) - тақсимланмаган қисм AR'да мижоз аванси
  * (кредит қолдиқ) бўлиб туради, кейин allocate қилинади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "invoice_payment")

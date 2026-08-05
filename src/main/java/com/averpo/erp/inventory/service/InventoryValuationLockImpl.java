@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
  * ўзгартирилмайди - мавжуд таннарх ҳисоблари маъносини йўқотар эди
  * (home currency қулфи паттерни). Package-private: ташқарига фақат
  * shared'даги порт кўринади.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

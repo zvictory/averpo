@@ -15,8 +15,6 @@ import java.util.UUID;
 /**
  * Контактлар репозиторийси - фақат contact модули ичида ишлатилади.
  * JpaSpecificationExecutor - каталог рўйхати филтри учун (Arbitr-068).
- *
- * @author Zafar
  */
 public interface ContactRepository extends JpaRepository<Contact, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<Contact> {

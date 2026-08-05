@@ -11,8 +11,6 @@ package com.averpo.erp.shared.exception;
  * <p>Хатолар {@link BusinessRuleException} орқали отилади - exception
  * фақат шу enum'ни қабул қилади, string код қабул қилмайди: каталогда
  * йўқ код билан хато отиш компиляция даражасида имконсиз.
- *
- * @author Zafar
  */
 public enum BusinessRule {
 

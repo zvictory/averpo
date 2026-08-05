@@ -21,8 +21,6 @@ import java.util.UUID;
  * unit factor snapshot ҳам керак эмас (омбор ҳаракати йўқ). ҚҚС фақат
  * кўрсатиш учун: amount - НЕТТО, gross = amount + tax_amount,
  * tax_rate_value - snapshot (docs/modules/tax.md нақши).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "estimate_line",

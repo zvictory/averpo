@@ -15,8 +15,6 @@ import java.util.List;
  * PurchaseOrder формаси - EstimateForm'нинг харид томонидаги кўзгуси.
  * Суммалар String (бузуқ киритишда тушунарли BR хабари, BillForm
  * паттерни).
- *
- * @author Zafar
  */
 @Getter
 @Setter

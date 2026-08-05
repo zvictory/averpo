@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
  * schema ўчиб кетиш эҳтимоли ёпилади.
  *
  * <p>Фақат test classpath'да туради - production jar'га кирмайди.
- *
- * @author Zafar
  */
 @Component
 public class TestDbSafetyGuard {

@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Тушум тақсимоти репозиторийси - фақат sales модули ичида.
- *
- * @author Zafar
  */
 public interface InvoicePaymentAllocationRepository
         extends JpaRepository<InvoicePaymentAllocation, UUID> {

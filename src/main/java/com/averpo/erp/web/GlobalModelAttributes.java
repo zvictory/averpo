@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 /**
  * Ҳар бир view model'ига автоматик қўшиладиган атрибутлар -
  * контроллерларда такрор-такрор қўшиб юрмаслик учун.
- *
- * @author Zafar
  */
 @ControllerAdvice
 @RequiredArgsConstructor

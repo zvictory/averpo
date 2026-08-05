@@ -47,8 +47,6 @@ import java.util.UUID;
  * GL - фақат PostingService (ТЕМИР ҚОИДА №2); бошқа модулларга фақат
  * public service орқали (№6). Тўлов run'га боғланМАЙДИ - clearing қолдиғи
  * (GL контакт кесими) ўзи ҳақиқат манбаи (Lite соддалиги).
- *
- * @author Zafar
  */
 @Service
 @Transactional

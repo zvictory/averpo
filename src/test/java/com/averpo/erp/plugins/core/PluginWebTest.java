@@ -30,8 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * соҳасида - матрицада фақат унда), паст роль 403 - UI яшириш эмас,
  * server ҳақиқати (092 нақши). Toggle оқими: POST → redirect → ҳолат
  * ўзгарган. Гейт/аудит мантиғи {@link PluginServiceTest}да.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -25,8 +25,6 @@ import lombok.NoArgsConstructor;
  * <p>ЁҚИЛИШ ҲОЛАТИ бу ерда ЭМАС - {@code plugin_state}'да (Arbitr-113):
  * токен сақланиб қолади, плагин ўчирилса фақат яширинади ва poller
  * тўхтайди (plugins.md: «маълумот ЎЧМАЙДИ»).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "telegram_settings")

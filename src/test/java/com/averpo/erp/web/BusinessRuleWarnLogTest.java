@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * энди {@link GlobalExceptionHandler} БР радини WARN'да код+йўл билан
  * ёзади (error.log триажига тушади). ListAppender'ни handler логгерига
  * улаб текширамиз - файлга боғлиқ эмас.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

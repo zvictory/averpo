@@ -24,8 +24,6 @@ import java.util.UUID;
  * dimension паттернидаги UUID'лар (DB'да FK, JPA боғланиш йўқ -
  * қоида №6). POSTED invoice'нинг сатрлари ўзгармас - guard
  * Invoice'нинг ўзида.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "invoice_line",

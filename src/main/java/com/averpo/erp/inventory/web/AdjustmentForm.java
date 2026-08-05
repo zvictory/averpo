@@ -13,8 +13,6 @@ import java.util.List;
  * сатр. Ҳар сатрда ЯНГИ qty киритилади (QBO «New quantity») - delta
  * server'да ҳисобланади. Ҳамма сон String - бузуқ киритишда тушунарли BR
  * хабари билан қийматлар сақланиб қайтади (SalesReceiptForm қолипи).
- *
- * @author Zafar
  */
 @Getter
 @Setter

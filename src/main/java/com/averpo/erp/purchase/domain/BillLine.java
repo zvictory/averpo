@@ -22,8 +22,6 @@ import java.util.UUID;
  * Суммалар ҳужжат валютасида; item/warehouse/account - dimension
  * паттернидаги UUID'лар (DB'да FK бор, JPA боғланиш йўқ - қоида №6).
  * POSTED bill'нинг сатрлари ўзгармас - guard Bill'нинг ўзида.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bill_line",

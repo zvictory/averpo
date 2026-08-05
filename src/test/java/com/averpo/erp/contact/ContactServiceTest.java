@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Контактлар CRUD валидациялари - spec: docs/modules/contact.md.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

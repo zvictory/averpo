@@ -11,8 +11,6 @@ package com.averpo.erp.ledger.service;
  *
  * @param created нечта счёт яратилди (идемпотент қайта импортда 0)
  * @param skipped нечтаси мавжудлиги учун ўтказилди
- *
- * @author Zafar
  */
 public record ChartImportedEvent(int created, int skipped) {
 }

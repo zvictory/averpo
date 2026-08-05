@@ -9,8 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 /**
  * Money қиймат объекти - Spring'сиз соф unit тестлар.
- *
- * @author Zafar
  */
 class MoneyTest {
 

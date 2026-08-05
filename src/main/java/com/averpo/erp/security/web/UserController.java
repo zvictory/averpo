@@ -29,8 +29,6 @@ import java.util.UUID;
  * яратиш/таҳрир, admin томонидан парол алмаштириш. Йўллар SecurityConfig
  * билан USERS соҳасига (SUPER_ADMIN) чекланган; мантиқ тўлиқ UserService'да - контроллер
  * юпқа (validation + service + view).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/users")

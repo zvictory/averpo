@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Landed cost тақсимот қаторлари репозиторийси - purchase модули ичида.
- *
- * @author Zafar
  */
 public interface LandedCostAllocationLineRepository
         extends JpaRepository<LandedCostAllocationLine, UUID> {

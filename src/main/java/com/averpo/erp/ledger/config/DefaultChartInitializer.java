@@ -35,8 +35,6 @@ import org.springframework.stereotype.Component;
  * қиладиган ~40 тестнинг «бўш-старт» инвариантини (масалан AccountImportTest
  * {@code skipped==0}) бузарди. Логиканинг ўзи DefaultChartInitializerTest'да
  * bean қўлда қуриб, ҳақиқий AccountService билан текширилади.
- *
- * @author Zafar
  */
 @Component
 @Profile("!test")

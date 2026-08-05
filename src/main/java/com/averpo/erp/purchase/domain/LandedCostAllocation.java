@@ -21,8 +21,6 @@ import java.time.LocalDate;
  * қарори) танланган receipt'ларга қиймат нисбатида тарқатилади.
  * DRAFT йўқ: яратилди = POSTED (тўлов модели), тузатиш reverse орқали.
  * Суммалар home валютада - омбор қийматлари home'да юритилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "landed_cost_allocation")

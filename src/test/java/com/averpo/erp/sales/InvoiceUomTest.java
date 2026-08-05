@@ -44,8 +44,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * BillUomTest кўзгуси): сатр киритилган бирликда, омбордан чиқим base
  * миқдорда (qty × factor snapshot), COGS valuation'дан ўзгармай келади,
  * SERVICE сатрда бирлик фақат ҳужжатда (омборга тегмайди).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

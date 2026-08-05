@@ -5,8 +5,6 @@ package com.averpo.erp.shared.service;
  * паттерни): 5-босқичда inventory модули буни имплементация қилади -
  * биринчи StockMovement пайдо бўлиши билан метод ўзгартириш ёпилади.
  * Ҳозирча имплементация йўқ → қулф очиқ.
- *
- * @author Zafar
  */
 public interface InventoryValuationLock {
 

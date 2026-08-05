@@ -57,8 +57,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * reverse кетма-кетлиги битта манбага иккита {@code reversalOf=null} ёзув
  * тўплаганда ҳам 500 (NonUniqueResult) бермайди - findFirst энг охиргисини
  * олади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

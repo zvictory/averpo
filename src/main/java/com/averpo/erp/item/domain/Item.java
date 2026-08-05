@@ -25,8 +25,6 @@ import java.util.UUID;
  * ItemService'да ledger'нинг public AccountService'и орқали
  * текширилади. Item ўчирилмайди - фақат inactive (тарихдаги ҳужжат
  * сатрлари бузилмасин).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "item")

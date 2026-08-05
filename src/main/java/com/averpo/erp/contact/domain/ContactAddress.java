@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
  * ux_contact_address_default partial unique кафолатлайди, алмашув
  * мантиғи ContactService'да (янги default эскисини бўшатади).
  * Таҳрирлаш MVP'да йўқ - ўчириб қайта қўшилади (spec).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "contact_address")

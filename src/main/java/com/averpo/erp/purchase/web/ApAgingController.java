@@ -17,8 +17,6 @@ import java.util.UUID;
  * AP aging ҳисоботи (QBO A/P Aging Summary услуби): vendor бўйича
  * очиқ қарз home валютада, кечикиш корзиналарида. Ҳисоб-китоб
  * BillService.apAging'да - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

@@ -36,8 +36,6 @@ import java.util.UUID;
  * алоҳида public service очилмайди. Default/primary алмашуви хато эмас:
  * янгиси белгиланса эскиси автоматик бўшатилади, турдаги биринчи қатор
  * автоматик default бўлади (QBO услуби, docs/modules/contact.md).
- *
- * @author Zafar
  */
 @Service
 @Transactional

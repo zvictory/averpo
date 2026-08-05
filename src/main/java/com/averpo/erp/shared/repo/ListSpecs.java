@@ -18,8 +18,6 @@ import java.util.List;
  * <p>Ҳар бўлак қиймат бўш бўлса {@code null} predicate қайтаради -
  * Spring Data комбинацияда буни «чеклов йўқ» деб ўтказиб юборади,
  * шунга чақирувчи томонда if-меҳнати керак эмас.
- *
- * @author Zafar
  */
 public final class ListSpecs {
 

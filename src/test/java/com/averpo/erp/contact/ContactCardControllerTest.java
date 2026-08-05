@@ -70,8 +70,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * aging/dashboard) JdbcClient хом SQL билан ўқийди - тест @Transactional
  * ичида JPA ёзувлари кўринсин деб ҳар GET'дан ОЛДИН {@code flush()}
  * (StatementServiceTest прецеденти).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

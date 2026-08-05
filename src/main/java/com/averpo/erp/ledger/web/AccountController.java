@@ -26,8 +26,6 @@ import java.util.UUID;
 /**
  * Счётлар режаси экранлари: tree view (QBO услуби), яратиш/таҳрирлаш,
  * CSV импорт. Контроллер юпқа - мантиқ AccountService'да.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/accounts")

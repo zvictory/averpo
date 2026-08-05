@@ -39,8 +39,6 @@ import java.util.UUID;
  * формаси (HTMX сатр қўшиш), кўриш, post/reverse/draft-delete.
  * GL ёзувлари фақат PostingService орқали (ТЕМИР ҚОИДА №2) -
  * бу контроллер repository'дан фақат ўқийди ва draft ўчиради.
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/journal-entries")

@@ -19,8 +19,6 @@ import java.util.UUID;
 /**
  * Омборлар каталоги экрани (units паттерни: рўйхат + қўшиш + қатор
  * ичида таҳрир). /settings остида, лекин INVENTORY соҳасида (user-roles.md: омбор менежерига ҳам очиқ).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/warehouses")

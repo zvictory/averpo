@@ -24,8 +24,6 @@ import java.util.Objects;
  *
  * <p>Қатор мавжуд бўлмаса биринчи мурожаатда default қийматлар билан
  * яратилади (seed changeset ўрнига - id UUIDv7 бўлиб қолиши учун).
- *
- * @author Zafar
  */
 @Service
 @Transactional

@@ -24,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Айланма-қолдиқ ведомости тестлари.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

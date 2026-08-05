@@ -29,8 +29,6 @@ import java.util.UUID;
  * (open-in-view=false). Чуқурлик рўйхатда ҲОЗИР БОР аждодлар сони:
  * филтрланган рўйхатда (масалан фақат EXPENSE) ота киритилмаган бўлса
  * бола илдиз даражасида кўринади - бу атайлаб шундай.
- *
- * @author Zafar
  */
 public final class AccountOptionGroups {
 

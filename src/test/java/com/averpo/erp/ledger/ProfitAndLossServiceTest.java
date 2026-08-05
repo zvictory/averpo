@@ -24,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * P&L: бўлим жойлашуви, QBO арифметикаси, давр фильтри, ноль сатрлар.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

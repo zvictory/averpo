@@ -31,8 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>Arbitr-002 дан кейин drawer хулқи ХОДИМ (employee) қаторида қолди;
  * МИЖОЗ/ТАЪМИНОТЧИ қатори эса энди КОНТАКТ КАРТОЧКАСига (кўриш) боради -
  * шу файлда иккиси ҳам текширилади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

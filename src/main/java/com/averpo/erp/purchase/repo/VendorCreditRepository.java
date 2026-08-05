@@ -11,8 +11,6 @@ import java.util.UUID;
 /**
  * Таъминотчи кредит-ноталари репозиторийси - фақат purchase модули ичида.
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
- *
- * @author Zafar
  */
 public interface VendorCreditRepository extends JpaRepository<VendorCredit, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<VendorCredit> {

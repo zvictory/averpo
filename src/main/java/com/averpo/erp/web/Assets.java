@@ -31,8 +31,6 @@ import java.time.Instant;
  * қолипи) - fallback'да ҳам ҳар қайта ишга туширишда версия ўзгаради,
  * фақат кластердаги нусхалар бир хил қийматни бермайди (dev'да
  * аҳамиятсиз, prod'да BuildProperties доим бор).
- *
- * @author Zafar
  */
 @Component
 public class Assets {

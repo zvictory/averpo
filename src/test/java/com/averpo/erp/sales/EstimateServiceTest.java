@@ -39,8 +39,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Estimate тестлари (docs/modules/estimates-po.md «Тестлар» 1-3):
  * GL'сизлик (journal_entry сони ЎЗГАРМАЙДИ - асосий assert), status
  * оқимлари, айлантириш/linked ҳимоялари ва prefill мослиги.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

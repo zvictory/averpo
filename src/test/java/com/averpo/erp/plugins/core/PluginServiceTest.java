@@ -27,8 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * PLUGIN_TOGGLED аудити (шовқинсиз - фақат ростдан ўзгарганда) ва
  * JTE гейт helper'ининг request'сиз fallback'и. Web қатлам (роль 403,
  * toggle POST) - {@link PluginWebTest}да.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

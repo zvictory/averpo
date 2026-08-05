@@ -8,8 +8,6 @@ package com.averpo.erp.shared.domain;
  *
  * <p>Иккала метод ҳам (item, warehouse) даражасида ишлайди.
  * Имплементация - 5-босқич (inventory модули).
- *
- * @author Zafar
  */
 public enum InventoryValuationMethod {
 

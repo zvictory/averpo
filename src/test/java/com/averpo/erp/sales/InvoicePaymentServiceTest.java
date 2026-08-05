@@ -45,8 +45,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * (3-туртки). GL, allocation денормализацияси, realized курс фарқи
  * (йўналиши AP томонга ТЕСКАРИ) ва reverse шу ерда текширилади.
  * Invoice'лар SERVICE сатрли - омбор шарт эмас.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

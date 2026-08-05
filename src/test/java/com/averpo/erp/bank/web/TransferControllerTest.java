@@ -16,8 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * чиқади - счёт → валюта харитаси Spring'сиз соф unit тест билан
  * (Arbitr-025 тест кутилмаси). Beruniy-020: ном ва валюта харитаси
  * энди битта циклда (accountViewMaps) - тест шу методга кўчди.
- *
- * @author Zafar
  */
 class TransferControllerTest {
 

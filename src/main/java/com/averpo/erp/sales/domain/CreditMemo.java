@@ -36,8 +36,6 @@ import java.util.UUID;
  * paid/balance қолипи); application фақат CreditMemoService орқали.
  * invoiceId - ихтиёрий асл ҳужжат ҳаволаси (prefill + inventory
  * қайтим таннархи асл сотув ҳаракатидан).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "credit_memo")

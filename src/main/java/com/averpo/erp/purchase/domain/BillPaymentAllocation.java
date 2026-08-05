@@ -20,8 +20,6 @@ import java.math.BigDecimal;
  * атайлаб йўқ - тўлов фақат bill'ларга (2026-07-06 қарори,
  * 7-босқичда InvoicePayment алоҳида бўлади). Олиб ташлаш йўқ -
  * тўловни reverse қилиш орқали бекор бўлади (MVP).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bill_payment_allocation",

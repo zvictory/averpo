@@ -9,8 +9,6 @@ import java.util.UUID;
 /**
  * Telegram созламаси singleton қатори - ФАҚАТ {@code TelegramService}
  * ишлатади (модуллараро мурожаат public service орқали, темир қоида 6).
- *
- * @author Zafar
  */
 public interface TelegramSettingsRepository extends JpaRepository<TelegramSettings, UUID> {
 

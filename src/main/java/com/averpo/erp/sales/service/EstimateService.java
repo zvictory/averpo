@@ -40,8 +40,6 @@ import java.util.UUID;
  * ҳисоб-китоб (ҚҚС net/tax) кўрсатиш учун tax.md механизмида.
  * Айлантириш оқими: InvoiceController prefill формани очади,
  * сақлангач {@link #markConverted} чақиради.
- *
- * @author Zafar
  */
 @Service
 @Transactional

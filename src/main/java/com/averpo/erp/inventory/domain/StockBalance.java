@@ -23,8 +23,6 @@ import java.util.UUID;
  *
  * <p>Ҳисоблаш формулалари InventoryService'да (2-туртки) - entity
  * фақат янги ҳолатни қабул қилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_balance",

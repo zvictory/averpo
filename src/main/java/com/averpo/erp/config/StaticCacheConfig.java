@@ -28,8 +28,6 @@ import java.time.Duration;
  * ҳам сўралмайди). HTML/динамик саҳифаларга бу handler'лар тегмайди -
  * Security no-store ҚОЛАДИ (молия маълумоти браузер кэшига тушмайди),
  * бу StaticCacheWebTest'да қотирилган.
- *
- * @author Zafar
  */
 @Configuration
 public class StaticCacheConfig implements WebMvcConfigurer {

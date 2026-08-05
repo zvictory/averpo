@@ -16,8 +16,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * юргани учун оддий тўплам кифоя; {@link #start()} аввалги қолдиқни
  * тозалайди, default ҳолатда ҳеч нарса йиғилмайди (бошқа тестларга
  * харажат қўшмаслик учун).
- *
- * @author Zafar
  */
 public class SqlCaptureInspector implements StatementInspector {
 

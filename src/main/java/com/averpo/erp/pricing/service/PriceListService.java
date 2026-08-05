@@ -33,8 +33,6 @@ import java.util.UUID;
  * каталог CRUD, поғонали нархлар, мижоз бириктируви ва invoice prefill
  * учун {@link #resolvePrice}. Ҳужжатларга ҳавола сақланмайди - фақат
  * prefill манбаси, GL/posting'га таъсир йўқ.
- *
- * @author Zafar
  */
 @Service
 @Transactional

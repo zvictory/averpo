@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Reconciliation белгилари репозиторийси - фақат bank модули ичида.
- *
- * @author Zafar
  */
 public interface BankReconciliationMatchRepository
         extends JpaRepository<BankReconciliationMatch, UUID> {

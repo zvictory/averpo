@@ -22,8 +22,6 @@ import java.util.UUID;
  * <p>Хато хабарига фойдаланувчининг хом киритган қиймати ЁЗИЛМАЙДИ -
  * reflected маълумот гигиенаси (Eldor-003/Beruniy-006 қарорлари билан
  * бир қолип): қиймат керак бўлса log'га ёзилади, экранга эмас.
- *
- * @author Zafar
  */
 public final class FormParsers {
 

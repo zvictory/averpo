@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Контакт шахслари репозиторийси - фақат contact модули ичида.
- *
- * @author Zafar
  */
 public interface ContactPersonRepository extends JpaRepository<ContactPerson, UUID> {
 

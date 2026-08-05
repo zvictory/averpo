@@ -30,8 +30,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Period lock (BR-LED-020) тестлари: docs/modules/closing-date.md →
  * «Тестлар» рўйхати. Ёпилиш санаси CompanySettings'да, текширув
  * PostingService'нинг учта нуқтасида (createDraft, post, reverse).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

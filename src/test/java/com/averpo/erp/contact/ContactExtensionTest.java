@@ -27,8 +27,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Contact кенгайтмаси тестлари (docs/modules/contact.md, «Кенгайтма»):
  * ИНН, credit limit, манзил/шахс/банк реквизити ва default/primary
  * алмашув мантиғи.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

@@ -32,8 +32,6 @@ import java.util.UUID;
  * ТАҲРИРЛАНАДИ, ҳаёт цикли {@link EstimateStatus} билан бошқарилади.
  * Барча ўтиш/ҳимоя қоидалари (BR-EST-002/003) шу entity'да - service
  * қатлами четлаб ўтолмайди.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "estimate")

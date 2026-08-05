@@ -25,8 +25,6 @@ import java.util.UUID;
  * <p>item_id - dimension паттерни (JournalEntryLine каби): DB'да FK
  * бор, JPA'да оддий UUID - модуллараро entity боғланиш йўқ (қоида №6),
  * item маълумоти ItemService орқали олинади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_movement")

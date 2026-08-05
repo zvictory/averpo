@@ -28,8 +28,6 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  * <p>Arbitr-127: ҳар handler статусни ҳам узатади - error.jte катта
  * код ва статусга мос иконка кўрсатади; HTMX partial сўровида эса
  * тўлиқ саҳифа ўрнига ихчам alert қайтади (errorView изоҳи).
- *
- * @author Zafar
  */
 @ControllerAdvice
 @RequiredArgsConstructor

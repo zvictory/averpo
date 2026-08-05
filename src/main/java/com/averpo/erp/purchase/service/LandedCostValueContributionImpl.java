@@ -22,8 +22,6 @@ import java.util.List;
  * <p>«Кучда» талқини: allocation_date &lt;= asOf ВА (POSTED ёки
  * reversal_date &gt; asOf). Сторно санаси йўқ REVERSED (бўлиши мумкин
  * эмас - migration тўлдиради) эҳтиёткорлик учун чиқариб ташланади.
- *
- * @author Zafar
  */
 @Component
 @Transactional(readOnly = true)

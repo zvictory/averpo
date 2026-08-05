@@ -18,8 +18,6 @@ import java.util.Set;
  * <p>Продакшн ҳам ({@code JpaUserDetailsService} authority'ларни шу
  * ердан беради), тестлар ҳам (custom {@code @WithMockRole}) айнан шу
  * матрицадан ўтади - жадвал билан хулқ ҳеч қачон ажралмайди.
- *
- * @author Zafar
  */
 public final class RolePermissions {
 

@@ -37,8 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * PER_TXN - сарлавҳа танлови ҳамма сатрга тарқалади (controller),
  * OFF - формада class майдони умуман render бўлмайди. Режим
  * CompanySettings'да - тест ичида алмаштирилади (қулф йўқ).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

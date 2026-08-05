@@ -21,8 +21,6 @@ import java.util.List;
  * SETTINGS соҳаси қоидаси остида (UrlPermissionMap: GET=SETTINGS_VIEW,
  * POST=SETTINGS_EDIT - матрицада иккиси фақат SUPER_ADMIN'да); контроллерга
  * алоҳида аннотация керак эмас, ҳимоя SecurityConfig'да (092 нақши).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/settings/plugins")

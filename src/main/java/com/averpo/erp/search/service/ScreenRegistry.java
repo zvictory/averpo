@@ -13,8 +13,6 @@ import java.util.Locale;
  * {@link SearchScreen} рўйхатини жорий тилдаги сарлавҳа бўйича филтрлайди
  * («баланс» деб ёзса Balance Sheet чиқади) ва роль (adminOnly) бўйича
  * чеклайди. DB'га тегмайди - соф статик реестр.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

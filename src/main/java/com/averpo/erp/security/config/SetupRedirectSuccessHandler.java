@@ -25,8 +25,6 @@ import java.io.IOException;
  * {@link SavedRequestAwareAuthenticationSuccessHandler} хулқи тўлиқ
  * сақланади: deep-link'дан login'га тушган фойдаланувчи ўша саҳифасига
  * қайтади. Фақат онбординг ҳолатидагина уни устун қиламиз.
- *
- * @author Zafar
  */
 public class SetupRedirectSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 

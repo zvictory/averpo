@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Тўлов тақсимоти репозиторийси - фақат purchase модули ичида.
- *
- * @author Zafar
  */
 public interface BillPaymentAllocationRepository
         extends JpaRepository<BillPaymentAllocation, UUID> {

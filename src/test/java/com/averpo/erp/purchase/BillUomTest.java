@@ -45,8 +45,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Bill'да UoM интеграцияси (docs/modules/uom.md, 3-туртки): сатр
  * киритилган бирликда, омборга base миқдор (qty × factor snapshot),
  * GL сумма = сатр суммаси (ўзгармайди), аниқ reverse.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

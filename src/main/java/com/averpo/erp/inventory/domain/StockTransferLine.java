@@ -21,8 +21,6 @@ import java.util.UUID;
  *
  * <p>item_id - dimension (DB'да FK, StockMovement қолипи). (акт, item)
  * UNIQUE - BR-INV-012 (битта актда item такрорланмайди).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_transfer_line",

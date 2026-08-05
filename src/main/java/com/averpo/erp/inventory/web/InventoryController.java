@@ -51,8 +51,6 @@ import java.util.stream.Collectors;
  * + view). Контроллер юпқа - мантиқ InventoryService'да; ўз модул
  * repo'ларидан фақат ўқийди (lazy view қаторлари транзакция ичида
  * йиғилади - open-in-view=false).
- *
- * @author Zafar
  */
 @Controller
 @RequestMapping("/inventory")

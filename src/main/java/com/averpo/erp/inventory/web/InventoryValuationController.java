@@ -27,8 +27,6 @@ import java.util.stream.Collectors;
  * Inventory valuation ҳисоботи экрани: ҳисоблаш service'да, бу ерда
  * фақат номлар бойитилади ва item кесимида гуруҳланади (item сатри +
  * остида омбор сатрлари - multi-warehouse кенгайтмамиз).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

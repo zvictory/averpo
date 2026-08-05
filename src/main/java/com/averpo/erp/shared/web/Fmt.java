@@ -17,8 +17,6 @@ import java.math.RoundingMode;
  * <p>Умумий кўриниш: бутун қисм ҳар 3 хонадан NBSP билан бўлинади
  * (сумма сатр ичида иккига синмайди), ўнлик ажратгич - НУҚТА (QBO
  * стандарти, Arbitr-011): {@code 12 600.50}.
- *
- * @author Zafar
  */
 public final class Fmt {
 

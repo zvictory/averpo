@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * detail type орқали resolve қилинади (findSystemAccount), шунинг учун
  * PAYROLL_CLEARING/PAYROLL_TAX_PAYABLE ягона, PAYROLL_EXPENSES иккита
  * postable (+ Arbitr-126 дан «Иш ҳақи харажатлари» гуруҳ отаси).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

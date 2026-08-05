@@ -12,8 +12,6 @@ package com.averpo.erp.search.service;
  * @param sublabel иккиламчи қатор (контакт + сана + сумма ва ҳ.к.) ёки
  *                 null (экранларда қўшимча йўқ)
  * @param url      бир босишда ўтиладиган ички манзил (кўриш/таҳрир экрани)
- *
- * @author Zafar
  */
 public record SearchHit(String label, String sublabel, String url) {
 }

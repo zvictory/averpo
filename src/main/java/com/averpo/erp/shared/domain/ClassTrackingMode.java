@@ -7,8 +7,6 @@ package com.averpo.erp.shared.domain;
  * <p>Режим фақат UI'ни бошқаради, service'ни эмас: class ҳар доим
  * САТРДА сақланади, service келган classId'ни режимдан қатъи назар
  * қабул қилади - режим алмашганда эски ҳужжатлар бузилмайди.
- *
- * @author Zafar
  */
 public enum ClassTrackingMode {
 

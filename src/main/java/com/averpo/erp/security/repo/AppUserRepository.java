@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Фойдаланувчилар репозиторийси - фақат security модули ичида.
- *
- * @author Zafar
  */
 public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
 

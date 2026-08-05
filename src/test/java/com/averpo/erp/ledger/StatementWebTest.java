@@ -38,8 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * render): мижоз танланмаса форма, танланса кўчирма жадвали + shared
  * print қатлами (.no-print/.print-only + «Чоп этиш» тугмаси)
  * маркировкаси чиқади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

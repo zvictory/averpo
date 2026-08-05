@@ -46,8 +46,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * чеки». Invoice'нинг AR'сиз кўзгуси: Dr банк/касса gross / Cr даромад +
  * ҚҚС, ITEM сатрда омбордан чиқим + Dr COGS / Cr INVENTORY. Ҳар
  * posting'да debit == credit (ТЕМИР ҚОИДА №7).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

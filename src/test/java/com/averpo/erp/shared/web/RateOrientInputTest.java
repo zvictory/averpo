@@ -11,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ЎЗГАРМАЙДИ; кўринадиган қиймат кучли-валюта базисида ва Arbitr-135
  * дан бери {@link Fmt#rate} кўрсатиш форматида (>= 1 → 2 хона NBSP
  * билан, &lt; 1 → макс 8 хона).
- *
- * @author Zafar
  */
 class RateOrientInputTest {
 

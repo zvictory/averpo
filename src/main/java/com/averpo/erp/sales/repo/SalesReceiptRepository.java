@@ -10,8 +10,6 @@ import java.util.UUID;
 /**
  * Сотув чеклари репозиторийси - фақат sales модули ичида.
  * JpaSpecificationExecutor - рўйхат филтри учун (Arbitr-068).
- *
- * @author Zafar
  */
 public interface SalesReceiptRepository extends JpaRepository<SalesReceipt, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<SalesReceipt> {

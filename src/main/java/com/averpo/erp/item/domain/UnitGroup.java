@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
  *
  * <p>Гуруҳ ўчирилмайди ва нофаолланмайди - бирликларнинг ўзи
  * нофаолланади (тарихдаги ҳужжат сатрлари бузилмасин).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "unit_group")

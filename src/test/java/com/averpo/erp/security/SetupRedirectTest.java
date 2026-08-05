@@ -36,8 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * {@code .successHandler} УЛАНИШИни босмайди - уланиш тушиб қолса handler
  * bean тирик, тестлар яшил, лекин онбординг ўлик бўларди. Шунга пастда
  * битта тест ҳақиқий filter chain орқали (MockMvc formLogin) киради.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

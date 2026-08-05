@@ -7,8 +7,6 @@ package com.averpo.erp.ledger.domain;
  * <p>Фойдаланувчи буни танламайди: {@link AccountDetailType} →
  * {@link AccountType} → classification занжиридан автоматик келиб чиқади.
  * Экран номлари i18n bundle'да ({@link #titleKey()}).
- *
- * @author Zafar
  */
 public enum AccountClassification {
 

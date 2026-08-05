@@ -30,8 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * бирликлар (дона/кг/литр/метр/соат/хизмат) changeset 008'дан тест
  * базасида ҳам бор - идемпотентлик айнан шу ҳолатда исботланади (хотира
  * тузоғи: тест DB seed'ида units бор).
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

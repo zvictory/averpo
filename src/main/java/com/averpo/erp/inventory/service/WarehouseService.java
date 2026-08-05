@@ -17,8 +17,6 @@ import java.util.UUID;
  * Омборлар CRUD - бошқа модуллар омборга фақат шу public service
  * орқали мурожаат қилади (ТЕМИР ҚОИДА №6). Ўчириш йўқ - фақат
  * active=false (ҳаракатлар тарихи бузилмайди).
- *
- * @author Zafar
  */
 @Service
 @Transactional

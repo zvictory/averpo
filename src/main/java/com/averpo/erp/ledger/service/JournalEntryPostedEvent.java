@@ -11,8 +11,6 @@ import com.averpo.erp.ledger.domain.JournalEntry;
  * ledger ҳеч кимга боғлиқ эмас, audit'ни import қилмайди
  * (docs/modules/audit-log.md). Синхрон тингланади - чақирувчи
  * транзакцияси rollback бўлса аудит ёзуви ҳам йўқолади.
- *
- * @author Zafar
  */
 public record JournalEntryPostedEvent(JournalEntry entry) {
 }

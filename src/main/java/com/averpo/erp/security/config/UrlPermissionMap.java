@@ -26,8 +26,6 @@ import java.util.Optional;
  *       (FIN_REPORTS)дан ОЛДИН: sales manager ўз AR ҳисоботини SALES
  *       орқали кўради, P&L эса унга ёпиқ.</li>
  * </ul>
- *
- * @author Zafar
  */
 public final class UrlPermissionMap {
 

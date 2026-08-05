@@ -3,8 +3,6 @@ package com.averpo.erp.purchase.domain;
 /**
  * Bill сатрининг тури - проводка йўналишини белгилайди
  * (docs/posting-rules.md «Харид»).
- *
- * @author Zafar
  */
 public enum BillLineType {
 

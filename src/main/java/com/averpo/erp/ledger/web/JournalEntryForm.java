@@ -12,8 +12,6 @@ import java.util.List;
  * Қўлда проводка формаси. Суммалар атайлаб String - бузуқ киритишда
  * BindException ўрнига ўзимиз тушунарли (кирилл) хабар билан
  * PostingException кўтарамиз ва киритилган қийматлар сақланиб қолади.
- *
- * @author Zafar
  */
 @Getter
 @Setter

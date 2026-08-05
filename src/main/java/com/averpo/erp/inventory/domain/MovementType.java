@@ -5,8 +5,6 @@ package com.averpo.erp.inventory.domain;
  * (TRANSFER_OUT манбада + TRANSFER_IN манзилда) - ҳар ёзув айнан битта
  * омборга таъсир қилади, баланс ҳисоби ҳамма тур учун бир хил йўлдан
  * юради (spec, «Қатъий қарорлар»).
- *
- * @author Zafar
  */
 public enum MovementType {
 

@@ -29,8 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * input ориентацияли (x-model="rateVisible/from2Visible/to2Visible"),
  * (3) POST курс майдонлари ҲАР ДОИМ КАНОНИК (hidden name="exchangeRate"/
  * "toRate" каноник модел билан) - server/servis ТЕГИЛМАЙДИ.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

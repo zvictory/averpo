@@ -3,8 +3,6 @@ package com.averpo.erp.item.domain;
 /**
  * Товар/хизмат тури - QBO Products and Services типларига мос.
  * Bundle кейинги босқичларда.
- *
- * @author Zafar
  */
 public enum ItemType {
 

@@ -26,8 +26,6 @@ import org.springframework.stereotype.Component;
  * уринилган ном ёзилади (AuditEvent.username изоҳи). IP манзил event
  * ичидаги WebAuthenticationDetails'дан; web бўлмаган оқимда (тестдаги
  * тўғридан-тўғри AuthenticationManager) null қолади.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

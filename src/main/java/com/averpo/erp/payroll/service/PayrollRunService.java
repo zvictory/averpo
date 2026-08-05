@@ -52,8 +52,6 @@ import java.util.regex.Pattern;
  * run ўзгармайди. GL фақат PostingService (қоида №2); счётлар detail
  * type орқали (инвариант 6) - PAYROLL_EXPENSES'да атайлаб ИККИТА счёт
  * бор (043 seed), шунга улар detail type + НОМ бўйича ажратилади.
- *
- * @author Zafar
  */
 @Service
 @Transactional

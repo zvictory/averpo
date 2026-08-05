@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <p>ДИҚҚАТ: {@link Properties#load(Reader)} UTF-8 reader билан
  * чақирилади - файллар хом кириллда сақланади (native2ascii эмас),
  * default ISO-8859-1 оқимида қийматлар бузиларди.
- *
- * @author Zafar
  */
 class MessagesParityTest {
 

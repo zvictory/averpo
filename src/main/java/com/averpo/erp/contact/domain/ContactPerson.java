@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
  * Контактнинг масъул шахси (old-erp-ideas §3). Контактда биттагина
  * primary - ux_contact_person_primary partial unique, алмашув
  * ContactService'да. Таҳрирлаш MVP'да йўқ - ўчириб қайта қўшилади.
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "contact_person")

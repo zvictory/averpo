@@ -24,8 +24,6 @@ import java.util.UUID;
  * давр + якуний қолдиқ киритилиб GL сатрлари белгиланади. Қолдиқлар
  * СЧЁТ ВАЛЮТАСИДА. account_id - dimension паттерни (DB FK, JPA'да
  * UUID - ledger'га entity боғланиш йўқ, қоида №6).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "bank_reconciliation",

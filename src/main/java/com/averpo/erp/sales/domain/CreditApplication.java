@@ -21,8 +21,6 @@ import java.math.BigDecimal;
  * (CREDIT_APPLICATION манба). Бир (кредит, invoice) жуфтига биттагина
  * ёзув (DB unique). Payment allocation'дан фарқи - unapply бор:
  * қўллаш бекор қилинса ёзув ЎЧИРИЛАДИ (кредитнинг ўзи туради).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "credit_application",

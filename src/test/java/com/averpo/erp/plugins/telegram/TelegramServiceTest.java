@@ -48,8 +48,6 @@ import static org.mockito.Mockito.when;
  * <p>Bot API порти мок (ExchangeRateServiceTest нақши) - тармоққа
  * чиқилмайди. Poller thread'и {@code @Profile("!test")} - тест
  * контекстида умуман йўқ, ишлов мантиғи шу ерда тўғридан текширилади.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

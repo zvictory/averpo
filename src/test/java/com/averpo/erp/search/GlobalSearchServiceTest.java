@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * жадвалларни ўқигани учун тест ҳам симметрик тарзда хом ёзади ва seed'га
  * боғланмайди. Ноёб {@code TOKEN} seed маълумотида учрамайди - натижа
  * сони детерминик.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

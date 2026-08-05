@@ -21,8 +21,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Счётлар режаси CSV импорти тестлари.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

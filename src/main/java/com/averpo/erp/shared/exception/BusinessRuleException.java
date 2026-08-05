@@ -11,8 +11,6 @@ import lombok.Getter;
  * web қатлам ({@code GlobalExceptionHandler}) шуни ишлатади;
  * контроллерлар форма контекстида ушлаб фойдаланувчига жойида
  * кўрсатади.
- *
- * @author Zafar
  */
 @Getter
 public class BusinessRuleException extends RuntimeException {

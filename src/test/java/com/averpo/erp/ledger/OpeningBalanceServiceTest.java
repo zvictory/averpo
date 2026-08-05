@@ -25,8 +25,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * Opening balance проводкалари (posting-rules.md, «Очилиш қолдиқлари»):
  * ТЕМИР ҚОИДА №7 - ҳар posting логикага debit == credit assert.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

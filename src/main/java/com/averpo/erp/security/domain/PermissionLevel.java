@@ -5,8 +5,6 @@ package com.averpo.erp.security.domain;
  * (docs/modules/user-roles.md). EDIT доим VIEW'ни ўз ичига олади -
  * таққослаш ordinal орқали ({@link #atLeast}), шунинг учун эълон
  * тартиби ўзгартирилмайди.
- *
- * @author Zafar
  */
 public enum PermissionLevel {
 

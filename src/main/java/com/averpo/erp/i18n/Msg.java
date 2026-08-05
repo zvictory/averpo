@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
  * улайди: шаблонда {@code ${msg.localize("key")}} - param'li вариантда
  * JTE ўз substitution'ини ишлатади (MessageFormat апостроф тузоғи йўқ).
  * Жорий тил LocaleContextHolder'дан - CookieLocaleResolver белгилайди.
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

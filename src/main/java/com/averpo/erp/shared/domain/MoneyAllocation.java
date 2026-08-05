@@ -35,8 +35,6 @@ import java.util.List;
  *
  * <p>ФАҚАТ ҳужжат GL қуриши ва totalBase учун - бошқа ҳисобларга
  * ишлатиш олдидан шу кафолатлар етарлилиги текширилсин.
- *
- * @author Zafar
  */
 public final class MoneyAllocation {
 

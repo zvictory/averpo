@@ -11,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * TaxAmounts (нетто/ҚҚС ажратиш) тестлари: docs/modules/tax.md
  * «Ҳисоблаш» - Spring'сиз соф арифметика. Комплемент аниқлиги
  * (net + tax == gross) inclusive режимнинг калит талаби.
- *
- * @author Zafar
  */
 class TaxAmountsTest {
 

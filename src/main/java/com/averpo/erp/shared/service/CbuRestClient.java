@@ -27,8 +27,6 @@ import java.util.List;
  * учун беради (ҳозир ҳаммасида 1) - client ҳимоя учун Rate/Nominal
  * қилади, бизнинг курс доим «1 валюта = N сўм» бўлиб қолади
  * (docs/modules/multi-currency.md).
- *
- * @author Zafar
  */
 @Component
 class CbuRestClient implements CbuRateClient {

@@ -13,8 +13,6 @@ import java.util.List;
  * тушунарли BR хабари билан қайтамиз, қийматлар сақланади
  * (BillPaymentForm паттерни). Allocation қаторлари очиқ invoice'лардан
  * HTMX билан юкланади.
- *
- * @author Zafar
  */
 @Getter
 @Setter

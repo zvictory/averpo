@@ -25,8 +25,6 @@ import java.util.UUID;
  *
  * <p>Auth контекстисиз (scheduler, bootstrap) ёки anonymous'да бўш
  * Optional қайтади - created_by NULL қолади (сохта атрибуция йўқ).
- *
- * @author Zafar
  */
 @Component
 @RequiredArgsConstructor

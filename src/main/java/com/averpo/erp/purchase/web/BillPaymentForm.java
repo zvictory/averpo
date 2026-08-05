@@ -12,8 +12,6 @@ import java.util.List;
  * Vendor тўлови формаси. Суммалар String - бузуқ киритишда тушунарли
  * BR хабари билан қайтамиз, қийматлар сақланади (BillForm паттерни).
  * Allocation қаторлари очиқ bill'лардан HTMX билан юкланади.
- *
- * @author Zafar
  */
 @Getter
 @Setter

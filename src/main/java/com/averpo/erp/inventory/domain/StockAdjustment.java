@@ -33,8 +33,6 @@ import java.util.UUID;
  * StockMovement (ADJUST_IN/OUT, reference=акт id) билан боғланади.
  *
  * <p>Барча қийматлар home валютада (омбор ҳисоби доим home, spec).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "stock_adjustment")

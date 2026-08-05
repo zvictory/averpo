@@ -32,8 +32,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * route 404 беради - UI яшириш кифоя эмас (092 сабоғи), plugins.md:
  * «ўчиқ плагиннинг ҳеч бир route/фичаси ишламайди». 404 (403 эмас)
  * атайлаб: фича уланмаган - демак саҳифа МАВЖУД ЭМАС.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

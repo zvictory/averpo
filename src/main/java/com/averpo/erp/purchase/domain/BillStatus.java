@@ -4,8 +4,6 @@ package com.averpo.erp.purchase.domain;
  * Bill ҳаёт цикли - ledger entry модели билан бир хил (темир қоида №3):
  * POSTED ҳужжат ўзгартирилмайди, фақат reverse қилинади. Old-erp'даги
  * approve workflow атайлаб олинмаган (spec, «Қатъий қарорлар»).
- *
- * @author Zafar
  */
 public enum BillStatus {
 

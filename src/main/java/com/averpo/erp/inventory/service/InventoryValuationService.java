@@ -28,8 +28,6 @@ import java.util.UUID;
  * қолдиғи билан солиштирилади: ҳар омбор ҳаракати GL билан бир
  * транзакцияда ёзилгани учун мос келиши ШАРТ - фарқ фақат счётга
  * қўлда JE/opening balance ёзилганида чиқади (ҳисобот огоҳлантиради).
- *
- * @author Zafar
  */
 @Service
 @Transactional(readOnly = true)

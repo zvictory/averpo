@@ -15,8 +15,6 @@ import java.util.UUID;
  * ёзиш-ўқиш API бериб қўяди). Филтрли рўйхат Specification билан -
  * ихтиёрий (сана, тур, username) комбинациялар null-параметр SQL
  * муаммосисиз ишлайди.
- *
- * @author Zafar
  */
 public interface AuditEventRepository
         extends JpaRepository<AuditEvent, UUID>, JpaSpecificationExecutor<AuditEvent> {

@@ -13,8 +13,6 @@ import java.util.UUID;
  * JpaSpecificationExecutor - рўйхат/ўтказмалар филтри учун (Arbitr-068):
  * transfers'нинг эски List findByTypeWithCurrency методи Specification +
  * fetch бўлагига алмашди (Beruniy-020 N+1 ҳимояси сақланган).
- *
- * @author Zafar
  */
 public interface BankTransactionRepository extends JpaRepository<BankTransaction, UUID>,
         org.springframework.data.jpa.repository.JpaSpecificationExecutor<BankTransaction> {

@@ -22,8 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Сотув чеки экранлари смок (24-банд «смок экранлар»): рўйхат ва FULL
  * форма 200 қайтариб JTE шаблон белги матни билан render бўлиши. Форма -
  * тўлов счёти жонли Balance select'и (data-bal) бор.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

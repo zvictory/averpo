@@ -39,8 +39,6 @@ import java.util.UUID;
  * PostingService/InventoryService умуман import қилинмайди (spec'нинг
  * review нуқтаси). Айлантириш оқими: BillController prefill формани
  * очади, сақлангач {@link #markConverted} чақиради.
- *
- * @author Zafar
  */
 @Service
 @Transactional

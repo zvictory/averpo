@@ -22,8 +22,6 @@ import java.math.RoundingMode;
  *
  * @param net нетто сумма (GL дебет/даромад асоси)
  * @param tax сатр ҚҚСи (SALES_TAX_PAYABLE)
- *
- * @author Zafar
  */
 public record TaxAmounts(BigDecimal net, BigDecimal tax) {
 

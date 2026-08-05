@@ -21,8 +21,6 @@ import java.util.Map;
  * остида (INVENTORY соҳаси) - қуйма қўшиш эса ҳужжат формаларидан
  * INVENTORY EDIT эгаларига керак (user-roles.md соҳа қоидаси). Мантиқ бутунлай
  * {@link WarehouseService#create} реюзи (BR-WH-001/002 ўша ерда).
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

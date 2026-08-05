@@ -44,8 +44,6 @@ import java.util.UUID;
  * POST-catchall уларни соҳа EDIT талабига ташлаб, VIEWER_AUDITOR ўз
  * профилини сақлай олмасди. Валидация/сақлаш мантиқи {@link UserService}
  * ва {@link AttachmentService}'да - контроллер юпқа.
- *
- * @author Zafar
  */
 @Controller
 @RequiredArgsConstructor

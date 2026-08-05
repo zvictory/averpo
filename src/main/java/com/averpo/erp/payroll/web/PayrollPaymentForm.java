@@ -15,8 +15,6 @@ import java.util.List;
  * Иш ҳақи тўлови формаси (payroll.md 23в). Ҳамма сон String - бузуқ
  * киритишда тушунарли BR хабари билан қийматлар сақланиб қайтади
  * (PayrollRunForm/BillForm паттерни). Home валютада (курс майдони йўқ).
- *
- * @author Zafar
  */
 @Getter
 @Setter

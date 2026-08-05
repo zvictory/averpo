@@ -42,8 +42,6 @@ import org.springframework.security.web.SecurityFilterChain;
  * {@link CsrfAwareAccessDeniedHandler} CSRF радини (эскирган сессия)
  * {@code /login?expired} га буради, қолган 403'лар default'да қолади
  * (CsrfConfigurer шу handler'ни CsrfFilter'га ҳам улайди).
- *
- * @author Zafar
  */
 @Configuration
 @EnableWebSecurity

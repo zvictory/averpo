@@ -29,8 +29,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * event чиқаради (LoginAttemptListener санайди),
  * JpaUserDetailsService қулф/нофаолликни accountNonLocked/disabled
  * орқали қайтаради.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

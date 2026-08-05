@@ -8,8 +8,6 @@ import java.util.List;
  * ЎзР Марказий банки курс манбаининг порти - ExchangeRateService тармоқ
  * тафсилотидан ажратилган, тестларда сохта импл билан алмаштирилади
  * (тестлар тармоққа чиқмайди).
- *
- * @author Zafar
  */
 public interface CbuRateClient {
 

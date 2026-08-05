@@ -33,8 +33,6 @@ import java.util.UUID;
  * кесими) ўзи ҳақиқат манбаи (Lite соддалиги, ведомость шуни жамлайди).
  * account_id - тўлов счёти (dimension; BANK/CASH ва home валютали
  * текшируви PayrollPaymentService'да).
- *
- * @author Zafar
  */
 @Entity
 @Table(name = "payroll_payment")

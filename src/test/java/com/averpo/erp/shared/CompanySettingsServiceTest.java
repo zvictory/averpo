@@ -26,8 +26,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Компания созламалари: home currency қулфи ва timezone валидацияси.
- *
- * @author Zafar
  */
 @SpringBootTest
 @ActiveProfiles("test")

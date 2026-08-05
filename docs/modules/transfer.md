@@ -7,7 +7,7 @@ QBO «+ Янги → Ўтказма» (Transfer) паритети: иккита 
 BANK счётларига чекланган; бу QBO'нинг тоза Transfer формасига мос
 эмас (Arbitr-022, фойдаланувчи скриншот солиштируви, 2026-07-07).
 
-## QBO эталон
+## QBO билан солиштирув
 Finance.xsd:10286 (Transfer): FromAccountRef/ToAccountRef «Must be a
 Balance Sheet account», битта Amount, ихтиёрий ClassRef, Transaction'дан
 TxnDate/PrivateNote. UI (скриншот): «Transfer Funds From» (+ ёнида

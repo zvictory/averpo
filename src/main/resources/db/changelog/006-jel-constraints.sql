@@ -2,7 +2,7 @@
 
 --changeset averpo:009-jel-constraints
 -- Service валидацияси биринчи ҳимоя, лекин bug/manual SQL/import
--- нотўғри сатр ёзиб қўйиши мумкин — инвариантлар DB даражасида ҳам
+-- нотўғри сатр ёзиб қўйиши мумкин - инвариантлар DB даражасида ҳам
 -- мустаҳкамланади (posting-rules.md, 2-инвариант).
 ALTER TABLE journal_entry_line
     ADD CONSTRAINT uq_jel_entry_line_no UNIQUE (entry_id, line_no);

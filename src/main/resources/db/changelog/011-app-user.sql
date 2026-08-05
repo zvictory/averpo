@@ -2,7 +2,7 @@
 
 --changeset averpo:022-app-user
 -- Тизим фойдаланувчилари. Биринчи admin'ни AdminUserInitializer
--- яратади (парол env'дан, bcrypt hash) — seed'да parol сақламаймиз.
+-- яратади (парол env'дан, bcrypt hash) - seed'да parol сақламаймиз.
 CREATE TABLE app_user (
     id            UUID PRIMARY KEY,
     version       INT NOT NULL DEFAULT 0,

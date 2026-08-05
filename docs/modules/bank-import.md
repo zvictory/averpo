@@ -14,7 +14,7 @@ feeds'нинг оффлайн муқобили. Ҳозир ҳамма банк �
 (Open Banking) Ўзбекистонда чекланган - CSV импорт амалий йўл
 (ҳар банк CSV/Excel беради).
 
-## QBO эталон
+## QBO билан солиштирув
 
 QBO Banking → «Upload from file» (CSV/QBO/OFX): устун харитаси
 интерфейси, For review рўйхати, match таклифлари, Rules. Биз MVP'да:

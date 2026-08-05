@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:010-payment-term
--- QBO Terms рўйхати — контакт ва (кейин) Invoice/Bill ишлатади
+-- QBO Terms рўйхати - контакт ва (кейин) Invoice/Bill ишлатади
 CREATE TABLE payment_term (
     id         UUID PRIMARY KEY,
     version    INT NOT NULL DEFAULT 0,

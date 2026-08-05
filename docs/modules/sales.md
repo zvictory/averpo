@@ -178,6 +178,6 @@ reversal movement ёзилади (аудит). Bill'даги reverseReceive'ни
 ## Экранлар (4-туртки)
 Sidebar СОТУВ бўлимига: Invoice'лар (/invoices), Тушумлар
 (/invoice-payments). AR aging (/reports/ar-aging) - Ҳисоботлар
-бўлимида (Nargiza-002: QBO эталонида ҳамма ҳисоботлар марказда).
+бўлимида (Nargiza-002: QBO'да ҳам ҳамма ҳисоботлар марказда).
 «+ Янги»: Invoice, Тушум. Ҳамма жадвал zebra + .table-wrap, 375px,
 money формат.

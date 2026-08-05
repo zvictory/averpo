@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
--- Currency энди ҳамма entity'да ManyToOne (оддий String эмас) —
+-- Currency энди ҳамма entity'да ManyToOne (оддий String эмас) -
 -- мавжуд маълумот code бўйича каталогга боғланади.
 
 --changeset averpo:018-account-currency-fk

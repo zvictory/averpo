@@ -25,7 +25,7 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 25MB
-    # Сессия муддати (Arbitr-096): QBO idle эталони ~1 соат. Tomcat default
+    # Сессия муддати (Arbitr-096): QBO'да idle муддати ~1 соат. Tomcat default
     # 30 дақиқа эди - жонлида бир оз турса logout қилиб, эски CSRF токенли
     # формадан POST'да 403 берарди (энди accessDeniedHandler /login?expired).
     session:

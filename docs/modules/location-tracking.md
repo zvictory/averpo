@@ -9,7 +9,7 @@ Class олинган, Location ҳам қўшилсин; спец Отабек (Q
 чиқди. Class нақшини такрорлайди (docs/modules/class-tracking.md),
 лекин QBO Location'нинг ФАРҚЛИ хусусиятлари билан.
 
-## QBO эталон (Отабек манбаси)
+## QBO билан солиштирув
 
 Барчаси **docs/qbo-reference/Finance.xsd дан ТАСДИҚЛАНГАН** (веб эмас,
 engineering-rules.md қоидаси - манба ҳақиқати):
@@ -42,7 +42,7 @@ engineering-rules.md қоидаси - манба ҳақиқати):
   fullyQualifiedName «:» билан, active). **ФАРҚ (QBO айнан)**:
   иерархия **макс 5 даража** (QBO Class/Location чегараси) - TxnClass
   чексиз, лекин Location'да BR-LOC билан 5'га чекланади (фойдаланувчи
-  қарори 2026-07-12: QBO эталон, бир хил).
+  қарори 2026-07-12: QBO солиштируви, бир хил).
 - **Ёрлиқ**: CompanySettings'га `location_label` (enum:
   LOCATION/DEPARTMENT/DIVISION/STORE/PROPERTY/TERRITORY/BUSINESS,
   default LOCATION) - экранларда/ҳисоботларда шу ном (uz/ru/en

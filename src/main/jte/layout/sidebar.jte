@@ -457,7 +457,7 @@
                             <a href="/reports/inventory-valuation" class="flex items-center gap-2 rounded-radius px-2 py-1.5 pl-9 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline aria-[current=page]:bg-primary/10 aria-[current=page]:font-medium aria-[current=page]:text-on-surface-strong aria-[current=page]:hover:bg-primary/10 dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:aria-[current=page]:bg-primary-dark/10 dark:aria-[current=page]:text-on-surface-dark-strong dark:aria-[current=page]:hover:bg-primary-dark/10 in-[.sb-rail]:lg:pl-2">${msg.localize("nav.invValuation")}</a>
                         </li>
                     @endif
-                    <%-- QBO эталони: ҳамма ҳисоботлар марказий Reports бўлимида
+                    <%-- QBO нақши: ҳамма ҳисоботлар марказий Reports бўлимида
                          (Nargiza-002) --%>
                     @if(perms.view(Permission.PURCHASE))
                         <li class="px-1 py-0.5 first:mt-2">

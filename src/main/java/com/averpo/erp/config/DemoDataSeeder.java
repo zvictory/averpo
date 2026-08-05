@@ -6,6 +6,7 @@ import com.averpo.erp.contact.service.ContactService;
 import com.averpo.erp.inventory.service.InventoryService;
 import com.averpo.erp.inventory.service.WarehouseService;
 import com.averpo.erp.item.domain.ItemType;
+import com.averpo.erp.item.service.ItemCategoryService;
 import com.averpo.erp.item.service.ItemService;
 import com.averpo.erp.item.service.UnitService;
 import com.averpo.erp.ledger.domain.Account;
@@ -31,23 +32,29 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 /**
  * {@code demo} профилидаги намойиш маълумотлари: тақдимот скриншотлари
  * ва ҳакамлар иловани ўзи юргизиб кўриши учун «Озод Савдо» деган
- * шартли ўзбек савдо компаниясининг охирги 3 ойлик реал ҳаёти -
- * мижоз/етказувчи каталоги, товар-хизмат каталоги, харид ва сотув
- * ҳужжатлари, қисман тўловлар, банк харажатлари, омбор ҳаракатлари.
+ * шартли ўзбек савдо компаниясининг ЙИЛ БОШИДАН бугунгача бўлган
+ * ҳаёти - кенг мижоз/етказувчи каталоги, товар-хизмат каталоги,
+ * кўп омборли қолдиқлар, ойма-ой харид ва сотув ҳужжатлари, тўлиқ
+ * ва қисман тўловлар, банк харажатлари, омбор кўчириш ва
+ * инвентаризация актлари.
  *
- * <p><b>Нега керак:</b> бўш база билан dashboard графиги, P&L даврлари,
- * AR/AP aging ва омбор ҳисоботлари бўм-бўш кўринади - тизимнинг
- * қиймати кўринмайди. Seed маълумот шу экранларнинг ҳаммасини бир
- * старт билан «тирик» қилади.
+ * <p><b>Нега керак:</b> бўш база билан dashboard графиги, P&amp;L
+ * даврлари, AR/AP aging ва омбор ҳисоботлари бўм-бўш кўринади -
+ * тизимнинг қиймати кўринмайди. Маълумот январдан бугунгача
+ * тарқалгани учун йил бошидан ҳисобот, ойлик тренд ва муддат
+ * таҳлили (жорий / муддати ўтган) мазмунли чиқади.
  *
  * <p><b>Қатлам (ТЕМИР ҚОИДА №6 ва №2):</b> сеедер ҳеч бир модулнинг
  * repository'сига тегмайди - фақат public service интерфейслари
@@ -64,10 +71,9 @@ import java.util.UUID;
  * <p><b>Тартиб ({@link Order}):</b> счётлар режаси ва UOM гуруҳлари
  * аввал ўрнатилиши шарт - шунинг учун runner энг охирига қўйилган.
  * Лекин {@code DefaultChartInitializer}/{@code DefaultUnitsInitializer}
- * ҳам ordersiz (LOWEST_PRECEDENCE) - тенг вазнда тартиб кафолатланмайди,
- * шунинг учун {@link #ensureCatalogs()} шартларни ЎЗИ ҳам idempotent
- * равишда таъминлайди. Демо базанинг тайёрлиги runner тартибига
- * боғлиқ бўлиб қолмайди.
+ * ҳам order'сиз (LOWEST_PRECEDENCE) - тенг вазнда тартиб
+ * кафолатланмайди, шунинг учун {@link #ensureCatalogs()} шартларни
+ * ЎЗИ ҳам idempotent равишда таъминлайди.
  *
  * @author Zafar
  */
@@ -91,35 +97,147 @@ public class DemoDataSeeder implements ApplicationRunner {
      * шартли қиймат; каталогдан ўқилмайди, демо детерминистик бўлсин. */
     private static final BigDecimal USD_RATE = new BigDecimal("12600");
 
-    /** USD тушум курси - invoice курсидан фарқли, шунда realized курс
+    /** USD тўлов курси - ҳужжат курсидан фарқли, шунда realized курс
      * фарқи проводкаси ҳам демода кўринади (multi-currency намойиши). */
     private static final BigDecimal USD_PAYMENT_RATE = new BigDecimal("12750");
 
-    /** Асосий омбор номи (seed) - ҳужжат сатрлари шунга ёзилади. */
+    /** Йил бошида банкка киритиладиган устав капитали - шусиз биринчи
+     * ойларда банк қолдиғи манфийга тушиб, dashboard хунук кўринарди. */
+    private static final BigDecimal OPENING_CAPITAL = new BigDecimal("300000000");
+
+    /** Асосий (марказий) омбор номи - Liquibase seed'дан келади. */
     private static final String MAIN_WAREHOUSE = "Асосий омбор";
 
-    /** Иккинчи омбор - multi-warehouse (QBO'дан фарқимиз) кўрингани учун. */
-    private static final String SHOP_WAREHOUSE = "Чилонзор дўкони";
+    /** Қўшимча омборлар: ном ва код. Кўп-омбор (QBO'дан фарқимиз)
+     * қолдиқ ҳисоботида ва кўчириш актларида кўрингани учун. */
+    private static final List<String[]> EXTRA_WAREHOUSES = List.of(
+            new String[]{"Чилонзор дўкони", "CHIL"},
+            new String[]{"Юнусобод дўкони", "YUN"},
+            new String[]{"Сергели омбори", "SER"},
+            new String[]{"Мирзо Улуғбек дўкони", "MIRZO"},
+            new String[]{"Транзит омбори", "TRANS"});
 
     /** Home валютадаги банк счёти номи (default chart). */
     private static final String UZS_BANK = "Банк ҳисобварағи";
 
-    /** USD банк счёти номи - чет валюта тушуми фақат шунга тушади (BR-RCPT-002). */
+    /** USD банк счёти номи - чет валюта тўлови фақат шунга тушади (BR-RCPT-002). */
     private static final String USD_BANK = "Валюта ҳисобварағи (USD)";
 
-    /** Касса счёти номи - ўтказма манзили. */
+    /** Касса счёти номи - банкдан ўтказма манзили. */
     private static final String CASH_ACCOUNT = "Касса";
 
     /** Стандарт ҚҚС ставкаси коди (032-tax seed). */
     private static final String VAT_CODE = "QQS12";
 
-    /** Компания номи ва home валютаси - демо санаси компания минтақасида олинади. */
+    /** Ой номлари (messages.properties'даги month.N билан бир хил) -
+     * ҳужжат изоҳларида «Январь партияси» каби ёзув учун. */
+    private static final String[] MONTHS = {
+            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+            "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+
+    /** Мижоз номлари - реалистик ўзбек ташкилий-ҳуқуқий шакллари
+     * (МЧЖ/ЯТТ/ХК) ва чет эл харидорлари. Индекс {@link #USD_CUSTOMERS}
+     * билан боғланади. */
+    private static final List<String> CUSTOMER_NAMES = List.of(
+            "«Баркамол Савдо» МЧЖ", "«Наврўз Маркет» МЧЖ", "ЯТТ «Азизов Шерзод»",
+            "«Тошкент Техно Сервис» МЧЖ", "«Зарафшон Логистика» МЧЖ",
+            "«Олтин Водий» МЧЖ", "«Ситора Трейд» МЧЖ", "ЯТТ «Каримова Дилноза»",
+            "«Мега Офис» МЧЖ", "«Соҳибкор Бизнес» МЧЖ", "«Ипак Йўли Савдо» МЧЖ",
+            "«Нурафшон Групп» МЧЖ", "ХК «Тошкент Дон Маҳсулотлари»",
+            "«Азия Компьютер» МЧЖ", "ЯТТ «Раҳимов Бахтиёр»", "«Юксалиш Қурилиш» МЧЖ",
+            "«Самарқанд Савдо Уйи» МЧЖ", "«Бухоро Текстиль» МЧЖ", "«Фарғона Агро» МЧЖ",
+            "«Наманган Мебель» МЧЖ", "ЯТТ «Юсупов Жасур»", "«Андижон Авто Сервис» МЧЖ",
+            "«Қарши Нон» МЧЖ", "«Нукус Балиқ» МЧЖ", "«Термиз Транс» МЧЖ",
+            "ХК «Ўзбек Темир Йўл Сервис»", "Global Trade LLC", "Silk Road Partners LLC",
+            "Astana Digital LLP", "«Жиззах Пластик» МЧЖ");
+
+    /** USD валютали мижозлар индекслари ({@link #CUSTOMER_NAMES} ичида) -
+     * уларнинг ҳужжатлари чет валютада ёзилади (валюта КОНТАКТдан келади). */
+    private static final Set<Integer> USD_CUSTOMERS = Set.of(26, 27, 28);
+
+    /** Етказувчи номлари. Индекс {@link #USD_VENDORS} билан боғланади. */
+    private static final List<String> VENDOR_NAMES = List.of(
+            "«Ориент Электроникс» МЧЖ", "«Пейпер Плюс» МЧЖ", "ЯТТ «Каримов Транс»",
+            "«Техно Импорт» МЧЖ", "«Офис Мастер» МЧЖ", "«Компьютер Ленд» МЧЖ",
+            "«Марказий Логистика» МЧЖ", "ХК «Тошкент Таъминот»", "«Сифат Картридж» МЧЖ",
+            "«Тошкент Кабель» МЧЖ", "ЯТТ «Собиров Фарҳод»", "«Ситиком Тармоқ» МЧЖ",
+            "«Ал-Аҳир Таъминот» МЧЖ", "«Инфо Систем» МЧЖ", "«Гулистон Мебель» МЧЖ",
+            "«Замин Реклама» МЧЖ", "Sunrise Electronics Ltd", "Shenzhen TechPro Co Ltd",
+            "Almaty Office Supply LLP", "«Ободон Сервис» МЧЖ");
+
+    /** USD валютали етказувчилар индекслари - импорт харидлари шулардан. */
+    private static final Set<Integer> USD_VENDORS = Set.of(16, 17, 18);
+
+    /** Item категориялари - каталог филтри ва ҳисоботларда гуруҳлаш учун. */
+    private static final List<String> CATEGORIES = List.of(
+            "Компьютер техникаси", "Оргтехника", "Аксессуарлар",
+            "Сарф материаллар", "Хизматлар");
+
+    /**
+     * Каталог қаторининг таърифи - {@link #seedItems} шу массив
+     * бўйлаб айланиб item яратади (қўлда 20 та чақирув ёзилмасин).
+     *
+     * @param name       каталогдаги ном (unique - BR-ITM-002)
+     * @param sku        артикул (unique - BR-ITM-003)
+     * @param category   категория номи ({@link #CATEGORIES} ичидан)
+     * @param inventory  омбор товарими (false - хизмат)
+     * @param salesPrice сотув нархи, home валютада (сўм)
+     * @param cost       харид таннархи (хизматда null)
+     * @param unit       ўлчов бирлиги номи (seed бирликлардан)
+     */
+    private record ItemSpec(String name, String sku, String category, boolean inventory,
+                            String salesPrice, String cost, String unit) { }
+
+    /** Товар ва хизмат каталогининг тўлиқ таърифи (16 товар + 4 хизмат). */
+    private static final List<ItemSpec> ITEM_SPECS = List.of(
+            new ItemSpec("Ноутбук Lenovo ThinkPad E14", "NB-E14", "Компьютер техникаси",
+                    true, "12500000", "9800000", "дона"),
+            new ItemSpec("Ноутбук HP ProBook 450 G9", "NB-PB450", "Компьютер техникаси",
+                    true, "13900000", "10900000", "дона"),
+            new ItemSpec("Компьютер Dell OptiPlex 3000", "PC-OP3000", "Компьютер техникаси",
+                    true, "9200000", "7100000", "дона"),
+            new ItemSpec("Монитор Dell P2422H 24 дюйм", "MN-P2422", "Компьютер техникаси",
+                    true, "3100000", "2350000", "дона"),
+            new ItemSpec("Монитор LG 27UP550 27 дюйм", "MN-27UP", "Компьютер техникаси",
+                    true, "4650000", "3600000", "дона"),
+            new ItemSpec("Принтер HP LaserJet M404dn", "PR-M404", "Оргтехника",
+                    true, "4200000", "3250000", "дона"),
+            new ItemSpec("МФУ Canon i-SENSYS MF443dw", "PR-MF443", "Оргтехника",
+                    true, "5800000", "4500000", "дона"),
+            new ItemSpec("Сканер Epson Perfection V39", "SC-V39", "Оргтехника",
+                    true, "1650000", "1200000", "дона"),
+            new ItemSpec("Проектор Epson EB-X06", "PJ-EBX06", "Оргтехника",
+                    true, "7100000", "5500000", "дона"),
+            new ItemSpec("Клавиатура ва сичқонча тўплами Logitech MK270", "AC-MK270",
+                    "Аксессуарлар", true, "480000", "340000", "дона"),
+            new ItemSpec("Wi-Fi роутер TP-Link Archer C6", "AC-ARC6", "Аксессуарлар",
+                    true, "690000", "495000", "дона"),
+            new ItemSpec("USB флеш Kingston 64GB", "AC-KG64", "Аксессуарлар",
+                    true, "125000", "90000", "дона"),
+            new ItemSpec("Ташқи диск Seagate 1TB", "AC-ST1TB", "Аксессуарлар",
+                    true, "1050000", "780000", "дона"),
+            new ItemSpec("Тармоқ кабели UTP cat.6", "AC-UTP6", "Аксессуарлар",
+                    true, "14000", "9500", "метр"),
+            new ItemSpec("Офис қоғози A4 (500 варақ)", "SP-A4", "Сарф материаллар",
+                    true, "65000", "45000", "дона"),
+            new ItemSpec("Тонер картриж HP CF259A", "SP-CF259", "Сарф материаллар",
+                    true, "580000", "420000", "дона"),
+            new ItemSpec("Етказиб бериш хизмати", "SRV-DLV", "Хизматлар",
+                    false, "350000", null, "дона"),
+            new ItemSpec("Ўрнатиш ва созлаш", "SRV-INST", "Хизматлар",
+                    false, "800000", null, "дона"),
+            new ItemSpec("IT консультация", "SRV-CONS", "Хизматлар",
+                    false, "450000", null, "соат"),
+            new ItemSpec("Кафолатли техник хизмат (ойлик)", "SRV-MAINT", "Хизматлар",
+                    false, "1200000", null, "дона"));
+
+    /** Компания номи, минтақаси ва home валютаси. */
     private final CompanySettingsService settingsService;
 
     /** Счётлар режаси - бўшлик гарови ва счёт id'лари (repo эмас, қоида №6). */
     private final AccountService accountService;
 
-    /** UOM гуруҳлари - товар бирликлари учун. */
+    /** UOM гуруҳлари ва бирлик id'лари. */
     private final UnitService unitService;
 
     /** ҚҚС ставкаси id'си - ҳужжат сатрларига қўйилади. */
@@ -128,11 +246,14 @@ public class DemoDataSeeder implements ApplicationRunner {
     /** Тўлов шартлари (Net 15/30) - контакт due date'лари учун. */
     private final PaymentTermService paymentTermService;
 
-    /** Омбор каталоги - иккинчи омбор шу орқали яратилади. */
+    /** Омбор каталоги - қўшимча омборлар шу орқали яратилади. */
     private final WarehouseService warehouseService;
 
     /** Мижоз/етказувчи каталоги. */
     private final ContactService contactService;
+
+    /** Item категориялари каталоги. */
+    private final ItemCategoryService itemCategoryService;
 
     /** Товар ва хизмат каталоги. */
     private final ItemService itemService;
@@ -149,38 +270,53 @@ public class DemoDataSeeder implements ApplicationRunner {
     /** Етказувчига тўловлар (AP ёпилиши). */
     private final BillPaymentService billPaymentService;
 
-    /** Банк харажатлари ва ўтказма. */
+    /** Банк харажатлари, кирим ва ўтказма. */
     private final BankTransactionService bankService;
 
-    /** Омбор актлари (кўчириш, инвентаризация). */
+    /** Омбор актлари (кўчириш, инвентаризация) ва қолдиқ сўрови. */
     private final InventoryService inventoryService;
 
     /**
-     * Демо маълумотнинг барча ясагич методлари ишлатадиган тайёр
-     * id'лар: каталог элементлари бир марта яратилиб шу ерда сақланади,
-     * кейинги қадамлар (ҳужжатлар) уларни номли калит билан олади -
-     * ҳар методга ўнлаб параметр узатилмасин.
+     * Ҳужжат ясагичлар ишлатадиган тайёр id'лар: каталог бир марта
+     * яратилиб шу ерда сақланади, кейинги қадамлар (ҳужжатлар) уларни
+     * шу record'дан олади - ҳар методга ўнлаб параметр узатилмасин.
      *
-     * @param customers мижозлар: калит → id
-     * @param vendors   етказувчилар: калит → id
-     * @param items     товар/хизматлар: калит → id
-     * @param mainWarehouse асосий омбор id'си
-     * @param shopWarehouse дўкон омбори id'си
-     * @param uzsBank   home валютали банк счёти id'си
-     * @param usdBank   USD банк счёти id'си
-     * @param cash      касса счёти id'си
-     * @param vatRate   ҚҚС 12% ставкаси id'си (топилмаса null - солиқсиз)
+     * @param customers  мижоз id'лари, {@link #CUSTOMER_NAMES} тартибида
+     * @param vendors    етказувчи id'лари, {@link #VENDOR_NAMES} тартибида
+     * @param foreign    чет валютали контактлар id'лари (тез текшириш учун)
+     * @param goods      омбор товарлари id'лари (каталог тартибида)
+     * @param services   хизматлар id'лари
+     * @param salesPrice item → базавий сотув нархи (home валютада)
+     * @param cost       item → базавий харид таннархи (home валютада)
+     * @param warehouses омбор id'лари; 0-индекс - марказий омбор
+     * @param uzsBank    home валютали банк счёти
+     * @param usdBank    USD банк счёти
+     * @param cash       касса счёти
+     * @param capital    устав капитали счёти (йил бошидаги кирим манбаси)
+     * @param vatRate    ҚҚС 12% ставкаси (топилмаса null - солиқсиз демо)
      */
-    private record Catalog(Map<String, UUID> customers, Map<String, UUID> vendors,
-                           Map<String, UUID> items, UUID mainWarehouse,
-                           UUID shopWarehouse, UUID uzsBank, UUID usdBank,
-                           UUID cash, UUID vatRate) { }
+    private record Catalog(List<UUID> customers, List<UUID> vendors, Set<UUID> foreign,
+                           List<UUID> goods, List<UUID> services,
+                           Map<UUID, BigDecimal> salesPrice, Map<UUID, BigDecimal> cost,
+                           List<UUID> warehouses, UUID uzsBank, UUID usdBank,
+                           UUID cash, UUID capital, UUID vatRate) { }
 
     /**
-     * Демо базани бир марта тўлдиради. Ҳар қадам ўз service'ининг
-     * транзакциясида кетади - оралиқ хато бўлса аввалги қадамлар
-     * базада қолади, лекин ҳужжат оқими шундай қурилганки, кейинги
-     * қадам аввалгисига таянади (bill'сиз omborда товар бўлмайди).
+     * Яратилган ҳужжатнинг тўлов қадамига керакли қисқа маълумоти -
+     * тўлов босқичи entity юкламасин (санадан «ёши», контактдан
+     * тўловчи, валютадан банк счёти танланади).
+     *
+     * @param id        ҳужжат id'си
+     * @param contactId мижоз ёки етказувчи id'си
+     * @param date      ҳужжат санаси
+     * @param foreign   чет валютадами (USD банк счёти талаб қилинади)
+     */
+    private record Doc(UUID id, UUID contactId, LocalDate date, boolean foreign) { }
+
+    /**
+     * Демо базани бир марта тўлдиради: каталоглар → йил бошидан
+     * бугунгача ойма-ой ҳужжатлар → тўловлар → омбор актлари.
+     * Ҳар қадам ўз service'ининг транзакциясида кетади.
      */
     @Override
     public void run(ApplicationArguments args) {
@@ -191,18 +327,33 @@ public class DemoDataSeeder implements ApplicationRunner {
         ensureCatalogs();
         renameCompany();
         Catalog catalog = seedCatalog();
-        List<UUID> bills = seedBills(catalog);
-        List<UUID> invoices = seedInvoices(catalog);
-        seedInvoicePayments(catalog, invoices);
-        seedBillPayments(catalog, bills);
-        seedExpenses(catalog);
-        seedBankTransfer(catalog);
-        seedStockDocuments(catalog);
-        log.info("Demo маълумот тайёр: {} контакт, {} товар/хизмат, {} bill, "
-                        + "{} invoice, 4 тушум, 3 тўлов, 4 харажат, 1 ўтказма, "
-                        + "1 омбор кўчириш, 1 инвентаризация акти",
+
+        seedOpeningCapital(catalog);
+        List<Doc> bills = new ArrayList<>();
+        List<Doc> invoices = new ArrayList<>();
+        int expenses = 0;
+        int stockTransfers = 0;
+        int bankTransfers = 0;
+        int lastMonth = today().getMonthValue();
+        for (int month = 1; month <= lastMonth; month++) {
+            bills.addAll(seedMonthBills(catalog, month));
+            invoices.addAll(seedMonthInvoices(catalog, month));
+            expenses += seedMonthExpenses(catalog, month);
+            stockTransfers += seedMonthStockTransfer(catalog, month);
+            bankTransfers += seedMonthBankTransfer(catalog, month);
+        }
+        int receipts = seedInvoicePayments(catalog, invoices);
+        int payments = seedBillPayments(catalog, bills);
+        int adjustments = seedStockAdjustment(catalog);
+
+        log.info("Demo маълумот тайёр ({} - {} ойлари): {} контакт, {} товар/хизмат, "
+                        + "{} омбор, {} bill, {} invoice, {} тушум, {} тўлов, "
+                        + "{} харажат, {} банк ўтказма, {} омбор кўчириш, {} акт",
+                MONTHS[0], MONTHS[lastMonth - 1],
                 catalog.customers().size() + catalog.vendors().size(),
-                catalog.items().size(), bills.size(), invoices.size());
+                catalog.goods().size() + catalog.services().size(),
+                catalog.warehouses().size(), bills.size(), invoices.size(),
+                receipts, payments, expenses, bankTransfers, stockTransfers, adjustments);
     }
 
     /**
@@ -247,23 +398,29 @@ public class DemoDataSeeder implements ApplicationRunner {
 
     // ---- каталоглар ----
 
-    /**
-     * Барча каталог ёзувларини (омбор, контакт, товар/хизмат) яратиб
-     * ҳужжат қадамлари учун id харитасини қайтаради.
-     */
+    /** Барча каталог ёзувларини яратиб ҳужжат қадамлари учун id'ларни қайтаради. */
     private Catalog seedCatalog() {
         Map<String, UUID> accounts = accountIdsByName();
-        UUID mainWarehouse = warehouseIdByName(MAIN_WAREHOUSE);
-        UUID shopWarehouse = ensureShopWarehouse();
         UUID vatRate = vatRateId();
-        Catalog catalog = new Catalog(seedCustomers(), seedVendors(),
-                seedItems(vatRate), mainWarehouse, shopWarehouse,
-                accounts.get(UZS_BANK), accounts.get(USD_BANK),
-                accounts.get(CASH_ACCOUNT), vatRate);
-        log.info("Demo каталог: {} мижоз, {} етказувчи, {} товар/хизмат",
-                catalog.customers().size(), catalog.vendors().size(),
-                catalog.items().size());
-        return catalog;
+        List<UUID> warehouses = seedWarehouses();
+        Map<String, UUID> categories = seedCategories();
+        Set<UUID> foreign = new HashSet<>();
+        List<UUID> customers = seedContacts(ContactType.CUSTOMER, CUSTOMER_NAMES,
+                USD_CUSTOMERS, foreign);
+        List<UUID> vendors = seedContacts(ContactType.VENDOR, VENDOR_NAMES,
+                USD_VENDORS, foreign);
+        List<UUID> goods = new ArrayList<>();
+        List<UUID> services = new ArrayList<>();
+        Map<UUID, BigDecimal> salesPrice = new HashMap<>();
+        Map<UUID, BigDecimal> cost = new HashMap<>();
+        seedItems(categories, vatRate, goods, services, salesPrice, cost);
+        log.info("Demo каталог: {} мижоз, {} етказувчи, {} товар, {} хизмат, {} омбор",
+                customers.size(), vendors.size(), goods.size(), services.size(),
+                warehouses.size());
+        return new Catalog(customers, vendors, foreign, goods, services,
+                salesPrice, cost, warehouses, accounts.get(UZS_BANK),
+                accounts.get(USD_BANK), accounts.get(CASH_ACCOUNT),
+                accountIdByDetail(AccountDetailType.COMMON_STOCK), vatRate);
     }
 
     /**
@@ -279,25 +436,488 @@ public class DemoDataSeeder implements ApplicationRunner {
         return byName;
     }
 
-    /** Омборни номи бўйича топади (seed «Асосий омбор» доим мавжуд). */
-    private UUID warehouseIdByName(String name) {
-        return warehouseService.all().stream()
-                .filter(w -> name.equals(w.getName()))
-                .map(w -> w.getId())
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Омбор топилмади: " + name));
+    /**
+     * Омборлар: seed «Асосий омбор» биринчи (марказий), кейин дўкон/
+     * транзит омборлари. Мавжудлари қайта яратилмайди - рўйхат
+     * тартиби ҳужжат ясагичлар учун барқарор индекс беради.
+     */
+    private List<UUID> seedWarehouses() {
+        Map<String, UUID> existing = new HashMap<>();
+        warehouseService.all().forEach(w -> existing.put(w.getName(), w.getId()));
+        List<UUID> warehouses = new ArrayList<>();
+        warehouses.add(existing.get(MAIN_WAREHOUSE));
+        for (String[] spec : EXTRA_WAREHOUSES) {
+            UUID id = existing.get(spec[0]);
+            warehouses.add(id != null ? id
+                    : warehouseService.create(spec[0], spec[1]).getId());
+        }
+        return warehouses;
+    }
+
+    /** Item категориялари: ном → id (каталог экрани гуруҳлари учун). */
+    private Map<String, UUID> seedCategories() {
+        Map<String, UUID> categories = new HashMap<>();
+        for (String name : CATEGORIES) {
+            categories.put(name, itemCategoryService.create(name, null).getId());
+        }
+        return categories;
     }
 
     /**
-     * Дўкон омборини яратади (мавжуд бўлса ўшани олади) - multi-warehouse
-     * қолдиқ ҳисоботи иккита омборни кўрсатсин.
+     * Битта тур бўйича контактларни массив бўйлаб яратади: ИНН,
+     * телефон, email ва тўлов шарти индексдан детерминистик
+     * ҳосил қилинади (қўлда 50 та чақирув ёзилмасин).
+     *
+     * @param type       CUSTOMER ёки VENDOR
+     * @param names      номлар массиви
+     * @param usdIndexes чет валютали контактлар индекслари
+     * @param foreign    чет валютали id'лар шу тўпламга қўшилади (out-параметр)
+     * @return яратилган id'лар, {@code names} билан бир хил тартибда
      */
-    private UUID ensureShopWarehouse() {
-        return warehouseService.all().stream()
-                .filter(w -> SHOP_WAREHOUSE.equals(w.getName()))
-                .map(w -> w.getId())
-                .findFirst()
-                .orElseGet(() -> warehouseService.create(SHOP_WAREHOUSE, "SHOP").getId());
+    private List<UUID> seedContacts(ContactType type, List<String> names,
+                                    Set<Integer> usdIndexes, Set<UUID> foreign) {
+        boolean customer = type == ContactType.CUSTOMER;
+        List<UUID> ids = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            boolean usd = usdIndexes.contains(i);
+            // Лимит фақат мижозда (BR-CON-006) ва ДОИМ мижоз валютасида
+            BigDecimal creditLimit = !customer ? null
+                    : usd ? new BigDecimal(5000 + i * 500L)
+                    : new BigDecimal((20 + i * 5L) * 1_000_000L);
+            UUID id = contactService.create(type, new ContactService.ContactData(
+                    names.get(i), names.get(i), null, null,
+                    (customer ? "mijoz" : "vendor") + (i + 1) + "@demo.uz",
+                    String.format("+998 71 %03d-%02d-%02d", 200 + i, 10 + i % 80, 20 + i % 70),
+                    usd ? "USD" : null, rotatingTerm(i),
+                    String.valueOf((customer ? 300_000_000L : 400_000_000L) + i * 1237L),
+                    creditLimit, null)).getId();
+            ids.add(id);
+            if (usd) {
+                foreign.add(id);
+            }
+        }
+        return ids;
+    }
+
+    /** Индекс бўйича тўлов шарти: Net 30 / Net 15 / тўлов дарҳол (айланма). */
+    private UUID rotatingTerm(int index) {
+        return paymentTermByDays(switch (index % 3) {
+            case 0 -> 30;
+            case 1 -> 15;
+            default -> 0;
+        });
+    }
+
+    /**
+     * Каталогни {@link #ITEM_SPECS} массиви бўйлаб яратади: омбор
+     * товарларига ҚҚС default'и қўйилади, хизматларда йўқ - демода
+     * солиқли ва солиқсиз сатрлар аралаш кўринсин.
+     *
+     * @param categories категория номи → id
+     * @param vatRate    ҚҚС ставкаси id'си (null - солиқсиз)
+     * @param goods      яратилган товар id'лари шунга тўлдирилади (out)
+     * @param services   яратилган хизмат id'лари шунга тўлдирилади (out)
+     * @param salesPrice item → сотув нархи харитаси (out)
+     * @param cost       item → таннарх харитаси (out)
+     */
+    private void seedItems(Map<String, UUID> categories, UUID vatRate,
+                           List<UUID> goods, List<UUID> services,
+                           Map<UUID, BigDecimal> salesPrice, Map<UUID, BigDecimal> cost) {
+        ItemService.DefaultAccounts goodsAccounts = itemService.defaultsFor(ItemType.INVENTORY);
+        ItemService.DefaultAccounts serviceAccounts = itemService.defaultsFor(ItemType.SERVICE);
+        Map<String, UUID> units = new HashMap<>();
+        unitService.activeUnits().forEach(u -> units.put(u.getName(), u.getId()));
+        for (ItemSpec spec : ITEM_SPECS) {
+            ItemType type = spec.inventory() ? ItemType.INVENTORY : ItemType.SERVICE;
+            ItemService.DefaultAccounts accounts = spec.inventory()
+                    ? goodsAccounts : serviceAccounts;
+            UUID id = itemService.create(type, new ItemService.ItemData(
+                    spec.name(), spec.sku(), categories.get(spec.category()),
+                    units.get(spec.unit()), new BigDecimal(spec.salesPrice()), null,
+                    accounts.income(),
+                    spec.cost() == null ? null : new BigDecimal(spec.cost()), null,
+                    accounts.expense(),
+                    spec.inventory() ? accounts.inventoryAsset() : null,
+                    spec.inventory() ? new BigDecimal("5") : null,
+                    null, null,
+                    spec.inventory() ? vatRate : null,
+                    spec.inventory() ? vatRate : null)).getId();
+            salesPrice.put(id, new BigDecimal(spec.salesPrice()));
+            if (spec.inventory()) {
+                goods.add(id);
+                cost.put(id, new BigDecimal(spec.cost()));
+            } else {
+                services.add(id);
+            }
+        }
+    }
+
+    // ---- ойма-ой ҳужжатлар ----
+
+    /**
+     * Йил бошида устав капиталини банкка киритади (QBO Bank Deposit
+     * оқими). Шусиз биринчи ойларда харид тўловлари тушумдан олдин
+     * кетиб банк қолдиғи манфийга тушар, dashboard хунук кўринарди.
+     */
+    private void seedOpeningCapital(Catalog catalog) {
+        bankService.deposit(new BankTransactionService.TxnData(catalog.uzsBank(),
+                dayOf(1, 2), null, null, "Йил бошида устав капитали киритилди",
+                List.of(new BankTransactionService.LineData(catalog.capital(),
+                        OPENING_CAPITAL, null, "Таъсисчи ҳиссаси"))));
+    }
+
+    /**
+     * Ойнинг харидлари: ҳар ойда марказий омборга битта катта партия,
+     * жуфт ойларда дўкон омборига қўшимча партия, март ва июлда
+     * импорт (USD, транзит омборига). Ҳар учинчи ойда партияга ташиш
+     * харажати EXPENSE сатр билан қўшилади - bill фақат товардан
+     * иборат эмаслиги кўрсин.
+     */
+    private List<Doc> seedMonthBills(Catalog catalog, int month) {
+        List<Doc> bills = new ArrayList<>();
+        bills.add(postBill(catalog, catalog.vendors().get(month % 6), dayOf(month, 8),
+                catalog.warehouses().get(0), month, 3, month * 2,
+                month % 3 == 0, MONTHS[month - 1] + " ойи асосий партияси"));
+        if (month % 2 == 0) {
+            // Дўкон омборлари (1..4) навбат билан таъминланади - йил
+            // давомида ҳар бирида қолдиқ ва ҳаракат бўлсин
+            bills.add(postBill(catalog, catalog.vendors().get(6 + month % 6), dayOf(month, 19),
+                    catalog.warehouses().get(1 + (month / 2 - 1) % 4), month, 3, month * 2 + 5,
+                    false, MONTHS[month - 1] + " ойи дўкон таъминоти"));
+        }
+        if (month == 3 || month == 7) {
+            bills.add(postBill(catalog, catalog.vendors().get(16 + month % 3), dayOf(month, 22),
+                    catalog.warehouses().get(5), month, 2, month * 3,
+                    false, "Импорт партияси (транзит омбори)"));
+        }
+        return bills;
+    }
+
+    /**
+     * Битта bill: {@code lineCount} та товар сатри айланма индекс билан
+     * танланади, ҳаммаси битта омборга киради; ихтиёрий ташиш харажати
+     * сатри қўшилади. Валюта КОНТАКТдан келади (BR-BILL-013), чет
+     * валютада нарх курс бўйича USD'га айлантирилади.
+     */
+    private Doc postBill(Catalog catalog, UUID vendorId, LocalDate date, UUID warehouseId,
+                         int month, int lineCount, int itemOffset,
+                         boolean withShipping, String memo) {
+        boolean foreign = catalog.foreign().contains(vendorId);
+        List<BillService.LineData> lines = new ArrayList<>();
+        for (int i = 0; i < lineCount; i++) {
+            UUID itemId = catalog.goods().get((itemOffset + i) % catalog.goods().size());
+            BigDecimal qty = BigDecimal.valueOf(bulkQuantity(catalog, itemId, month));
+            lines.add(new BillService.LineData(BillLineType.ITEM, itemId, warehouseId,
+                    qty, priceOf(catalog.cost().get(itemId), month, foreign),
+                    null, null, null, null, null,
+                    foreign ? null : catalog.vatRate(), null, null));
+        }
+        if (withShipping) {
+            lines.add(new BillService.LineData(BillLineType.EXPENSE, null, null, null, null,
+                    accountIdByDetail(AccountDetailType.SHIPPING_FREIGHT_DELIVERY_COS),
+                    new BigDecimal(900_000 + month * 50_000L), "Партияни олиб келиш"));
+        }
+        UUID id = billService.createDraft(new BillService.BillData(vendorId,
+                "СФ-" + (1000 + month * 7 + lines.size()), date, null,
+                foreign ? "USD" : null, foreign ? USD_RATE : null, memo, lines)).getId();
+        billService.post(id);
+        return new Doc(id, vendorId, date, foreign);
+    }
+
+    /**
+     * Партия миқдори миқдордан эмас, СУММАдан келиб чиқади: сатрнинг
+     * тахминий қиймати белгиланиб, миқдор таннархга бўлиб олинади
+     * (ой билан бирга ўсади). Шунда арзон сарф материал кўп, қиммат
+     * техника кам олинади ва ҳар bill'нинг суммаси реал бўлади -
+     * қатъий миқдор ишлатилса қиммат товарлар омборни миллиардлаб
+     * тўлдириб, банк қолдиғи манфийга тушиб кетар эди.
+     */
+    private int bulkQuantity(Catalog catalog, UUID itemId, int month) {
+        BigDecimal target = new BigDecimal(9_000_000 + month * 400_000L);
+        int qty = target.divide(catalog.cost().get(itemId), 0, RoundingMode.HALF_UP)
+                .intValue();
+        return Math.max(2, qty);
+    }
+
+    /**
+     * Ойнинг сотувлари: сони ой билан ўсади (январда 2 та, ёзда 6
+     * тагача) - dashboard графигида тренд кўринсин. Мижоз каталог
+     * бўйлаб айланиб танланади, шунда 30 мижознинг деярли ҳаммасида
+     * ҳужжат бўлади.
+     */
+    private List<Doc> seedMonthInvoices(Catalog catalog, int month) {
+        int count = 2 + month / 2;
+        int[] days = {5, 11, 17, 22, 26, 29};
+        List<Doc> invoices = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            UUID customerId = catalog.customers().get(
+                    (month * 4 + i) % catalog.customers().size());
+            invoices.add(postInvoice(catalog, customerId, dayOf(month, days[i % days.length]),
+                    month, month * 3 + i * 2, i, MONTHS[month - 1] + " ойи сотуви"));
+        }
+        return invoices;
+    }
+
+    /**
+     * Битта сотув ҳужжати: 2 та товар сатри (қолдиғи етарли омбордан)
+     * + 1 та хизмат сатри. Товар қолдиғи ҳеч қайси омборда етмаса сатр
+     * ўтказиб юборилади - демо BR-SINV-004 га урилмасин; ҳужжат камида
+     * хизмат сатри билан қолади (сатрсиз invoice бўлмайди).
+     */
+    private Doc postInvoice(Catalog catalog, UUID customerId, LocalDate date, int month,
+                            int itemOffset, int sequence, String memo) {
+        boolean foreign = catalog.foreign().contains(customerId);
+        List<InvoiceService.LineData> lines = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            UUID itemId = catalog.goods().get((itemOffset + i) % catalog.goods().size());
+            BigDecimal qty = BigDecimal.valueOf(saleQuantity(catalog, itemId, i));
+            UUID warehouseId = warehouseWithStock(catalog, sequence + i, itemId, qty);
+            if (warehouseId == null) {
+                continue; // қолдиқ йўқ - сатрни ўтказиб юборамиз
+            }
+            lines.add(new InvoiceService.LineData(itemId, warehouseId, qty,
+                    priceOf(catalog.salesPrice().get(itemId), month, foreign), null, null,
+                    null, foreign ? null : catalog.vatRate(), null, null));
+        }
+        UUID serviceId = catalog.services().get(sequence % catalog.services().size());
+        lines.add(new InvoiceService.LineData(serviceId, null, BigDecimal.ONE,
+                priceOf(catalog.salesPrice().get(serviceId), month, foreign), null, null,
+                null, null, null, null));
+        UUID id = invoiceService.createDraft(new InvoiceService.InvoiceData(customerId,
+                date, null, foreign ? "USD" : null, foreign ? USD_RATE : null,
+                memo, lines)).getId();
+        invoiceService.post(id);
+        return new Doc(id, customerId, date, foreign);
+    }
+
+    /**
+     * Сотув миқдори ҳам сатр СУММАСИдан келиб чиқади (харид билан бир
+     * хил ёндашув): сотилган ҳажм харид ҳажмига мутаносиб бўлади,
+     * шунда омбор ҳам, AR ҳам, P&amp;L ҳам реал нисбатда чиқади.
+     */
+    private int saleQuantity(Catalog catalog, UUID itemId, int lineNo) {
+        BigDecimal target = new BigDecimal(5_500_000 + lineNo * 2_000_000L);
+        int qty = target.divide(catalog.salesPrice().get(itemId), 0, RoundingMode.HALF_UP)
+                .intValue();
+        return Math.max(1, qty);
+    }
+
+    /**
+     * Товар учун қолдиғи етарли омборни танлайди. Қидирув
+     * {@code startIndex} дан бошланади - шунда турли ҳужжатлар турли
+     * омбордан сотади ва кўп-омбор кесими ҳисоботда кўринади.
+     *
+     * @return омбор id'си ёки null (ҳеч қаерда етарли қолдиқ йўқ)
+     */
+    private UUID warehouseWithStock(Catalog catalog, int startIndex, UUID itemId,
+                                    BigDecimal qty) {
+        List<UUID> warehouses = catalog.warehouses();
+        for (int k = 0; k < warehouses.size(); k++) {
+            UUID warehouseId = warehouses.get(Math.floorMod(startIndex + k, warehouses.size()));
+            if (inventoryService.quantityOnHand(itemId, warehouseId).compareTo(qty) >= 0) {
+                return warehouseId;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Ойнинг доимий харажатлари: ижара ва коммунал ҳар ойда, транспорт
+     * жуфт ойларда - P&amp;L да харажат тренди кўринсин.
+     *
+     * @return яратилган харажат сони
+     */
+    private int seedMonthExpenses(Catalog catalog, int month) {
+        expense(catalog, dayOf(month, 3), MONTHS[month - 1] + " ойи офис ижараси",
+                accountIdByDetail(AccountDetailType.RENT_OR_LEASE_OF_BUILDINGS),
+                new BigDecimal(4_500_000 + month * 60_000L), null);
+        // Коммунал қишда қиммат, ёзда арзон - реал мавсумийлик
+        long utilities = month <= 3 || month >= 11 ? 1_850_000 : 1_150_000;
+        expense(catalog, dayOf(month, 10), MONTHS[month - 1] + " ойи коммунал хизматлари",
+                accountIdByDetail(AccountDetailType.UTILITIES),
+                new BigDecimal(utilities), null);
+        if (month % 2 != 0) {
+            return 2;
+        }
+        UUID carrier = catalog.vendors().get(2); // ЯТТ «Каримов Транс»
+        expense(catalog, dayOf(month, 17), "Товар ташиш хизмати",
+                accountIdByDetail(AccountDetailType.SHIPPING_FREIGHT_DELIVERY_COS),
+                new BigDecimal(880_000 + month * 30_000L), carrier);
+        return 3;
+    }
+
+    /** Битта сатрли банк чиқими - харажат счёти Dt / банк Cr. */
+    private void expense(Catalog catalog, LocalDate date, String memo,
+                         UUID expenseAccountId, BigDecimal amount, UUID contactId) {
+        bankService.expense(new BankTransactionService.TxnData(catalog.uzsBank(), date,
+                null, contactId, memo, List.of(new BankTransactionService.LineData(
+                        expenseAccountId, amount, contactId, null))));
+    }
+
+    /**
+     * Омборлараро кўчириш акти - март, май ва июлда: марказий омбордан
+     * дўконга, майда эса транзит омборидан марказга. Қолдиғи етмаган
+     * сатр тушиб қолади, сатр умуман бўлмаса акт яратилмайди.
+     *
+     * @return яратилган акт сони (0 ёки 1)
+     */
+    private int seedMonthStockTransfer(Catalog catalog, int month) {
+        if (month != 3 && month != 5 && month != 7) {
+            return 0;
+        }
+        int from = month == 5 ? 5 : 0;
+        int to = month == 5 ? 0 : month == 3 ? 4 : 2;
+        UUID fromWarehouse = catalog.warehouses().get(from);
+        List<InventoryService.TransferLineData> lines = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            UUID itemId = catalog.goods().get((month * 2 + i) % catalog.goods().size());
+            BigDecimal qty = new BigDecimal("3");
+            if (inventoryService.quantityOnHand(itemId, fromWarehouse).compareTo(qty) >= 0) {
+                lines.add(new InventoryService.TransferLineData(itemId, qty, null));
+            }
+        }
+        if (lines.isEmpty()) {
+            return 0;
+        }
+        inventoryService.transferDocument(new InventoryService.DocumentTransferData(
+                fromWarehouse, catalog.warehouses().get(to), dayOf(month, 24),
+                "Дўкон витринасини тўлдириш", lines));
+        return 1;
+    }
+
+    /**
+     * Банк ўтказмалари: февралда валюта КОНВЕРСИЯСИ (сўмдан USD
+     * счётига - импорт тўловлари учун валюта харид қилинади, шунда
+     * USD счёт манфийга тушмайди ва ўтказманинг конверсия механикаси
+     * демода кўринади), апрель ва августда банкдан кассага оддий
+     * ўтказма.
+     *
+     * @return яратилган ўтказма сони
+     */
+    private int seedMonthBankTransfer(Catalog catalog, int month) {
+        int created = 0;
+        if (month == 2) {
+            // 5 000 USD × 12 600 = 63 000 000 сўм - иккала томон base'и
+            // тенг, шунинг учун курс фарқи сатри ёзилмайди
+            bankService.transfer(new BankTransactionService.TransferData(catalog.uzsBank(),
+                    catalog.usdBank(), dayOf(month, 6), new BigDecimal("63000000"), null,
+                    new BigDecimal("5000"), USD_RATE, "Импорт тўловлари учун валюта харид"));
+            created++;
+        }
+        if (month == 4 || month == 8) {
+            bankService.transfer(new BankTransactionService.TransferData(catalog.uzsBank(),
+                    catalog.cash(), dayOf(month, 14), new BigDecimal("9000000"), null,
+                    null, null, "Кассага кунлик эҳтиёж учун"));
+            created++;
+        }
+        return created;
+    }
+
+    // ---- тўловлар ----
+
+    /**
+     * Мижоз тушумлари: 2 ойдан эски invoice'лар ТЎЛИҚ, ўтган ойники
+     * ҚИСМАН (55%), жорий ойники умуман тўланмаган - AR aging'да
+     * «жорий», «муддати ўтган» ва «тўланган» уч ҳолат ҳам кўринсин.
+     * Чет валюта тушуми USD банк счётига ва ҳужжатдан фарқли курс
+     * билан тушади - realized курс фарқи проводкаси ҳосил бўлади.
+     *
+     * @return яратилган тушум сони
+     */
+    private int seedInvoicePayments(Catalog catalog, List<Doc> invoices) {
+        int current = today().getMonthValue();
+        int count = 0;
+        for (Doc doc : invoices) {
+            int age = current - doc.date().getMonthValue();
+            if (age <= 0) {
+                continue; // жорий ой - ҳали тўланмаган
+            }
+            BigDecimal balance = invoiceService.get(doc.id()).getBalanceDue();
+            BigDecimal amount = age == 1 ? part(balance, "0.55") : balance;
+            if (amount.signum() <= 0) {
+                continue;
+            }
+            invoicePaymentService.create(new InvoicePaymentService.PaymentData(
+                    doc.contactId(), clampToToday(doc.date().plusDays(age == 1 ? 14 : 21)),
+                    doc.foreign() ? catalog.usdBank() : catalog.uzsBank(),
+                    doc.foreign() ? "USD" : null,
+                    doc.foreign() ? USD_PAYMENT_RATE : null,
+                    amount, age == 1 ? "Қисман тўлов" : "Тўлиқ тўлов",
+                    List.of(new InvoicePaymentService.AllocationData(doc.id(), amount))));
+            count++;
+        }
+        return count;
+    }
+
+    /**
+     * Етказувчига тўловлар - тушумлар билан бир хил қоида (эскиси
+     * тўлиқ, ўтган ойники қисман, жорий ойники очиқ), шунда AP aging
+     * ҳам мазмунли чиқади.
+     *
+     * @return яратилган тўлов сони
+     */
+    private int seedBillPayments(Catalog catalog, List<Doc> bills) {
+        int current = today().getMonthValue();
+        int count = 0;
+        for (Doc doc : bills) {
+            int age = current - doc.date().getMonthValue();
+            if (age <= 0) {
+                continue;
+            }
+            BigDecimal balance = billService.get(doc.id()).getBalanceDue();
+            BigDecimal amount = age == 1 ? part(balance, "0.50") : balance;
+            if (amount.signum() <= 0) {
+                continue;
+            }
+            billPaymentService.create(new BillPaymentService.PaymentData(
+                    doc.contactId(), clampToToday(doc.date().plusDays(age == 1 ? 16 : 25)),
+                    doc.foreign() ? catalog.usdBank() : catalog.uzsBank(),
+                    doc.foreign() ? "USD" : null,
+                    doc.foreign() ? USD_PAYMENT_RATE : null,
+                    amount, age == 1 ? "Қисман тўлов" : "Тўлиқ тўлов",
+                    List.of(new BillPaymentService.AllocationData(doc.id(), amount))));
+            count++;
+        }
+        return count;
+    }
+
+    /**
+     * Инвентаризация акти: марказий омборда икки товар бўйича камомад
+     * қайд этилади (ҳужжатли Adjustment - актнинг ҳамма сатрига битта
+     * JE). Қолдиғи камида 5 бўлган товарлар танланади.
+     *
+     * @return яратилган акт сони (0 ёки 1)
+     */
+    private int seedStockAdjustment(Catalog catalog) {
+        UUID warehouse = catalog.warehouses().get(0);
+        List<InventoryService.AdjustLineData> lines = new ArrayList<>();
+        for (UUID itemId : catalog.goods()) {
+            if (lines.size() == 2) {
+                break;
+            }
+            BigDecimal onHand = inventoryService.quantityOnHand(itemId, warehouse);
+            if (onHand.compareTo(new BigDecimal("5")) >= 0) {
+                lines.add(new InventoryService.AdjustLineData(itemId,
+                        onHand.subtract(BigDecimal.ONE), null, "Ҳисобдаги фарқ"));
+            }
+        }
+        if (lines.isEmpty()) {
+            return 0;
+        }
+        inventoryService.adjustDocument(new InventoryService.DocumentAdjustData(
+                warehouse, today(), "Ойлик инвентаризация - камомад", lines));
+        return 1;
+    }
+
+    // ---- ёрдамчилар ----
+
+    /**
+     * Detail type бўйича ягона фаол postable счёт id'си - default
+     * chart'да бу турлар биттадан (CHECKING эмас!), шунинг учун
+     * тизим счёти резолвери ишлайди.
+     */
+    private UUID accountIdByDetail(AccountDetailType detailType) {
+        return accountService.requireSystemAccountId(detailType);
     }
 
     /** Стандарт ҚҚС ставкаси id'си; каталогда бўлмаса null (солиқсиз демо). */
@@ -318,419 +938,46 @@ public class DemoDataSeeder implements ApplicationRunner {
                 .orElse(null);
     }
 
-    /** Бирликни номи бўйича топади (дона/соат); топилмаса null - бирликсиз item. */
-    private UUID unitByName(String name) {
-        return unitService.activeUnits().stream()
-                .filter(unit -> name.equals(unit.getName()))
-                .map(unit -> unit.getId())
-                .findFirst()
-                .orElse(null);
+    /** Бугунги сана - компания минтақасида (темир қоида №12). */
+    private LocalDate today() {
+        return LocalDate.now(settingsService.zoneId());
     }
 
     /**
-     * 6 та мижоз: турли тўлов шарти ва credit limit билан, биттаси
-     * (Global Trade) USD валютали - multi-currency AR намойиши учун.
-     * Лимит доим МИЖОЗ валютасида (BR-CON-006 / creditCheck қоидаси).
+     * Ойнинг «нақшли» кунини ҳақиқий санага айлантиради. Тўлиқ ўтган
+     * ойларда кун ўзгармайди; ЖОРИЙ ойда эса ойнинг ўтган қисмига
+     * пропорционал сиқилади - демо ҳужжати келажак санада пайдо
+     * бўлмасин (ҳисоботлар «бугунгача» деб чегараланади).
      */
-    private Map<String, UUID> seedCustomers() {
-        UUID net15 = paymentTermByDays(15);
-        UUID net30 = paymentTermByDays(30);
-        UUID immediate = paymentTermByDays(0);
-        Map<String, UUID> customers = new HashMap<>();
-        customers.put("BARKAMOL", customer("«Баркамол Савдо» МЧЖ", "info@barkamol.uz",
-                "+998 71 200-14-25", null, net30, "302145678",
-                new BigDecimal("150000000")));
-        customers.put("NAVRUZ", customer("«Наврўз Маркет» МЧЖ", "savdo@navruzmarket.uz",
-                "+998 71 244-08-31", null, net15, "303871204",
-                new BigDecimal("80000000")));
-        customers.put("AZIZOV", customer("ЯТТ «Азизов Шерзод»", "sh.azizov@mail.uz",
-                "+998 90 331-77-14", null, immediate, "451209873",
-                new BigDecimal("25000000")));
-        customers.put("TEXNO", customer("«Тошкент Техно Сервис» МЧЖ", "office@ttservis.uz",
-                "+998 71 207-56-90", null, net30, "306554120",
-                new BigDecimal("120000000")));
-        customers.put("GLOBAL", customer("Global Trade LLC", "orders@globaltrade.com",
-                "+1 212 555-0148", "USD", net30, "771002456",
-                new BigDecimal("25000")));
-        customers.put("ZARAFSHON", customer("«Зарафшон Логистика» МЧЖ", "info@zarlog.uz",
-                "+998 66 233-19-02", null, net15, "208994512",
-                new BigDecimal("60000000")));
-        return customers;
+    private LocalDate dayOf(int month, int patternDay) {
+        LocalDate today = today();
+        YearMonth yearMonth = YearMonth.of(today.getYear(), month);
+        int length = yearMonth.lengthOfMonth();
+        int maxDay = month == today.getMonthValue() ? today.getDayOfMonth() : length;
+        int day = 1 + (patternDay - 1) * (maxDay - 1) / Math.max(1, length - 1);
+        return yearMonth.atDay(Math.min(Math.max(day, 1), maxDay));
     }
 
-    /** Битта мижоз ясагич - такрорланувчи ContactData қуришни қисқартиради. */
-    private UUID customer(String name, String email, String phone, String currency,
-                          UUID paymentTermId, String taxId, BigDecimal creditLimit) {
-        return contactService.create(ContactType.CUSTOMER, new ContactService.ContactData(
-                name, name, null, null, email, phone, currency, paymentTermId,
-                taxId, creditLimit, null)).getId();
+    /** Санани бугундан ошиб кетмайдиган қилади (тўлов саналари учун). */
+    private LocalDate clampToToday(LocalDate date) {
+        LocalDate today = today();
+        return date.isAfter(today) ? today : date;
     }
 
     /**
-     * 4 та етказувчи: техника, офис моллари, чет эл (USD) ва транспорт.
-     * Vendor'да credit limit бўлмайди (BR-CON-006 - фақат мижозники).
+     * Ҳужжат нархи: базавий нархга ой бўйича кичик ўсиш қўшилади
+     * (йил давомида нарх ўсиши P&amp;L трендида кўринсин), чет
+     * валютада эса курс бўйича USD'га айлантирилади.
      */
-    private Map<String, UUID> seedVendors() {
-        UUID net15 = paymentTermByDays(15);
-        UUID net30 = paymentTermByDays(30);
-        UUID immediate = paymentTermByDays(0);
-        Map<String, UUID> vendors = new HashMap<>();
-        vendors.put("ORIENT", vendor("«Ориент Электроникс» МЧЖ", "sales@orientel.uz",
-                "+998 71 150-22-40", null, net30, "301778452"));
-        vendors.put("PAPER", vendor("«Пейпер Плюс» МЧЖ", "zakaz@paperplus.uz",
-                "+998 71 279-63-18", null, net15, "305112097"));
-        vendors.put("SUNRISE", vendor("Sunrise Electronics Ltd", "export@sunrise-el.com",
-                "+86 755 8888 1200", "USD", net30, "990114872"));
-        vendors.put("KARIMOV", vendor("ЯТТ «Каримов Транс»", "karimov.trans@mail.uz",
-                "+998 93 415-60-27", null, immediate, "452330118"));
-        return vendors;
-    }
-
-    /** Битта етказувчи ясагич. */
-    private UUID vendor(String name, String email, String phone, String currency,
-                        UUID paymentTermId, String taxId) {
-        return contactService.create(ContactType.VENDOR, new ContactService.ContactData(
-                name, name, null, null, email, phone, currency, paymentTermId,
-                taxId, null, null)).getId();
+    private BigDecimal priceOf(BigDecimal base, int month, boolean foreign) {
+        BigDecimal grown = base.multiply(BigDecimal.ONE.add(
+                new BigDecimal("0.012").multiply(BigDecimal.valueOf(month))));
+        return foreign ? grown.divide(USD_RATE, 2, RoundingMode.HALF_UP)
+                : grown.setScale(0, RoundingMode.HALF_UP);
     }
 
     /**
-     * 6 та омбор товари + 4 та хизмат. Товарларда ҚҚС ставкаси default
-     * қилиб қўйилади (ҳужжат формаси олдиндан тўлдиради), хизматларда
-     * йўқ - демода солиқли ва солиқсиз сатрлар аралаш кўринсин.
-     */
-    private Map<String, UUID> seedItems(UUID vatRate) {
-        UUID piece = unitByName("дона");
-        UUID hour = unitByName("соат");
-        ItemService.DefaultAccounts goods = itemService.defaultsFor(ItemType.INVENTORY);
-        ItemService.DefaultAccounts services = itemService.defaultsFor(ItemType.SERVICE);
-        Map<String, UUID> items = new HashMap<>();
-        items.put("NOTEBOOK", inventoryItem("Ноутбук Lenovo ThinkPad E14", "NB-E14", piece,
-                "12500000", "9800000", "5", goods, vatRate));
-        items.put("PRINTER", inventoryItem("Принтер HP LaserJet M404dn", "PR-M404", piece,
-                "4200000", "3250000", "4", goods, vatRate));
-        items.put("MONITOR", inventoryItem("Монитор Dell P2422H 24\"", "MN-P2422", piece,
-                "3100000", "2350000", "6", goods, vatRate));
-        items.put("PAPER", inventoryItem("Офис қоғози A4 (500 варақ)", "PP-A4", piece,
-                "65000", "45000", "50", goods, vatRate));
-        items.put("KEYBOARD", inventoryItem("Клавиатура ва сичқонча тўплами Logitech MK270",
-                "KB-MK270", piece, "480000", "340000", "10", goods, vatRate));
-        items.put("ROUTER", inventoryItem("Wi-Fi роутер TP-Link Archer C6", "RT-C6", piece,
-                "690000", "495000", "8", goods, vatRate));
-        items.put("DELIVERY", serviceItem("Етказиб бериш хизмати", "SRV-DLV", piece,
-                "350000", services));
-        items.put("INSTALL", serviceItem("Ўрнатиш ва созлаш", "SRV-INST", piece,
-                "800000", services));
-        items.put("CONSULT", serviceItem("IT консультация (соат)", "SRV-CONS", hour,
-                "450000", services));
-        items.put("MAINT", serviceItem("Кафолатли техник хизмат (ойлик)", "SRV-MAINT", piece,
-                "1200000", services));
-        return items;
-    }
-
-    /** Омбор товари ясагич: даромад/COGS/inventory asset счётлари тип default'идан. */
-    private UUID inventoryItem(String name, String sku, UUID unitId, String salesPrice,
-                               String purchaseCost, String reorderPoint,
-                               ItemService.DefaultAccounts accounts, UUID vatRate) {
-        return itemService.create(ItemType.INVENTORY, new ItemService.ItemData(
-                name, sku, null, unitId, new BigDecimal(salesPrice), null,
-                accounts.income(), new BigDecimal(purchaseCost), null,
-                accounts.expense(), accounts.inventoryAsset(),
-                new BigDecimal(reorderPoint), null, null, vatRate, vatRate)).getId();
-    }
-
-    /** Хизмат ясагич: омбор счёти йўқ (SERVICE тип уни сақламайди). */
-    private UUID serviceItem(String name, String sku, UUID unitId, String salesPrice,
-                             ItemService.DefaultAccounts accounts) {
-        return itemService.create(ItemType.SERVICE, new ItemService.ItemData(
-                name, sku, null, unitId, new BigDecimal(salesPrice), null,
-                accounts.income(), null, null, accounts.expense(), null, null)).getId();
-    }
-
-    // ---- ҳужжатлар ----
-
-    /**
-     * 5 та POSTED харид: тўртталаси home валютада, биттаси USD
-     * (Sunrise) - AP aging ва multi-currency бирга кўрингани учун.
-     * Ҳар bill 2-3 сатрли; охиргисида ташиш харажати EXPENSE сатр
-     * билан (харид ҳужжати фақат товардан иборат эмаслиги кўрсин).
-     *
-     * @return яратилган bill id'лари - тўлов қадами уларга таянади
-     */
-    private List<UUID> seedBills(Catalog catalog) {
-        UUID orient = catalog.vendors().get("ORIENT");
-        UUID warehouse = catalog.mainWarehouse();
-        UUID vat = catalog.vatRate();
-        List<UUID> bills = new ArrayList<>();
-        bills.add(postBill(orient, "ОЭ-2451", daysAgo(88), null, null,
-                "Ноутбук ва мониторлар партияси", List.of(
-                        billItem(catalog, "NOTEBOOK", warehouse, "10", "9800000", vat),
-                        billItem(catalog, "MONITOR", warehouse, "8", "2350000", vat))));
-        bills.add(postBill(catalog.vendors().get("PAPER"), "ПП-1180", daysAgo(74), null, null,
-                "Офис моллари", List.of(
-                        billItem(catalog, "PAPER", warehouse, "200", "45000", vat),
-                        billItem(catalog, "KEYBOARD", warehouse, "20", "340000", vat))));
-        bills.add(postBill(orient, "ОЭ-2688", daysAgo(55), null, null,
-                "Принтер ва тармоқ ускуналари", List.of(
-                        billItem(catalog, "PRINTER", warehouse, "12", "3250000", vat),
-                        billItem(catalog, "ROUTER", warehouse, "15", "495000", vat))));
-        // Импорт партияси: валюта КОНТАКТдан келади (BR-BILL-013), курс
-        // ҳужжатда қатъий сақланади - ҚҚС қўйилмайди (импорт ҚҚСи алоҳида оқим)
-        bills.add(postBill(catalog.vendors().get("SUNRISE"), "SE-7741", daysAgo(36),
-                "USD", USD_RATE, "Импорт партияси (Shenzhen)", List.of(
-                        billItem(catalog, "NOTEBOOK", warehouse, "5", "780", null),
-                        billItem(catalog, "MONITOR", warehouse, "6", "185", null))));
-        bills.add(postBill(orient, "ОЭ-2903", daysAgo(15), null, null,
-                "Сентябрь партияси + етказиб бериш", List.of(
-                        billItem(catalog, "NOTEBOOK", warehouse, "6", "9950000", vat),
-                        billItem(catalog, "MONITOR", warehouse, "10", "2380000", vat),
-                        billExpense(accountIdByDetail(AccountDetailType.SHIPPING_FREIGHT_DELIVERY_COS),
-                                "1200000", "Партияни олиб келиш"))));
-        return bills;
-    }
-
-    /** Bill'ни draft қилиб яратиб дарҳол post қилади (демода DRAFT қолмайди). */
-    private UUID postBill(UUID vendorId, String vendorInvoiceNumber, LocalDate date,
-                          String currency, BigDecimal rate, String memo,
-                          List<BillService.LineData> lines) {
-        UUID id = billService.createDraft(new BillService.BillData(vendorId,
-                vendorInvoiceNumber, date, null, currency, rate, memo, lines)).getId();
-        billService.post(id);
-        return id;
-    }
-
-    /** Bill'нинг омбор сатри: миқдор × нарх, ҚҚС ставкаси ихтиёрий. */
-    private BillService.LineData billItem(Catalog catalog, String itemKey, UUID warehouseId,
-                                          String qty, String price, UUID taxRateId) {
-        return new BillService.LineData(BillLineType.ITEM, catalog.items().get(itemKey),
-                warehouseId, new BigDecimal(qty), new BigDecimal(price), null, null,
-                null, null, null, taxRateId, null, null);
-    }
-
-    /** Bill'нинг харажат сатри: счёт + сумма (омборга тегмайди). */
-    private BillService.LineData billExpense(UUID accountId, String amount, String memo) {
-        return new BillService.LineData(BillLineType.EXPENSE, null, null, null, null,
-                accountId, new BigDecimal(amount), memo);
-    }
-
-    /**
-     * 8 та POSTED сотув: турли мижоз, охирги 3 ойга тарқалган сана,
-     * товар+хизмат аралаш сатрлар; биттаси USD (Global Trade).
-     * Сотилган миқдорлар харид қилинганидан кам - post'да BR-SINV-004
-     * (қолдиқ етарлимас) чиқмайди.
-     *
-     * @return яратилган invoice id'лари - тушум қадами уларга таянади
-     */
-    private List<UUID> seedInvoices(Catalog catalog) {
-        UUID warehouse = catalog.mainWarehouse();
-        UUID vat = catalog.vatRate();
-        List<UUID> invoices = new ArrayList<>();
-        invoices.add(postInvoice(catalog.customers().get("BARKAMOL"), daysAgo(80), null, null,
-                "Офис учун ноутбуклар", List.of(
-                        invoiceItem(catalog, "NOTEBOOK", warehouse, "3", "12500000", vat),
-                        invoiceLine(catalog, "INSTALL", "1", "800000", vat))));
-        invoices.add(postInvoice(catalog.customers().get("NAVRUZ"), daysAgo(66), null, null,
-                "Дўкон учун техника", List.of(
-                        invoiceItem(catalog, "PRINTER", warehouse, "2", "4200000", vat),
-                        invoiceItem(catalog, "PAPER", warehouse, "30", "65000", vat),
-                        invoiceLine(catalog, "DELIVERY", "1", "350000", null))));
-        invoices.add(postInvoice(catalog.customers().get("AZIZOV"), daysAgo(52), null, null,
-                "Иш жойлари жиҳозлаш", List.of(
-                        invoiceItem(catalog, "MONITOR", warehouse, "4", "3100000", vat),
-                        invoiceItem(catalog, "KEYBOARD", warehouse, "2", "480000", vat))));
-        // Экспорт: валюта мижоздан (USD), курс ҳужжатда қотирилади
-        invoices.add(postInvoice(catalog.customers().get("GLOBAL"), daysAgo(41),
-                "USD", USD_RATE, "Export order GT-118", List.of(
-                        invoiceItem(catalog, "NOTEBOOK", warehouse, "2", "1150", null),
-                        invoiceLine(catalog, "CONSULT", "3", "40", null))));
-        invoices.add(postInvoice(catalog.customers().get("TEXNO"), daysAgo(31), null, null,
-                "Тармоқ ускуналари ва созлаш", List.of(
-                        invoiceItem(catalog, "ROUTER", warehouse, "5", "690000", vat),
-                        invoiceLine(catalog, "INSTALL", "1", "800000", vat),
-                        invoiceLine(catalog, "CONSULT", "4", "450000", null))));
-        invoices.add(postInvoice(catalog.customers().get("BARKAMOL"), daysAgo(22), null, null,
-                "Иккинчи партия", List.of(
-                        invoiceItem(catalog, "NOTEBOOK", warehouse, "4", "12600000", vat),
-                        invoiceItem(catalog, "MONITOR", warehouse, "3", "3100000", vat),
-                        invoiceLine(catalog, "DELIVERY", "1", "350000", null))));
-        invoices.add(postInvoice(catalog.customers().get("ZARAFSHON"), daysAgo(11), null, null,
-                "Офис таъминоти + йиллик хизмат", List.of(
-                        invoiceItem(catalog, "PAPER", warehouse, "50", "65000", vat),
-                        invoiceItem(catalog, "KEYBOARD", warehouse, "3", "480000", vat),
-                        invoiceLine(catalog, "MAINT", "1", "1200000", null))));
-        invoices.add(postInvoice(catalog.customers().get("NAVRUZ"), daysAgo(4), null, null,
-                "Филиал учун техника", List.of(
-                        invoiceItem(catalog, "PRINTER", warehouse, "3", "4250000", vat),
-                        invoiceItem(catalog, "MONITOR", warehouse, "2", "3150000", vat),
-                        invoiceLine(catalog, "INSTALL", "1", "800000", vat))));
-        return invoices;
-    }
-
-    /** Invoice'ни draft қилиб яратиб дарҳол post қилади. */
-    private UUID postInvoice(UUID customerId, LocalDate date, String currency,
-                             BigDecimal rate, String memo,
-                             List<InvoiceService.LineData> lines) {
-        UUID id = invoiceService.createDraft(new InvoiceService.InvoiceData(customerId,
-                date, null, currency, rate, memo, lines)).getId();
-        invoiceService.post(id);
-        return id;
-    }
-
-    /** Invoice'нинг омбор сатри - омбор МАЖБУРИЙ (BR-SINV-004). */
-    private InvoiceService.LineData invoiceItem(Catalog catalog, String itemKey,
-                                                UUID warehouseId, String qty,
-                                                String price, UUID taxRateId) {
-        return new InvoiceService.LineData(catalog.items().get(itemKey), warehouseId,
-                new BigDecimal(qty), new BigDecimal(price), null, null,
-                null, taxRateId, null, null);
-    }
-
-    /** Invoice'нинг хизмат сатри - омбор йўқ (SERVICE омборга тегмайди). */
-    private InvoiceService.LineData invoiceLine(Catalog catalog, String itemKey,
-                                                String qty, String price,
-                                                UUID taxRateId) {
-        return new InvoiceService.LineData(catalog.items().get(itemKey), null,
-                new BigDecimal(qty), new BigDecimal(price), null, null,
-                null, taxRateId, null, null);
-    }
-
-    /**
-     * 4 та мижоз тушуми: иккитаси тўлиқ, иккитаси қисман - AR aging
-     * ҳисоботида «тўланган / қисман / очиқ» уч ҳолат ҳам кўринсин.
-     * USD тушум курси invoice курсидан фарқли - realized курс фарқи
-     * проводкаси демода ҳам ҳосил бўлади.
-     */
-    private void seedInvoicePayments(Catalog catalog, List<UUID> invoices) {
-        receipt(catalog.customers().get("BARKAMOL"), daysAgo(72), catalog.uzsBank(),
-                null, null, invoices.get(0), balanceOfInvoice(invoices.get(0)),
-                "Тўлиқ тўлов (пластик карта)");
-        receipt(catalog.customers().get("NAVRUZ"), daysAgo(58), catalog.uzsBank(),
-                null, null, invoices.get(1), part(balanceOfInvoice(invoices.get(1)), "0.60"),
-                "Қисман тўлов");
-        receipt(catalog.customers().get("TEXNO"), daysAgo(24), catalog.uzsBank(),
-                null, null, invoices.get(4), balanceOfInvoice(invoices.get(4)),
-                "Тўлиқ тўлов");
-        receipt(catalog.customers().get("GLOBAL"), daysAgo(18), catalog.usdBank(),
-                "USD", USD_PAYMENT_RATE, invoices.get(3),
-                part(balanceOfInvoice(invoices.get(3)), "0.50"), "Advance 50%");
-    }
-
-    /** Битта тушум: тақсимоти билан бирга (allocation тушум ичида келади). */
-    private void receipt(UUID customerId, LocalDate date, UUID depositAccountId,
-                         String currency, BigDecimal rate, UUID invoiceId,
-                         BigDecimal amount, String memo) {
-        invoicePaymentService.create(new InvoicePaymentService.PaymentData(customerId,
-                date, depositAccountId, currency, rate, amount, memo,
-                List.of(new InvoicePaymentService.AllocationData(invoiceId, amount))));
-    }
-
-    /**
-     * 3 та етказувчи тўлови: иккитаси тўлиқ, биттаси қисман. USD bill
-     * (Sunrise) ва охирги bill атайлаб очиқ қолдирилади - AP aging
-     * жадвалида «муддати ўтган / жорий» иккиси ҳам бўлсин.
-     */
-    private void seedBillPayments(Catalog catalog, List<UUID> bills) {
-        payment(catalog.vendors().get("ORIENT"), daysAgo(82), catalog.uzsBank(),
-                bills.get(0), balanceOfBill(bills.get(0)), "Тўлиқ тўлов");
-        payment(catalog.vendors().get("PAPER"), daysAgo(62), catalog.uzsBank(),
-                bills.get(1), part(balanceOfBill(bills.get(1)), "0.50"), "Қисман тўлов");
-        payment(catalog.vendors().get("ORIENT"), daysAgo(40), catalog.uzsBank(),
-                bills.get(2), balanceOfBill(bills.get(2)), "Тўлиқ тўлов");
-    }
-
-    /** Битта етказувчи тўлови тақсимоти билан. */
-    private void payment(UUID vendorId, LocalDate date, UUID bankAccountId,
-                         UUID billId, BigDecimal amount, String memo) {
-        billPaymentService.create(new BillPaymentService.PaymentData(vendorId, date,
-                bankAccountId, null, null, amount, memo,
-                List.of(new BillPaymentService.AllocationData(billId, amount))));
-    }
-
-    /**
-     * 4 та банк харажати (QBO Expense оқими - AP'сиз тўғри тўлов):
-     * ижара, коммунал, транспорт ва банк хизмати. Transport сатрига
-     * контакт (Каримов Транс) боғланади - GL dimension демода кўринсин.
-     */
-    private void seedExpenses(Catalog catalog) {
-        expense(catalog.uzsBank(), daysAgo(70), null, "Июль ойи офис ижараси",
-                accountIdByDetail(AccountDetailType.RENT_OR_LEASE_OF_BUILDINGS),
-                "4500000", null);
-        expense(catalog.uzsBank(), daysAgo(56), null, "Электр ва сув (коммунал)",
-                accountIdByDetail(AccountDetailType.UTILITIES), "1350000", null);
-        expense(catalog.uzsBank(), daysAgo(38), catalog.vendors().get("KARIMOV"),
-                "Товар ташиш хизмати",
-                accountIdByDetail(AccountDetailType.SHIPPING_FREIGHT_DELIVERY_COS),
-                "980000", catalog.vendors().get("KARIMOV"));
-        expense(catalog.uzsBank(), daysAgo(9), null, "Банк хизмат ҳақи (ойлик)",
-                accountIdByDetail(AccountDetailType.BANK_CHARGES), "320000", null);
-    }
-
-    /** Битта сатрли банк чиқими - харажат счёти Dt / банк Cr. */
-    private void expense(UUID bankAccountId, LocalDate date, UUID contactId, String memo,
-                         UUID expenseAccountId, String amount, UUID lineContactId) {
-        bankService.expense(new BankTransactionService.TxnData(bankAccountId, date,
-                null, contactId, memo, List.of(new BankTransactionService.LineData(
-                        expenseAccountId, new BigDecimal(amount), lineContactId, null))));
-    }
-
-    /** Банкдан кассага ўтказма - банк журналида TRANSFER тури ҳам кўринсин. */
-    private void seedBankTransfer(Catalog catalog) {
-        bankService.transfer(new BankTransactionService.TransferData(catalog.uzsBank(),
-                catalog.cash(), daysAgo(33), new BigDecimal("8000000"), null,
-                null, null, "Кассага кунлик эҳтиёж учун"));
-    }
-
-    /**
-     * Омбор ҳужжатлари: асосий омбордан дўконга кўчириш (multi-warehouse
-     * қолдиқ намойиши) ва қоғоз бўйича инвентаризация акти (камомад).
-     * Иккиси ҳам сотув ҳужжатларидан КЕЙИН - қолдиқ етарли бўлсин.
-     */
-    private void seedStockDocuments(Catalog catalog) {
-        inventoryService.transferDocument(new InventoryService.DocumentTransferData(
-                catalog.mainWarehouse(), catalog.shopWarehouse(), daysAgo(13),
-                "Дўкон витринасига", List.of(
-                        new InventoryService.TransferLineData(
-                                catalog.items().get("NOTEBOOK"), new BigDecimal("3"), null),
-                        new InventoryService.TransferLineData(
-                                catalog.items().get("MONITOR"), new BigDecimal("4"), null))));
-        // Акт ЯНГИ қолдиқни киритади (delta авто) - жорий қолдиқдан 2 дона кам
-        UUID paper = catalog.items().get("PAPER");
-        BigDecimal counted = inventoryService.quantityOnHand(paper, catalog.mainWarehouse())
-                .subtract(new BigDecimal("2"));
-        inventoryService.adjustDocument(new InventoryService.DocumentAdjustData(
-                catalog.mainWarehouse(), daysAgo(6), "Ойлик инвентаризация - камомад",
-                List.of(new InventoryService.AdjustLineData(paper, counted, null,
-                        "Қоғоз ғилофи шикастланган"))));
-    }
-
-    // ---- ёрдамчилар ----
-
-    /**
-     * Detail type бўйича ягона фаол postable счёт id'си - default
-     * chart'да бу турлар биттадан (CHECKING эмас!), шунинг учун
-     * тизим счёти резолвери ишлайди.
-     */
-    private UUID accountIdByDetail(AccountDetailType detailType) {
-        return accountService.requireSystemAccountId(detailType);
-    }
-
-    /** Бугундан {@code days} кун олдинги сана (компания минтақасида). */
-    private LocalDate daysAgo(int days) {
-        return LocalDate.now(settingsService.zoneId()).minusDays(days);
-    }
-
-    /** Invoice'нинг жорий қолдиғи - тушум суммаси шундан олинади. */
-    private BigDecimal balanceOfInvoice(UUID invoiceId) {
-        return invoiceService.get(invoiceId).getBalanceDue();
-    }
-
-    /** Bill'нинг жорий қолдиғи - тўлов суммаси шундан олинади. */
-    private BigDecimal balanceOfBill(UUID billId) {
-        return billService.get(billId).getBalanceDue();
-    }
-
-    /**
-     * Қолдиқнинг бир қисми (масалан 60%) - қисман тўловлар учун.
+     * Қолдиқнинг бир қисми (масалан 55%) - қисман тўловлар учун.
      * 2 хонагача яхлитланади: тўлов суммаси экранда доим 2 хона.
      */
     private BigDecimal part(BigDecimal balance, String ratio) {

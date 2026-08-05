@@ -1,6 +1,6 @@
 # Averpo ERP
 
-**A double-entry financial ERP for small and medium businesses in Uzbekistan** —
+**A double-entry financial ERP for small and medium businesses in Uzbekistan** -
 accounting core, sales, purchasing, multi-warehouse inventory, banking, payroll
 and IFRS-style financial statements in a single, self-hosted application.
 
@@ -37,7 +37,6 @@ framework, no CDN dependency, and no external service required to run.
 11. [Roadmap](#11-roadmap)
 12. [Documentation](#12-documentation)
 13. [Sources and references](#13-sources-and-references)
-14. [Team](#14-team)
 
 ---
 
@@ -50,7 +49,7 @@ software landscape:
   no Uzbek language, no UZS-first workflows, no local banking or tax practice,
   and pricing in foreign currency per company per month.
 - **Large ERPs** (SAP, Oracle NetSuite) are far too expensive and heavy for a
-  5–50 person company, and require a permanent implementation partner.
+  5-50 person company, and require a permanent implementation partner.
 - **Spreadsheets** remain the default. They do not enforce double-entry, do not
   produce a Balance Sheet that provably balances, and leave no audit trail.
 
@@ -62,26 +61,33 @@ self-hostable on a single modest server.
 
 ## 2. Comparative research: what we studied
 
-This project was not designed in a vacuum. Before writing the domain model we
-studied four established systems — **QuickBooks Online, Xero, Oracle NetSuite
-and SAP S/4HANA** — from their *primary* sources: official XSD schemas, SDKs,
-API documentation and vendor help systems, not blog posts.
+Averpo is our own system, designed for our own market - but it was not designed
+in a vacuum. Before writing the domain model we studied four established systems
+- **QuickBooks Online, Xero, Oracle NetSuite and SAP S/4HANA** - from their
+*primary* sources: official XSD schemas, SDKs, API documentation and vendor help
+systems, not blog posts.
 
-### 2.1 QuickBooks Online — the reference standard
+The point was to learn what decades of accounting software have settled on, to
+see where each of them stops, and then to decide for ourselves. Some of what
+follows is where we align with them; some is where we deliberately do more.
 
-QuickBooks Online is our **mandatory design benchmark**. Where a design question
-has two reasonable answers, we check QBO first and follow it.
+### 2.1 QuickBooks Online - validating the domain model
 
-We work from Intuit's own artefacts rather than marketing pages:
+QuickBooks Online is the most widely deployed small-business accounting system in
+the world, which makes its published data model a useful yardstick for **domain
+completeness**. We used it to check our own model field by field: is anything
+essential missing, and does our vocabulary match accepted industry usage?
+
+We worked from Intuit's own artefacts rather than marketing pages:
 
 - **`Finance.xsd`** and **`IntuitNamesTypes.xsd`** from the official
   [QuickBooks V3 Java SDK](https://github.com/intuit/QuickBooks-V3-Java-SDK)
-  (`ipp-v3-java-data`, Apache 2.0) — vendored into
+  (`ipp-v3-java-data`, Apache 2.0) - vendored into
   [`docs/qbo-reference/`](docs/qbo-reference/) so every claim is checkable.
 - A field-by-field comparison of QBO entities against ours in
   [`docs/qbo-reference/entities.md`](docs/qbo-reference/entities.md).
 
-What this gave us — verified directly in the schema:
+What this gave us - verified directly in the schema:
 
 - The **three-level chart of accounts** (`Classification → AccountType →
   AccountSubType`), including the exact official `AccountSubType` names.
@@ -93,15 +99,16 @@ What this gave us — verified directly in the schema:
 - The rule that **one document has one currency and one exchange rate** (both
   live on the header, not the line).
 
-We deliberately diverge from QBO in exactly **two** places, both documented:
+Two areas where we went further, because the businesses we build for need them:
 
 1. **Multi-warehouse inventory** (plus landed cost and a unit-of-measure
-   catalogue) — QBO has no concept of a warehouse at all.
-2. **Payroll Lite** — payroll is not part of the QBO core product.
+   catalogue) - QBO has no concept of a warehouse at all.
+2. **Payroll Lite** - payroll is not part of the QBO core product.
 
-Anything else that QBO does not have does not get built.
+Beyond that we add a feature when the local business case is proven, not because
+a competitor ships it. Scope discipline is deliberate.
 
-### 2.2 Xero — verified August 2026
+### 2.2 Xero - verified August 2026
 
 Xero was studied through the
 [Accounting API](https://developer.xero.com/documentation/api/accounting/overview)
@@ -112,10 +119,10 @@ cloud segment, and the comparison is instructive:
 |---|---|---|
 | Chart of accounts | 2 levels: 5 classes → 17 account types | 3 levels, QBO-style (`Classification → Type → DetailType`) |
 | Invoice vs Bill | One entity distinguished by `Type` (`ACCREC`/`ACCPAY`) | Separate documents with separate posting rules |
-| Inventory valuation | **Weighted average only** — no FIFO in core | **AVCO or FIFO**, chosen per company, locked after first movement |
-| Warehouses | **None in core.** Xero's own FAQ: *"Xero's core accounting software doesn't track inventory in multiple locations"* — a separate *Inventory Plus* add-on offers it, US-only | Multi-warehouse is a first-class part of the domain |
-| Inventory adjustment | No adjustment document — the documented workaround is a zero-total invoice / credit note | Dedicated adjustment and transfer documents |
-| Posted document edits | An approved, unpaid invoice **can be edited, amounts included** | POSTED is immutable — correction only by reversal |
+| Inventory valuation | **Weighted average only** - no FIFO in core | **AVCO or FIFO**, chosen per company, locked after first movement |
+| Warehouses | **None in core.** Xero's own FAQ: *"Xero's core accounting software doesn't track inventory in multiple locations"* - a separate *Inventory Plus* add-on offers it, US-only | Multi-warehouse is a first-class part of the domain |
+| Inventory adjustment | No adjustment document - the documented workaround is a zero-total invoice / credit note | Dedicated adjustment and transfer documents |
+| Posted document edits | An approved, unpaid invoice **can be edited, amounts included** | POSTED is immutable - correction only by reversal |
 | Period close | Lock dates only, and an administrator can remove them at any time | Closing-date lock enforced in the posting service (`BR-LED-020`) |
 | Analytical dimensions | Hard cap of **2 active** tracking categories | Class tracking at line level |
 | Group consolidation | Not in any standard plan (Xero stated in July 2025 that native consolidated reporting was *"not currently planned"*); it arrived only in July 2026 through Syft, bundled into the new Australia-only *Xero Ultra* tier | Multi-tenant design in progress (see roadmap) |
@@ -130,15 +137,15 @@ NetSuite sits at the opposite architectural extreme from QBO:
   a single `transaction` table striped by a `TYPE` column, with lines in
   `transactionline` and the actual GL debits and credits in a third table,
   `transactionaccountingline`.
-- **Seven costing methods** — Average (default), FIFO, LIFO, Standard, Group
-  Average, Specific, Lot Numbered — with true per-layer costing.
+- **Seven costing methods** - Average (default), FIFO, LIFO, Standard, Group
+  Average, Specific, Lot Numbered - with true per-layer costing.
 - **Void semantics are configurable.** By default voiding a transaction *mutates
   the original*, setting its amount to zero. With the *Void Transactions Using
   Reversing Journals* preference enabled, the original is preserved and a dated
-  reversing journal carries the offset — but enabling it makes invoices, credit
+  reversing journal carries the offset - but enabling it makes invoices, credit
   memos and cash sales no longer voidable at all.
 - **OneWorld / Multi-Book** support multi-subsidiary and parallel accounting
-  books — the closest analogue to our planned multi-tenant model.
+  books - the closest analogue to our planned multi-tenant model.
 
 What we took: the **discriminator pattern** (used in our `BankTransaction`,
 which covers deposit / expense / transfer in one table) and the principle that a
@@ -165,7 +172,7 @@ articles. SAP contributed the single most influential idea in our architecture:
   afterwards, governed by document change rules.
 - **Perpetual valuation is moving average or standard price.** FIFO and LIFO in
   SAP are *periodic balance-sheet valuation procedures*, not per-layer perpetual
-  costing — and LIFO is not supported in S/4HANA Cloud at all, because it is not
+  costing - and LIFO is not supported in S/4HANA Cloud at all, because it is not
   permitted under international standards.
 
 Averpo follows exactly this two-layer philosophy: **documents are operational,
@@ -191,17 +198,17 @@ a national statutory template. The standards that concretely shaped the code:
 
 | Standard | Where it applies |
 |---|---|
-| **IAS 1** — *Presentation of Financial Statements* | Balance Sheet and Profit & Loss structure; the Balance Sheet asserts `assets = liabilities + equity`, and current-year profit is separated from retained earnings by fiscal year |
-| **IAS 2** — *Inventories* | Inventory is measured at cost using **weighted average (AVCO)** or **FIFO** — the two methods IAS 2 permits. **LIFO is not implemented, because IAS 2 prohibits it.** Cost is computed per `(item, warehouse)` |
-| **IAS 21** — *The Effects of Changes in Foreign Exchange Rates* | Home (functional) currency is fixed per company and locked after the first posted entry; transactions are recorded at the rate of the transaction date; realised exchange differences on settlement post to profit or loss |
-| **IFRS 15** — *Revenue from Contracts with Customers* | Revenue is recognised when the sales document is posted, separated from tax and from cost of goods sold |
-| **IFRS 9** — *Financial Instruments* | Receivables and payables as measured balances; AR/AP ageing analysis |
-| **IAS 7** — *Statement of Cash Flows* | Cash movement reporting on the dashboard (a full cash-flow statement is on the roadmap) |
+| **IAS 1** - *Presentation of Financial Statements* | Balance Sheet and Profit & Loss structure; the Balance Sheet asserts `assets = liabilities + equity`, and current-year profit is separated from retained earnings by fiscal year |
+| **IAS 2** - *Inventories* | Inventory is measured at cost using **weighted average (AVCO)** or **FIFO** - the two methods IAS 2 permits. **LIFO is not implemented, because IAS 2 prohibits it.** Cost is computed per `(item, warehouse)` |
+| **IAS 21** - *The Effects of Changes in Foreign Exchange Rates* | Home (functional) currency is fixed per company and locked after the first posted entry; transactions are recorded at the rate of the transaction date; realised exchange differences on settlement post to profit or loss |
+| **IFRS 15** - *Revenue from Contracts with Customers* | Revenue is recognised when the sales document is posted, separated from tax and from cost of goods sold |
+| **IFRS 9** - *Financial Instruments* | Receivables and payables as measured balances; AR/AP ageing analysis |
+| **IAS 7** - *Statement of Cash Flows* | Cash movement reporting on the dashboard (a full cash-flow statement is on the roadmap) |
 
 The double-entry core enforces the accounting equation structurally rather than
 by convention: **every posting is balanced in home currency
 (`sum(debitBase) = sum(creditBase)`), asserted by unit tests for every posting
-rule**, and the general ledger is the only place balances come from — no module
+rule**, and the general ledger is the only place balances come from - no module
 keeps its own totals.
 
 This is the model taught by the international accountancy bodies (ACCA, ICAEW)
@@ -216,7 +223,7 @@ and are referenced here by number only.
 Global products are built for other markets. The adaptations that matter here:
 
 - **Uzbek first.** The entire interface is Uzbek (Cyrillic), with Russian and
-  English alongside — 1 762 translated keys per language. Not a partial
+  English alongside - 1 762 translated keys per language. Not a partial
   translation layer: every screen, message and business-rule error.
 - **UZS as home currency** by default, with the multi-currency machinery needed
   for real trade (buying in USD, selling in UZS). Exchange rates are imported
@@ -228,7 +235,7 @@ Global products are built for other markets. The adaptations that matter here:
 - **VAT (ҚҚС) as a first-class catalogue** with per-line rate snapshots, so
   historical documents stay correct when the rate catalogue changes.
 - **Payroll Lite** with the local deduction structure (income tax, pension and
-  social contribution rates in company settings) — deliberately outside the QBO
+  social contribution rates in company settings) - deliberately outside the QBO
   reference, because small businesses here expect payroll in the same system.
 - **Self-hosted, single-server deployment.** No per-seat cloud subscription in
   foreign currency, no dependency on an offshore service being reachable.
@@ -243,7 +250,7 @@ Global products are built for other markets. The adaptations that matter here:
 
 Not microservices. Packages are organised by business module
 (`com.averpo.erp.<module>.{domain,service,repo,web}`), and modules talk to each
-other **only through public service interfaces** — reaching into another
+other **only through public service interfaces** - reaching into another
 module's repository is forbidden. Dependencies all point one way: towards the
 ledger, and the ledger depends on nobody.
 
@@ -281,7 +288,7 @@ document flow without touching the ledger.
   friendly) rather than generated by Hibernate.
 - Money is stored as `NUMERIC(19,4)`, exchange rates as `NUMERIC(24,12)` so that
   inverse rates (`1 UZS = 0.000082690073 USD`) keep eight significant digits.
-- **Liquibase is the only schema authority** — 62 sequential migrations;
+- **Liquibase is the only schema authority** - 62 sequential migrations;
   Hibernate runs in `validate` mode and never generates DDL.
 - All timestamps are stored in UTC and rendered in the company's timezone.
 
@@ -292,9 +299,9 @@ document flow without touching the ledger.
 Thirteen invariants that every code review checks. The full text is in
 [`docs/engineering-rules.md`](docs/engineering-rules.md):
 
-1. Money is a `Money` value object — never `double` or `float`.
+1. Money is a `Money` value object - never `double` or `float`.
 2. Only `PostingService` writes to the general ledger.
-3. A POSTED document is never modified — reversal only.
+3. A POSTED document is never modified - reversal only.
 4. The ledger balances in home currency: `sum(debitBase) = sum(creditBase)`.
 5. Every schema change is a new Liquibase changeset.
 6. Cross-module access goes through service interfaces only.
@@ -312,31 +319,31 @@ Thirteen invariants that every code review checks. The full text is in
 
 ## 7. Features
 
-**Accounting core** — IFRS-style chart of accounts (three levels, QBO taxonomy),
+**Accounting core** - IFRS-style chart of accounts (three levels, QBO taxonomy),
 manual journal entries, opening balances, closing-date lock, audit log.
 
-**Sales** — Invoice, Sales Receipt, Estimate, Credit Memo, Refund Receipt,
+**Sales** - Invoice, Sales Receipt, Estimate, Credit Memo, Refund Receipt,
 customer payments with allocation across invoices, AR ageing, credit limits,
 price lists with quantity tiers.
 
-**Purchasing** — Bill, Purchase Order (GL-free), Vendor Credit, vendor payments
+**Purchasing** - Bill, Purchase Order (GL-free), Vendor Credit, vendor payments
 with allocation, AP ageing, **landed cost** allocation onto received goods.
 
-**Inventory** — multi-warehouse stock, AVCO or FIFO valuation per
+**Inventory** - multi-warehouse stock, AVCO or FIFO valuation per
 `(item, warehouse)`, receipts, issues, adjustments, transfers, unit-of-measure
 groups with conversion factors, inventory valuation report as of any date.
 
-**Banking** — bank accounts, deposits, expenses, transfers, currency conversion
+**Banking** - bank accounts, deposits, expenses, transfers, currency conversion
 with automatic exchange gain/loss, reconciliation.
 
-**Payroll Lite** — employees, salary rates, payroll runs, partial payments,
+**Payroll Lite** - employees, salary rates, payroll runs, partial payments,
 payroll register.
 
-**Reporting** — Balance Sheet, Profit & Loss, Trial Balance, P&L by class,
+**Reporting** - Balance Sheet, Profit & Loss, Trial Balance, P&L by class,
 AR/AP ageing with drill-down, inventory valuation, customer statements, and a
 QBO-style dashboard.
 
-**Platform** — 8 roles with area-based permissions, audit trail, attachments,
+**Platform** - 8 roles with area-based permissions, audit trail, attachments,
 global search, Excel import for opening data, three languages, light and dark
 themes, mobile-first layouts (every screen works at 375 px).
 
@@ -352,14 +359,14 @@ _Screenshots of the running application are collected in
 ## 9. Quality and engineering discipline
 
 - **860 test methods**, the majority of them integration tests running against a
-  real PostgreSQL database — not mocks, not H2.
+  real PostgreSQL database - not mocks, not H2.
 - **Every posting rule is tested for balance**: debit equals credit, in home
   currency, for every document type and every reversal path.
 - **253 business rules** catalogued with unique codes before they are
   implemented. A rule that is not in the catalogue does not exist in the code.
 - **Specification before code**: each module has a written specification in
   [`docs/modules/`](docs/modules/) agreed before implementation starts.
-- **Schema is versioned, never generated** — Hibernate validates, Liquibase owns.
+- **Schema is versioned, never generated** - Hibernate validates, Liquibase owns.
 - **Documentation is part of the deliverable**: 50+ living documents covering
   architecture, posting rules, business rules, UI conventions and every module.
 
@@ -374,23 +381,23 @@ _Screenshots of the running application are collected in
 psql -U postgres -c "CREATE ROLE averpo LOGIN PASSWORD 'averpo';"
 psql -U postgres -c "CREATE DATABASE averpo OWNER averpo;"
 
-# 2. Run — Liquibase builds the schema and a default chart of accounts is seeded
+# 2. Run - Liquibase builds the schema and a default chart of accounts is seeded
 ./gradlew bootRun --args='--spring.profiles.active=dev'
 ```
 
 Open <http://localhost:8080> and sign in as `admin`. In `dev` the password is
-seeded automatically; in production `AVERPO_ADMIN_PASSWORD` is **mandatory** —
+seeded automatically; in production `AVERPO_ADMIN_PASSWORD` is **mandatory** -
 the application refuses to start without it.
 
 **Sample data.** Start with the `demo` profile to populate a fictional trading
-company — customers, vendors, items, posted invoices, bills and payments — so
+company - customers, vendors, items, posted invoices, bills and payments - so
 that reports and the dashboard show meaningful figures:
 
 ```bash
 ./gradlew bootRun --args='--spring.profiles.active=dev,demo'
 ```
 
-**Tests** (require a database whose name ends in `_test` — a safety guard
+**Tests** (require a database whose name ends in `_test` - a safety guard
 refuses to run against anything else):
 
 ```bash
@@ -409,7 +416,7 @@ layer, and session-based tenant resolution that leaves existing URLs untouched.
 The full plan is in
 [`docs/multi-tenant-plan/plan-for-averpo.md`](docs/multi-tenant-plan/plan-for-averpo.md).
 
-**Accountant portal.** One accountant, many companies — the model outsourced
+**Accountant portal.** One accountant, many companies - the model outsourced
 bookkeeping in Uzbekistan actually runs on: a single login managing the
 accountant's own firm books plus every client company, with per-client access
 for staff.
@@ -443,33 +450,25 @@ A print-ready PDF of the complete documentation set is generated into
 
 **QuickBooks Online**
 - [QuickBooks Online API documentation](https://developer.intuit.com/app/developer/qbo/docs/develop)
-- [QuickBooks V3 Java SDK](https://github.com/intuit/QuickBooks-V3-Java-SDK) — `Finance.xsd`, `IntuitNamesTypes.xsd` (vendored in `docs/qbo-reference/`)
-- [QuickBooks Desktop API reference](https://developer.intuit.com/app/developer/qbdesktop/docs/api-reference) — reviewed for completeness; **QBO Online is the benchmark**, desktop-only (`QBW`) fields are explicitly out of scope
+- [QuickBooks V3 Java SDK](https://github.com/intuit/QuickBooks-V3-Java-SDK) - `Finance.xsd`, `IntuitNamesTypes.xsd` (vendored in `docs/qbo-reference/`)
+- [QuickBooks Desktop API reference](https://developer.intuit.com/app/developer/qbdesktop/docs/api-reference) - reviewed for completeness; desktop-only (`QBW`) fields were excluded as legacy and irrelevant to a modern cloud data model
 
 **Xero**
 - [Xero Accounting API overview](https://developer.xero.com/documentation/api/accounting/overview)
-- [Xero Central](https://central.xero.com/) — inventory, multicurrency, lock dates, tracking categories
+- [Xero Central](https://central.xero.com/) - inventory, multicurrency, lock dates, tracking categories
 
 **Oracle NetSuite**
 - [NetSuite Help Center](https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/)
 
 **SAP**
-- [SAP Help Portal](https://help.sap.com/) and [SAP Learning](https://learning.sap.com/) — Universal Journal, document reversal, material valuation
+- [SAP Help Portal](https://help.sap.com/) and [SAP Learning](https://learning.sap.com/) - Universal Journal, document reversal, material valuation
 
 **Accounting standards**
-- [IFRS Foundation — list of standards](https://www.ifrs.org/issued-standards/list-of-standards/) (IAS 1, IAS 2, IAS 7, IAS 21, IFRS 9, IFRS 15)
-- [ACCA](https://www.accaglobal.com/) — the professional practice the design follows
+- [IFRS Foundation - list of standards](https://www.ifrs.org/issued-standards/list-of-standards/) (IAS 1, IAS 2, IAS 7, IAS 21, IFRS 9, IFRS 15)
+- [ACCA](https://www.accaglobal.com/) - the professional practice the design follows
 
 **Central Bank of Uzbekistan**
 - Daily exchange rate service, consumed by the automatic rate import
-
----
-
-## 14. Team
-
-Averpo is built by a small partner team:
-
-**Zafar** · **Shukurullo**
 
 ---
 

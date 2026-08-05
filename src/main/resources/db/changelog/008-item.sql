@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset averpo:013-unit
--- Ўлчов бирлиги — QBO'да йўқ, multi-warehouse кенгайтмамиз талаби
+-- Ўлчов бирлиги - QBO'да йўқ, multi-warehouse кенгайтмамиз талаби
 CREATE TABLE unit (
     id         UUID PRIMARY KEY,
     version    INT NOT NULL DEFAULT 0,

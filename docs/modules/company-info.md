@@ -9,7 +9,7 @@ docs/modules/document-print.md (29) да changeset 054 сифатида
 режаланган эди (чоп сарлавҳаси учун) - шу майдонлар СОФ МАНБАСИ энди
 шу спец; document-print уларни ЎҚИЙДИ (такрор эмас).
 
-## QBO эталон
+## QBO билан солиштирув
 
 QBO «Account and Settings → Company»: company name, legal name, EIN/
 tax, address, email, phone, website, logo. Бизники + Ўзбекистон

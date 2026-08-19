@@ -22,7 +22,7 @@
 
     <div style="max-width:640px;display:grid;gap:1rem;">
         <div class="grid gap-[.9rem] rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark p-5">
-            <%-- 1-қадам: тайёр шаблонни юклаб олиш (арбитр ясаган .xlsx) --%>
+            <%-- 1-қадам: тайёр шаблонни юклаб олиш (тайёр .xlsx) --%>
             <div>
                 <b>${msg.localize("import.step1")}</b>
                 <p class="mb-2 mt-1 text-[.9rem] text-current/60">${msg.localize("import.templateHint")}</p>

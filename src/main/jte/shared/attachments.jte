@@ -27,7 +27,7 @@
      жойида (outerHTML) янгилайди - бутун саҳифа қайта юкланмайди.
      Бўлим id = attachments-{documentId}: hx-target шуни топади. --%>
 <%-- margin-top: сторно/амал блоклари пастки margin'сиз - бўлим уларга
-     ёпишиб қолмасин (2026-07-11); олдинги блокда margin-bottom бўлса
+     ёпишиб қолмасин; олдинги блокда margin-bottom бўлса
      collapse қилади - қўш-масофа бўлмайди. --%>
 <section id="attachments-${documentId.toString()}"
          class="my-4 rounded-radius border border-outline bg-surface dark:border-outline-dark dark:bg-surface-dark p-4">

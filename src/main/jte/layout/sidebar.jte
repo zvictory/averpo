@@ -35,7 +35,7 @@
     <%-- ======== ТЕПА: white-label бренд (3 поғона) - логотип созланса
          ўша; бўлмаса онбординг тугагач (showCompanyName) компания номи;
          ҳали тугамаган ҳолда AVERPO вендор fallback (фойдаланувчи
-         2026-07-17: боши AVERPO, setup'дан кейин компания номи). Рейл
+         талаби: боши AVERPO, setup'дан кейин компания номи). Рейл
          тугмаси ёнида. lay БИР МАРТА шу ерда - sbfoot аватар ҳам ишлатади. --%>
     !{var lay = LayoutInfo.current();}
     <div class="mb-2 flex items-center justify-between gap-2 px-1 in-[.sb-rail]:lg:justify-center in-[.sb-rail]:lg:px-0">
@@ -82,7 +82,7 @@
             <span class="pointer-events-none absolute left-full top-1/2 z-40 ml-2 hidden -translate-y-1/2 whitespace-nowrap rounded-radius border border-outline bg-surface px-2 py-1 text-xs text-on-surface shadow-lg dark:border-outline-dark dark:bg-surface-dark dark:text-on-surface-dark in-[.sb-rail]:lg:group-hover/tip:block">${msg.localize("search.title")}</span>
         </a>
     </div>
-    <%-- ======== «+ Янги» (DEC-119, фойдаланувчи 2026-07-17):
+    <%-- ======== «+ Янги» (DEC-119, фойдаланувчи талаби):
          қидирувдан ПАСТДА, «Бош саҳифа»дан ТЕПАДА - Penguin success
          (яшил) button кўринишида (buttons.html реф). Мазмун QBO «+ New»
          эталонида 3 устун (Мижозлар/Таъминотчилар/Бошқа) - навигация
@@ -94,7 +94,7 @@
          мобилда bottom-sheet; backdrop босилса/Esc'да ёпилади. Рейлда
          фақат + иконка (tooltip). id="createPanel" - ScreenSmokeTest
          маркери (рухсат филтрини текширади). Аралаш режимда панел
-         КОНТЕНТ оиласи (ОЧ чиқади - фойдаланувчи 2026-07-17):
+         КОНТЕНТ оиласи (ОЧ чиқади - фойдаланувчи талаби):
          wrapper'даги sb-light маркерини app.css @custom-variant
          истисноси sb-dark қамровидан чиқаради; тўлиқ Тўқда тўқлигича
          қолади. --%>
@@ -406,7 +406,7 @@
                         <a href="/inventory/movements" class="flex items-center gap-2 rounded-radius px-2 py-1.5 pl-9 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline aria-[current=page]:bg-primary/10 aria-[current=page]:font-medium aria-[current=page]:text-on-surface-strong aria-[current=page]:hover:bg-primary/10 dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:aria-[current=page]:bg-primary-dark/10 dark:aria-[current=page]:text-on-surface-dark-strong dark:aria-[current=page]:hover:bg-primary-dark/10 in-[.sb-rail]:lg:pl-2">${msg.localize("nav.stockMovements")}</a>
                     </li>
                     <%-- Акт РЎЙХАТЛАРИ (093): сайдбар формага эмас, рўйхатга
-                         олиб боради (арбитр hotfix 2026-07-12) --%>
+                         олиб боради (hotfix) --%>
                     @if(perms.edit(Permission.INVENTORY))
                         <li class="px-1 py-0.5 first:mt-2">
                             <a href="/inventory/adjustments" class="flex items-center gap-2 rounded-radius px-2 py-1.5 pl-9 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline aria-[current=page]:bg-primary/10 aria-[current=page]:font-medium aria-[current=page]:text-on-surface-strong aria-[current=page]:hover:bg-primary/10 dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:aria-[current=page]:bg-primary-dark/10 dark:aria-[current=page]:text-on-surface-dark-strong dark:aria-[current=page]:hover:bg-primary-dark/10 in-[.sb-rail]:lg:pl-2">${msg.localize("plusNew.adjustment")}</a>

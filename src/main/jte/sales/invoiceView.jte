@@ -38,7 +38,7 @@
 
     @template.shared.alert(message = message, error = error)
 
-    <%-- Credit limit огоҳлантириши - тўсмайди (QBO услуби, 2026-07-06 қарори) --%>
+    <%-- Credit limit огоҳлантириши - тўсмайди (QBO услуби, лойиҳа қарори) --%>
     @if(creditCheck != null && creditCheck.exceeded())
         <p class="mb-4 rounded-radius border border-warning bg-warning/10 px-3 py-2.5 text-sm text-on-surface dark:text-on-surface-dark">
             ${msg.localize("sinv.creditWarning", Fmt.money(creditCheck.exposure()), Fmt.money(creditCheck.creditLimit()), invoice.getCurrency().getCode())}

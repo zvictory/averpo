@@ -61,7 +61,7 @@
                 <th>${msg.localize("rcn.col.date")}</th>
                 <th>${msg.localize("rcn.col.description")}</th>
                 <%-- Валюта коди сарлавҳада - ҳар қаторда такрорлаш шарт эмас,
-                     жадвал бир счётники (UI-002 арбитр кўлами) --%>
+                     жадвал бир счётники (UI-002 кўлами) --%>
                 <th class="text-right">${msg.localize("rcn.col.inflow")} (${accountCurrency})</th>
                 <th class="text-right">${msg.localize("rcn.col.outflow")} (${accountCurrency})</th>
             </tr>

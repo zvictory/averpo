@@ -133,7 +133,7 @@
                         <td>${msg.localize(row.account().getDetailType().titleKey())}</td>
                         <%-- DEC-149: тур устуни - AccountType номи (i18n) ва юқори
                              синфи (classification) badge'и ёнма-ён (фойдаланувчи
-                             2026-07-18: иккови билла). Badge инглизча (label =
+                             талаби: иккови билла). Badge инглизча (label =
                              englishName - locale'дан қатъи назар english) ва юмшоқ
                              ранг (soft харита badge.jte'да). Майда тур (detailType)
                              чап устунда қолади --%>

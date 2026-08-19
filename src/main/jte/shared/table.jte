@@ -16,7 +16,7 @@
        скролл бўлади, CLAUDE.md) + Penguin border/rounded.
      - th/td катакларга класс ёзилмайди: зич ERP паддинги ва ранглар
        table тегидаги [&_th]/[&_td] arbitrary variant'ларда.
-     - Матн аниқлиги (фойдаланувчи 2026-07-17): thead on-surface-strong,
+     - Матн аниқлиги (фойдаланувчи талаби): thead on-surface-strong,
        оддий катак on-surface; пул/сон/қиймат катагига экранда
        text-right whitespace-nowrap tabular-nums text-on-surface-strong
        (+ dark жуфти) ёзилади - канон каталогда.

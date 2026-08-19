@@ -63,7 +63,7 @@ public record LayoutInfo(String companyName, UUID brandLogoId, boolean setupDone
      * Sidebar тепаси логотип ўрнига company name кўрсатсинми - онбординг
      * тугаган ({@code setupDone}) ва ном реал (бўш эмас) бўлса. Тугамаган
      * бўлса default «Компания» placeholder эмас, AVERPO fallback чиқади
-     * (фойдаланувчи 2026-07-17: боши AVERPO, setup'дан кейин ўз номи).
+     * (фойдаланувчи талаби: боши AVERPO, setup'дан кейин ўз номи).
      */
     public boolean showCompanyName() {
         return setupDone && companyName != null && !companyName.isBlank();

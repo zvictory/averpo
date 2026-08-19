@@ -46,7 +46,7 @@ public class AccountForm {
      */
     private String openingBalance;
 
-    /** Очилиш қолдиғи ҳолати санаси (ISO: 2026-01-01). */
+    /** Очилиш қолдиғи ҳолати санаси (ISO: yyyy-MM-dd). */
     private String openingBalanceDate;
 
     /** Чет валюта счётида очилиш қолдиғи курси: 1 валюта = ? home. */

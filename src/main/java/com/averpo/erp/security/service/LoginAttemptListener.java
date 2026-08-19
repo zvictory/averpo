@@ -16,7 +16,7 @@ import java.time.Instant;
 /**
  * Login lockout (BR-USR-009, SEC-002): Spring Security auth
  * event'ларини тинглаб app_user'даги счётчикни юритади - мантиқ
- * controller'да ЭМАС, security қатламида (арбитр талаби).
+ * controller'да ЭМАС, security қатламида (лойиҳа талаби).
  *
  * <p>Оқим: хато паролда {@code failed_attempts++}; бўсағага етганда
  * {@code locked_until = now + 15 дақиқа} - кейинги уринишлар

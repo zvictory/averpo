@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * {@code X-Telegram-Bot-Api-Secret-Token} header'ида (registrar яратган
  * сир билан constant-time таққос).
  *
- * <p><b>Текширув ТАРТИБИ</b> (хавфсизлик, арбитр 2026-07-17): секрет
+ * <p><b>Текширув ТАРТИБИ</b> (хавфсизлик қоидаси): секрет
  * ОЛДИН - плагин on/off ҳолати аутентификациясиз ошкор бўлмасин ва
  * handleUpdate'га секретсиз етиб борилмасин.
  * <ol>

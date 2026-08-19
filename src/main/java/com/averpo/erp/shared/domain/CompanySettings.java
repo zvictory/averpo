@@ -301,8 +301,8 @@ public class CompanySettings extends BaseEntity {
 
     /**
      * Берилган сана тегишли бўлган молия йилининг биринчи куни.
-     * Масалан бошланиш ойи 7 (июль) бўлса: 2026-06-30 → 2025-07-01,
-     * 2026-07-02 → 2026-07-01. Balance Sheet RE/NI бўлиниши шунга қараб.
+     * Масалан бошланиш ойи 7 (июль) бўлса: 2025-06-30 → 2024-07-01,
+     * 2025-07-02 → 2025-07-01. Balance Sheet RE/NI бўлиниши шунга қараб.
      */
     public java.time.LocalDate fiscalYearStart(java.time.LocalDate onDate) {
         int year = onDate.getMonthValue() >= fiscalYearStartMonth

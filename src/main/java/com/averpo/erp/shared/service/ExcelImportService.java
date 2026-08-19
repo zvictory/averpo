@@ -73,7 +73,7 @@ public class ExcelImportService {
     /** Ҳар варақдаги маълумот сатрлари чегараси - BR-IMP-004. */
     static final int MAX_ROWS = 2000;
 
-    // Варақ номлари (шаблон - арбитр 2026-07-09; рўйхатдан ташқари варақ,
+    // Варақ номлари (шаблон бўйича; рўйхатдан ташқари варақ,
     // масалан «Йўриқнома», индамай ўтказилади)
     private static final String SHEET_CONTACTS = "Контактлар";
     private static final String SHEET_EMPLOYEES = "Ходимлар";

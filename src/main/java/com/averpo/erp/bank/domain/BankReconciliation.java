@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * Банк reconciliation ҳужжати - QBO Reconcile модели (2026-07-06
+ * Банк reconciliation ҳужжати - QBO Reconcile модели (лойиҳа
  * қарори, docs/modules/banking.md): кўчирма сатрлари киритилмайди,
  * давр + якуний қолдиқ киритилиб GL сатрлари белгиланади. Қолдиқлар
  * СЧЁТ ВАЛЮТАСИДА. account_id - dimension паттерни (DB FK, JPA'да

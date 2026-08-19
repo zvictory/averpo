@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
  *
  * <p>Биз бир-tenant: ҳар компания/deployment ЎЗ ботини яратади
  * (@BotFather) - умумий платформа боти ЙЎҚ (user-profile.md 3-бўлим,
- * фойдаланувчи қарори 2026-07-12).
+ * фойдаланувчи қарори).
  *
  * <p><b>Токен сири:</b> {@link #tokenEnc} - ШИФРЛАНГАН матн (AES-GCM,
  * {@code SecretCrypto}); очиқ токен бу entity'да ҲЕЧ ҚАЧОН турмайди -
@@ -35,7 +35,7 @@ public class TelegramSettings extends BaseEntity {
     /**
      * Шифрланган bot token: {@code base64(IV||ciphertext)} ёки null -
      * бот созланмаган. Очиқ ҳолда ҳеч қаерда сақланмайди/логланмайди
-     * (арбитр қарори 2026-07-17 - база захираси токенни очмасин).
+     * (лойиҳа қарори - база захираси токенни очмасин).
      */
     @Column(name = "token_enc", columnDefinition = "text")
     private String tokenEnc;

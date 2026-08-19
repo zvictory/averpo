@@ -171,7 +171,7 @@ public class ExchangeRateService {
      * <p>ЦБ ҳамиша «1 F = N UZS» беради. home=UZS бўлса қиймат
      * ЎЗГАРИШСИЗ ёзилади (аввалги йўл - regression йўқ). home≠UZS бўлса
      * кросс-курс UZS орқали pivot қилинади (DEC-067, фойдаланувчи
-     * талаби 2026-07-10): rate(home per F) = сўм/F ÷ сўм/home, UZS'нинг
+     * талаби): rate(home per F) = сўм/F ÷ сўм/home, UZS'нинг
      * ўзига 1 ÷ сўм/home - иккиси ҳам scale 12 HALF_UP (устун
      * NUMERIC(24,12)). Кўрсатиш йўналиши бу ерга кирмайди - DEC-065.
      *

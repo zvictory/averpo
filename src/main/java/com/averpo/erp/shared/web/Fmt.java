@@ -48,7 +48,7 @@ public final class Fmt {
     /** Минг ажратгич - NBSP: сумма сатр охирида иккига бўлиниб қолмайди. */
     private static final char NBSP = 0x00A0;
 
-    /** Instant'ни экранга чиқариш формати: 2026-07-05 21:45. */
+    /** Instant'ни экранга чиқариш формати: yyyy-MM-dd HH:mm. */
     private static final java.time.format.DateTimeFormatter DT =
             java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -175,7 +175,7 @@ public final class Fmt {
 
     /**
      * Курсни «кучли валюта базис» қоидасига йўналтиради - ФАҚАТ кўрсатиш
-     * учун (фойдаланувчи талаби 2026-07-10, spec E қисм X): «1 USD =
+     * учун (фойдаланувчи талаби, spec E қисм X): «1 USD =
      * 12 600 UZS», ҳеч қачон «1 UZS = 0.00008 USD» эмас - киритиш
      * йўналишидан қатъи назар бир хил кўринади.
      *

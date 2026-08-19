@@ -31,7 +31,7 @@ import java.util.List;
 @Component
 class CbuRestClient implements CbuRateClient {
 
-    /** ЦБ кунлик курслар API'си - sana ISO форматда (2026-07-06). */
+    /** ЦБ кунлик курслар API'си - sana ISO форматда (yyyy-MM-dd). */
     private static final String URL_TEMPLATE =
             "https://cbu.uz/uz/arkhiv-kursov-valyut/json/all/{date}/";
 

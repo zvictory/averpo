@@ -20,7 +20,7 @@ import java.util.UUID;
  * рўйхат + inline қўшиш/таҳрир. Йўл /settings остида - SETTINGS (SUPER_ADMIN) чекловига
  * автоматик тушади (SecurityConfig).
  *
- * <p>BR кодисиз валидация (арбитр кўлами): бўш ном шу ерда flash билан
+ * <p>BR кодисиз валидация (лойиҳа кўлами): бўш ном шу ерда flash билан
  * қайтарилади (формада required бор - бу tampered POST ҳимояси), ном
  * дубли DB unique'дан DataIntegrityViolation бўлиб келади ва тушунарли
  * хабарга айлантирилади.

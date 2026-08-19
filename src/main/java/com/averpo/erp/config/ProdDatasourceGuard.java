@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  * <p>AdminUserInitializer'дан фарқ: у профилсиз муҳитни ҳам production
  * деб қарайди, бу guard эса ФАҚАТ prod профилида ишлайди - профилсиз
  * локал старт (dev оқими) аввалгидек default DB пароли билан юраверади
- * (арбитр кўлами, SEC-001).
+ * (лойиҳа кўлами, SEC-001).
  */
 @Component
 public class ProdDatasourceGuard implements BeanFactoryPostProcessor, EnvironmentAware {

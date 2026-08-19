@@ -59,7 +59,7 @@ public class ImportController {
         return "shared/import";
     }
 
-    /** Тайёр шаблонни (арбитр ясаган) асл ном билан беради. */
+    /** Тайёр шаблонни (тайёр) асл ном билан беради. */
     @GetMapping("/template")
     public ResponseEntity<Resource> template() {
         ContentDisposition disposition = ContentDisposition.attachment()

@@ -32,7 +32,7 @@ public enum AccountClassification {
 
     /**
      * Инглизча ном - i18n локализациядан ФАРҚли, доим english (CoA тур
-     * badge'и: фойдаланувчи 2026-07-18 «badge'да classification фақат
+     * badge'и: фойдаланувчи талаби: «badge'да classification фақат
      * english»). Ҳар синф битта сўз, шунга enum name'ни Capitalize кифоя
      * (ASSET → Asset, LIABILITY → Liability ва ҳ.к.).
      */

@@ -84,7 +84,7 @@
         <a href="/inventory/transfers/${act.getId().toString()}/reverse" class="inline-block no-underline cursor-pointer whitespace-nowrap rounded-radius border border-warning bg-warning px-4 py-2 text-center text-sm font-medium tracking-wide text-on-warning transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warning active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75">${msg.localize("inv.transfer.reverse")}</a>
     @endif
 
-    <%-- Иловалар (attachments.md): КЎРИШ экранига hx-get фрагмент (Ҳабиба 094) --%>
+    <%-- Иловалар (attachments.md): КЎРИШ экранига hx-get фрагмент --%>
     <div hx-get="/attachments/STOCK_TRANSFER/${act.getId().toString()}"
          hx-trigger="load" hx-swap="outerHTML"></div>
 `)

@@ -38,7 +38,7 @@
 
         <%-- Биринчи + Олдинги (фақат олдинги саҳифа бор бўлса).
              href'даги статик «&amp;» - HTML-валидлик (хом «&» атрибутда
-             ambiguous ampersand, Ғайрат 097 қайди); браузер иккисини
+             ambiguous ampersand); браузер иккисини
              ҳам бир хил ўқийди, validator энди шикоят қилмайди. --%>
         @if(page.hasPrevious())
             <a class="flex items-center gap-1 rounded-radius p-1 font-medium text-on-surface no-underline transition hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-on-surface-dark dark:hover:text-primary-dark dark:focus-visible:outline-primary-dark" href="${baseUrl}?page=0&amp;size=${sz}${filterQuery}"

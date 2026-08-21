@@ -20,7 +20,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * CbuRestClient импл тести - ҳақиқий URL формати ва JSON парсинг
  * MockRestServiceServer билан текширилади (тармоққа чиқилмайди).
  * ExchangeRateServiceTest портни mock қилади - бу тест импл'нинг ўзи
- * учун (review топилмаси, 2026-07-06). Импл package-private бўлгани
+ * учун (алоҳида unit қамров). Импл package-private бўлгани
  * учун тест шу пакетда туради; Spring контексти йўқ - соф unit тест.
  */
 class CbuRestClientTest {

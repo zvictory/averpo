@@ -258,7 +258,7 @@ class InventoryDocumentTest {
     // ---- Рўйхат/филтр ----
 
     /**
-     * Deploy 4 hotfix регресси (арбитр, 2026-07-12): филтрсиз (ҳаммаси
+     * Deploy 4 hotfix регресси: филтрсиз (ҳаммаси
      * null) рўйхат чақируви истисно бермасин. transfers() да nullable
      * Specification allOf'га берилиб Spring Data 4 «Other specification
      * must not be null» IAE отарди - саҳифа default киришда доим 400

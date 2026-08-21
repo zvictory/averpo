@@ -21,8 +21,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Аудит қамрови кенгайиши тестлари (DEC-062, spec «Кенгайиш
- * 2026-07-09» бўлими): SETTINGS_CHANGED фақат ўзгарган майдонлар билан,
+ * Аудит қамрови кенгайиши тестлари (DEC-062, spec «Кенгайиш»
+ * бўлими): SETTINGS_CHANGED фақат ўзгарган майдонлар билан,
  * ACCOUNT_CREATED/UPDATED/DEACTIVATED дифф билан, CHART_IMPORTED сонлар
  * билан. FACTORY_RESET - FactoryResetServiceTest'да (TRUNCATE у ерда),
  * IMPORT_EXCEL - ExcelImportServiceTest'да, LOGOUT/user_agent -

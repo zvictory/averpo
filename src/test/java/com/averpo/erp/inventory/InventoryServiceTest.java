@@ -213,7 +213,7 @@ class InventoryServiceTest {
         StockMovement second = inventoryService.receive(item.getId(), warehouse.getId(),
                 new BigDecimal("10"), new BigDecimal("2000"), DATE, "TEST", null, null);
         // Чиқим эски партиядан ейди - иккинчи партия тўлиқ туради, лекин
-        // қоида AVCO билан БИР ХИЛ: кейин ҳаракат бор - рад (арбитр қарори)
+        // қоида AVCO билан БИР ХИЛ: кейин ҳаракат бор - рад (лойиҳа қарори)
         inventoryService.issue(item.getId(), warehouse.getId(),
                 new BigDecimal("5"), DATE, "TEST", null, null);
 

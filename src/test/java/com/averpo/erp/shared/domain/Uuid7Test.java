@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Uuid7 монотонлик кафолати тести: FIFO cost layer тартиби
  * (received_date, id) айнан id ўсишига таянади - бир миллисекунд
  * ичидаги чақириқлар ҳам қатъий ўсувчи бўлиши ШАРТ (RFC 9562 §6.2
- * counter услуби). Random rand_a'да бу бузилар эди - 2026-07-06 да
+ * counter услуби). Random rand_a'да бу бузилар эди -
  * InvoiceServiceTest'нинг FIFO reverse тестида flake сифатида ушланган.
  */
 class Uuid7Test {

@@ -332,7 +332,7 @@ class ExcelImportServiceTest {
         assertThat(preview.warehouses()).isEmpty();
     }
 
-    /** Тест 7: тайёр шаблон (арбитр) - round-trip, парс + apply. */
+    /** Тест 7: тайёр шаблон - round-trip, парс + apply. */
     @Test
     void templateRoundTrip() throws IOException {
         MultipartFile template = new MockMultipartFile("file", "import-template.xlsx",

@@ -53,7 +53,7 @@ class PaymentMethodServiceTest {
 
     @Test
     void duplicateName_rejectedByDbUnique() {
-        // BR кодисиз (арбитр кўлами): дубль DB unique'дан келади,
+        // BR кодисиз (лойиҳа кўлами): дубль DB unique'дан келади,
         // controller уни flash хабарига айлантиради
         assertThatThrownBy(() -> paymentMethodService.create("Нақд"))
                 .isInstanceOf(DataIntegrityViolationException.class);

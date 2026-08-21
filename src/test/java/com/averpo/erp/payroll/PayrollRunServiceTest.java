@@ -343,8 +343,8 @@ class PayrollRunServiceTest {
      * тасдиқлайди (POSTED run сатрлари билан).
      *
      * <p>ЭСЛАТМА: @Transactional тест lazy хатони ЎЗИ кўрсата олмайди (сессия
-     * очиқ - сохта яшил); жонли текширув - Ҳабиба ҳисоботида /payroll саҳифаси
-     * POSTED run билан очилгани (арбитр/preview smoke).
+     * очиқ - сохта яшил); жонли текширув - /payroll саҳифаси
+     * POSTED run билан очилгани (preview smoke).
      */
     @Test
     void totalsByRun_aggregatesGrossAndNet_matchesDomain() {

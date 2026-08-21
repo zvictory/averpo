@@ -8,7 +8,7 @@ spring:
     # ProdDatasourceGuard текширади: DB_PASSWORD env берилмаса ёки шу
     # default'га тенг бўлса boot тўхтайди - env бериш МАЖБУРИЙ.
     password: ${DB_PASSWORD:averpo}
-  # Форма/query параметрлардаги саналар ISO форматда (2026-07-05) боғланади
+  # Форма/query параметрлардаги саналар ISO форматда (yyyy-MM-dd) боғланади
   mvc:
     format:
       date: iso

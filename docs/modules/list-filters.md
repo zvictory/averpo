@@ -8,7 +8,7 @@
 йўқ». Эталон: QBO рўйхатлари (filter қатори: Status / Date / Customer
 + matn) - ҳамма жадвал устида бир хил услуб.
 
-Жорий ҳолат (арбитр съёмкаси): бир қисм рўйхатда GET
+Жорий ҳолат (кўрик натижаси): бир қисм рўйхатда GET
 филтр БОР (bills, invoices, estimates, purchaseOrders,
 journalEntries, movements, balances, item/list, accountTransactions,
 auditLog - НАҚШ сифатида ишлатилсин), лекин тўплами ҳар хил; бошқа

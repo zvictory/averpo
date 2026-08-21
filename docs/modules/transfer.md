@@ -107,7 +107,7 @@ BR-TAX'лари commit бўлгач - business-rules.md тўқнашмасин):
 - Class dimension (DEC-015 backlog).
 - Credit Card тури (бизда йўқ - QBO-001 рад).
 
-## Ижро тартиби (арбитр ўзи кодлайди, Tax тугагач)
+## Ижро тартиби (Tax тугагач)
 1. (1-бўлак): business-rules.md га BR-TXF-001 + enum'га
   BR_TXF_001; AccountClassification.isBalanceSheet; BankTransactionService
   .transfer энди requireTransferAccount (Balance Sheet гарови)

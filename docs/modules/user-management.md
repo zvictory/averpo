@@ -84,7 +84,7 @@ public class UserService {
 ```
 
 Lockout мантиғи controller'да ЭМАС, Spring Security қатламида
-(SEC-002 арбитр талаби):
+(SEC-002 лойиҳа талаби):
 
 - `JpaUserDetailsService` (мавжуд): `locked_until > now` бўлса
   `accountNonLocked=false` қайтаради → `LockedException`.

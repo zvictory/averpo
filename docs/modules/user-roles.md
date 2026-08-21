@@ -168,7 +168,7 @@ PAYROLL соҳаси - рухсат этилган фарқ №2 (Payroll Lite) 
   Spring Security'да роль → authority'лар (permission'лар) сифатида
   берилади (`JpaUserDetailsService` кенгаяди).
 - **Changeset 052** (author averpo; 051 DEC-076 DB CHECK'ларга
-  тақсимланган - арбитр) - фақат МАВЖУД маълумот
+  тақсимланган) - фақат МАВЖУД маълумот
   миграцияси (схема эмас):
   `UPDATE app_user SET role='SUPER_ADMIN' WHERE role='ADMIN';`
   `UPDATE app_user SET role='ACCOUNTANT' WHERE role='ACCOUNTANT';`

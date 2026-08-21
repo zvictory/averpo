@@ -106,7 +106,7 @@ ADMIN эса Созламаларда компания Telegram botini улай�
   telegram_settings жадвали (changeset 059: token_enc, bot_username,
   update_offset). ТАҚИҚ: token log'га (logging.md қоидаси), аудит
   диффига ва чатга ЁЗИЛМАЙДИ (аудитда фақат «token янгиланди» факти).
-- **ТОКЕН САҚЛАНИШИ (арбитр қарори)**: токен базада
+- **ТОКЕН САҚЛАНИШИ (лойиҳа қарори)**: токен базада
   **ШИФРЛАНГАН** - `telegram_settings.token_enc` (AES-GCM 256, ҳар
   ёзувда янги IV; `shared.service.SecretCrypto`). Калит базада ЭМАС:
   `AVERPO_SECRET_KEY` env (base64, 32 байт) - база dump/захираси

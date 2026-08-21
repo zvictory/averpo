@@ -230,7 +230,7 @@ ru «Класс», en «Class». Кейин (2-босқич): warn-when-no-class
 inventory adjustment/LC сатрлари, Budget by Class.
 
 ## Кейинги навбат
-Жорий навбат ЯГОНА манбада: review/NAVBAT.md (арбитр юритади).
+Жорий навбат ЯГОНА манбада юритилади.
 Бажарилганлар: шу файлнинг бўлимлари ва docs/review-log.md.
 
 ## Хавфсизлик
